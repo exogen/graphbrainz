@@ -1,0 +1,57 @@
+{
+  "name": "graphbrainz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:lib",
+    "build:lib": "babel --out-dir lib src",
+    "clean": "npm run clean:lib",
+    "clean:lib": "rm -rf lib",
+    "check": "npm run lint && npm run test",
+    "lint": "standard --verbose | snazzy",
+    "prepublish": "npm run clean && npm run check && npm run build",
+    "start": "node lib/index.js",
+    "start:dev": "nodemon --exec babel-node src/index.js",
+    "test": "mocha --compilers js:babel-register"
+  },
+  "keywords": [],
+  "homepage": "https://github.com/exogen/graphbrainz",
+  "author": {
+    "name": "Brian Beck",
+    "email": "exogen@gmail.com",
+    "url": "http://brianbeck.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exogen/graphbrainz.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bottleneck": "^1.12.0",
+    "chalk": "^1.1.3",
+    "dashify": "^0.2.2",
+    "dataloader": "^1.2.0",
+    "es6-error": "^3.0.1",
+    "express": "^4.14.0",
+    "express-graphql": "^0.5.3",
+    "graphql": "^0.6.2",
+    "qs": "^6.2.1",
+    "retry": "^0.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-stage-2": "^6.13.0",
+    "babel-register": "^6.11.6",
+    "chai": "^3.5.0",
+    "mocha": "^3.0.1",
+    "nodemon": "^1.10.0",
+    "snazzy": "^4.0.1",
+    "standard": "^7.1.2"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
