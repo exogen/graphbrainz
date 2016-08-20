@@ -1,13 +1,48 @@
 import DataLoader from 'dataloader'
-import MusicBrainz from './client'
+import MusicBrainz from './api'
 
-const CLIENT = new MusicBrainz()
+const client = new MusicBrainz()
 
-export const entityLoader = new DataLoader(keys => {
+export const lookupLoader = new DataLoader(keys => {
   return Promise.all(keys.map(key => {
-    const [ entity, id, params ] = key
-    return CLIENT.lookup(entity, id, params)
+    const [ entityType, id, params ] = key
+    return client.lookup(entityType, id, params).then(entity => {
+      if (entity) {
+        entity.entityType = entityType
+      }
+      return entity
+    })
   }))
 }, {
-  cacheKeyFn: (key) => CLIENT.getLookupURL(...key)
+  cacheKeyFn: (key) => client.getLookupURL(...key)
+})
+
+export const browseLoader = new DataLoader(keys => {
+  return Promise.all(keys.map(key => {
+    const [ entityType, params ] = key
+    const pluralName = entityType.endsWith('s') ? entityType : `${entityType}s`
+    return client.browse(entityType, params).then(list => {
+      list[pluralName].forEach(entity => {
+        entity.entityType = entityType
+      })
+      return list
+    })
+  }))
+}, {
+  cacheKeyFn: (key) => client.getBrowseURL(...key)
+})
+
+export const searchLoader = new DataLoader(keys => {
+  return Promise.all(keys.map(key => {
+    const [ entityType, query, params ] = key
+    const pluralName = entityType.endsWith('s') ? entityType : `${entityType}s`
+    return client.search(entityType, query, params).then(list => {
+      list[pluralName].forEach(entity => {
+        entity.entityType = entityType
+      })
+      return list
+    })
+  }))
+}, {
+  cacheKeyFn: (key) => client.getSearchURL(...key)
 })

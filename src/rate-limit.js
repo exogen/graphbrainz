@@ -3,14 +3,14 @@ export default class RateLimit {
     options = {
       limit: 1,
       period: 1000,
-      maxConcurrency: options.limit || 1,
+      concurrency: options.limit || 1,
       defaultPriority: 1,
       ...options
     }
     this.limit = options.limit
     this.period = options.period
     this.defaultPriority = options.defaultPriority
-    this.maxConcurrency = options.maxConcurrency
+    this.concurrency = options.concurrency
     this.queues = []
     this.numPending = 0
     this.periodStart = null
@@ -69,7 +69,7 @@ export default class RateLimit {
     if (this.paused) {
       return
     }
-    if (this.numPending < this.maxConcurrency && this.periodCapacity > 0) {
+    if (this.numPending < this.concurrency && this.periodCapacity > 0) {
       const task = this.dequeue()
       if (task) {
         const { resolve, reject, fn, args } = task
@@ -118,7 +118,7 @@ if (require.main === module) {
   const limiter = new RateLimit({
     limit: 3,
     period: 3000,
-    maxConcurrency: 5
+    concurrency: 5
   })
 
   const fn = (i) => {

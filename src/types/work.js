@@ -1,23 +1,32 @@
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
+import Entity from './entity'
 import {
-  GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLString,
-  GraphQLList
-} from 'graphql/type'
-import MBID from './mbid'
-import { fieldWithID } from './helpers'
+  id,
+  title,
+  disambiguation,
+  artists,
+  relations,
+  fieldWithID,
+  createPageType
+} from './helpers'
 
-export default new GraphQLObjectType({
+const Work = new GraphQLObjectType({
   name: 'Work',
   description:
     'A distinct intellectual or artistic creation, which can be expressed in ' +
     'the form of one or more audio recordings',
+  interfaces: () => [Entity],
   fields: () => ({
-    id: { type: new GraphQLNonNull(MBID) },
-    title: { type: GraphQLString },
-    disambiguation: { type: GraphQLString },
+    id,
+    title,
+    disambiguation,
     iswcs: { type: new GraphQLList(GraphQLString) },
     language: { type: GraphQLString },
-    ...fieldWithID('type')
+    ...fieldWithID('type'),
+    artists,
+    relations
   })
 })
+
+export const WorkPage = createPageType(Work)
+export default Work

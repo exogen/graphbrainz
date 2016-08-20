@@ -1,20 +1,38 @@
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
+import Entity from './entity'
 import {
-  GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLString,
-  GraphQLList
-} from 'graphql/type'
-import MBID from './mbid'
-import { getHyphenated } from './helpers'
+  id,
+  name,
+  sortName,
+  disambiguation,
+  artists,
+  events,
+  labels,
+  places,
+  releases,
+  createPageType
+} from './helpers'
 
-export default new GraphQLObjectType({
+const Area = new GraphQLObjectType({
   name: 'Area',
   description: 'A country, region, city or the like.',
+  interfaces: () => [Entity],
   fields: () => ({
-    id: { type: new GraphQLNonNull(MBID) },
-    disambiguation: { type: GraphQLString },
-    name: { type: GraphQLString },
-    sortName: { type: GraphQLString, resolve: getHyphenated },
-    isoCodes: { type: new GraphQLList(GraphQLString), resolve: data => data['iso-3166-1-codes'] }
+    id,
+    name,
+    sortName,
+    disambiguation,
+    isoCodes: {
+      type: new GraphQLList(GraphQLString),
+      resolve: data => data['iso-3166-1-codes']
+    },
+    artists,
+    events,
+    labels,
+    places,
+    releases
   })
 })
+
+export const AreaPage = createPageType(Area)
+export default Area

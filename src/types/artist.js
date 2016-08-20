@@ -1,47 +1,69 @@
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
+import Entity from './entity'
+import Alias from './alias'
+import Area from './area'
 import {
-  GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLString,
-  GraphQLList
-} from 'graphql/type'
-import MBID from './mbid'
-import AliasType from './alias'
-import AreaType from './area'
-import LifeSpanType from './life-span'
-import WorkType from './work'
-import RecordingType from './recording'
-import ReleaseType from './release'
-import ReleaseGroupType from './release-group'
-import { getHyphenated, getUnderscored, fieldWithID } from './helpers'
+  getFallback,
+  fieldWithID,
+  id,
+  name,
+  sortName,
+  disambiguation,
+  lifeSpan,
+  recordings,
+  releases,
+  releaseGroups,
+  works,
+  relations,
+  createPageType
+} from './helpers'
 
-export default new GraphQLObjectType({
+const Artist = new GraphQLObjectType({
   name: 'Artist',
   description:
     'An artist is generally a musician, a group of musicians, or another ' +
     'music professional (composer, engineer, illustrator, producer, etc.)',
+  interfaces: () => [Entity],
   fields: () => ({
-    id: { type: new GraphQLNonNull(MBID) },
-    name: { type: GraphQLString },
-    sortName: { type: GraphQLString, resolve: getHyphenated },
-    aliases: { type: new GraphQLList(AliasType) },
-    disambiguation: { type: GraphQLString },
+    id,
+    name,
+    sortName,
+    disambiguation,
+    aliases: {
+      type: new GraphQLList(Alias),
+      resolve: (source, args, { lookupLoader }, info) => {
+        const key = 'aliases'
+        if (key in source) {
+          return source[key]
+        } else {
+          const { entityType, id } = source
+          const params = { inc: ['aliases'] }
+          return lookupLoader.load([entityType, id, params]).then(entity => {
+            return entity[key]
+          })
+        }
+      }
+    },
     country: { type: GraphQLString },
-    area: { type: AreaType },
-    beginArea: { type: AreaType, resolve: getUnderscored },
-    endArea: { type: AreaType, resolve: getUnderscored },
+    area: { type: Area },
+    beginArea: {
+      type: Area,
+      resolve: getFallback(['begin-area', 'begin_area'])
+    },
+    endArea: {
+      type: Area,
+      resolve: getFallback(['end-area', 'end_area'])
+    },
+    lifeSpan,
     ...fieldWithID('gender'),
     ...fieldWithID('type'),
-    lifeSpan: { type: LifeSpanType, resolve: getHyphenated },
-    works: { type: new GraphQLList(WorkType) },
-    recordings: { type: new GraphQLList(RecordingType) },
-    releases: {
-      type: new GraphQLList(ReleaseType),
-      args: { type: { type: GraphQLString }, status: { type: GraphQLString } }
-    },
-    releaseGroups: {
-      type: new GraphQLList(ReleaseGroupType),
-      args: { type: { type: GraphQLString } },
-      resolve: getHyphenated
-    }
+    recordings,
+    releases,
+    releaseGroups,
+    works,
+    relations
   })
 })
+
+export const ArtistPage = createPageType(Artist)
+export default Artist

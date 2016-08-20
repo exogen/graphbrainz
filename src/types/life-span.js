@@ -1,5 +1,5 @@
 import { GraphQLObjectType, GraphQLBoolean } from 'graphql/type'
-import DateType from './date'
+import { DateType } from './scalars'
 
 export default new GraphQLObjectType({
   name: 'LifeSpan',

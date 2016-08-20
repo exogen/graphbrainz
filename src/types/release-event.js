@@ -1,6 +1,6 @@
 import { GraphQLObjectType } from 'graphql/type'
-import DateType from './date'
-import AreaType from './area'
+import { DateType } from './scalars'
+import Area from './area'
 
 export default new GraphQLObjectType({
   name: 'ReleaseEvent',
@@ -9,7 +9,7 @@ export default new GraphQLObjectType({
     'particular label, catalog number, barcode, and what release format ' +
     'was used.',
   fields: () => ({
-    area: { type: AreaType },
+    area: { type: Area },
     date: { type: DateType }
   })
 })

@@ -6,6 +6,9 @@ import ExtendableError from 'es6-error'
 import RateLimit from './rate-limit'
 import pkg from '../package.json'
 
+// If the `request` callback returns an error, it indicates a failure at a lower
+// level than the HTTP response itself. If it's any of the following error
+// codes, we should retry.
 const RETRY_CODES = {
   ECONNRESET: true,
   ENOTFOUND: true,
@@ -31,12 +34,23 @@ export default class MusicBrainz {
       userAgent: `${pkg.name}/${pkg.version} ` +
         `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
       timeout: 60000,
+      // MusicBrainz API requests are limited to an *average* of 1 req/sec.
+      // That means if, for example, we only need to make a few API requests to
+      // fulfill a query, we might as well make them all at once - as long as
+      // we then wait a few seconds before making more. In practice this can
+      // seemingly be set to about 5 requests every 5 seconds before we're
+      // considered to exceed the rate limit.
       limit: 3,
       limitPeriod: 3000,
-      maxConcurrency: 10,
+      concurrency: 10,
       retries: 10,
-      minRetryDelay: 100,
-      maxRetryDelay: 60000,
+      // It's OK for `retryDelayMin` to be less than one second, even 0, because
+      // `RateLimit` will already make sure we don't exceed the API rate limit.
+      // We're not doing exponential backoff because it will help with being
+      // rate limited, but rather to be chill in case MusicBrainz is returning
+      // some other error or our network is failing.
+      retryDelayMin: 100,
+      retryDelayMax: 60000,
       randomizeRetry: true,
       ...options
     }
@@ -46,20 +60,21 @@ export default class MusicBrainz {
     this.limiter = new RateLimit({
       limit: options.limit,
       period: options.limitPeriod,
-      maxConcurrency: options.maxConcurrency
+      concurrency: options.concurrency
     })
-    // Even though `minTimeout` is lower than one second, the `Limiter` is
-    // making sure we don't exceed the API rate limit anyway. So we're not doing
-    // exponential backoff to wait for the rate limit to subside, but rather
-    // to be kind to MusicBrainz in case some other error occurred.
     this.retryOptions = {
       retries: options.retries,
-      minTimeout: options.minRetryTimeout,
-      maxTimeout: options.maxRetryDelay,
+      minTimeout: options.retryDelayMin,
+      maxTimeout: options.retryDelayMax,
       randomize: options.randomizeRetry
     }
   }
 
+  /**
+   * Determine if we should retry the request based on the given error.
+   * Retry any 5XX response from MusicBrainz, as well as any error in
+   * `RETRY_CODES`.
+   */
   shouldRetry (err) {
     if (err instanceof MusicBrainzError) {
       return err.statusCode >= 500 && err.statusCode < 600
@@ -67,19 +82,24 @@ export default class MusicBrainz {
     return RETRY_CODES[err.code] || false
   }
 
-  _get (path, params) {
+  /**
+   * Send a request without any retrying or rate limiting.
+   * Use `get` instead.
+   */
+  _get (path, params, info = {}) {
     return new Promise((resolve, reject) => {
       const options = {
         baseUrl: this.baseURL,
         url: path,
-        qs: params,
+        qs: { ...params, fmt: 'json' },
         json: true,
         gzip: true,
         headers: { 'User-Agent': this.userAgent },
         timeout: this.timeout
       }
 
-      console.log('GET:', path, params)
+      const attempt = `(attempt #${info.currentAttempt})`
+      console.log('GET:', path, info.currentAttempt > 1 ? attempt : '')
 
       request(options, (err, response, body) => {
         if (err) {
@@ -94,13 +114,18 @@ export default class MusicBrainz {
     })
   }
 
+  /**
+   * Send a request with retrying and rate limiting.
+   */
   get (path, params) {
     return new Promise((resolve, reject) => {
       const fn = this._get.bind(this)
       const operation = retry.operation(this.retryOptions)
       operation.attempt(currentAttempt => {
+        // This will increase the priority in our `RateLimit` queue for each
+        // retry, so that newer requests don't delay this one further.
         const priority = currentAttempt
-        this.limiter.enqueue(fn, [path, params], priority)
+        this.limiter.enqueue(fn, [path, params, { currentAttempt }], priority)
           .then(resolve)
           .catch(err => {
             if (!this.shouldRetry(err) || !operation.retry(err)) {
@@ -111,26 +136,60 @@ export default class MusicBrainz {
     })
   }
 
-  getLookupURL (entity, id, params) {
-    let url = `${entity}/${id}`
+  stringifyParams (params) {
     if (typeof params.inc === 'object') {
       params = {
         ...params,
         inc: params.inc.join('+')
       }
     }
-    const query = qs.stringify(params, {
+    if (typeof params.type === 'object') {
+      params = {
+        ...params,
+        type: params.type.join('|')
+      }
+    }
+    if (typeof params.status === 'object') {
+      params = {
+        ...params,
+        status: params.status.join('|')
+      }
+    }
+    return qs.stringify(params, {
       skipNulls: true,
       filter: (key, value) => value === '' ? undefined : value
     })
-    if (query) {
-      url += `?${query}`
-    }
-    return url
+  }
+
+  getURL (path, params) {
+    const query = params ? this.stringifyParams(params) : ''
+    return query ? `${path}?${query}` : path
+  }
+
+  getLookupURL (entity, id, params) {
+    return this.getURL(`${entity}/${id}`, params)
   }
 
   lookup (entity, id, params = {}) {
     const url = this.getLookupURL(entity, id, params)
+    return this.get(url)
+  }
+
+  getBrowseURL (entity, params) {
+    return this.getURL(entity, params)
+  }
+
+  browse (entity, params = {}) {
+    const url = this.getBrowseURL(entity, params)
+    return this.get(url)
+  }
+
+  getSearchURL (entity, query, params) {
+    return this.getURL(entity, { ...params, query })
+  }
+
+  search (entity, query, params = {}) {
+    const url = this.getSearchURL(entity, query, params)
     return this.get(url)
   }
 }

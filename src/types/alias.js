@@ -3,7 +3,7 @@ import {
   GraphQLString,
   GraphQLBoolean
 } from 'graphql/type'
-import MBID from './mbid'
+import { MBID } from './scalars'
 import { getHyphenated } from './helpers'
 
 export default new GraphQLObjectType({
