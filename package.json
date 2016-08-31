@@ -8,7 +8,7 @@
     "npm": "^3.10.5"
   },
   "scripts": {
-    "build": "npm run build:lib",
+    "build": "npm run build:lib && npm run update-schema",
     "build:lib": "babel --out-dir lib src",
     "clean": "npm run clean:lib",
     "clean:lib": "rm -rf lib",
@@ -17,9 +17,11 @@
     "lint": "standard --verbose | snazzy",
     "prepublish": "npm run clean && npm run check && npm run build",
     "print-schema": "babel-node scripts/print-schema.js",
+    "print-schema:json": "babel-node scripts/print-schema.js --json",
     "start": "node lib/index.js",
     "start:dev": "nodemon --exec babel-node src/index.js",
-    "test": "mocha --compilers js:babel-register"
+    "test": "mocha --compilers js:babel-register",
+    "update-schema": "npm run -s print-schema:json > schema.json"
   },
   "keywords": [],
   "homepage": "https://github.com/exogen/graphbrainz",
