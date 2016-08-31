@@ -4,26 +4,29 @@ import {
   GraphQLString,
   GraphQLInt
 } from 'graphql/type'
+import { connectionDefinitions } from 'graphql-relay'
+import Node from './node'
 import Entity from './entity'
 import { IPI } from './scalars'
 import Area from './area'
 import {
   id,
+  mbid,
   name,
   sortName,
   disambiguation,
   lifeSpan,
   releases,
-  fieldWithID,
-  createPageType
+  fieldWithID
 } from './helpers'
 
 const Label = new GraphQLObjectType({
   name: 'Label',
   description: 'Labels represent mostly (but not only) imprints.',
-  interfaces: () => [Entity],
+  interfaces: () => [Node, Entity],
   fields: () => ({
     id,
+    mbid,
     name,
     sortName,
     disambiguation,
@@ -37,5 +40,6 @@ const Label = new GraphQLObjectType({
   })
 })
 
-export const LabelPage = createPageType(Label)
+const { connectionType: LabelConnection } = connectionDefinitions({ nodeType: Label })
+export { LabelConnection }
 export default Label

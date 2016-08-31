@@ -1,7 +1,10 @@
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql'
+import { connectionDefinitions } from 'graphql-relay'
+import Node from './node'
 import Entity from './entity'
 import {
   id,
+  mbid,
   name,
   sortName,
   disambiguation,
@@ -9,16 +12,16 @@ import {
   events,
   labels,
   places,
-  releases,
-  createPageType
+  releases
 } from './helpers'
 
 const Area = new GraphQLObjectType({
   name: 'Area',
   description: 'A country, region, city or the like.',
-  interfaces: () => [Entity],
+  interfaces: () => [Node, Entity],
   fields: () => ({
     id,
+    mbid,
     name,
     sortName,
     disambiguation,
@@ -34,5 +37,6 @@ const Area = new GraphQLObjectType({
   })
 })
 
-export const AreaPage = createPageType(Area)
+const { connectionType: AreaConnection } = connectionDefinitions({ nodeType: Area })
+export { AreaConnection }
 export default Area

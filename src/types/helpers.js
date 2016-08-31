@@ -1,12 +1,14 @@
 import dashify from 'dashify'
+import pascalCase from 'pascalcase'
 import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull
-} from 'graphql/type'
-import { MBID, DateType } from './scalars'
+} from 'graphql'
+import { globalIdField } from 'graphql-relay'
+import { MBID } from './scalars'
 import { ReleaseGroupType, ReleaseStatus } from './enums'
 import ArtistCredit from './artist-credit'
 import Artist from './artist'
@@ -26,6 +28,9 @@ import {
   searchResolver,
   includeRelations
 } from '../resolvers'
+
+export const toNodeType = pascalCase
+export const toEntityType = dashify
 
 export function getByline (data) {
   const credit = data['artist-credit']
@@ -94,41 +99,8 @@ export function searchQuery (entityPage) {
   }
 }
 
-export function createPageType (type) {
-  const singularName = dashify(type.name)
-  const pluralName = singularName + (singularName.endsWith('s') ? '' : 's')
-  return new GraphQLObjectType({
-    name: `${type.name}Page`,
-    description: `A page of ${type.name} results from browsing or searching.`,
-    fields: {
-      count: {
-        type: new GraphQLNonNull(GraphQLInt),
-        resolve: list => {
-          if (list.count != null) {
-            return list.count
-          }
-          return list[`${singularName}-count`]
-        }
-      },
-      offset: {
-        type: new GraphQLNonNull(GraphQLInt),
-        resolve: list => {
-          if (list.offset != null) {
-            return list.offset
-          }
-          return list[`${singularName}-offset`]
-        }
-      },
-      created: { type: DateType },
-      results: {
-        type: new GraphQLNonNull(new GraphQLList(type)),
-        resolve: list => list[pluralName]
-      }
-    }
-  })
-}
-
-export const id = { type: new GraphQLNonNull(MBID) }
+export const id = globalIdField()
+export const mbid = { type: new GraphQLNonNull(MBID) }
 export const name = { type: GraphQLString }
 export const sortName = { type: GraphQLString, resolve: getHyphenated }
 export const title = { type: GraphQLString }

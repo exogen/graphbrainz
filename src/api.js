@@ -40,8 +40,8 @@ export default class MusicBrainz {
       // we then wait a few seconds before making more. In practice this can
       // seemingly be set to about 5 requests every 5 seconds before we're
       // considered to exceed the rate limit.
-      limit: 3,
-      limitPeriod: 3000,
+      limit: 5,
+      limitPeriod: 5000,
       concurrency: 10,
       retries: 10,
       // It's OK for `retryDelayMin` to be less than one second, even 0, because

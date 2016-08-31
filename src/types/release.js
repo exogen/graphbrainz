@@ -1,9 +1,12 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
+import { connectionDefinitions } from 'graphql-relay'
+import Node from './node'
 import Entity from './entity'
 import { DateType } from './scalars'
 import ReleaseEvent from './release-event'
 import {
   id,
+  mbid,
   title,
   disambiguation,
   artistCredit,
@@ -13,8 +16,7 @@ import {
   releaseGroups,
   relations,
   getHyphenated,
-  fieldWithID,
-  createPageType
+  fieldWithID
 } from './helpers'
 
 const Release = new GraphQLObjectType({
@@ -23,9 +25,10 @@ const Release = new GraphQLObjectType({
     'Real-world release object you can buy in your music store. It has ' +
     'release date and country, list of catalog number and label pairs, ' +
     'packaging type and release status.',
-  interfaces: () => [Entity],
+  interfaces: () => [Node, Entity],
   fields: () => ({
     id,
+    mbid,
     title,
     disambiguation,
     artistCredit,
@@ -47,5 +50,6 @@ const Release = new GraphQLObjectType({
   })
 })
 
-export const ReleasePage = createPageType(Release)
+const { connectionType: ReleaseConnection } = connectionDefinitions({ nodeType: Release })
+export { ReleaseConnection }
 export default Release

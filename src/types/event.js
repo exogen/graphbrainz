@@ -1,13 +1,15 @@
 import { GraphQLObjectType, GraphQLString, GraphQLBoolean } from 'graphql/type'
+import { connectionDefinitions } from 'graphql-relay'
+import Node from './node'
 import Entity from './entity'
 import { Time } from './scalars'
 import {
   fieldWithID,
   id,
+  mbid,
   name,
   disambiguation,
-  lifeSpan,
-  createPageType
+  lifeSpan
 } from './helpers'
 
 const Event = new GraphQLObjectType({
@@ -15,9 +17,10 @@ const Event = new GraphQLObjectType({
   description:
     'An organized event which people can attend, usually live performances ' +
     'like concerts and festivals.',
-  interfaces: () => [Entity],
+  interfaces: () => [Node, Entity],
   fields: () => ({
     id,
+    mbid,
     name,
     disambiguation,
     lifeSpan,
@@ -28,5 +31,6 @@ const Event = new GraphQLObjectType({
   })
 })
 
-export const EventPage = createPageType(Event)
+const { connectionType: EventConnection } = connectionDefinitions({ nodeType: Event })
+export { EventConnection }
 export default Event

@@ -1,4 +1,6 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
+import { connectionDefinitions } from 'graphql-relay'
+import Node from './node'
 import Entity from './entity'
 import Alias from './alias'
 import Area from './area'
@@ -6,6 +8,7 @@ import {
   getFallback,
   fieldWithID,
   id,
+  mbid,
   name,
   sortName,
   disambiguation,
@@ -14,8 +17,7 @@ import {
   releases,
   releaseGroups,
   works,
-  relations,
-  createPageType
+  relations
 } from './helpers'
 
 const Artist = new GraphQLObjectType({
@@ -23,9 +25,10 @@ const Artist = new GraphQLObjectType({
   description:
     'An artist is generally a musician, a group of musicians, or another ' +
     'music professional (composer, engineer, illustrator, producer, etc.)',
-  interfaces: () => [Entity],
+  interfaces: () => [Node, Entity],
   fields: () => ({
     id,
+    mbid,
     name,
     sortName,
     disambiguation,
@@ -65,5 +68,6 @@ const Artist = new GraphQLObjectType({
   })
 })
 
-export const ArtistPage = createPageType(Artist)
+const { connectionType: ArtistConnection } = connectionDefinitions({ nodeType: Artist })
+export { ArtistConnection }
 export default Artist

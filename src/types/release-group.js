@@ -1,8 +1,11 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
+import { connectionDefinitions } from 'graphql-relay'
+import Node from './node'
 import Entity from './entity'
 import { DateType } from './scalars'
 import {
   id,
+  mbid,
   title,
   disambiguation,
   artistCredit,
@@ -10,8 +13,7 @@ import {
   releases,
   relations,
   getHyphenated,
-  fieldWithID,
-  createPageType
+  fieldWithID
 } from './helpers'
 
 const ReleaseGroup = new GraphQLObjectType({
@@ -19,9 +21,10 @@ const ReleaseGroup = new GraphQLObjectType({
   description:
     'Represents an abstract "album" (or "single", or "EP") entity. ' +
     'Technically it’s a group of releases, with a specified type.',
-  interfaces: () => [Entity],
+  interfaces: () => [Node, Entity],
   fields: () => ({
     id,
+    mbid,
     title,
     disambiguation,
     artistCredit,
@@ -34,5 +37,6 @@ const ReleaseGroup = new GraphQLObjectType({
   })
 })
 
-export const ReleaseGroupPage = createPageType(ReleaseGroup)
+const { connectionType: ReleaseGroupConnection } = connectionDefinitions({ nodeType: ReleaseGroup })
+export { ReleaseGroupConnection }
 export default ReleaseGroup

@@ -65,13 +65,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -92,13 +92,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -119,13 +119,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -146,13 +146,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -173,13 +173,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -200,13 +200,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -227,13 +227,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -254,13 +254,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -281,13 +281,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -308,13 +308,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -335,13 +335,13 @@
               "args": [
                 {
                   "name": "id",
-                  "description": null,
+                  "description": "The ID of an object",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "MBID",
+                      "name": "ID",
                       "ofType": null
                     }
                   },
@@ -364,8 +364,8 @@
         },
         {
           "kind": "SCALAR",
-          "name": "MBID",
-          "description": "The `MBID` scalar represents MusicBrainz identifiers, which are 36-character UUIDs.",
+          "name": "ID",
+          "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -379,6 +379,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -683,6 +699,11 @@
           "interfaces": [
             {
               "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
               "name": "Entity",
               "ofType": null
             }
@@ -692,11 +713,94 @@
         },
         {
           "kind": "INTERFACE",
+          "name": "Node",
+          "description": "An object with an ID",
+          "fields": [
+            {
+              "name": "id",
+              "description": "The id of the object.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": [
+            {
+              "kind": "OBJECT",
+              "name": "Area",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Artist",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Recording",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Release",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Label",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "ReleaseGroup",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Work",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Event",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Place",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Instrument",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "URL",
+              "ofType": null
+            }
+          ]
+        },
+        {
+          "kind": "INTERFACE",
           "name": "Entity",
           "description": "An entity in the MusicBrainz schema.",
           "fields": [
             {
-              "name": "id",
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -775,6 +879,16 @@
         },
         {
           "kind": "SCALAR",
+          "name": "MBID",
+          "description": "The `MBID` scalar represents MusicBrainz identifiers, which are 36-character UUIDs.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
           "name": "String",
           "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
           "fields": null,
@@ -800,6 +914,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -1211,6 +1341,11 @@
           "interfaces": [
             {
               "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
               "name": "Entity",
               "ofType": null
             }
@@ -1375,6 +1510,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -1592,6 +1743,11 @@
           "interfaces": [
             {
               "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
               "name": "Entity",
               "ofType": null
             }
@@ -1795,6 +1951,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -2150,6 +2322,11 @@
           "interfaces": [
             {
               "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
               "name": "Entity",
               "ofType": null
             }
@@ -2199,6 +2376,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -2427,6 +2620,11 @@
           "interfaces": [
             {
               "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
               "name": "Entity",
               "ofType": null
             }
@@ -2451,6 +2649,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -2710,6 +2924,11 @@
           ],
           "inputFields": null,
           "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
             {
               "kind": "INTERFACE",
               "name": "Entity",
@@ -3700,6 +3919,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -3844,6 +4079,11 @@
           "interfaces": [
             {
               "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
               "name": "Entity",
               "ofType": null
             }
@@ -3858,6 +4098,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -3973,6 +4229,11 @@
           "interfaces": [
             {
               "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
               "name": "Entity",
               "ofType": null
             }
@@ -3997,6 +4258,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -4149,6 +4426,11 @@
           "interfaces": [
             {
               "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
               "name": "Entity",
               "ofType": null
             }
@@ -4208,6 +4490,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -4287,6 +4585,11 @@
           "interfaces": [
             {
               "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
               "name": "Entity",
               "ofType": null
             }
@@ -4301,6 +4604,22 @@
           "fields": [
             {
               "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
               "description": null,
               "args": [],
               "type": {
@@ -4346,6 +4665,11 @@
           ],
           "inputFields": null,
           "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
             {
               "kind": "INTERFACE",
               "name": "Entity",

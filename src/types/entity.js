@@ -1,5 +1,5 @@
-import { GraphQLInterfaceType } from 'graphql/type'
-import { id } from './helpers'
+import { GraphQLInterfaceType } from 'graphql'
+import { mbid } from './helpers'
 
 export default new GraphQLInterfaceType({
   name: 'Entity',
@@ -10,6 +10,6 @@ export default new GraphQLInterfaceType({
     }
   },
   fields: () => ({
-    id
+    mbid
   })
 })
