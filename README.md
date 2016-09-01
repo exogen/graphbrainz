@@ -37,7 +37,7 @@ type Area implements Entity {
            statuses: [ReleaseStatus]): [Release]
 }
 
-type AreaPage {
+type AreaConnection {
   count: Int!
   offset: Int!
   created: Date
@@ -80,7 +80,7 @@ type ArtistCredit {
   joinPhrase: String
 }
 
-type ArtistPage {
+type ArtistConnection {
   count: Int!
   offset: Int!
   created: Date
@@ -94,23 +94,23 @@ type BrowseQuery {
           recording: MBID,
           release: MBID,
           releaseGroup: MBID,
-          work: MBID): ArtistPage
+          work: MBID): ArtistConnection
   events(limit: Int,
          offset: Int,
          area: MBID,
          artist: MBID,
-         place: MBID): EventPage
+         place: MBID): EventConnection
   labels(limit: Int,
          offset: Int,
          area: MBID,
-         release: MBID): LabelPage
+         release: MBID): LabelConnection
   places(limit: Int,
          offset: Int,
-         area: MBID): PlacePage
+         area: MBID): PlaceConnection
   recordings(limit: Int,
              offset: Int,
              artist: MBID,
-             release: MBID): RecordingPage
+             release: MBID): RecordingConnection
   releases(limit: Int,
            offset: Int,
            area: MBID,
@@ -119,17 +119,17 @@ type BrowseQuery {
            track: MBID,
            trackArtist: MBID,
            recording: MBID,
-           releaseGroup: MBID): ReleasePage
+           releaseGroup: MBID): ReleaseConnection
   releaseGroups(limit: Int,
                 offset: Int,
                 artist: MBID,
-                release: MBID): ReleaseGroupPage
+                release: MBID): ReleaseGroupConnection
   works(limit: Int,
         offset: Int,
-        artist: MBID): WorkPage
+        artist: MBID): WorkConnection
   urls(limit: Int,
        offset: Int,
-       resource: URLString): URLPage
+       resource: URLString): URLConnection
 }
 
 type Coordinates {
@@ -157,7 +157,7 @@ type Event implements Entity {
   typeID: MBID
 }
 
-type EventPage {
+type EventConnection {
   count: Int!
   offset: Int!
   created: Date
@@ -195,7 +195,7 @@ type Label implements Entity {
            statuses: [ReleaseStatus]): [Release]
 }
 
-type LabelPage {
+type LabelConnection {
   count: Int!
   offset: Int!
   created: Date
@@ -237,7 +237,7 @@ type Place implements Entity {
   events(limit: Int, offset: Int): [Event]
 }
 
-type PlacePage {
+type PlaceConnection {
   count: Int!
   offset: Int!
   created: Date
@@ -261,7 +261,7 @@ type Recording implements Entity {
   relations: Relations
 }
 
-type RecordingPage {
+type RecordingConnection {
   count: Int!
   offset: Int!
   created: Date
@@ -394,7 +394,7 @@ type ReleaseGroup implements Entity {
   relations: Relations
 }
 
-type ReleaseGroupPage {
+type ReleaseGroupConnection {
   count: Int!
   offset: Int!
   created: Date
@@ -420,7 +420,7 @@ enum ReleaseGroupType {
   NAT
 }
 
-type ReleasePage {
+type ReleaseConnection {
   count: Int!
   offset: Int!
   created: Date
@@ -441,14 +441,14 @@ type RootQuery {
 }
 
 type SearchQuery {
-  areas(query: String!, limit: Int, offset: Int): AreaPage
-  artists(query: String!, limit: Int, offset: Int): ArtistPage
-  labels(query: String!, limit: Int, offset: Int): LabelPage
-  places(query: String!, limit: Int, offset: Int): PlacePage
-  recordings(query: String!, limit: Int, offset: Int): RecordingPage
-  releases(query: String!, limit: Int, offset: Int): ReleasePage
-  releaseGroups(query: String!, limit: Int, offset: Int): ReleaseGroupPage
-  works(query: String!, limit: Int, offset: Int): WorkPage
+  areas(query: String!, limit: Int, offset: Int): AreaConnection
+  artists(query: String!, limit: Int, offset: Int): ArtistConnection
+  labels(query: String!, limit: Int, offset: Int): LabelConnection
+  places(query: String!, limit: Int, offset: Int): PlaceConnection
+  recordings(query: String!, limit: Int, offset: Int): RecordingConnection
+  releases(query: String!, limit: Int, offset: Int): ReleaseConnection
+  releaseGroups(query: String!, limit: Int, offset: Int): ReleaseGroupConnection
+  works(query: String!, limit: Int, offset: Int): WorkConnection
 }
 
 scalar Time
@@ -459,7 +459,7 @@ type URL implements Entity {
   relations: Relations
 }
 
-type URLPage {
+type URLConnection {
   count: Int!
   offset: Int!
   created: Date
@@ -480,7 +480,7 @@ type Work implements Entity {
   relations: Relations
 }
 
-type WorkPage {
+type WorkConnection {
   count: Int!
   offset: Int!
   created: Date

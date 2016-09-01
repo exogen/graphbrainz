@@ -2,15 +2,15 @@ import { GraphQLObjectType, GraphQLInt } from 'graphql'
 import {
   MBID,
   URLString,
-  ArtistPage,
-  EventPage,
-  LabelPage,
-  PlacePage,
-  RecordingPage,
-  ReleasePage,
-  ReleaseGroupPage,
-  URLPage,
-  WorkPage
+  ArtistConnection,
+  EventConnection,
+  LabelConnection,
+  PlaceConnection,
+  RecordingConnection,
+  ReleaseConnection,
+  ReleaseGroupConnection,
+  URLConnection,
+  WorkConnection
 } from '../types'
 import { browseResolver } from '../resolvers'
 
@@ -21,7 +21,7 @@ export default new GraphQLObjectType({
     'to another entity.',
   fields: {
     artists: {
-      type: ArtistPage,
+      type: ArtistConnection,
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
@@ -34,7 +34,7 @@ export default new GraphQLObjectType({
       resolve: browseResolver()
     },
     events: {
-      type: EventPage,
+      type: EventConnection,
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
@@ -45,7 +45,7 @@ export default new GraphQLObjectType({
       resolve: browseResolver()
     },
     labels: {
-      type: LabelPage,
+      type: LabelConnection,
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
@@ -55,7 +55,7 @@ export default new GraphQLObjectType({
       resolve: browseResolver()
     },
     places: {
-      type: PlacePage,
+      type: PlaceConnection,
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
@@ -64,7 +64,7 @@ export default new GraphQLObjectType({
       resolve: browseResolver()
     },
     recordings: {
-      type: RecordingPage,
+      type: RecordingConnection,
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
@@ -74,7 +74,7 @@ export default new GraphQLObjectType({
       resolve: browseResolver()
     },
     releases: {
-      type: ReleasePage,
+      type: ReleaseConnection,
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
@@ -89,7 +89,7 @@ export default new GraphQLObjectType({
       resolve: browseResolver()
     },
     releaseGroups: {
-      type: ReleaseGroupPage,
+      type: ReleaseGroupConnection,
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
@@ -99,7 +99,7 @@ export default new GraphQLObjectType({
       resolve: browseResolver()
     },
     works: {
-      type: WorkPage,
+      type: WorkConnection,
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
@@ -108,7 +108,7 @@ export default new GraphQLObjectType({
       resolve: browseResolver()
     },
     urls: {
-      type: URLPage,
+      type: URLConnection,
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },

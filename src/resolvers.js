@@ -1,4 +1,5 @@
-import dashify from 'dashify'
+import { toEntityType } from './types/helpers'
+import { getOffsetWithDefault, connectionFromArraySlice } from 'graphql-relay'
 import { getFields, extendIncludes } from './util'
 
 export function includeRelations (params, info) {
@@ -12,7 +13,7 @@ export function includeRelations (params, info) {
   }
   if (fields) {
     const relations = Object.keys(fields)
-    const includeRels = relations.map(key => `${dashify(key)}-rels`)
+    const includeRels = relations.map(key => `${toEntityType(key)}-rels`)
     if (includeRels.length) {
       params = {
         ...params,
@@ -37,14 +38,14 @@ export function includeSubqueries (params, info) {
 export function lookupResolver (entityType, extraParams = {}) {
   return (root, { id }, { lookupLoader }, info) => {
     const params = includeRelations(extraParams, info)
-    entityType = entityType || dashify(info.fieldName)
+    entityType = entityType || toEntityType(info.fieldName)
     return lookupLoader.load([entityType, id, params])
   }
 }
 
 export function browseResolver () {
   return (source, args, { browseLoader }, info) => {
-    const pluralName = dashify(info.fieldName)
+    const pluralName = toEntityType(info.fieldName)
     let singularName = pluralName
     if (pluralName.endsWith('s')) {
       singularName = pluralName.slice(0, -1)
@@ -56,13 +57,23 @@ export function browseResolver () {
 
 export function searchResolver () {
   return (source, args, { searchLoader }, info) => {
-    const pluralName = dashify(info.fieldName)
+    const pluralName = toEntityType(info.fieldName)
     let singularName = pluralName
     if (pluralName.endsWith('s')) {
       singularName = pluralName.slice(0, -1)
     }
-    const { query, ...params } = args
-    return searchLoader.load([singularName, query, params])
+    const { query, first, after, ...params } = args
+    params.limit = first
+    params.offset = getOffsetWithDefault(after, 0)
+    return searchLoader.load([singularName, query, params]).then(list => {
+      const {
+        [pluralName]: arraySlice,
+        offset: sliceStart,
+        count: arrayLength
+      } = list
+      const meta = { sliceStart, arrayLength }
+      return connectionFromArraySlice(arraySlice, { first, after }, meta)
+    })
   }
 }
 
@@ -72,7 +83,7 @@ export function relationResolver () {
                     direction,
                     type,
                     typeID }, { lookupLoader }, info) => {
-    const targetType = dashify(info.fieldName).replace('-', '_')
+    const targetType = toEntityType(info.fieldName).replace('-', '_')
     return source.filter(relation => {
       if (relation['target-type'] !== targetType) {
         return false
@@ -93,12 +104,12 @@ export function relationResolver () {
 
 export function linkedResolver () {
   return (source, args, { browseLoader }, info) => {
-    const pluralName = dashify(info.fieldName)
+    const pluralName = toEntityType(info.fieldName)
     let singularName = pluralName
     if (pluralName.endsWith('s')) {
       singularName = pluralName.slice(0, -1)
     }
-    const parentEntity = dashify(info.parentType.name)
+    const parentEntity = toEntityType(info.parentType.name)
     let params = {
       [parentEntity]: source.id,
       type: [],

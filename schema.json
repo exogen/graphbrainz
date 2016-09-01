@@ -13,6 +13,33 @@
           "description": null,
           "fields": [
             {
+              "name": "node",
+              "description": "Fetches an object given its ID",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The ID of an object",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "INTERFACE",
+                "name": "Node",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "lookup",
               "description": null,
               "args": [],
@@ -53,6 +80,99 @@
           "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "ID",
+          "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "Node",
+          "description": "An object with an ID",
+          "fields": [
+            {
+              "name": "id",
+              "description": "The id of the object.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": [
+            {
+              "kind": "OBJECT",
+              "name": "Area",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Artist",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Recording",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Release",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Label",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "ReleaseGroup",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Work",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Event",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Place",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Instrument",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "URL",
+              "ofType": null
+            }
+          ]
         },
         {
           "kind": "OBJECT",
@@ -359,16 +479,6 @@
           ],
           "inputFields": null,
           "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "ID",
-          "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -710,89 +820,6 @@
           ],
           "enumValues": null,
           "possibleTypes": null
-        },
-        {
-          "kind": "INTERFACE",
-          "name": "Node",
-          "description": "An object with an ID",
-          "fields": [
-            {
-              "name": "id",
-              "description": "The id of the object.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": [
-            {
-              "kind": "OBJECT",
-              "name": "Area",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Artist",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Recording",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Release",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Label",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "ReleaseGroup",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Work",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Event",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Place",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Instrument",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "URL",
-              "ofType": null
-            }
-          ]
         },
         {
           "kind": "INTERFACE",
@@ -4771,7 +4798,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "ArtistPage",
+                "name": "ArtistConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -4834,7 +4861,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "EventPage",
+                "name": "EventConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -4887,7 +4914,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "LabelPage",
+                "name": "LabelConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -4930,7 +4957,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PlacePage",
+                "name": "PlaceConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -4983,7 +5010,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "RecordingPage",
+                "name": "RecordingConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -5086,7 +5113,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "ReleasePage",
+                "name": "ReleaseConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -5139,7 +5166,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "ReleaseGroupPage",
+                "name": "ReleaseGroupConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -5182,7 +5209,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "WorkPage",
+                "name": "WorkConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -5225,7 +5252,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "URLPage",
+                "name": "URLConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -5239,19 +5266,19 @@
         },
         {
           "kind": "OBJECT",
-          "name": "ArtistPage",
-          "description": "A page of Artist results from browsing or searching.",
+          "name": "ArtistConnection",
+          "description": "A connection to a list of items.",
           "fields": [
             {
-              "name": "count",
-              "description": null,
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
                   "ofType": null
                 }
               },
@@ -5259,48 +5286,16 @@
               "deprecationReason": null
             },
             {
-              "name": "offset",
-              "description": null,
+              "name": "edges",
+              "description": "A list of edges.",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "ArtistEdge",
                   "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "results",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Artist",
-                    "ofType": null
-                  }
                 }
               },
               "isDeprecated": false,
@@ -5314,19 +5309,19 @@
         },
         {
           "kind": "OBJECT",
-          "name": "EventPage",
-          "description": "A page of Event results from browsing or searching.",
+          "name": "PageInfo",
+          "description": "Information about pagination in a connection.",
           "fields": [
             {
-              "name": "count",
-              "description": null,
+              "name": "hasNextPage",
+              "description": "When paginating forwards, are there more items?",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "Boolean",
                   "ofType": null
                 }
               },
@@ -5334,15 +5329,15 @@
               "deprecationReason": null
             },
             {
-              "name": "offset",
-              "description": null,
+              "name": "hasPreviousPage",
+              "description": "When paginating backwards, are there more items?",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "Boolean",
                   "ofType": null
                 }
               },
@@ -5350,32 +5345,63 @@
               "deprecationReason": null
             },
             {
-              "name": "created",
-              "description": null,
+              "name": "startCursor",
+              "description": "When paginating backwards, the cursor to continue.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "Date",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "results",
-              "description": null,
+              "name": "endCursor",
+              "description": "When paginating forwards, the cursor to continue.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ArtistEdge",
+          "description": "An edge in a connection.",
+          "fields": [
+            {
+              "name": "node",
+              "description": "The item at the end of the edge",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Artist",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Event",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
                 }
               },
               "isDeprecated": false,
@@ -5389,19 +5415,19 @@
         },
         {
           "kind": "OBJECT",
-          "name": "LabelPage",
-          "description": "A page of Label results from browsing or searching.",
+          "name": "EventConnection",
+          "description": "A connection to a list of items.",
           "fields": [
             {
-              "name": "count",
-              "description": null,
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
                   "ofType": null
                 }
               },
@@ -5409,48 +5435,16 @@
               "deprecationReason": null
             },
             {
-              "name": "offset",
-              "description": null,
+              "name": "edges",
+              "description": "A list of edges.",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "EventEdge",
                   "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "results",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Label",
-                    "ofType": null
-                  }
                 }
               },
               "isDeprecated": false,
@@ -5464,68 +5458,32 @@
         },
         {
           "kind": "OBJECT",
-          "name": "PlacePage",
-          "description": "A page of Place results from browsing or searching.",
+          "name": "EventEdge",
+          "description": "An edge in a connection.",
           "fields": [
             {
-              "name": "count",
-              "description": null,
+              "name": "node",
+              "description": "The item at the end of the edge",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "offset",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
+                "kind": "OBJECT",
+                "name": "Event",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "results",
-              "description": null,
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Place",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
                 }
               },
               "isDeprecated": false,
@@ -5539,19 +5497,19 @@
         },
         {
           "kind": "OBJECT",
-          "name": "RecordingPage",
-          "description": "A page of Recording results from browsing or searching.",
+          "name": "LabelConnection",
+          "description": "A connection to a list of items.",
           "fields": [
             {
-              "name": "count",
-              "description": null,
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
                   "ofType": null
                 }
               },
@@ -5559,48 +5517,16 @@
               "deprecationReason": null
             },
             {
-              "name": "offset",
-              "description": null,
+              "name": "edges",
+              "description": "A list of edges.",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "LabelEdge",
                   "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "results",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Recording",
-                    "ofType": null
-                  }
                 }
               },
               "isDeprecated": false,
@@ -5614,68 +5540,32 @@
         },
         {
           "kind": "OBJECT",
-          "name": "ReleasePage",
-          "description": "A page of Release results from browsing or searching.",
+          "name": "LabelEdge",
+          "description": "An edge in a connection.",
           "fields": [
             {
-              "name": "count",
-              "description": null,
+              "name": "node",
+              "description": "The item at the end of the edge",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "offset",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
+                "kind": "OBJECT",
+                "name": "Label",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "results",
-              "description": null,
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Release",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
                 }
               },
               "isDeprecated": false,
@@ -5689,19 +5579,19 @@
         },
         {
           "kind": "OBJECT",
-          "name": "ReleaseGroupPage",
-          "description": "A page of ReleaseGroup results from browsing or searching.",
+          "name": "PlaceConnection",
+          "description": "A connection to a list of items.",
           "fields": [
             {
-              "name": "count",
-              "description": null,
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
                   "ofType": null
                 }
               },
@@ -5709,48 +5599,16 @@
               "deprecationReason": null
             },
             {
-              "name": "offset",
-              "description": null,
+              "name": "edges",
+              "description": "A list of edges.",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "PlaceEdge",
                   "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "results",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ReleaseGroup",
-                    "ofType": null
-                  }
                 }
               },
               "isDeprecated": false,
@@ -5764,68 +5622,32 @@
         },
         {
           "kind": "OBJECT",
-          "name": "WorkPage",
-          "description": "A page of Work results from browsing or searching.",
+          "name": "PlaceEdge",
+          "description": "An edge in a connection.",
           "fields": [
             {
-              "name": "count",
-              "description": null,
+              "name": "node",
+              "description": "The item at the end of the edge",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "offset",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
+                "kind": "OBJECT",
+                "name": "Place",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "results",
-              "description": null,
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Work",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
                 }
               },
               "isDeprecated": false,
@@ -5839,19 +5661,19 @@
         },
         {
           "kind": "OBJECT",
-          "name": "URLPage",
-          "description": "A page of URL results from browsing or searching.",
+          "name": "RecordingConnection",
+          "description": "A connection to a list of items.",
           "fields": [
             {
-              "name": "count",
-              "description": null,
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
                   "ofType": null
                 }
               },
@@ -5859,48 +5681,383 @@
               "deprecationReason": null
             },
             {
-              "name": "offset",
-              "description": null,
+              "name": "edges",
+              "description": "A list of edges.",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "RecordingEdge",
                   "ofType": null
                 }
               },
               "isDeprecated": false,
               "deprecationReason": null
-            },
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RecordingEdge",
+          "description": "An edge in a connection.",
+          "fields": [
             {
-              "name": "created",
-              "description": null,
+              "name": "node",
+              "description": "The item at the end of the edge",
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Date",
+                "kind": "OBJECT",
+                "name": "Recording",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "results",
-              "description": null,
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "URL",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ReleaseConnection",
+          "description": "A connection to a list of items.",
+          "fields": [
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edges",
+              "description": "A list of edges.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ReleaseEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ReleaseEdge",
+          "description": "An edge in a connection.",
+          "fields": [
+            {
+              "name": "node",
+              "description": "The item at the end of the edge",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Release",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ReleaseGroupConnection",
+          "description": "A connection to a list of items.",
+          "fields": [
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edges",
+              "description": "A list of edges.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ReleaseGroupEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ReleaseGroupEdge",
+          "description": "An edge in a connection.",
+          "fields": [
+            {
+              "name": "node",
+              "description": "The item at the end of the edge",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReleaseGroup",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "WorkConnection",
+          "description": "A connection to a list of items.",
+          "fields": [
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edges",
+              "description": "A list of edges.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "WorkEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "WorkEdge",
+          "description": "An edge in a connection.",
+          "fields": [
+            {
+              "name": "node",
+              "description": "The item at the end of the edge",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Work",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "URLConnection",
+          "description": "A connection to a list of items.",
+          "fields": [
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edges",
+              "description": "A list of edges.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "URLEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "URLEdge",
+          "description": "An edge in a connection.",
+          "fields": [
+            {
+              "name": "node",
+              "description": "The item at the end of the edge",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "URL",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
                 }
               },
               "isDeprecated": false,
@@ -5919,7 +6076,7 @@
           "fields": [
             {
               "name": "areas",
-              "description": "Search for Area entities.",
+              "description": null,
               "args": [
                 {
                   "name": "query",
@@ -5936,17 +6093,17 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "limit",
+                  "name": "after",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   },
                   "defaultValue": null
                 },
                 {
-                  "name": "offset",
+                  "name": "first",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -5958,7 +6115,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "AreaPage",
+                "name": "AreaConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -5966,7 +6123,7 @@
             },
             {
               "name": "artists",
-              "description": "Search for Artist entities.",
+              "description": null,
               "args": [
                 {
                   "name": "query",
@@ -5983,17 +6140,17 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "limit",
+                  "name": "after",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   },
                   "defaultValue": null
                 },
                 {
-                  "name": "offset",
+                  "name": "first",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -6005,7 +6162,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "ArtistPage",
+                "name": "ArtistConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6013,7 +6170,7 @@
             },
             {
               "name": "labels",
-              "description": "Search for Label entities.",
+              "description": null,
               "args": [
                 {
                   "name": "query",
@@ -6030,17 +6187,17 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "limit",
+                  "name": "after",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   },
                   "defaultValue": null
                 },
                 {
-                  "name": "offset",
+                  "name": "first",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -6052,7 +6209,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "LabelPage",
+                "name": "LabelConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6060,7 +6217,7 @@
             },
             {
               "name": "places",
-              "description": "Search for Place entities.",
+              "description": null,
               "args": [
                 {
                   "name": "query",
@@ -6077,17 +6234,17 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "limit",
+                  "name": "after",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   },
                   "defaultValue": null
                 },
                 {
-                  "name": "offset",
+                  "name": "first",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -6099,7 +6256,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "PlacePage",
+                "name": "PlaceConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6107,7 +6264,7 @@
             },
             {
               "name": "recordings",
-              "description": "Search for Recording entities.",
+              "description": null,
               "args": [
                 {
                   "name": "query",
@@ -6124,17 +6281,17 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "limit",
+                  "name": "after",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   },
                   "defaultValue": null
                 },
                 {
-                  "name": "offset",
+                  "name": "first",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -6146,7 +6303,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "RecordingPage",
+                "name": "RecordingConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6154,7 +6311,7 @@
             },
             {
               "name": "releases",
-              "description": "Search for Release entities.",
+              "description": null,
               "args": [
                 {
                   "name": "query",
@@ -6171,17 +6328,17 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "limit",
+                  "name": "after",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   },
                   "defaultValue": null
                 },
                 {
-                  "name": "offset",
+                  "name": "first",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -6193,7 +6350,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "ReleasePage",
+                "name": "ReleaseConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6201,7 +6358,7 @@
             },
             {
               "name": "releaseGroups",
-              "description": "Search for ReleaseGroup entities.",
+              "description": null,
               "args": [
                 {
                   "name": "query",
@@ -6218,17 +6375,17 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "limit",
+                  "name": "after",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   },
                   "defaultValue": null
                 },
                 {
-                  "name": "offset",
+                  "name": "first",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -6240,7 +6397,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "ReleaseGroupPage",
+                "name": "ReleaseGroupConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6248,7 +6405,7 @@
             },
             {
               "name": "works",
-              "description": "Search for Work entities.",
+              "description": null,
               "args": [
                 {
                   "name": "query",
@@ -6265,17 +6422,17 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "limit",
+                  "name": "after",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   },
                   "defaultValue": null
                 },
                 {
-                  "name": "offset",
+                  "name": "first",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -6287,7 +6444,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "WorkPage",
+                "name": "WorkConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6301,19 +6458,19 @@
         },
         {
           "kind": "OBJECT",
-          "name": "AreaPage",
-          "description": "A page of Area results from browsing or searching.",
+          "name": "AreaConnection",
+          "description": "A connection to a list of items.",
           "fields": [
             {
-              "name": "count",
-              "description": null,
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
                   "ofType": null
                 }
               },
@@ -6321,48 +6478,55 @@
               "deprecationReason": null
             },
             {
-              "name": "offset",
-              "description": null,
+              "name": "edges",
+              "description": "A list of edges.",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "OBJECT",
+                  "name": "AreaEdge",
                   "ofType": null
                 }
               },
               "isDeprecated": false,
               "deprecationReason": null
-            },
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AreaEdge",
+          "description": "An edge in a connection.",
+          "fields": [
             {
-              "name": "created",
-              "description": null,
+              "name": "node",
+              "description": "The item at the end of the edge",
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Date",
+                "kind": "OBJECT",
+                "name": "Area",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "results",
-              "description": null,
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Area",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
                 }
               },
               "isDeprecated": false,

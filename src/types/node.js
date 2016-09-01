@@ -10,8 +10,9 @@ const { nodeInterface, nodeField } = nodeDefinitions(
   },
   (obj) => {
     try {
-      return require(`./${obj.entityType}`)
+      return require(`./${obj.entityType}`).default
     } catch (err) {
+      console.error(err)
       return null
     }
   }

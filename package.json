@@ -47,7 +47,7 @@
     "pascalcase": "^0.1.1",
     "qs": "^6.2.1",
     "request": "^2.74.0",
-    "retry": "^0.9.0"
+    "retry": "^0.10.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
@@ -59,7 +59,7 @@
     "mocha": "^3.0.1",
     "nodemon": "^1.10.2",
     "snazzy": "^4.0.1",
-    "standard": "^7.1.2"
+    "standard": "^8.0.0"
   },
   "standard": {
     "parser": "babel-eslint"

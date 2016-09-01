@@ -7,7 +7,7 @@ import {
   GraphQLList,
   GraphQLNonNull
 } from 'graphql'
-import { globalIdField } from 'graphql-relay'
+import { globalIdField, forwardConnectionArgs } from 'graphql-relay'
 import { MBID } from './scalars'
 import { ReleaseGroupType, ReleaseStatus } from './enums'
 import ArtistCredit from './artist-credit'
@@ -85,22 +85,22 @@ export function lookupQuery (entity, params) {
   }
 }
 
-export function searchQuery (entityPage) {
-  const entity = entityPage.getFields().results.type.ofType.ofType
+export function searchQuery (connectionType) {
   return {
-    type: entityPage,
-    description: `Search for ${entity.name} entities.`,
+    type: connectionType,
     args: {
       query: { type: new GraphQLNonNull(GraphQLString) },
-      limit: { type: GraphQLInt },
-      offset: { type: GraphQLInt }
+      ...forwardConnectionArgs
     },
     resolve: searchResolver()
   }
 }
 
 export const id = globalIdField()
-export const mbid = { type: new GraphQLNonNull(MBID) }
+export const mbid = {
+  type: new GraphQLNonNull(MBID),
+  resolve: source => source.id
+}
 export const name = { type: GraphQLString }
 export const sortName = { type: GraphQLString, resolve: getHyphenated }
 export const title = { type: GraphQLString }
