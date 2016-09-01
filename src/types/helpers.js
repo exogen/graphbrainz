@@ -3,43 +3,35 @@ import pascalCase from 'pascalcase'
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt,
   GraphQLList,
   GraphQLNonNull
 } from 'graphql'
-import { globalIdField, forwardConnectionArgs } from 'graphql-relay'
+import {
+  globalIdField,
+  connectionArgs,
+  forwardConnectionArgs
+} from 'graphql-relay'
 import { MBID } from './scalars'
 import { ReleaseGroupType, ReleaseStatus } from './enums'
 import ArtistCredit from './artist-credit'
-import Artist from './artist'
-import Event from './event'
-import Label from './label'
+import { ArtistConnection } from './artist'
+import { EventConnection } from './event'
+import { LabelConnection } from './label'
 import LifeSpan from './life-span'
-import Place from './place'
-import Recording from './recording'
+import { PlaceConnection } from './place'
+import { RecordingConnection } from './recording'
 import Relation from './relation'
-import Release from './release'
-import ReleaseGroup from './release-group'
-import Work from './work'
+import { ReleaseConnection } from './release'
+import { ReleaseGroupConnection } from './release-group'
+import { WorkConnection } from './work'
 import {
-  lookupResolver,
   linkedResolver,
   relationResolver,
-  searchResolver,
   includeRelations
 } from '../resolvers'
 
 export const toNodeType = pascalCase
 export const toEntityType = dashify
-
-export function getByline (data) {
-  const credit = data['artist-credit']
-  if (credit && credit.length) {
-    return credit.reduce((byline, credit) => {
-      return byline + credit.name + credit.joinphrase
-    }, '')
-  }
-}
 
 export function fieldWithID (name, config = {}) {
   config = {
@@ -76,29 +68,10 @@ export function getFallback (keys) {
   }
 }
 
-export function lookupQuery (entity, params) {
-  return {
-    type: entity,
-    description: `Look up a specific ${entity.name} by its MBID.`,
-    args: { id },
-    resolve: lookupResolver(dashify(entity.name), params)
-  }
-}
-
-export function searchQuery (connectionType) {
-  return {
-    type: connectionType,
-    args: {
-      query: { type: new GraphQLNonNull(GraphQLString) },
-      ...forwardConnectionArgs
-    },
-    resolve: searchResolver()
-  }
-}
-
 export const id = globalIdField()
 export const mbid = {
   type: new GraphQLNonNull(MBID),
+  description: 'The MBID of the entity.',
   resolve: source => source.id
 }
 export const name = { type: GraphQLString }
@@ -107,11 +80,21 @@ export const title = { type: GraphQLString }
 export const disambiguation = { type: GraphQLString }
 export const lifeSpan = { type: LifeSpan, resolve: getHyphenated }
 
+function linkedQuery (connectionType, args) {
+  return {
+    type: connectionType,
+    args: {
+      ...forwardConnectionArgs,
+      ...args
+    },
+    resolve: linkedResolver()
+  }
+}
+
 export const relation = {
   type: new GraphQLList(Relation),
   args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
+    ...connectionArgs,
     direction: { type: GraphQLString },
     type: { type: GraphQLString },
     typeID: { type: MBID }
@@ -141,7 +124,7 @@ export const relations = {
     if (source.relations != null) {
       return source.relations
     }
-    const entityType = dashify(info.parentType.name)
+    const entityType = toEntityType(info.parentType.name)
     const id = source.id
     const params = includeRelations({}, info)
     return lookupLoader.load([entityType, id, params]).then(entity => {
@@ -166,80 +149,22 @@ export const artistCredit = {
   }
 }
 
-export const artists = {
-  type: new GraphQLList(Artist),
-  args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
-  },
-  resolve: linkedResolver()
-}
+export const artists = linkedQuery(ArtistConnection)
+export const events = linkedQuery(EventConnection)
+export const labels = linkedQuery(LabelConnection)
+export const places = linkedQuery(PlaceConnection)
+export const recordings = linkedQuery(RecordingConnection)
 
-export const events = {
-  type: new GraphQLList(Event),
-  args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
-  },
-  resolve: linkedResolver()
-}
+export const releases = linkedQuery(ReleaseConnection, {
+  type: { type: ReleaseGroupType },
+  types: { type: new GraphQLList(ReleaseGroupType) },
+  status: { type: ReleaseStatus },
+  statuses: { type: new GraphQLList(ReleaseStatus) }
+})
 
-export const labels = {
-  type: new GraphQLList(Label),
-  args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
-  },
-  resolve: linkedResolver()
-}
+export const releaseGroups = linkedQuery(ReleaseGroupConnection, {
+  type: { type: ReleaseGroupType },
+  types: { type: new GraphQLList(ReleaseGroupType) }
+})
 
-export const places = {
-  type: new GraphQLList(Place),
-  args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
-  },
-  resolve: linkedResolver()
-}
-
-export const recordings = {
-  type: new GraphQLList(Recording),
-  args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
-  },
-  resolve: linkedResolver()
-}
-
-export const releases = {
-  type: new GraphQLList(Release),
-  args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
-    type: { type: ReleaseGroupType },
-    types: { type: new GraphQLList(ReleaseGroupType) },
-    status: { type: ReleaseStatus },
-    statuses: { type: new GraphQLList(ReleaseStatus) }
-  },
-  resolve: linkedResolver()
-}
-
-export const releaseGroups = {
-  type: new GraphQLList(ReleaseGroup),
-  args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt },
-    type: { type: ReleaseGroupType },
-    types: { type: new GraphQLList(ReleaseGroupType) }
-  },
-  resolve: linkedResolver()
-}
-
-export const works = {
-  type: new GraphQLList(Work),
-  args: {
-    limit: { type: GraphQLInt },
-    offset: { type: GraphQLInt }
-  },
-  resolve: linkedResolver()
-}
+export const works = linkedQuery(WorkConnection)

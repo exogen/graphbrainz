@@ -1,4 +1,6 @@
-import { GraphQLObjectType } from 'graphql'
+import { GraphQLObjectType, GraphQLNonNull, GraphQLString } from 'graphql'
+import { forwardConnectionArgs } from 'graphql-relay'
+import { searchResolver } from '../resolvers'
 import {
   AreaConnection,
   ArtistConnection,
@@ -9,7 +11,17 @@ import {
   ReleaseGroupConnection,
   WorkConnection
 } from '../types'
-import { searchQuery } from '../types/helpers'
+
+function searchQuery (connectionType) {
+  return {
+    type: connectionType,
+    args: {
+      query: { type: new GraphQLNonNull(GraphQLString) },
+      ...forwardConnectionArgs
+    },
+    resolve: searchResolver()
+  }
+}
 
 export default new GraphQLObjectType({
   name: 'SearchQuery',

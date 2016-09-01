@@ -1,4 +1,6 @@
 import { GraphQLObjectType } from 'graphql'
+import { lookupResolver } from '../resolvers'
+import { mbid } from '../types/helpers'
 import {
   Area,
   Artist,
@@ -9,10 +11,19 @@ import {
   Recording,
   Release,
   ReleaseGroup,
+  Series,
   URL,
   Work
 } from '../types'
-import { lookupQuery } from '../types/helpers'
+
+function lookupQuery (entity) {
+  return {
+    type: entity,
+    description: `Look up a specific ${entity.name} by its MBID.`,
+    args: { mbid },
+    resolve: lookupResolver()
+  }
+}
 
 export default new GraphQLObjectType({
   name: 'LookupQuery',
@@ -29,6 +40,7 @@ export default new GraphQLObjectType({
     recording: lookupQuery(Recording),
     release: lookupQuery(Release),
     releaseGroup: lookupQuery(ReleaseGroup),
+    series: lookupQuery(Series),
     url: lookupQuery(URL),
     work: lookupQuery(Work)
   }

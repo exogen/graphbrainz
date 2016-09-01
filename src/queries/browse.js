@@ -1,4 +1,6 @@
-import { GraphQLObjectType, GraphQLInt } from 'graphql'
+import { GraphQLObjectType } from 'graphql'
+import { forwardConnectionArgs } from 'graphql-relay'
+import { browseResolver } from '../resolvers'
 import {
   MBID,
   URLString,
@@ -12,7 +14,17 @@ import {
   URLConnection,
   WorkConnection
 } from '../types'
-import { browseResolver } from '../resolvers'
+
+function browseQuery (connectionType, args) {
+  return {
+    type: connectionType,
+    args: {
+      ...forwardConnectionArgs,
+      ...args
+    },
+    resolve: browseResolver()
+  }
+}
 
 export default new GraphQLObjectType({
   name: 'BrowseQuery',
@@ -20,101 +32,47 @@ export default new GraphQLObjectType({
     'Browse requests are a direct lookup of all the entities directly linked ' +
     'to another entity.',
   fields: {
-    artists: {
-      type: ArtistConnection,
-      args: {
-        limit: { type: GraphQLInt },
-        offset: { type: GraphQLInt },
-        area: { type: MBID },
-        recording: { type: MBID },
-        release: { type: MBID },
-        releaseGroup: { type: MBID },
-        work: { type: MBID }
-      },
-      resolve: browseResolver()
-    },
-    events: {
-      type: EventConnection,
-      args: {
-        limit: { type: GraphQLInt },
-        offset: { type: GraphQLInt },
-        area: { type: MBID },
-        artist: { type: MBID },
-        place: { type: MBID }
-      },
-      resolve: browseResolver()
-    },
-    labels: {
-      type: LabelConnection,
-      args: {
-        limit: { type: GraphQLInt },
-        offset: { type: GraphQLInt },
-        area: { type: MBID },
-        release: { type: MBID }
-      },
-      resolve: browseResolver()
-    },
-    places: {
-      type: PlaceConnection,
-      args: {
-        limit: { type: GraphQLInt },
-        offset: { type: GraphQLInt },
-        area: { type: MBID }
-      },
-      resolve: browseResolver()
-    },
-    recordings: {
-      type: RecordingConnection,
-      args: {
-        limit: { type: GraphQLInt },
-        offset: { type: GraphQLInt },
-        artist: { type: MBID },
-        release: { type: MBID }
-      },
-      resolve: browseResolver()
-    },
-    releases: {
-      type: ReleaseConnection,
-      args: {
-        limit: { type: GraphQLInt },
-        offset: { type: GraphQLInt },
-        area: { type: MBID },
-        artist: { type: MBID },
-        label: { type: MBID },
-        track: { type: MBID },
-        trackArtist: { type: MBID },
-        recording: { type: MBID },
-        releaseGroup: { type: MBID }
-      },
-      resolve: browseResolver()
-    },
-    releaseGroups: {
-      type: ReleaseGroupConnection,
-      args: {
-        limit: { type: GraphQLInt },
-        offset: { type: GraphQLInt },
-        artist: { type: MBID },
-        release: { type: MBID }
-      },
-      resolve: browseResolver()
-    },
-    works: {
-      type: WorkConnection,
-      args: {
-        limit: { type: GraphQLInt },
-        offset: { type: GraphQLInt },
-        artist: { type: MBID }
-      },
-      resolve: browseResolver()
-    },
-    urls: {
-      type: URLConnection,
-      args: {
-        limit: { type: GraphQLInt },
-        offset: { type: GraphQLInt },
-        resource: { type: URLString }
-      },
-      resolve: browseResolver()
-    }
+    artists: browseQuery(ArtistConnection, {
+      area: { type: MBID },
+      recording: { type: MBID },
+      release: { type: MBID },
+      releaseGroup: { type: MBID },
+      work: { type: MBID }
+    }),
+    events: browseQuery(EventConnection, {
+      area: { type: MBID },
+      artist: { type: MBID },
+      place: { type: MBID }
+    }),
+    labels: browseQuery(LabelConnection, {
+      area: { type: MBID },
+      release: { type: MBID }
+    }),
+    places: browseQuery(PlaceConnection, {
+      area: { type: MBID }
+    }),
+    recordings: browseQuery(RecordingConnection, {
+      artist: { type: MBID },
+      release: { type: MBID }
+    }),
+    releases: browseQuery(ReleaseConnection, {
+      area: { type: MBID },
+      artist: { type: MBID },
+      label: { type: MBID },
+      track: { type: MBID },
+      trackArtist: { type: MBID },
+      recording: { type: MBID },
+      releaseGroup: { type: MBID }
+    }),
+    releaseGroups: browseQuery(ReleaseGroupConnection, {
+      artist: { type: MBID },
+      release: { type: MBID }
+    }),
+    works: browseQuery(WorkConnection, {
+      artist: { type: MBID }
+    }),
+    urls: browseQuery(URLConnection, {
+      resource: { type: URLString }
+    })
   }
 })

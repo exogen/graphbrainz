@@ -1,5 +1,9 @@
 import { toEntityType } from './types/helpers'
-import { getOffsetWithDefault, connectionFromArraySlice } from 'graphql-relay'
+import {
+  getOffsetWithDefault,
+  connectionFromArray,
+  connectionFromArraySlice
+} from 'graphql-relay'
 import { getFields, extendIncludes } from './util'
 
 export function includeRelations (params, info) {
@@ -35,34 +39,63 @@ export function includeSubqueries (params, info) {
   return params
 }
 
-export function lookupResolver (entityType, extraParams = {}) {
-  return (root, { id }, { lookupLoader }, info) => {
-    const params = includeRelations(extraParams, info)
-    entityType = entityType || toEntityType(info.fieldName)
-    return lookupLoader.load([entityType, id, params])
+export function lookupResolver () {
+  return (root, { mbid }, { lookupLoader }, info) => {
+    const entityType = toEntityType(info.fieldName)
+    const params = includeRelations({}, info)
+    return lookupLoader.load([entityType, mbid, params])
   }
 }
 
 export function browseResolver () {
-  return (source, args, { browseLoader }, info) => {
+  return (source, { first = 25, after, ...args }, { browseLoader }, info) => {
     const pluralName = toEntityType(info.fieldName)
     let singularName = pluralName
     if (pluralName.endsWith('s')) {
       singularName = pluralName.slice(0, -1)
     }
-    const params = args
-    return browseLoader.load([singularName, params])
+    const { type, types, status, statuses, ...moreParams } = args
+    let params = {
+      ...moreParams,
+      type: [],
+      status: [],
+      limit: first,
+      offset: getOffsetWithDefault(after, 0)
+    }
+    params = includeSubqueries(params, info)
+    params = includeRelations(params, info)
+    if (type) {
+      params.type.push(type)
+    }
+    if (types) {
+      params.type.push(...types)
+    }
+    if (status) {
+      params.status.push(status)
+    }
+    if (statuses) {
+      params.status.push(...statuses)
+    }
+    return browseLoader.load([singularName, params]).then(list => {
+      const {
+        [pluralName]: arraySlice,
+        [`${singularName}-offset`]: sliceStart,
+        [`${singularName}-count`]: arrayLength
+      } = list
+      const meta = { sliceStart, arrayLength }
+      return connectionFromArraySlice(arraySlice, { first, after }, meta)
+    })
   }
 }
 
 export function searchResolver () {
-  return (source, args, { searchLoader }, info) => {
+  return (source, { first = 25, after, ...args }, { searchLoader }, info) => {
     const pluralName = toEntityType(info.fieldName)
     let singularName = pluralName
     if (pluralName.endsWith('s')) {
       singularName = pluralName.slice(0, -1)
     }
-    const { query, first, after, ...params } = args
+    const { query, ...params } = args
     params.limit = first
     params.offset = getOffsetWithDefault(after, 0)
     return searchLoader.load([singularName, query, params]).then(list => {
@@ -78,61 +111,31 @@ export function searchResolver () {
 }
 
 export function relationResolver () {
-  return (source, { offset = 0,
-                    limit,
-                    direction,
-                    type,
-                    typeID }, { lookupLoader }, info) => {
+  return (source, args, context, info) => {
     const targetType = toEntityType(info.fieldName).replace('-', '_')
-    return source.filter(relation => {
+    const relations = source.filter(relation => {
       if (relation['target-type'] !== targetType) {
         return false
       }
-      if (direction != null && relation.direction !== direction) {
+      if (args.direction != null && relation.direction !== args.direction) {
         return false
       }
-      if (type != null && relation.type !== type) {
+      if (args.type != null && relation.type !== args.type) {
         return false
       }
-      if (typeID != null && relation['type-id'] !== typeID) {
+      if (args.typeID != null && relation['type-id'] !== args.typeID) {
         return false
       }
       return true
-    }).slice(offset, limit == null ? undefined : offset + limit)
+    })
+    return connectionFromArray(relations, args)
   }
 }
 
 export function linkedResolver () {
-  return (source, args, { browseLoader }, info) => {
-    const pluralName = toEntityType(info.fieldName)
-    let singularName = pluralName
-    if (pluralName.endsWith('s')) {
-      singularName = pluralName.slice(0, -1)
-    }
+  return (source, args, context, info) => {
     const parentEntity = toEntityType(info.parentType.name)
-    let params = {
-      [parentEntity]: source.id,
-      type: [],
-      status: [],
-      limit: args.limit,
-      offset: args.offset
-    }
-    params = includeSubqueries(params, info)
-    params = includeRelations(params, info)
-    if (args.type) {
-      params.type.push(args.type)
-    }
-    if (args.types) {
-      params.type.push(...args.types)
-    }
-    if (args.status) {
-      params.status.push(args.status)
-    }
-    if (args.statuses) {
-      params.status.push(...args.statuses)
-    }
-    return browseLoader.load([singularName, params]).then(list => {
-      return list[pluralName]
-    })
+    args = { ...args, [parentEntity]: source.id }
+    return browseResolver()(source, args, context, info)
   }
 }
