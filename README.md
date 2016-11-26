@@ -20,6 +20,7 @@ to help construct your query.
   - [Environment Variables](#environment-variables)
   - [Debugging](#debugging)
 - [Example Queries](#example-queries)
+- [Questions](#questions)
 - [Schema](#schema)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -142,6 +143,14 @@ Nirvana albums and the singles from each album:
 }
 ```
 
+## Questions
+
+* What’s with the cumbersome `edges` / `node` nesting? Why `mbid` instead of
+  `id`?
+  - You can thank [Relay][] for that; these are properties of a Relay-compliant
+    schema. The schema was originally designed without these annoyances, but in
+    the end I decided that being compatible with Relay was a worthwhile feature.
+
 ## Schema
 
 See the [GraphQL schema][schema].
@@ -154,4 +163,5 @@ See the [GraphQL schema][schema].
 [dotenv]: https://www.npmjs.com/package/dotenv
 [debug]: https://www.npmjs.com/package/debug
 [GraphiQL]: https://github.com/graphql/graphiql
+[Relay]: https://facebook.github.io/relay/
 [schema]: schema.md
