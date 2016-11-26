@@ -49,8 +49,8 @@ record company. (Most releases will fit into this category.)`,
     PROMOTION: {
       name: 'Promotion',
       description: `A giveaway release or a release intended to promote an
-upcoming official release. (e.g. prerelease albums or releases included with a
-magazine)`,
+upcoming official release, e.g. prerelease albums or releases included with a
+magazine.`,
       value: 'Promotion'
     },
     BOOTLEG: {
@@ -116,7 +116,7 @@ by one or more artists.`,
     SOUNDTRACK: {
       name: 'Soundtrack',
       description: `A soundtrack is the musical score to a movie, TV series,
-stage show, computer game etc.`,
+stage show, computer game, etc.`,
       value: 'Soundtrack'
     },
     SPOKENWORD: {
@@ -167,7 +167,7 @@ While mixtapes are generally DJ-mixed, they are distinct from commercial DJ
 mixes (which are usually deemed compilations) and are defined by having a
 significant proportion of new material, including original production or
 original vocals over top of other artists’ instrumentals. They are distinct from
-demos in that they are designed for release directly to the public and fans; not
+demos in that they are designed for release directly to the public and fans, not
 to labels.`,
       value: 'Mixtape/Street'
     },

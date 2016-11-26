@@ -58,10 +58,11 @@ export function fieldWithID (name, config = {}) {
   const isPlural = config.type instanceof GraphQLList
   const singularName = isPlural ? toSingular(name) : name
   const idName = isPlural ? `${singularName}IDs` : `${name}ID`
+  const s = isPlural ? 's' : ''
   const idConfig = {
     type: isPlural ? new GraphQLList(MBID) : MBID,
-    description: `The MBID${isPlural ? 's' : ''} associated with the
-value${isPlural ? 's' : ''} of the \`${name}\` field.`,
+    description: `The MBID${s} associated with the value${s} of the \`${name}\`
+field.`,
     resolve: getHyphenated
   }
   return {

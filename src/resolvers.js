@@ -66,6 +66,8 @@ export function browseResolver () {
     params.type = params.type.map(formatValue)
     params.status = params.status.map(formatValue)
     return loaders.browse.load([singularName, params]).then(list => {
+      // Grab the list, offet, and count from the response and use them to build
+      // a Relay connection object.
       const {
         [pluralName]: arraySlice,
         [`${singularName}-offset`]: sliceStart,
@@ -99,6 +101,7 @@ export function searchResolver () {
 export function relationshipResolver () {
   return (source, args, context, info) => {
     const targetType = toDashed(toSingular(info.fieldName)).replace('-', '_')
+    // There's no way to filter these at the API level, so do it here.
     const relationships = source.filter(rel => {
       if (rel['target-type'] !== targetType) {
         return false
