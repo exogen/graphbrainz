@@ -108,7 +108,7 @@ See the [debug][] package for more information.
 
 ## Example Queries
 
-Nirvana albums and their singles:
+Nirvana albums and the singles from each album:
 
 ```graphql
 {
