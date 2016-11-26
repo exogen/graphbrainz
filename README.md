@@ -36,8 +36,8 @@ $ graphbrainz
 Listening on port 3000.
 ```
 
-Development mode features like JSON pretty printing and the GraphiQL interface
-will be enabled unless the server is run with `NODE_ENV=production`.
+Development mode features like JSON pretty printing and the [GraphiQL][]
+interface will be enabled unless the server is run with `NODE_ENV=production`.
 
 Note that if you are not running the standalone server within another Node
 project, you may wish to install this package globally so that the `graphbrainz`
