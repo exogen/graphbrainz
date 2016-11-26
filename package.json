@@ -8,11 +8,12 @@
     "lib",
     "scripts",
     "Procfile",
-    "schema.json"
+    "schema.json",
+    "yarn.lock"
   ],
   "engines": {
-    "node": "^4.3.0",
-    "npm": "^3.10.5"
+    "node": ">=4.3.0",
+    "npm": ">=3.8.0"
   },
   "scripts": {
     "build": "npm run build:lib && npm run update-schema && npm run build:docs",
