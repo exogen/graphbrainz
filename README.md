@@ -62,8 +62,9 @@ const app = express();
 app.use('/graphbrainz', graphbrainz());
 // or, pass some options:
 app.use('/graphbrainz', graphbrainz({
-  client: clientInstance,
-  graphiql: true
+  client: new MusicBrainz({ ... }),
+  graphiql: true,
+  ...
 }));
 
 app.listen(3000);
