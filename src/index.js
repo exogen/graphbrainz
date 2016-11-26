@@ -13,12 +13,13 @@ const formatError = (err) => ({
 
 const middleware = ({ client = new MusicBrainz(), ...options } = {}) => {
   const DEV = process.env.NODE_ENV !== 'production'
+  const graphiql = DEV || process.env.GRAPHBRAINZ_GRAPHIQL === 'true'
   const loaders = createLoaders(client)
   return graphqlHTTP({
     schema,
     context: { client, loaders },
     pretty: DEV,
-    graphiql: DEV,
+    graphiql,
     formatError: DEV ? formatError : undefined,
     ...options
   })
@@ -34,4 +35,5 @@ if (require.main === module) {
   app.use(compression())
   app.use(route, middleware())
   app.listen(port)
+  console.log(`Listening on port ${port}.`)
 }

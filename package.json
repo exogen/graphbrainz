@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "",
   "main": "lib/index.js",
+  "bin": "lib/index.js",
   "files": [
     "lib",
     "scripts",
@@ -14,7 +15,8 @@
     "npm": "^3.10.5"
   },
   "scripts": {
-    "build": "npm run build:lib && npm run update-schema",
+    "build": "npm run build:lib && npm run update-schema && npm run build:docs",
+    "build:docs": "doctoc --title \"## Contents\" README.md",
     "build:lib": "babel --out-dir lib src",
     "clean": "npm run clean:lib",
     "clean:lib": "rm -rf lib",
@@ -69,6 +71,7 @@
     "babel-preset-stage-2": "^6.18.0",
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
+    "doctoc": "^1.2.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "snazzy": "^5.0.0",
