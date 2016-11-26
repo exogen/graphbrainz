@@ -1,7 +1,7 @@
 {
   "name": "graphbrainz",
   "version": "2.1.0",
-  "description": "",
+  "description": "An Express server and middleware for querying the MusicBrainz API using GraphQL.",
   "main": "lib/index.js",
   "bin": "lib/index.js",
   "files": [
@@ -35,7 +35,7 @@
     "update-schema:json": "npm run -s print-schema:json > schema.json",
     "update-schema:md": "printf '# GraphQL Schema\\n\\n%s' \"$(npm run -s print-schema:md)\" > schema.md"
   },
-  "keywords": [],
+  "keywords": ["musicbrainz", "graphql", "api", "express", "middleware", "relay"],
   "homepage": "https://github.com/exogen/graphbrainz",
   "author": {
     "name": "Brian Beck",
