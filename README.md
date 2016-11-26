@@ -20,6 +20,7 @@ to help construct your query.
   - [Environment Variables](#environment-variables)
   - [Debugging](#debugging)
 - [Example Queries](#example-queries)
+  - [Pagination](#pagination)
 - [Questions](#questions)
 - [Schema](#schema)
 
@@ -138,6 +139,49 @@ Nirvana albums and each album’s singles:
           }
         }
       }
+    }
+  }
+}
+```
+
+### Pagination
+
+The first five labels with “Apple” in the name:
+
+```graphql
+{
+  search {
+    labels(query: "Apple", first: 5) {
+      ...labelResults
+    }
+  }
+}
+
+fragment labelResults on LabelConnection {
+  pageInfo {
+    endCursor
+  }
+  edges {
+    cursor
+    node {
+      mbid
+      name
+      type
+      area {
+        name
+      }
+    }
+  }
+}
+```
+
+…and the next five, using the `endCursor` from the previous result:
+
+```graphql
+{
+  search {
+    labels(query: "Apple", first: 5, after: "YXJyYXljb25uZWN0aW9uOjQ=") {
+      ...labelResults
     }
   }
 }
