@@ -146,7 +146,7 @@ query NirvanaAlbumSingles {
 
 ### Pagination
 
-The first five labels with “Apple” in the name ([try it](https://graphbrainz.herokuapp.com/?query=query%20AppleRecords%20%7B%0A%20%20search%20%7B%0A%20%20%20%20labels(query%3A%20%22Apple%22%2C%20first%3A%205)%20%7B%0A%20%20%20%20%20%20...labelResults%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0Afragment%20labelResults%20on%20LabelConnection%20%7B%0A%20%20pageInfo%20%7B%0A%20%20%20%20endCursor%0A%20%20%7D%0A%20%20edges%20%7B%0A%20%20%20%20cursor%0A%20%20%20%20node%20%7B%0A%20%20%20%20%20%20mbid%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20type%0A%20%20%20%20%20%20area%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=AppleRecords))
+The first five labels with “Apple” in the name ([try it](https://graphbrainz.herokuapp.com/?query=query%20AppleRecords%20%7B%0A%20%20search%20%7B%0A%20%20%20%20labels(query%3A%20%22Apple%22%2C%20first%3A%205)%20%7B%0A%20%20%20%20%20%20...labelResults%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0Afragment%20labelResults%20on%20LabelConnection%20%7B%0A%20%20pageInfo%20%7B%0A%20%20%20%20endCursor%0A%20%20%7D%0A%20%20edges%20%7B%0A%20%20%20%20cursor%0A%20%20%20%20node%20%7B%0A%20%20%20%20%20%20mbid%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20type%0A%20%20%20%20%20%20area%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=AppleRecords)):
 
 ```graphql
 query AppleRecords {
