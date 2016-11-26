@@ -7,6 +7,8 @@ An [Express][] server and middleware for querying [MusicBrainz][] using
 npm install graphbrainz --save
 ```
 
+**[Try it out live!][demo]**
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Contents
@@ -143,6 +145,7 @@ Nirvana albums and their singles:
 
 See the [GraphQL schema][schema].
 
+[demo]: https://graphbrainz.herokuapp.com/
 [Express]: http://expressjs.com/
 [MusicBrainz]: https://musicbrainz.org/
 [GraphQL]: http://graphql.org/
