@@ -7,7 +7,8 @@ An [Express][] server and middleware for querying [MusicBrainz][] using
 npm install graphbrainz --save
 ```
 
-**[Try it out live!][demo]**
+**[Try out the live demo!][demo]** Use the “Docs” sidebar or see the [schema][]
+to help construct your query.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
