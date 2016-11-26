@@ -175,10 +175,10 @@ fragment labelResults on LabelConnection {
 }
 ```
 
-…and the next five, using the `endCursor` from the previous result ([try it](https://graphbrainz.herokuapp.com/?query=query%20AppleRecords%20%7B%0A%20%20search%20%7B%0A%20%20%20%20labels(query%3A%20%22Apple%22%2C%20first%3A%205%2C%20after%3A%20%22YXJyYXljb25uZWN0aW9uOjQ%3D%22)%20%7B%0A%20%20%20%20%20%20...labelResults%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0Afragment%20labelResults%20on%20LabelConnection%20%7B%0A%20%20pageInfo%20%7B%0A%20%20%20%20endCursor%0A%20%20%7D%0A%20%20edges%20%7B%0A%20%20%20%20cursor%0A%20%20%20%20node%20%7B%0A%20%20%20%20%20%20mbid%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20type%0A%20%20%20%20%20%20area%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=AppleRecords)):
+…and the next five, using the `endCursor` from the previous result ([try it](https://graphbrainz.herokuapp.com/?query=query%20AppleLabels%20%7B%0A%20%20search%20%7B%0A%20%20%20%20labels(query%3A%20%22Apple%22%2C%20first%3A%205%2C%20after%3A%20%22YXJyYXljb25uZWN0aW9uOjQ%3D%22)%20%7B%0A%20%20%20%20%20%20...labelResults%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0Afragment%20labelResults%20on%20LabelConnection%20%7B%0A%20%20pageInfo%20%7B%0A%20%20%20%20endCursor%0A%20%20%7D%0A%20%20edges%20%7B%0A%20%20%20%20cursor%0A%20%20%20%20node%20%7B%0A%20%20%20%20%20%20mbid%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20type%0A%20%20%20%20%20%20area%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=AppleLabels)):
 
 ```graphql
-{
+query AppleLabels {
   search {
     labels(query: "Apple", first: 5, after: "YXJyYXljb25uZWN0aW9uOjQ=") {
       ...labelResults
