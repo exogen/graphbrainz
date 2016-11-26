@@ -1,8 +1,9 @@
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
+import { GraphQLObjectType, GraphQLList } from 'graphql/type'
 import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
 import { DateType } from './scalars'
+import { ReleaseGroupType } from './enums'
 import {
   id,
   mbid,
@@ -11,16 +12,21 @@ import {
   artistCredit,
   artists,
   releases,
-  relations,
+  relationships,
   getHyphenated,
   fieldWithID
 } from './helpers'
 
 const ReleaseGroup = new GraphQLObjectType({
   name: 'ReleaseGroup',
-  description:
-    'Represents an abstract "album" (or "single", or "EP") entity. ' +
-    'Technically it’s a group of releases, with a specified type.',
+  description: `A [release group](https://musicbrainz.org/doc/Release_Group) is
+used to group several different releases into a single logical entity. Every
+release belongs to one, and only one release group.
+
+Both release groups and releases are “albums” in a general sense, but with an
+important difference: a release is something you can buy as media such as a CD
+or a vinyl record, while a release group embraces the overall concept of an
+album – it doesn’t matter how many CDs or editions/versions it had.`,
   interfaces: () => [Node, Entity],
   fields: () => ({
     id,
@@ -28,12 +34,26 @@ const ReleaseGroup = new GraphQLObjectType({
     title,
     disambiguation,
     artistCredit,
-    firstReleaseDate: { type: DateType, resolve: getHyphenated },
-    ...fieldWithID('primaryType'),
-    ...fieldWithID('secondaryTypes', { type: new GraphQLList(GraphQLString) }),
+    firstReleaseDate: {
+      type: DateType,
+      description: 'The date of the earliest release in the group.',
+      resolve: getHyphenated
+    },
+    ...fieldWithID('primaryType', {
+      type: ReleaseGroupType,
+      description: `The [type](https://musicbrainz.org/doc/Release_Group/Type)
+of a release group describes what kind of releases the release group represents,
+e.g. album, single, soundtrack, compilation, etc. A release group can have a
+“main” type and an unspecified number of additional types.`
+    }),
+    ...fieldWithID('secondaryTypes', {
+      type: new GraphQLList(ReleaseGroupType),
+      description: `Additional [types](https://musicbrainz.org/doc/Release_Group/Type)
+that apply to this release group.`
+    }),
     artists,
     releases,
-    relations
+    relationships
   })
 })
 

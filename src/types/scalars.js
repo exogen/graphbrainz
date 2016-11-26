@@ -17,9 +17,6 @@ function validatePositive (value) {
   throw new TypeError(`Expected positive value: ${value}`)
 }
 
-/*
-scalar Date
-*/
 export const DateType = new GraphQLScalarType({
   name: 'Date',
   description:
@@ -34,9 +31,6 @@ export const DateType = new GraphQLScalarType({
   }
 })
 
-/*
-scalar Degrees
-*/
 export const Degrees = new GraphQLScalarType({
   name: 'Degrees',
   description: 'Decimal degrees, used for latitude and longitude.',
@@ -50,9 +44,6 @@ export const Degrees = new GraphQLScalarType({
   }
 })
 
-/*
-scalar Duration
-*/
 export const Duration = new GraphQLScalarType({
   name: 'Duration',
   description: 'A length of time, in milliseconds.',
@@ -66,14 +57,11 @@ export const Duration = new GraphQLScalarType({
   }
 })
 
-/*
-scalar IPI
-*/
 export const IPI = new GraphQLScalarType({
   name: 'IPI',
-  description:
-    'An IPI (interested party information) code is an identifying number ' +
-    'assigned by the CISAC database for musical rights management.',
+  description: `An [IPI](https://musicbrainz.org/doc/IPI) (interested party
+information) code is an identifying number assigned by the CISAC database for
+musical rights management.`,
   serialize: value => value,
   parseValue: value => value,
   parseLiteral (ast) {
@@ -84,15 +72,11 @@ export const IPI = new GraphQLScalarType({
   }
 })
 
-/*
-scalar ISNI
-*/
 export const ISNI = new GraphQLScalarType({
   name: 'ISNI',
-  description:
-    'The International Standard Name Identifier (ISNI) is an ISO standard ' +
-    'for uniquely identifying the public identities of contributors to ' +
-    'media content.',
+  description: `The [International Standard Name Identifier](https://musicbrainz.org/doc/ISNI)
+(ISNI) is an ISO standard for uniquely identifying the public identities of
+contributors to media content.`,
   serialize: value => value,
   parseValue: value => value,
   parseLiteral (ast) {
@@ -103,14 +87,11 @@ export const ISNI = new GraphQLScalarType({
   }
 })
 
-/*
-scalar ISWC
-*/
 export const ISWC = new GraphQLScalarType({
   name: 'ISWC',
-  description:
-    'The International Standard Musical Work Code (ISWC) is an ISO standard ' +
-    'similar to ISBNs for identifying musical works / compositions.',
+  description: `The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)
+(ISWC) is an ISO standard similar to ISBNs for identifying musical works /
+compositions.`,
   serialize: value => value,
   parseValue: value => value,
   parseLiteral (ast) {
@@ -121,9 +102,6 @@ export const ISWC = new GraphQLScalarType({
   }
 })
 
-/*
-scalar Locale
-*/
 export const Locale = new GraphQLScalarType({
   name: 'Locale',
   description: 'Language code, optionally with country and encoding.',
@@ -137,9 +115,6 @@ export const Locale = new GraphQLScalarType({
   }
 })
 
-/*
-scalar Time
-*/
 export const Time = new GraphQLScalarType({
   name: 'Time',
   description: 'A time of day, in 24-hour hh:mm notation.',
@@ -153,12 +128,9 @@ export const Time = new GraphQLScalarType({
   }
 })
 
-/*
-scalar URLString
-*/
 export const URLString = new GraphQLScalarType({
   name: 'URLString',
-  description: 'Description',
+  description: 'A web address.',
   serialize: value => value,
   parseValue: value => value,
   parseLiteral (ast) {
@@ -169,14 +141,10 @@ export const URLString = new GraphQLScalarType({
   }
 })
 
-/*
-scalar MBID
-*/
 export const MBID = new GraphQLScalarType({
   name: 'MBID',
-  description:
-    'The `MBID` scalar represents MusicBrainz identifiers, which are ' +
-    '36-character UUIDs.',
+  description: `The MBID scalar represents MusicBrainz identifiers, which are
+36-character UUIDs.`,
   serialize: validateMBID,
   parseValue: validateMBID,
   parseLiteral (ast) {

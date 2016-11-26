@@ -1,6 +1,6 @@
 import { GraphQLObjectType } from 'graphql'
 import { lookupResolver } from '../resolvers'
-import { mbid } from '../types/helpers'
+import { mbid, toWords } from '../types/helpers'
 import {
   Area,
   Artist,
@@ -17,9 +17,10 @@ import {
 } from '../types'
 
 function lookupQuery (entity) {
+  const typeName = toWords(entity.name)
   return {
     type: entity,
-    description: `Look up a specific ${entity.name} by its MBID.`,
+    description: `Look up a specific ${typeName} by its MBID.`,
     args: { mbid },
     resolve: lookupResolver()
   }
@@ -27,9 +28,7 @@ function lookupQuery (entity) {
 
 export default new GraphQLObjectType({
   name: 'LookupQuery',
-  description:
-    'You can perform a lookup of an entity when you have the MBID for that ' +
-    'entity.',
+  description: 'A lookup of an individual MusicBrainz entity by its MBID.',
   fields: {
     area: lookupQuery(Area),
     artist: lookupQuery(Artist),

@@ -17,14 +17,16 @@ import {
   releases,
   releaseGroups,
   works,
-  relations
+  relationships
 } from './helpers'
 
 const Artist = new GraphQLObjectType({
   name: 'Artist',
-  description:
-    'An artist is generally a musician, a group of musicians, or another ' +
-    'music professional (composer, engineer, illustrator, producer, etc.)',
+  description: `An [artist](https://musicbrainz.org/doc/Artist) is generally a
+musician, group of musicians, or other music professional (like a producer or
+engineer). Occasionally, it can also be a non-musical person (like a
+photographer, an illustrator, or a poet whose writings are set to music), or
+even a fictional character.`,
   interfaces: () => [Node, Entity],
   fields: () => ({
     id,
@@ -34,37 +36,56 @@ const Artist = new GraphQLObjectType({
     disambiguation,
     aliases: {
       type: new GraphQLList(Alias),
-      resolve: (source, args, { lookupLoader }, info) => {
+      description: `[Aliases](https://musicbrainz.org/doc/Aliases) are used to
+store alternate names or misspellings.`,
+      resolve: (source, args, { loaders }, info) => {
         const key = 'aliases'
         if (key in source) {
           return source[key]
         } else {
           const { entityType, id } = source
           const params = { inc: ['aliases'] }
-          return lookupLoader.load([entityType, id, params]).then(entity => {
+          return loaders.lookup.load([entityType, id, params]).then(entity => {
             return entity[key]
           })
         }
       }
     },
-    country: { type: GraphQLString },
-    area: { type: Area },
+    country: {
+      type: GraphQLString,
+      description: `The country with which an artist is primarily identified. It
+is often, but not always, its birth/formation country.`
+    },
+    area: {
+      type: Area,
+      description: `The area with which an artist is primarily identified. It
+is often, but not always, its birth/formation country.`
+    },
     beginArea: {
       type: Area,
+      description: `The area in which an artist began their career (or where
+were born, if the artist is a person).`,
       resolve: getFallback(['begin-area', 'begin_area'])
     },
     endArea: {
       type: Area,
+      description: `The area in which an artist ended their career (or where
+they died, if the artist is a person).`,
       resolve: getFallback(['end-area', 'end_area'])
     },
     lifeSpan,
-    ...fieldWithID('gender'),
-    ...fieldWithID('type'),
+    ...fieldWithID('gender', {
+      description: `Whether a person or character identifies as male, female, or
+neither. Groups do not have genders.`
+    }),
+    ...fieldWithID('type', {
+      description: 'Whether an artist is a person, a group, or something else.'
+    }),
     recordings,
     releases,
     releaseGroups,
     works,
-    relations
+    relationships
   })
 })
 

@@ -6,6 +6,8 @@ import ExtendableError from 'es6-error'
 import RateLimit from './rate-limit'
 import pkg from '../package.json'
 
+const debug = require('debug')('graphbrainz:api')
+
 // If the `request` callback returns an error, it indicates a failure at a lower
 // level than the HTTP response itself. If it's any of the following error
 // codes, we should retry.
@@ -28,45 +30,39 @@ export class MusicBrainzError extends ExtendableError {
 }
 
 export default class MusicBrainz {
-  constructor (options = {}) {
-    options = {
-      baseURL: 'http://musicbrainz.org/ws/2/',
-      userAgent: `${pkg.name}/${pkg.version} ` +
-        `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
-      timeout: 60000,
-      // MusicBrainz API requests are limited to an *average* of 1 req/sec.
-      // That means if, for example, we only need to make a few API requests to
-      // fulfill a query, we might as well make them all at once - as long as
-      // we then wait a few seconds before making more. In practice this can
-      // seemingly be set to about 5 requests every 5 seconds before we're
-      // considered to exceed the rate limit.
-      limit: 5,
-      limitPeriod: 5000,
-      concurrency: 10,
-      retries: 10,
-      // It's OK for `retryDelayMin` to be less than one second, even 0, because
-      // `RateLimit` will already make sure we don't exceed the API rate limit.
-      // We're not doing exponential backoff because it will help with being
-      // rate limited, but rather to be chill in case MusicBrainz is returning
-      // some other error or our network is failing.
-      retryDelayMin: 100,
-      retryDelayMax: 60000,
-      randomizeRetry: true,
-      ...options
-    }
-    this.baseURL = options.baseURL
-    this.userAgent = options.userAgent
-    this.timeout = options.timeout
-    this.limiter = new RateLimit({
-      limit: options.limit,
-      period: options.limitPeriod,
-      concurrency: options.concurrency
-    })
+  constructor ({
+    baseURL = process.env.MUSICBRAINZ_BASE_URL || 'http://musicbrainz.org/ws/2/',
+    userAgent = `${pkg.name}/${pkg.version} ` +
+      `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
+    timeout = 60000,
+    // MusicBrainz API requests are limited to an *average* of 1 req/sec.
+    // That means if, for example, we only need to make a few API requests to
+    // fulfill a query, we might as well make them all at once - as long as
+    // we then wait a few seconds before making more. In practice this can
+    // seemingly be set to about 5 requests every 5 seconds before we're
+    // considered to exceed the rate limit.
+    limit = 5,
+    period = 5000,
+    concurrency = 10,
+    retries = 10,
+    // It's OK for `retryDelayMin` to be less than one second, even 0, because
+    // `RateLimit` will already make sure we don't exceed the API rate limit.
+    // We're not doing exponential backoff because it will help with being
+    // rate limited, but rather to be chill in case MusicBrainz is returning
+    // some other error or our network is failing.
+    retryDelayMin = 100,
+    retryDelayMax = 60000,
+    randomizeRetry = true
+  } = {}) {
+    this.baseURL = baseURL
+    this.userAgent = userAgent
+    this.timeout = timeout
+    this.limiter = new RateLimit({ limit, period, concurrency })
     this.retryOptions = {
-      retries: options.retries,
-      minTimeout: options.retryDelayMin,
-      maxTimeout: options.retryDelayMax,
-      randomize: options.randomizeRetry
+      retries,
+      minTimeout: retryDelayMin,
+      maxTimeout: retryDelayMax,
+      randomize: randomizeRetry
     }
   }
 
@@ -98,8 +94,7 @@ export default class MusicBrainz {
         timeout: this.timeout
       }
 
-      const attempt = `(attempt #${info.currentAttempt})`
-      console.log('GET:', path, info.currentAttempt > 1 ? attempt : '')
+      debug(path, info.currentAttempt > 1 ? `(attempt #${info.currentAttempt})` : '')
 
       request(options, (err, response, body) => {
         if (err) {

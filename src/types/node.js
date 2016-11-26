@@ -1,14 +1,14 @@
 import { nodeDefinitions, fromGlobalId } from 'graphql-relay'
-import { lookupLoader } from '../loaders'
-import { toEntityType } from './helpers'
+import { toDashed } from './helpers'
 
 const { nodeInterface, nodeField } = nodeDefinitions(
-  (globalID) => {
+  (globalID, { loaders }) => {
     const { type, id } = fromGlobalId(globalID)
-    const entityType = toEntityType(type)
-    return lookupLoader.load([entityType, id])
+    const entityType = toDashed(type)
+    return loaders.lookup.load([entityType, id])
   },
   (obj) => {
+    console.log(obj.entityType)
     try {
       return require(`./${obj.entityType}`).default
     } catch (err) {

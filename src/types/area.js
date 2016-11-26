@@ -17,7 +17,8 @@ import {
 
 const Area = new GraphQLObjectType({
   name: 'Area',
-  description: 'A country, region, city or the like.',
+  description: `[Areas](https://musicbrainz.org/doc/Area) are geographic regions
+or settlements (countries, cities, or the like).`,
   interfaces: () => [Node, Entity],
   fields: () => ({
     id,
@@ -27,6 +28,8 @@ const Area = new GraphQLObjectType({
     disambiguation,
     isoCodes: {
       type: new GraphQLList(GraphQLString),
+      description: `[ISO 3166 codes](https://en.wikipedia.org/wiki/ISO_3166) are
+the codes assigned by ISO to countries and subdivisions.`,
       resolve: data => data['iso-3166-1-codes']
     },
     artists,

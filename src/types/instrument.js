@@ -11,16 +11,25 @@ import {
 
 const Instrument = new GraphQLObjectType({
   name: 'Instrument',
-  description:
-    'Instruments are devices created or adapted to make musical sounds.',
+  description: `[Instruments](https://musicbrainz.org/doc/Instrument) are
+devices created or adapted to make musical sounds. Instruments are primarily
+used in relationships between two other entities.`,
   interfaces: () => [Node, Entity],
   fields: () => ({
     id,
     mbid,
     name,
     disambiguation,
-    description: { type: GraphQLString },
-    ...fieldWithID('type')
+    description: {
+      type: GraphQLString,
+      description: `A brief description of the main characteristics of the
+instrument.`
+    },
+    ...fieldWithID('type', {
+      description: `The type categorises the instrument by the way the sound is
+created, similar to the [Hornbostel-Sachs](https://en.wikipedia.org/wiki/Hornbostel%E2%80%93Sachs)
+classification.`
+    })
   })
 })
 

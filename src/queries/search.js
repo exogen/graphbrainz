@@ -11,10 +11,13 @@ import {
   ReleaseGroupConnection,
   WorkConnection
 } from '../types'
+import { toWords } from '../types/helpers'
 
 function searchQuery (connectionType) {
+  const typeName = toWords(connectionType.name.slice(0, -10))
   return {
     type: connectionType,
+    description: `Search for ${typeName} entities matching the given query.`,
     args: {
       query: { type: new GraphQLNonNull(GraphQLString) },
       ...forwardConnectionArgs
@@ -25,9 +28,7 @@ function searchQuery (connectionType) {
 
 export default new GraphQLObjectType({
   name: 'SearchQuery',
-  description:
-    'Search queries provide a way to search for MusicBrainz entities using ' +
-    'Lucene query syntax.',
+  description: 'A search for MusicBrainz entities using Lucene query syntax.',
   fields: {
     areas: searchQuery(AreaConnection),
     artists: searchQuery(ArtistConnection),

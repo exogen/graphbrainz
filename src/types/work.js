@@ -8,26 +8,35 @@ import {
   title,
   disambiguation,
   artists,
-  relations,
+  relationships,
   fieldWithID
 } from './helpers'
 
 const Work = new GraphQLObjectType({
   name: 'Work',
-  description:
-    'A distinct intellectual or artistic creation, which can be expressed in ' +
-    'the form of one or more audio recordings',
+  description: `A [work](https://musicbrainz.org/doc/Work) is a distinct
+intellectual or artistic creation, which can be expressed in the form of one or
+more audio recordings.`,
   interfaces: () => [Node, Entity],
   fields: () => ({
     id,
     mbid,
     title,
     disambiguation,
-    iswcs: { type: new GraphQLList(GraphQLString) },
-    language: { type: GraphQLString },
-    ...fieldWithID('type'),
+    iswcs: {
+      type: new GraphQLList(GraphQLString),
+      description: `A list of [ISWCs](https://musicbrainz.org/doc/ISWC) assigned
+to the work by copyright collecting agencies.`
+    },
+    language: {
+      type: GraphQLString,
+      description: 'The language in which the work was originally written.'
+    },
+    ...fieldWithID('type', {
+      description: 'The type of work.'
+    }),
     artists,
-    relations
+    relationships
   })
 })
 

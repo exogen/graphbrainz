@@ -2,7 +2,7 @@ import util from 'util'
 
 export function getFields (info) {
   if (info.kind !== 'Field') {
-    info = info.fieldASTs[0]
+    info = info.fieldNodes[0]
   }
   const selections = info.selectionSet.selections
   return selections.reduce((fields, selection) => {

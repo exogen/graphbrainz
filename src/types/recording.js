@@ -10,14 +10,23 @@ import {
   artistCredit,
   artists,
   releases,
-  relations
+  relationships
 } from './helpers'
 
 const Recording = new GraphQLObjectType({
   name: 'Recording',
-  description:
-    'Represents a unique mix or edit. Has title, artist credit, duration, ' +
-    'list of PUIDs and ISRCs.',
+  description: `A [recording](https://musicbrainz.org/doc/Recording) is an
+entity in MusicBrainz which can be linked to tracks on releases. Each track must
+always be associated with a single recording, but a recording can be linked to
+any number of tracks.
+
+A recording represents distinct audio that has been used to produce at least one
+released track through copying or mastering. A recording itself is never
+produced solely through copying or mastering.
+
+Generally, the audio represented by a recording corresponds to the audio at a
+stage in the production process before any final mastering but after any editing
+or mixing.`,
   interfaces: () => [Node, Entity],
   fields: () => ({
     id,
@@ -25,11 +34,18 @@ const Recording = new GraphQLObjectType({
     title,
     disambiguation,
     artistCredit,
-    length: { type: GraphQLInt },
-    video: { type: GraphQLBoolean },
+    length: {
+      type: GraphQLInt,
+      description: `An approximation to the length of the recording, calculated
+from the lengths of the tracks using it.`
+    },
+    video: {
+      type: GraphQLBoolean,
+      description: 'Whether this is a video recording.'
+    },
     artists,
     releases,
-    relations
+    relationships
   })
 })
 

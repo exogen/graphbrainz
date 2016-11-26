@@ -1,48 +1,64 @@
 import DataLoader from 'dataloader'
-import MusicBrainz from './api'
+import LRUCache from 'lru-cache'
+import { toPlural } from './types/helpers'
 
-const client = new MusicBrainz()
+const debug = require('debug')('graphbrainz:loaders')
 
-export const lookupLoader = new DataLoader(keys => {
-  return Promise.all(keys.map(key => {
-    const [ entityType, id, params ] = key
-    return client.lookup(entityType, id, params).then(entity => {
-      if (entity) {
-        entity.entityType = entityType
-      }
-      return entity
-    })
-  }))
-}, {
-  cacheKeyFn: (key) => client.getLookupURL(...key)
-})
+export default function createLoaders (client) {
+  const cache = LRUCache({
+    max: 8192,
+    maxAge: 24 * 60 * 60 * 1000, // 1 day.
+    dispose (key) {
+      debug(`Removed '${key}' from cache.`)
+    }
+  })
+  cache.delete = cache.del
+  cache.clear = cache.reset
 
-export const browseLoader = new DataLoader(keys => {
-  return Promise.all(keys.map(key => {
-    const [ entityType, params ] = key
-    const pluralName = entityType.endsWith('s') ? entityType : `${entityType}s`
-    return client.browse(entityType, params).then(list => {
-      list[pluralName].forEach(entity => {
-        entity.entityType = entityType
+  const lookup = new DataLoader(keys => {
+    return Promise.all(keys.map(key => {
+      const [ entityType, id, params ] = key
+      return client.lookup(entityType, id, params).then(entity => {
+        if (entity) {
+          entity.entityType = entityType
+        }
+        return entity
       })
-      return list
-    })
-  }))
-}, {
-  cacheKeyFn: (key) => client.getBrowseURL(...key)
-})
+    }))
+  }, {
+    cacheKeyFn: (key) => client.getLookupURL(...key),
+    cacheMap: cache
+  })
 
-export const searchLoader = new DataLoader(keys => {
-  return Promise.all(keys.map(key => {
-    const [ entityType, query, params ] = key
-    const pluralName = entityType.endsWith('s') ? entityType : `${entityType}s`
-    return client.search(entityType, query, params).then(list => {
-      list[pluralName].forEach(entity => {
-        entity.entityType = entityType
+  const browse = new DataLoader(keys => {
+    return Promise.all(keys.map(key => {
+      const [ entityType, params ] = key
+      return client.browse(entityType, params).then(list => {
+        list[toPlural(entityType)].forEach(entity => {
+          entity.entityType = entityType
+        })
+        return list
       })
-      return list
-    })
-  }))
-}, {
-  cacheKeyFn: (key) => client.getSearchURL(...key)
-})
+    }))
+  }, {
+    cacheKeyFn: (key) => client.getBrowseURL(...key),
+    cacheMap: cache
+  })
+
+  const search = new DataLoader(keys => {
+    return Promise.all(keys.map(key => {
+      const [ entityType, query, params ] = key
+      return client.search(entityType, query, params).then(list => {
+        list[toPlural(entityType)].forEach(entity => {
+          entity.entityType = entityType
+        })
+        return list
+      })
+    }))
+  }, {
+    cacheKeyFn: (key) => client.getSearchURL(...key),
+    cacheMap: cache
+  })
+
+  return { lookup, browse, search }
+}

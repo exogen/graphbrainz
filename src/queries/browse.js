@@ -14,10 +14,34 @@ import {
   URLConnection,
   WorkConnection
 } from '../types'
+import { toWords } from '../types/helpers'
+
+const area = {
+  type: MBID,
+  description: 'The MBID of an area to which the entity is linked.'
+}
+const artist = {
+  type: MBID,
+  description: 'The MBID of an artist to which the entity is linked.'
+}
+const recording = {
+  type: MBID,
+  description: 'The MBID of a recording to which the entity is linked.'
+}
+const release = {
+  type: MBID,
+  description: 'The MBID of a release to which the entity is linked.'
+}
+const releaseGroup = {
+  type: MBID,
+  description: 'The MBID of a release group to which the entity is linked.'
+}
 
 function browseQuery (connectionType, args) {
+  const typeName = toWords(connectionType.name.slice(0, -10))
   return {
     type: connectionType,
+    description: `Browse ${typeName} entities linked to the given arguments.`,
     args: {
       ...forwardConnectionArgs,
       ...args
@@ -28,51 +52,69 @@ function browseQuery (connectionType, args) {
 
 export default new GraphQLObjectType({
   name: 'BrowseQuery',
-  description:
-    'Browse requests are a direct lookup of all the entities directly linked ' +
-    'to another entity.',
+  description: `A query for all MusicBrainz entities directly linked to another
+entity.`,
   fields: {
     artists: browseQuery(ArtistConnection, {
-      area: { type: MBID },
-      recording: { type: MBID },
-      release: { type: MBID },
-      releaseGroup: { type: MBID },
-      work: { type: MBID }
+      area,
+      recording,
+      release,
+      releaseGroup,
+      work: {
+        type: MBID,
+        description: 'The MBID of a work to which the artist is linked.'
+      }
     }),
     events: browseQuery(EventConnection, {
-      area: { type: MBID },
-      artist: { type: MBID },
-      place: { type: MBID }
+      area,
+      artist,
+      place: {
+        type: MBID,
+        description: 'The MBID of a place to which the event is linked.'
+      }
     }),
     labels: browseQuery(LabelConnection, {
-      area: { type: MBID },
-      release: { type: MBID }
+      area,
+      release
     }),
     places: browseQuery(PlaceConnection, {
-      area: { type: MBID }
+      area
     }),
     recordings: browseQuery(RecordingConnection, {
-      artist: { type: MBID },
-      release: { type: MBID }
+      artist,
+      release
     }),
     releases: browseQuery(ReleaseConnection, {
-      area: { type: MBID },
-      artist: { type: MBID },
-      label: { type: MBID },
-      track: { type: MBID },
-      trackArtist: { type: MBID },
-      recording: { type: MBID },
-      releaseGroup: { type: MBID }
+      area,
+      artist,
+      label: {
+        type: MBID,
+        description: 'The MBID of a label to which the release is linked.'
+      },
+      track: {
+        type: MBID,
+        description: 'The MBID of a track that is included in the release.'
+      },
+      trackArtist: {
+        type: MBID,
+        description: `The MBID of an artist that appears on a track in the
+release, but is not included in the credits for the release itself.`
+      },
+      recording,
+      releaseGroup
     }),
     releaseGroups: browseQuery(ReleaseGroupConnection, {
-      artist: { type: MBID },
-      release: { type: MBID }
+      artist,
+      release
     }),
     works: browseQuery(WorkConnection, {
-      artist: { type: MBID }
+      artist
     }),
     urls: browseQuery(URLConnection, {
-      resource: { type: URLString }
+      resource: {
+        type: URLString,
+        description: 'The web address for which to browse URL entities.'
+      }
     })
   }
 })

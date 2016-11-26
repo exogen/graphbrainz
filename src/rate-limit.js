@@ -1,16 +1,14 @@
 export default class RateLimit {
-  constructor (options = {}) {
-    options = {
-      limit: 1,
-      period: 1000,
-      concurrency: options.limit || 1,
-      defaultPriority: 1,
-      ...options
-    }
-    this.limit = options.limit
-    this.period = options.period
-    this.defaultPriority = options.defaultPriority
-    this.concurrency = options.concurrency
+  constructor ({
+    limit = 1,
+    period = 1000,
+    concurrency = limit || 1,
+    defaultPriority = 1
+  } = {}) {
+    this.limit = limit
+    this.period = period
+    this.defaultPriority = defaultPriority
+    this.concurrency = concurrency
     this.queues = []
     this.numPending = 0
     this.periodStart = null

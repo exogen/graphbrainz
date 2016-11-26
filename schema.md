@@ -1,14 +1,10 @@
-# graphbrainz
-
-GraphQL server for accessing the MusicBrainz API.
-
-## Schema
+# GraphQL Schema
 
 ```graphql
-# [Aliases](https://musicbrainz.org/doc/Aliases) are variant
-# names that are mostly used as search help: if a search matches an entity’s
-# alias, the entity will be given as a result – even if the actual name wouldn’t
-# be. They are available for artists, labels, and works.
+# [Aliases](https://musicbrainz.org/doc/Aliases) are variant names
+# that are mostly used as search help: if a search matches an entity’s alias, the
+# entity will be given as a result – even if the actual name wouldn’t be. They are
+# available for artists, labels, and works.
 type Alias {
   # The aliased name of the entity.
   name: String
@@ -54,6 +50,9 @@ type Area implements Node, Entity {
 
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
+
+  # [ISO 3166 codes](https://en.wikipedia.org/wiki/ISO_3166) are
+  # the codes assigned by ISO to countries and subdivisions.
   isoCodes: [String]
 
   # A list of artist entities linked to this entity.
@@ -116,19 +115,28 @@ type Artist implements Node, Entity {
   # [Aliases](https://musicbrainz.org/doc/Aliases) are used to
   # store alternate names or misspellings.
   aliases: [Alias]
+
+  # The country with which an artist is primarily identified. It
+  # is often, but not always, its birth/formation country.
   country: String
 
   # The area with which an artist is primarily identified. It
   # is often, but not always, its birth/formation country.
   area: Area
+
+  # The area in which an artist began their career (or where
+  # were born, if the artist is a person).
   beginArea: Area
+
+  # The area in which an artist ended their career (or where
+  # they died, if the artist is a person).
   endArea: Area
 
   # The begin and end dates of the entity’s existence. Its exact
   # meaning depends on the type of entity.
   lifeSpan: LifeSpan
 
-  # Whether a person or character identifies as male, female or
+  # Whether a person or character identifies as male, female, or
   # neither. Groups do not have genders.
   gender: String
 
@@ -150,13 +158,13 @@ type Artist implements Node, Entity {
   releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
 
   # A list of release group entities linked to this entity.
-  releaseGroups(after: String, first: Int, type: ReleaseGroupType, types: [ReleaseGroupType]): ReleaseGroupConnection
+  releaseGroups(after: String, first: Int, type: [ReleaseGroupType]): ReleaseGroupConnection
 
   # A list of work entities linked to this entity.
   works(after: String, first: Int): WorkConnection
 
-  # Relations between this entity and other entitites.
-  relations: Relations
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
 }
 
 # A connection to a list of items.
@@ -204,19 +212,19 @@ type BrowseQuery {
     after: String
     first: Int
 
-    # The MBID of an Area to which the entity is linked.
+    # The MBID of an area to which the entity is linked.
     area: MBID
 
-    # The MBID of a Recording to which the entity is linked.
+    # The MBID of a recording to which the entity is linked.
     recording: MBID
 
-    # The MBID of a Release to which the entity is linked.
+    # The MBID of a release to which the entity is linked.
     release: MBID
 
-    # The MBID of a Release Group to which the entity is linked.
+    # The MBID of a release group to which the entity is linked.
     releaseGroup: MBID
 
-    # The MBID of a Work to which the Artist is linked.
+    # The MBID of a work to which the artist is linked.
     work: MBID
   ): ArtistConnection
 
@@ -225,13 +233,13 @@ type BrowseQuery {
     after: String
     first: Int
 
-    # The MBID of an Area to which the entity is linked.
+    # The MBID of an area to which the entity is linked.
     area: MBID
 
-    # The MBID of an Artist to which the entity is linked.
+    # The MBID of an artist to which the entity is linked.
     artist: MBID
 
-    # The MBID of a Place to which the Event is linked.
+    # The MBID of a place to which the event is linked.
     place: MBID
   ): EventConnection
 
@@ -240,10 +248,10 @@ type BrowseQuery {
     after: String
     first: Int
 
-    # The MBID of an Area to which the entity is linked.
+    # The MBID of an area to which the entity is linked.
     area: MBID
 
-    # The MBID of a Release to which the entity is linked.
+    # The MBID of a release to which the entity is linked.
     release: MBID
   ): LabelConnection
 
@@ -252,7 +260,7 @@ type BrowseQuery {
     after: String
     first: Int
 
-    # The MBID of an Area to which the entity is linked.
+    # The MBID of an area to which the entity is linked.
     area: MBID
   ): PlaceConnection
 
@@ -261,10 +269,10 @@ type BrowseQuery {
     after: String
     first: Int
 
-    # The MBID of an Artist to which the entity is linked.
+    # The MBID of an artist to which the entity is linked.
     artist: MBID
 
-    # The MBID of a Release to which the entity is linked.
+    # The MBID of a release to which the entity is linked.
     release: MBID
   ): RecordingConnection
 
@@ -273,26 +281,26 @@ type BrowseQuery {
     after: String
     first: Int
 
-    # The MBID of an Area to which the entity is linked.
+    # The MBID of an area to which the entity is linked.
     area: MBID
 
-    # The MBID of an Artist to which the entity is linked.
+    # The MBID of an artist to which the entity is linked.
     artist: MBID
 
-    # The MBID of a Label to which the Release is linked.
+    # The MBID of a label to which the release is linked.
     label: MBID
 
-    # The MBID of a Track that is included in the Release.
+    # The MBID of a track that is included in the release.
     track: MBID
 
-    # The MBID of an Artist that appears on a Track in the
-    # release, but is not included in the credits for the Release itself.
+    # The MBID of an artist that appears on a track in the
+    # release, but is not included in the credits for the release itself.
     trackArtist: MBID
 
-    # The MBID of a Recording to which the entity is linked.
+    # The MBID of a recording to which the entity is linked.
     recording: MBID
 
-    # The MBID of a Release Group to which the entity is linked.
+    # The MBID of a release group to which the entity is linked.
     releaseGroup: MBID
   ): ReleaseConnection
 
@@ -301,10 +309,10 @@ type BrowseQuery {
     after: String
     first: Int
 
-    # The MBID of an Artist to which the entity is linked.
+    # The MBID of an artist to which the entity is linked.
     artist: MBID
 
-    # The MBID of a Release to which the entity is linked.
+    # The MBID of a release to which the entity is linked.
     release: MBID
   ): ReleaseGroupConnection
 
@@ -313,7 +321,7 @@ type BrowseQuery {
     after: String
     first: Int
 
-    # The MBID of an Artist to which the entity is linked.
+    # The MBID of an artist to which the entity is linked.
     artist: MBID
   ): WorkConnection
 
@@ -367,9 +375,19 @@ type Event implements Node, Entity {
   # The begin and end dates of the entity’s existence. Its exact
   # meaning depends on the type of entity.
   lifeSpan: LifeSpan
+
+  # The start time of the event.
   time: Time
+
+  # Whether or not the event took place.
   cancelled: Boolean
+
+  # A list of songs performed, optionally including links to
+  # artists and works. See the [setlist documentation](https://musicbrainz.org/doc/Event/Setlist)
+  # for syntax and examples.
   setlist: String
+
+  # What kind of event the event is, e.g. concert, festival, etc.
   type: String
 
   # The MBID associated with the
@@ -729,8 +747,8 @@ type Recording implements Node, Entity {
   # A list of release entities linked to this entity.
   releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
 
-  # Relations between this entity and other entitites.
-  relations: Relations
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
 }
 
 # A connection to a list of items.
@@ -751,16 +769,43 @@ type RecordingEdge {
   cursor: String!
 }
 
-type Relation {
+# [Relationships](https://musicbrainz.org/doc/Relationships) are a
+# way to represent all the different ways in which entities are connected to each
+# other and to URLs outside MusicBrainz.
+type Relationship {
+  # The target entity.
   target: Entity!
+
+  # The direction of the relationship.
   direction: String!
+
+  # The type of entity on the receiving end of the relationship.
   targetType: String!
+
+  # How the source entity was actually credited, if different
+  # from its main (performance) name.
   sourceCredit: String
+
+  # How the target entity was actually credited, if different
+  # from its main (performance) name.
   targetCredit: String
+
+  # The date on which the relationship became applicable.
   begin: Date
+
+  # The date on which the relationship became no longer applicable.
   end: Date
+
+  # Whether the relationship still applies.
   ended: Boolean
+
+  # Attributes which modify the relationship. There is a [list
+  # of all attributes](https://musicbrainz.org/relationship-attributes), but the
+  # attributes which are available, and how they should be used, depends on the
+  # relationship type.
   attributes: [String]
+
+  # The type of relationship.
   type: String
 
   # The MBID associated with the
@@ -769,37 +814,240 @@ type Relation {
 }
 
 # A connection to a list of items.
-type RelationConnection {
+type RelationshipConnection {
   # Information to aid in pagination.
   pageInfo: PageInfo!
 
   # A list of edges.
-  edges: [RelationEdge]
+  edges: [RelationshipEdge]
 }
 
 # An edge in a connection.
-type RelationEdge {
+type RelationshipEdge {
   # The item at the end of the edge
-  node: Relation
+  node: Relationship
 
   # A cursor for use in pagination
   cursor: String!
 }
 
-# Related entities.
-type Relations {
-  area(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  artist(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  event(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  instrument(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  label(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  place(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  recording(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  release(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  releaseGroup(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  series(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  url(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
-  work(after: String, first: Int, before: String, last: Int, direction: String, type: String, typeID: MBID): RelationConnection
+# Lists of entity relationships for each entity type.
+type Relationships {
+  # A list of relationships between these two entity types.
+  areas(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  artists(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  events(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  instruments(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  labels(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  places(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  recordings(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  releases(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  releaseGroups(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  series(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  urls(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
+
+  # A list of relationships between these two entity types.
+  works(
+    after: String
+    first: Int
+    before: String
+    last: Int
+
+    # Filter by the relationship direction.
+    direction: String
+
+    # Filter by the relationship type.
+    type: String
+
+    # The MBID associated with the
+    # value of the `type` field.
+    typeID: MBID
+  ): RelationshipConnection
 }
 
 # A [release](https://musicbrainz.org/doc/Release) represents the
@@ -823,7 +1071,7 @@ type Release implements Node, Entity {
   # The main credited artist(s).
   artistCredit: [ArtistCredit]
 
-  # The release event for this release.
+  # The release events for this release.
   releaseEvents: [ReleaseEvent]
 
   # The [release date](https://musicbrainz.org/doc/Release/Date)
@@ -871,10 +1119,10 @@ type Release implements Node, Entity {
   recordings(after: String, first: Int): RecordingConnection
 
   # A list of release group entities linked to this entity.
-  releaseGroups(after: String, first: Int, type: ReleaseGroupType, types: [ReleaseGroupType]): ReleaseGroupConnection
+  releaseGroups(after: String, first: Int, type: [ReleaseGroupType]): ReleaseGroupConnection
 
-  # Relations between this entity and other entitites.
-  relations: Relations
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
 }
 
 # A connection to a list of items.
@@ -953,8 +1201,8 @@ type ReleaseGroup implements Node, Entity {
   # A list of release entities linked to this entity.
   releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
 
-  # Relations between this entity and other entitites.
-  relations: Relations
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
 }
 
 # A connection to a list of items.
@@ -1143,8 +1391,8 @@ type URL implements Node, Entity {
   # The actual URL string.
   resource: URLString!
 
-  # Relations between this entity and other entitites.
-  relations: Relations
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
 }
 
 # A connection to a list of items.
@@ -1201,8 +1449,8 @@ type Work implements Node, Entity {
   # A list of artist entities linked to this entity.
   artists(after: String, first: Int): ArtistConnection
 
-  # Relations between this entity and other entitites.
-  relations: Relations
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
 }
 
 # A connection to a list of items.
@@ -1222,5 +1470,4 @@ type WorkEdge {
   # A cursor for use in pagination
   cursor: String!
 }
-
 ```
