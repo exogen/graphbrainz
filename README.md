@@ -145,11 +145,12 @@ Nirvana albums and the singles from each album:
 
 ## Questions
 
-* What’s with the cumbersome `edges` / `node` nesting? Why `mbid` instead of
-  `id`?
-  - You can thank [Relay][] for that; these are properties of a Relay-compliant
-    schema. The schema was originally designed without these annoyances, but in
-    the end I decided that being compatible with Relay was a worthwhile feature.
+**What’s with the cumbersome `edges` / `node` nesting? Why `mbid` instead of
+`id`?**
+
+You can thank [Relay][] for that; these are properties of a Relay-compliant
+schema. The schema was originally designed without these annoyances, but in the
+end I decided that being compatible with Relay was a worthwhile feature.
 
 ## Schema
 
