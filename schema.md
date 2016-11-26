@@ -26,8 +26,8 @@ type Alias {
   # search hint, etc.
   type: String
 
-  # The MBID associated with the
-  # value of the `type` field.
+  # The MBID associated with the value of the `type`
+  # field.
   typeID: MBID
 }
 
@@ -140,15 +140,15 @@ type Artist implements Node, Entity {
   # neither. Groups do not have genders.
   gender: String
 
-  # The MBID associated with the
-  # value of the `gender` field.
+  # The MBID associated with the value of the `gender`
+  # field.
   genderID: MBID
 
   # Whether an artist is a person, a group, or something else.
   type: String
 
-  # The MBID associated with the
-  # value of the `type` field.
+  # The MBID associated with the value of the `type`
+  # field.
   typeID: MBID
 
   # A list of recording entities linked to this entity.
@@ -390,8 +390,8 @@ type Event implements Node, Entity {
   # What kind of event the event is, e.g. concert, festival, etc.
   type: String
 
-  # The MBID associated with the
-  # value of the `type` field.
+  # The MBID associated with the value of the `type`
+  # field.
   typeID: MBID
 }
 
@@ -438,8 +438,8 @@ type Instrument implements Node, Entity {
   # classification.
   type: String
 
-  # The MBID associated with the
-  # value of the `type` field.
+  # The MBID associated with the value of the `type`
+  # field.
   typeID: MBID
 }
 
@@ -491,8 +491,8 @@ type Label implements Node, Entity {
   # imprint, production, distributor, rights society, etc.
   type: String
 
-  # The MBID associated with the
-  # value of the `type` field.
+  # The MBID associated with the value of the `type`
+  # field.
   typeID: MBID
 
   # A list of release entities linked to this entity.
@@ -659,8 +659,8 @@ type Place implements Node, Entity {
   # function.
   type: String
 
-  # The MBID associated with the
-  # value of the `type` field.
+  # The MBID associated with the value of the `type`
+  # field.
   typeID: MBID
 
   # A list of event entities linked to this entity.
@@ -808,8 +808,8 @@ type Relationship {
   # The type of relationship.
   type: String
 
-  # The MBID associated with the
-  # value of the `type` field.
+  # The MBID associated with the value of the `type`
+  # field.
   typeID: MBID
 }
 
@@ -846,8 +846,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -864,8 +864,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -882,8 +882,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -900,8 +900,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -918,8 +918,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -936,8 +936,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -954,8 +954,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -972,8 +972,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -990,8 +990,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -1008,8 +1008,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -1026,8 +1026,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 
@@ -1044,8 +1044,8 @@ type Relationships {
     # Filter by the relationship type.
     type: String
 
-    # The MBID associated with the
-    # value of the `type` field.
+    # The MBID associated with the value of the `type`
+    # field.
     typeID: MBID
   ): RelationshipConnection
 }
@@ -1091,8 +1091,8 @@ type Release implements Node, Entity {
   # The status describes how “official” a release is.
   status: ReleaseStatus
 
-  # The MBID associated with the
-  # value of the `status` field.
+  # The MBID associated with the value of the `status`
+  # field.
   statusID: MBID
 
   # The physical packaging that accompanies the release. See
@@ -1100,8 +1100,8 @@ type Release implements Node, Entity {
   # information.
   packaging: String
 
-  # The MBID associated with the
-  # value of the `packaging` field.
+  # The MBID associated with the value of the `packaging`
+  # field.
   packagingID: MBID
 
   # Data quality indicates how good the data for a release is.
@@ -1143,7 +1143,7 @@ type ReleaseEdge {
   cursor: String!
 }
 
-# Date on which a release was released in a country/region with a
+# Date on which a release was issued in a country/region with a
 # particular label, catalog number, barcode, and what release format was used.
 type ReleaseEvent {
   area: Area
@@ -1183,16 +1183,16 @@ type ReleaseGroup implements Node, Entity {
   # “main” type and an unspecified number of additional types.
   primaryType: ReleaseGroupType
 
-  # The MBID associated with the
-  # value of the `primaryType` field.
+  # The MBID associated with the value of the `primaryType`
+  # field.
   primaryTypeID: MBID
 
   # Additional [types](https://musicbrainz.org/doc/Release_Group/Type)
   # that apply to this release group.
   secondaryTypes: [ReleaseGroupType]
 
-  # The MBIDs associated with the
-  # values of the `secondaryTypes` field.
+  # The MBIDs associated with the values of the `secondaryTypes`
+  # field.
   secondaryTypeIDs: [MBID]
 
   # A list of artist entities linked to this entity.
@@ -1255,7 +1255,7 @@ enum ReleaseGroupType {
   COMPILATION
 
   # A soundtrack is the musical score to a movie, TV series,
-  # stage show, computer game etc.
+  # stage show, computer game, etc.
   SOUNDTRACK
 
   # A non-music spoken word release.
@@ -1292,7 +1292,7 @@ enum ReleaseGroupType {
   # mixes (which are usually deemed compilations) and are defined by having a
   # significant proportion of new material, including original production or
   # original vocals over top of other artists’ instrumentals. They are distinct from
-  # demos in that they are designed for release directly to the public and fans; not
+  # demos in that they are designed for release directly to the public and fans, not
   # to labels.
   MIXTAPE
 
@@ -1310,8 +1310,8 @@ enum ReleaseStatus {
   OFFICIAL
 
   # A giveaway release or a release intended to promote an
-  # upcoming official release. (e.g. prerelease albums or releases included with a
-  # magazine)
+  # upcoming official release, e.g. prerelease albums or releases included with a
+  # magazine.
   PROMOTION
 
   # An unofficial/underground release that was not sanctioned by
@@ -1370,8 +1370,8 @@ type Series implements Node, Entity {
   # contains.
   type: String
 
-  # The MBID associated with the
-  # value of the `type` field.
+  # The MBID associated with the value of the `type`
+  # field.
   typeID: MBID
 }
 
@@ -1442,8 +1442,8 @@ type Work implements Node, Entity {
   # The type of work.
   type: String
 
-  # The MBID associated with the
-  # value of the `type` field.
+  # The MBID associated with the value of the `type`
+  # field.
   typeID: MBID
 
   # A list of artist entities linked to this entity.

@@ -1253,7 +1253,7 @@
             },
             {
               "name": "genderID",
-              "description": "The MBID associated with the\nvalue of the `gender` field.",
+              "description": "The MBID associated with the value of the `gender`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1277,7 +1277,7 @@
             },
             {
               "name": "typeID",
-              "description": "The MBID associated with the\nvalue of the `type` field.",
+              "description": "The MBID associated with the value of the `type`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1557,7 +1557,7 @@
             },
             {
               "name": "typeID",
-              "description": "The MBID associated with the\nvalue of the `type` field.",
+              "description": "The MBID associated with the value of the `type`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -2029,7 +2029,7 @@
             },
             {
               "name": "SOUNDTRACK",
-              "description": "A soundtrack is the musical score to a movie, TV series,\nstage show, computer game etc.",
+              "description": "A soundtrack is the musical score to a movie, TV series,\nstage show, computer game, etc.",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -2071,7 +2071,7 @@
             },
             {
               "name": "MIXTAPE",
-              "description": "Promotional in nature (but not necessarily free), mixtapes\nand street albums are often released by artists to promote new artists, or\nupcoming studio albums by prominent artists. They are also sometimes used to\nkeep fans’ attention between studio releases and are most common in rap & hip\nhop genres. They are often not sanctioned by the artist’s label, may lack proper\nsample or song clearances and vary widely in production and recording quality.\nWhile mixtapes are generally DJ-mixed, they are distinct from commercial DJ\nmixes (which are usually deemed compilations) and are defined by having a\nsignificant proportion of new material, including original production or\noriginal vocals over top of other artists’ instrumentals. They are distinct from\ndemos in that they are designed for release directly to the public and fans; not\nto labels.",
+              "description": "Promotional in nature (but not necessarily free), mixtapes\nand street albums are often released by artists to promote new artists, or\nupcoming studio albums by prominent artists. They are also sometimes used to\nkeep fans’ attention between studio releases and are most common in rap & hip\nhop genres. They are often not sanctioned by the artist’s label, may lack proper\nsample or song clearances and vary widely in production and recording quality.\nWhile mixtapes are generally DJ-mixed, they are distinct from commercial DJ\nmixes (which are usually deemed compilations) and are defined by having a\nsignificant proportion of new material, including original production or\noriginal vocals over top of other artists’ instrumentals. They are distinct from\ndemos in that they are designed for release directly to the public and fans, not\nto labels.",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -2106,7 +2106,7 @@
             },
             {
               "name": "PROMOTION",
-              "description": "A giveaway release or a release intended to promote an\nupcoming official release. (e.g. prerelease albums or releases included with a\nmagazine)",
+              "description": "A giveaway release or a release intended to promote an\nupcoming official release, e.g. prerelease albums or releases included with a\nmagazine.",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -2350,7 +2350,7 @@
             },
             {
               "name": "statusID",
-              "description": "The MBID associated with the\nvalue of the `status` field.",
+              "description": "The MBID associated with the value of the `status`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -2374,7 +2374,7 @@
             },
             {
               "name": "packagingID",
-              "description": "The MBID associated with the\nvalue of the `packaging` field.",
+              "description": "The MBID associated with the value of the `packaging`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -2574,7 +2574,7 @@
         {
           "kind": "OBJECT",
           "name": "ReleaseEvent",
-          "description": "Date on which a release was released in a country/region with a\nparticular label, catalog number, barcode, and what release format was used.",
+          "description": "Date on which a release was issued in a country/region with a\nparticular label, catalog number, barcode, and what release format was used.",
           "fields": [
             {
               "name": "area",
@@ -2839,7 +2839,7 @@
             },
             {
               "name": "typeID",
-              "description": "The MBID associated with the\nvalue of the `type` field.",
+              "description": "The MBID associated with the value of the `type`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -3122,7 +3122,7 @@
             },
             {
               "name": "primaryTypeID",
-              "description": "The MBID associated with the\nvalue of the `primaryType` field.",
+              "description": "The MBID associated with the value of the `primaryType`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -3150,7 +3150,7 @@
             },
             {
               "name": "secondaryTypeIDs",
-              "description": "The MBIDs associated with the\nvalues of the `secondaryTypes` field.",
+              "description": "The MBIDs associated with the values of the `secondaryTypes`\nfield.",
               "args": [],
               "type": {
                 "kind": "LIST",
@@ -3358,7 +3358,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -3441,7 +3441,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -3524,7 +3524,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -3607,7 +3607,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -3690,7 +3690,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -3773,7 +3773,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -3856,7 +3856,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -3939,7 +3939,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -4022,7 +4022,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -4105,7 +4105,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -4188,7 +4188,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -4271,7 +4271,7 @@
                 },
                 {
                   "name": "typeID",
-                  "description": "The MBID associated with the\nvalue of the `type` field.",
+                  "description": "The MBID associated with the value of the `type`\nfield.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -4519,7 +4519,7 @@
             },
             {
               "name": "typeID",
-              "description": "The MBID associated with the\nvalue of the `type` field.",
+              "description": "The MBID associated with the value of the `type`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -4720,7 +4720,7 @@
             },
             {
               "name": "typeID",
-              "description": "The MBID associated with the\nvalue of the `type` field.",
+              "description": "The MBID associated with the value of the `type`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -4997,7 +4997,7 @@
             },
             {
               "name": "typeID",
-              "description": "The MBID associated with the\nvalue of the `type` field.",
+              "description": "The MBID associated with the value of the `type`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -5239,7 +5239,7 @@
             },
             {
               "name": "typeID",
-              "description": "The MBID associated with the\nvalue of the `type` field.",
+              "description": "The MBID associated with the value of the `type`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -5431,7 +5431,7 @@
             },
             {
               "name": "typeID",
-              "description": "The MBID associated with the\nvalue of the `type` field.",
+              "description": "The MBID associated with the value of the `type`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -5533,7 +5533,7 @@
             },
             {
               "name": "typeID",
-              "description": "The MBID associated with the\nvalue of the `type` field.",
+              "description": "The MBID associated with the value of the `type`\nfield.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
