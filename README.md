@@ -270,7 +270,8 @@ instead of `limit`/`offset`? Why `mbid` instead of `id`?**
 
 You can thank [Relay][] for that; these are properties of a Relay-compliant
 schema. The schema was originally designed to be more user-friendly, but in the
-end I decided that being compatible with Relay was a worthwhile feature.
+end I decided that being compatible with Relay was a worthwhile feature. I
+agree, it’s ugly.
 
 ## Schema
 
