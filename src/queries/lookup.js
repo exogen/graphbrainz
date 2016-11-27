@@ -26,7 +26,7 @@ function lookupQuery (entity) {
   }
 }
 
-export default new GraphQLObjectType({
+export const LookupQuery = new GraphQLObjectType({
   name: 'LookupQuery',
   description: 'A lookup of an individual MusicBrainz entity by its MBID.',
   fields: {
@@ -44,3 +44,13 @@ export default new GraphQLObjectType({
     work: lookupQuery(Work)
   }
 })
+
+export const lookupField = {
+  type: LookupQuery,
+  description: 'Perform a lookup of a MusicBrainz entity by its MBID.',
+  // We only have work to do once we know what entity types are being requested,
+  // so this can just resolve to an empty object.
+  resolve: () => ({})
+}
+
+export default LookupQuery

@@ -1,3 +1,3 @@
-export { default as LookupQuery } from './lookup'
-export { default as BrowseQuery } from './browse'
-export { default as SearchQuery } from './search'
+export { LookupQuery, lookupField } from './lookup'
+export { BrowseQuery, browseField } from './browse'
+export { SearchQuery, searchField } from './search'

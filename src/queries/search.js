@@ -26,7 +26,7 @@ function searchQuery (connectionType) {
   }
 }
 
-export default new GraphQLObjectType({
+export const SearchQuery = new GraphQLObjectType({
   name: 'SearchQuery',
   description: 'A search for MusicBrainz entities using Lucene query syntax.',
   fields: {
@@ -40,3 +40,13 @@ export default new GraphQLObjectType({
     works: searchQuery(WorkConnection)
   }
 })
+
+export const searchField = {
+  type: SearchQuery,
+  description: 'Search for MusicBrainz entities using Lucene query syntax.',
+  // We only have work to do once we know what entity types are being requested,
+  // so this can just resolve to an empty object.
+  resolve: () => ({})
+}
+
+export default SearchQuery

@@ -50,7 +50,7 @@ function browseQuery (connectionType, args) {
   }
 }
 
-export default new GraphQLObjectType({
+export const BrowseQuery = new GraphQLObjectType({
   name: 'BrowseQuery',
   description: `A query for all MusicBrainz entities directly linked to another
 entity.`,
@@ -118,3 +118,13 @@ release, but is not included in the credits for the release itself.`
     })
   }
 })
+
+export const browseField = {
+  type: BrowseQuery,
+  description: 'Browse all MusicBrainz entities directly linked to another entity.',
+  // We only have work to do once we know what entity types are being requested,
+  // so this can just resolve to an empty object.
+  resolve: () => ({})
+}
+
+export default BrowseQuery
