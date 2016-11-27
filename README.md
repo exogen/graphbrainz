@@ -79,7 +79,9 @@ app.listen(3000);
 The `graphbrainz` middleware function accepts the following options:
 
 * **`client`**: A custom API client instance to use. See the
-  [client submodule](src/api.js) for help with creating a custom instance.
+  [client submodule](src/api.js) for help with creating a custom instance. You
+  probably only need to do this if you want to adjust the rate limit and retry
+  behavior.
 * Any remaining options are passed along to the standard GraphQL middleware.
   See the [express-graphql][] documentation for more information.
 
@@ -94,7 +96,8 @@ The `graphbrainz` middleware function accepts the following options:
 * **`PORT`**: Port number to use, if running the standalone server.
 
 When running the standalone server, [dotenv][] is used to load these variables
-from a `.env` file, if one exists in the current working directory. See the
+from a `.env` file, if one exists in the current working directory. This just
+makes it more convenient to launch the server with certain settings. See the
 [dotenv][] package for more information.
 
 ### Debugging
