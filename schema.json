@@ -4595,7 +4595,7 @@
         {
           "kind": "OBJECT",
           "name": "Tag",
-          "description": "[Tags](https://musicbrainz.org/tags) are a way mark entities\nwith extra information – for example, the genres that apply to an artist,\nrelease, or recording.",
+          "description": "[Tags](https://musicbrainz.org/tags) are a way to mark entities\nwith extra information – for example, the genres that apply to an artist,\nrelease, or recording.",
           "fields": [
             {
               "name": "name",
