@@ -101,6 +101,10 @@ type AreaEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # An [artist](https://musicbrainz.org/doc/Artist) is generally a
@@ -223,6 +227,10 @@ type ArtistEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # A query for all MusicBrainz entities directly linked to another
@@ -479,6 +487,10 @@ type EventEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # [Instruments](https://musicbrainz.org/doc/Instrument) are
@@ -541,6 +553,10 @@ type InstrumentEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # An [IPI](https://musicbrainz.org/doc/IPI) (interested party
@@ -629,6 +645,10 @@ type LabelEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # Fields indicating the begin and end date of an entity’s
@@ -811,6 +831,10 @@ type PlaceEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # The query root, from which multiple types of MusicBrainz
@@ -904,6 +928,10 @@ type RecordingEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # [Relationships](https://musicbrainz.org/doc/Relationships) are a
@@ -970,6 +998,10 @@ type RelationshipEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # Lists of entity relationships for each entity type.
@@ -1293,6 +1325,10 @@ type ReleaseEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # Date on which a release was issued in a country/region with a
@@ -1384,6 +1420,10 @@ type ReleaseGroupEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 enum ReleaseGroupType {
@@ -1639,6 +1679,10 @@ type SeriesEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # [Tags](https://musicbrainz.org/tags) are a way to mark entities
@@ -1672,6 +1716,10 @@ type TagEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # A time of day, in 24-hour hh:mm notation.
@@ -1714,6 +1762,10 @@ type URLEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 
 # A web address.
@@ -1783,5 +1835,9 @@ type WorkEdge {
 
   # A cursor for use in pagination
   cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
 }
 ```
