@@ -8,7 +8,7 @@ import { connectionWithCount } from './helpers'
 
 const Tag = new GraphQLObjectType({
   name: 'Tag',
-  description: `[Tags](https://musicbrainz.org/tags) are a way mark entities
+  description: `[Tags](https://musicbrainz.org/tags) are a way to mark entities
 with extra information – for example, the genres that apply to an artist,
 release, or recording.`,
   fields: () => ({
