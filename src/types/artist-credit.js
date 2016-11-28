@@ -16,7 +16,7 @@ credits.`,
       resolve: (source) => {
         const { artist } = source
         if (artist) {
-          artist.entityType = 'artist'
+          artist._type = 'artist'
         }
         return artist
       }

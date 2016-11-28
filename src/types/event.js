@@ -1,5 +1,4 @@
 import { GraphQLObjectType, GraphQLString, GraphQLBoolean } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
 import { Time } from './scalars'
@@ -9,7 +8,11 @@ import {
   mbid,
   name,
   disambiguation,
-  lifeSpan
+  aliases,
+  lifeSpan,
+  relationships,
+  tags,
+  connectionWithCount
 } from './helpers'
 
 const Event = new GraphQLObjectType({
@@ -23,6 +26,7 @@ Generally this means live performances, like concerts and festivals.`,
     mbid,
     name,
     disambiguation,
+    aliases,
     lifeSpan,
     time: {
       type: Time,
@@ -40,10 +44,11 @@ for syntax and examples.`
     },
     ...fieldWithID('type', {
       description: 'What kind of event the event is, e.g. concert, festival, etc.'
-    })
+    }),
+    relationships,
+    tags
   })
 })
 
-const { connectionType: EventConnection } = connectionDefinitions({ nodeType: Event })
-export { EventConnection }
+export const EventConnection = connectionWithCount(Event)
 export default Event

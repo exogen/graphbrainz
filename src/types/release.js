@@ -1,5 +1,4 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
 import { DateType } from './scalars'
@@ -10,14 +9,17 @@ import {
   mbid,
   title,
   disambiguation,
+  aliases,
   artistCredit,
   artists,
   labels,
   recordings,
   releaseGroups,
   relationships,
+  tags,
+  fieldWithID,
   getHyphenated,
-  fieldWithID
+  connectionWithCount
 } from './helpers'
 
 const Release = new GraphQLObjectType({
@@ -33,6 +35,7 @@ MusicBrainz as one release.`,
     mbid,
     title,
     disambiguation,
+    aliases,
     artistCredit,
     releaseEvents: {
       type: new GraphQLList(ReleaseEvent),
@@ -75,10 +78,10 @@ It is not a mark of how good or bad the music itself is – for that, use
     labels,
     recordings,
     releaseGroups,
-    relationships
+    relationships,
+    tags
   })
 })
 
-const { connectionType: ReleaseConnection } = connectionDefinitions({ nodeType: Release })
-export { ReleaseConnection }
+export const ReleaseConnection = connectionWithCount(Release)
 export default Release

@@ -12,6 +12,12 @@ export function includeRelationships (params, info) {
     if (fields.relationships) {
       fields = getFields(fields.relationships)
     } else {
+      if (fields.edges) {
+        fields = getFields(fields.edges)
+        if (fields.node) {
+          return includeRelationships(params, fields.node)
+        }
+      }
       return params
     }
   }
@@ -31,11 +37,27 @@ export function includeRelationships (params, info) {
 }
 
 export function includeSubqueries (params, info) {
-  const fields = getFields(info)
-  if (fields.artistCredit) {
-    params = {
-      ...params,
-      inc: extendIncludes(params.inc, ['artist-credits'])
+  const subqueryIncludes = {
+    aliases: 'aliases',
+    artistCredit: 'artist-credits',
+    tags: 'tags'
+  }
+  let fields = getFields(info)
+  const include = []
+  for (const key in subqueryIncludes) {
+    if (fields[key]) {
+      const value = subqueryIncludes[key]
+      include.push(value)
+    }
+  }
+  params = {
+    ...params,
+    inc: extendIncludes(params.inc, include)
+  }
+  if (fields.edges) {
+    fields = getFields(fields.edges)
+    if (fields.node) {
+      params = includeSubqueries(params, fields.node)
     }
   }
   return params
@@ -44,7 +66,8 @@ export function includeSubqueries (params, info) {
 export function lookupResolver () {
   return (root, { mbid }, { loaders }, info) => {
     const entityType = toDashed(info.fieldName)
-    const params = includeRelationships({}, info)
+    let params = includeSubqueries({}, info)
+    params = includeRelationships(params, info)
     return loaders.lookup.load([entityType, mbid, params])
   }
 }
@@ -58,7 +81,7 @@ export function browseResolver () {
       type,
       status,
       limit: first,
-      offset: getOffsetWithDefault(after, 0)
+      offset: getOffsetWithDefault(after, -1) + 1
     }
     params = includeSubqueries(params, info)
     params = includeRelationships(params, info)
@@ -74,18 +97,24 @@ export function browseResolver () {
         [`${singularName}-count`]: arrayLength
       } = list
       const meta = { sliceStart, arrayLength }
-      return connectionFromArraySlice(arraySlice, { first, after }, meta)
+      return {
+        totalCount: arrayLength,
+        ...connectionFromArraySlice(arraySlice, { first, after }, meta)
+      }
     })
   }
 }
 
 export function searchResolver () {
-  return (source, { first = 25, after, ...args }, { loaders }, info) => {
+  return (source, { first = 25, after, query, ...args }, { loaders }, info) => {
     const pluralName = toDashed(info.fieldName)
     const singularName = toSingular(pluralName)
-    const { query, ...params } = args
-    params.limit = first
-    params.offset = getOffsetWithDefault(after, 0)
+    let params = {
+      ...args,
+      limit: first,
+      offset: getOffsetWithDefault(after, -1) + 1
+    }
+    params = includeSubqueries(params, info)
     return loaders.search.load([singularName, query, params]).then(list => {
       const {
         [pluralName]: arraySlice,
@@ -93,7 +122,10 @@ export function searchResolver () {
         count: arrayLength
       } = list
       const meta = { sliceStart, arrayLength }
-      return connectionFromArraySlice(arraySlice, { first, after }, meta)
+      return {
+        totalCount: arrayLength,
+        ...connectionFromArraySlice(arraySlice, { first, after }, meta)
+      }
     })
   }
 }
@@ -117,7 +149,10 @@ export function relationshipResolver () {
       }
       return true
     })
-    return connectionFromArray(relationships, args)
+    return {
+      totalCount: relationships.length,
+      ...connectionFromArray(relationships, args)
+    }
   }
 }
 
@@ -126,5 +161,27 @@ export function linkedResolver () {
     const parentEntity = toDashed(info.parentType.name)
     args = { ...args, [parentEntity]: source.id }
     return browseResolver()(source, args, context, info)
+  }
+}
+
+const noop = value => value
+
+/**
+ * If we weren't smart enough or weren't able to include the `inc` parameter
+ * for a particular field that's being requested, make another request to grab
+ * it (after making sure it isn't already available).
+ */
+export function subqueryResolver (includeValue, handler = noop) {
+  return (source, args, { loaders }, info) => {
+    const key = toDashed(info.fieldName)
+    if (key in source || (source._inc && source._inc.indexOf(key) !== -1)) {
+      return handler(source[key], args)
+    } else {
+      const { _type: entityType, id } = source
+      const params = { inc: [includeValue || key] }
+      return loaders.lookup.load([entityType, id, params]).then(entity => {
+        return handler(entity[key], args)
+      })
+    }
   }
 }

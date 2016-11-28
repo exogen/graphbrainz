@@ -1,8 +1,16 @@
 import { GraphQLObjectType } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
-import { id, mbid, name, disambiguation, fieldWithID } from './helpers'
+import {
+  id,
+  mbid,
+  name,
+  disambiguation,
+  relationships,
+  tags,
+  fieldWithID,
+  connectionWithCount
+} from './helpers'
 
 const Series = new GraphQLObjectType({
   name: 'Series',
@@ -18,10 +26,11 @@ theme.`,
     ...fieldWithID('type', {
       description: `The type primarily describes what type of entity the series
 contains.`
-    })
+    }),
+    relationships,
+    tags
   })
 })
 
-const { connectionType: SeriesConnection } = connectionDefinitions({ nodeType: Series })
-export { SeriesConnection }
+export const SeriesConnection = connectionWithCount(Series)
 export default Series

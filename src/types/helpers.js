@@ -3,16 +3,20 @@ import pascalCase from 'pascalcase'
 import {
   GraphQLObjectType,
   GraphQLString,
+  GraphQLInt,
   GraphQLList,
   GraphQLNonNull
 } from 'graphql'
 import {
   globalIdField,
   connectionArgs,
+  connectionDefinitions,
+  connectionFromArray,
   forwardConnectionArgs
 } from 'graphql-relay'
 import { MBID } from './scalars'
 import { ReleaseGroupType, ReleaseStatus } from './enums'
+import Alias from './alias'
 import ArtistCredit from './artist-credit'
 import { ArtistConnection } from './artist'
 import { EventConnection } from './event'
@@ -23,10 +27,12 @@ import { RecordingConnection } from './recording'
 import { RelationshipConnection } from './relationship'
 import { ReleaseConnection } from './release'
 import { ReleaseGroupConnection } from './release-group'
+import { TagConnection } from './tag'
 import { WorkConnection } from './work'
 import {
   linkedResolver,
   relationshipResolver,
+  subqueryResolver,
   includeRelationships
 } from '../resolvers'
 
@@ -119,16 +125,17 @@ meaning depends on the type of entity.`,
   resolve: getHyphenated
 }
 
-function linkedQuery (connectionType, args) {
-  const typeName = toWords(connectionType.name.slice(0, -10))
+function linkedQuery (connectionType, { args, ...config } = {}) {
+  const typeName = toPlural(toWords(connectionType.name.slice(0, -10)))
   return {
     type: connectionType,
-    description: `A list of ${typeName} entities linked to this entity.`,
+    description: `A list of ${typeName} linked to this entity.`,
     args: {
       ...forwardConnectionArgs,
       ...args
     },
-    resolve: linkedResolver()
+    resolve: linkedResolver(),
+    ...config
   }
 }
 
@@ -181,21 +188,17 @@ export const relationships = {
   }
 }
 
+export const aliases = {
+  type: new GraphQLList(Alias),
+  description: `[Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+alternate names or misspellings.`,
+  resolve: subqueryResolver()
+}
+
 export const artistCredit = {
   type: new GraphQLList(ArtistCredit),
   description: 'The main credited artist(s).',
-  resolve: (source, args, { loaders }, info) => {
-    const key = 'artist-credit'
-    if (key in source) {
-      return source[key]
-    } else {
-      const { entityType, id } = source
-      const params = { inc: ['artists'] }
-      return loaders.lookup.load([entityType, id, params]).then(entity => {
-        return entity[key]
-      })
-    }
-  }
+  resolve: subqueryResolver()
 }
 
 export const artists = linkedQuery(ArtistConnection)
@@ -204,10 +207,33 @@ export const labels = linkedQuery(LabelConnection)
 export const places = linkedQuery(PlaceConnection)
 export const recordings = linkedQuery(RecordingConnection)
 export const releases = linkedQuery(ReleaseConnection, {
-  type: { type: new GraphQLList(ReleaseGroupType) },
-  status: { type: new GraphQLList(ReleaseStatus) }
+  args: {
+    type: { type: new GraphQLList(ReleaseGroupType) },
+    status: { type: new GraphQLList(ReleaseStatus) }
+  }
 })
 export const releaseGroups = linkedQuery(ReleaseGroupConnection, {
-  type: { type: new GraphQLList(ReleaseGroupType) }
+  args: {
+    type: { type: new GraphQLList(ReleaseGroupType) }
+  }
+})
+export const tags = linkedQuery(TagConnection, {
+  resolve: subqueryResolver('tags', (value = [], args) => ({
+    totalCount: value.length,
+    ...connectionFromArray(value, args)
+  }))
 })
 export const works = linkedQuery(WorkConnection)
+
+export const totalCount = {
+  type: GraphQLInt,
+  description: `A count of the total number of items in this connection,
+ignoring pagination.`
+}
+
+export function connectionWithCount (nodeType) {
+  return connectionDefinitions({
+    nodeType,
+    connectionFields: () => ({ totalCount })
+  }).connectionType
+}

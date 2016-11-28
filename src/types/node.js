@@ -8,9 +8,8 @@ const { nodeInterface, nodeField } = nodeDefinitions(
     return loaders.lookup.load([entityType, id])
   },
   (obj) => {
-    console.log(obj.entityType)
     try {
-      return require(`./${obj.entityType}`).default
+      return require(`./${obj._type}`).default
     } catch (err) {
       console.error(err)
       return null

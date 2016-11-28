@@ -3,13 +3,14 @@ import LRUCache from 'lru-cache'
 import { toPlural } from './types/helpers'
 
 const debug = require('debug')('graphbrainz:loaders')
+const ONE_DAY = 24 * 60 * 60 * 1000
 
 export default function createLoaders (client) {
   // All loaders share a single LRU cache that will remember 8192 responses,
   // each cached for 1 day.
   const cache = LRUCache({
-    max: 8192,
-    maxAge: 24 * 60 * 60 * 1000,
+    max: parseInt(process.env.GRAPHBRAINZ_CACHE_SIZE || 8192, 10),
+    maxAge: parseInt(process.env.GRAPHBRAINZ_CACHE_TTL || ONE_DAY, 10),
     dispose (key) {
       debug(`Removed '${key}' from cache.`)
     }
@@ -25,7 +26,8 @@ export default function createLoaders (client) {
         if (entity) {
           // Store the entity type so we can determine what type of object this
           // is elsewhere in the code.
-          entity.entityType = entityType
+          entity._type = entityType
+          entity._inc = params.inc
         }
         return entity
       })
@@ -42,7 +44,8 @@ export default function createLoaders (client) {
         list[toPlural(entityType)].forEach(entity => {
           // Store the entity type so we can determine what type of object this
           // is elsewhere in the code.
-          entity.entityType = entityType
+          entity._type = entityType
+          entity._inc = params.inc
         })
         return list
       })
@@ -59,7 +62,8 @@ export default function createLoaders (client) {
         list[toPlural(entityType)].forEach(entity => {
           // Store the entity type so we can determine what type of object this
           // is elsewhere in the code.
-          entity.entityType = entityType
+          entity._type = entityType
+          entity._inc = params.inc
         })
         return list
       })

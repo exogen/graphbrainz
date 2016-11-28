@@ -1,5 +1,4 @@
 import { GraphQLObjectType, GraphQLList } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
 import { DateType } from './scalars'
@@ -9,12 +8,15 @@ import {
   mbid,
   title,
   disambiguation,
+  aliases,
   artistCredit,
   artists,
   releases,
   relationships,
+  tags,
+  fieldWithID,
   getHyphenated,
-  fieldWithID
+  connectionWithCount
 } from './helpers'
 
 const ReleaseGroup = new GraphQLObjectType({
@@ -33,6 +35,7 @@ album – it doesn’t matter how many CDs or editions/versions it had.`,
     mbid,
     title,
     disambiguation,
+    aliases,
     artistCredit,
     firstReleaseDate: {
       type: DateType,
@@ -53,10 +56,10 @@ that apply to this release group.`
     }),
     artists,
     releases,
-    relationships
+    relationships,
+    tags
   })
 })
 
-const { connectionType: ReleaseGroupConnection } = connectionDefinitions({ nodeType: ReleaseGroup })
-export { ReleaseGroupConnection }
+export const ReleaseGroupConnection = connectionWithCount(ReleaseGroup)
 export default ReleaseGroup

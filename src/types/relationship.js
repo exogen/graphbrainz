@@ -5,12 +5,12 @@ import {
   GraphQLList,
   GraphQLBoolean
 } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
 import { DateType } from './scalars'
 import Entity from './entity'
 import {
   getHyphenated,
-  fieldWithID
+  fieldWithID,
+  connectionWithCount
 } from './helpers'
 
 const Relationship = new GraphQLObjectType({
@@ -25,7 +25,7 @@ other and to URLs outside MusicBrainz.`,
       resolve: source => {
         const targetType = source['target-type']
         const target = source[targetType]
-        target.entityType = targetType.replace('_', '-')
+        target._type = targetType.replace('_', '-')
         return target
       }
     },
@@ -78,6 +78,5 @@ relationship type.`
   })
 })
 
-const { connectionType: RelationshipConnection } = connectionDefinitions({ nodeType: Relationship })
-export { RelationshipConnection }
+export const RelationshipConnection = connectionWithCount(Relationship)
 export default Relationship

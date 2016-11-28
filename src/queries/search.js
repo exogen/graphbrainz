@@ -4,11 +4,14 @@ import { searchResolver } from '../resolvers'
 import {
   AreaConnection,
   ArtistConnection,
+  EventConnection,
+  InstrumentConnection,
   LabelConnection,
   PlaceConnection,
   RecordingConnection,
   ReleaseConnection,
   ReleaseGroupConnection,
+  SeriesConnection,
   WorkConnection
 } from '../types'
 import { toWords } from '../types/helpers'
@@ -19,7 +22,11 @@ function searchQuery (connectionType) {
     type: connectionType,
     description: `Search for ${typeName} entities matching the given query.`,
     args: {
-      query: { type: new GraphQLNonNull(GraphQLString) },
+      query: {
+        type: new GraphQLNonNull(GraphQLString),
+        description: `The query terms, in Lucene search syntax. See [examples
+and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).`
+      },
       ...forwardConnectionArgs
     },
     resolve: searchResolver()
@@ -32,11 +39,14 @@ export const SearchQuery = new GraphQLObjectType({
   fields: {
     areas: searchQuery(AreaConnection),
     artists: searchQuery(ArtistConnection),
+    events: searchQuery(EventConnection),
+    instruments: searchQuery(InstrumentConnection),
     labels: searchQuery(LabelConnection),
     places: searchQuery(PlaceConnection),
     recordings: searchQuery(RecordingConnection),
     releases: searchQuery(ReleaseConnection),
     releaseGroups: searchQuery(ReleaseGroupConnection),
+    series: searchQuery(SeriesConnection),
     works: searchQuery(WorkConnection)
   }
 })

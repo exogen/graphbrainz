@@ -53,7 +53,7 @@
             },
             {
               "name": "browse",
-              "description": "Browse all MusicBrainz entities directly linked to another\nentity.",
+              "description": "Browse all MusicBrainz entities directly linked to another entity.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -65,7 +65,7 @@
             },
             {
               "name": "search",
-              "description": "Search for MusicBrainz entities using Lucene query\nsyntax.",
+              "description": "Search for MusicBrainz entities using Lucene query syntax.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -598,6 +598,22 @@
               "deprecationReason": null
             },
             {
+              "name": "aliases",
+              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to store\nalternate names or misspellings.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Alias",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "isoCodes",
               "description": "[ISO 3166 codes](https://en.wikipedia.org/wiki/ISO_3166) are\nthe codes assigned by ISO to countries and subdivisions.",
               "args": [],
@@ -615,7 +631,7 @@
             },
             {
               "name": "artists",
-              "description": "A list of artist entities linked to this entity.",
+              "description": "A list of artists linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -648,7 +664,7 @@
             },
             {
               "name": "events",
-              "description": "A list of event entities linked to this entity.",
+              "description": "A list of events linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -681,7 +697,7 @@
             },
             {
               "name": "labels",
-              "description": "A list of label entities linked to this entity.",
+              "description": "A list of labels linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -714,7 +730,7 @@
             },
             {
               "name": "places",
-              "description": "A list of place entities linked to this entity.",
+              "description": "A list of places linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -747,7 +763,7 @@
             },
             {
               "name": "releases",
-              "description": "A list of release entities linked to this entity.",
+              "description": "A list of releases linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -801,6 +817,51 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "ReleaseConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "relationships",
+              "description": "Relationships between this entity and other entitites.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Relationships",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -922,6 +983,99 @@
           "possibleTypes": null
         },
         {
+          "kind": "OBJECT",
+          "name": "Alias",
+          "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are variant names\nthat are mostly used as search help: if a search matches an entity’s alias, the\nentity will be given as a result – even if the actual name wouldn’t be. They are\navailable for artists, labels, and works.",
+          "fields": [
+            {
+              "name": "name",
+              "description": "The aliased name of the entity.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sortName",
+              "description": "The string to use for the purpose of ordering by name (for\nexample, by moving articles like ‘the’ to the end or a person’s last name to\nthe front).",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "locale",
+              "description": "The locale (language and/or country) in which the alias is\nused.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "primary",
+              "description": "Whether this is the main alias for the entity in the\nspecified locale (this could mean the most recent or the most common).",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "type",
+              "description": "The type or purpose of the alias – whether it is a variant,\nsearch hint, etc.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "typeID",
+              "description": "The MBID associated with the value of the `type`\nfield.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "MBID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Boolean",
+          "description": "The `Boolean` scalar type represents `true` or `false`.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "SCALAR",
           "name": "Int",
           "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. ",
@@ -964,6 +1118,18 @@
                   "name": "ArtistEdge",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -1038,16 +1204,6 @@
           ],
           "inputFields": null,
           "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "Boolean",
-          "description": "The `Boolean` scalar type represents `true` or `false`.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -1165,7 +1321,7 @@
             },
             {
               "name": "aliases",
-              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to\nstore alternate names or misspellings.",
+              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to store\nalternate names or misspellings.",
               "args": [],
               "type": {
                 "kind": "LIST",
@@ -1289,7 +1445,7 @@
             },
             {
               "name": "recordings",
-              "description": "A list of recording entities linked to this entity.",
+              "description": "A list of recordings linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -1322,7 +1478,7 @@
             },
             {
               "name": "releases",
-              "description": "A list of release entities linked to this entity.",
+              "description": "A list of releases linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -1383,7 +1539,7 @@
             },
             {
               "name": "releaseGroups",
-              "description": "A list of release group entities linked to this entity.",
+              "description": "A list of release groups linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -1430,7 +1586,7 @@
             },
             {
               "name": "works",
-              "description": "A list of work entities linked to this entity.",
+              "description": "A list of works linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -1472,6 +1628,39 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -1487,89 +1676,6 @@
               "ofType": null
             }
           ],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "Alias",
-          "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are variant names\nthat are mostly used as search help: if a search matches an entity’s alias, the\nentity will be given as a result – even if the actual name wouldn’t be. They are\navailable for artists, labels, and works.",
-          "fields": [
-            {
-              "name": "name",
-              "description": "The aliased name of the entity.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "sortName",
-              "description": "The string to use for the purpose of ordering by name (for\nexample, by moving articles like ‘the’ to the end or a person’s last name to\nthe front).",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "locale",
-              "description": "The locale (language and/or country) in which the alias is\nused.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "primary",
-              "description": "Whether this is the main alias for the entity in the\nspecified locale (this could mean the most recent or the most common).",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "type",
-              "description": "The type or purpose of the alias – whether it is a variant,\nsearch hint, etc.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "typeID",
-              "description": "The MBID associated with the value of the `type`\nfield.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "MBID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
         },
@@ -1663,6 +1769,18 @@
                   "name": "RecordingEdge",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -1774,6 +1892,22 @@
               "deprecationReason": null
             },
             {
+              "name": "aliases",
+              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to store\nalternate names or misspellings.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Alias",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "artistCredit",
               "description": "The main credited artist(s).",
               "args": [],
@@ -1815,7 +1949,7 @@
             },
             {
               "name": "artists",
-              "description": "A list of artist entities linked to this entity.",
+              "description": "A list of artists linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -1848,7 +1982,7 @@
             },
             {
               "name": "releases",
-              "description": "A list of release entities linked to this entity.",
+              "description": "A list of releases linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -1914,6 +2048,39 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Relationships",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -2161,6 +2328,18 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -2264,6 +2443,22 @@
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "aliases",
+              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to store\nalternate names or misspellings.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Alias",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -2398,7 +2593,7 @@
             },
             {
               "name": "artists",
-              "description": "A list of artist entities linked to this entity.",
+              "description": "A list of artists linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -2431,7 +2626,7 @@
             },
             {
               "name": "labels",
-              "description": "A list of label entities linked to this entity.",
+              "description": "A list of labels linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -2464,7 +2659,7 @@
             },
             {
               "name": "recordings",
-              "description": "A list of recording entities linked to this entity.",
+              "description": "A list of recordings linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -2497,7 +2692,7 @@
             },
             {
               "name": "releaseGroups",
-              "description": "A list of release group entities linked to this entity.",
+              "description": "A list of release groups linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -2549,6 +2744,39 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Relationships",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -2639,6 +2867,18 @@
                   "name": "LabelEdge",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -2762,6 +3002,22 @@
               "deprecationReason": null
             },
             {
+              "name": "aliases",
+              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to store\nalternate names or misspellings.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Alias",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "country",
               "description": "The country of origin for the label.",
               "args": [],
@@ -2851,355 +3107,7 @@
             },
             {
               "name": "releases",
-              "description": "A list of release entities linked to this entity.",
-              "args": [
-                {
-                  "name": "after",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "type",
-                  "description": null,
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "ReleaseGroupType",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "status",
-                  "description": null,
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "ReleaseStatus",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ReleaseConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            },
-            {
-              "kind": "INTERFACE",
-              "name": "Entity",
-              "ofType": null
-            }
-          ],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "IPI",
-          "description": "An [IPI](https://musicbrainz.org/doc/IPI) (interested party\ninformation) code is an identifying number assigned by the CISAC database for\nmusical rights management.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "ReleaseGroupConnection",
-          "description": "A connection to a list of items.",
-          "fields": [
-            {
-              "name": "pageInfo",
-              "description": "Information to aid in pagination.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "edges",
-              "description": "A list of edges.",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ReleaseGroupEdge",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "ReleaseGroupEdge",
-          "description": "An edge in a connection.",
-          "fields": [
-            {
-              "name": "node",
-              "description": "The item at the end of the edge",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ReleaseGroup",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "cursor",
-              "description": "A cursor for use in pagination",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "ReleaseGroup",
-          "description": "A [release group](https://musicbrainz.org/doc/Release_Group) is\nused to group several different releases into a single logical entity. Every\nrelease belongs to one, and only one release group.\n\nBoth release groups and releases are “albums” in a general sense, but with an\nimportant difference: a release is something you can buy as media such as a CD\nor a vinyl record, while a release group embraces the overall concept of an\nalbum – it doesn’t matter how many CDs or editions/versions it had.",
-          "fields": [
-            {
-              "name": "id",
-              "description": "The ID of an object",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "mbid",
-              "description": "The MBID of the entity.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "MBID",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "title",
-              "description": "The official title of the entity.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "disambiguation",
-              "description": "A comment used to help distinguish identically named entitites.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "artistCredit",
-              "description": "The main credited artist(s).",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ArtistCredit",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "firstReleaseDate",
-              "description": "The date of the earliest release in the group.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "primaryType",
-              "description": "The [type](https://musicbrainz.org/doc/Release_Group/Type)\nof a release group describes what kind of releases the release group represents,\ne.g. album, single, soundtrack, compilation, etc. A release group can have a\n“main” type and an unspecified number of additional types.",
-              "args": [],
-              "type": {
-                "kind": "ENUM",
-                "name": "ReleaseGroupType",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "primaryTypeID",
-              "description": "The MBID associated with the value of the `primaryType`\nfield.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "MBID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "secondaryTypes",
-              "description": "Additional [types](https://musicbrainz.org/doc/Release_Group/Type)\nthat apply to this release group.",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "ReleaseGroupType",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "secondaryTypeIDs",
-              "description": "The MBIDs associated with the values of the `secondaryTypes`\nfield.",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "MBID",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "artists",
-              "description": "A list of artist entities linked to this entity.",
-              "args": [
-                {
-                  "name": "after",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ArtistConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "releases",
-              "description": "A list of release entities linked to this entity.",
+              "description": "A list of releases linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -3269,6 +3177,39 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -3284,6 +3225,16 @@
               "ofType": null
             }
           ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "IPI",
+          "description": "An [IPI](https://musicbrainz.org/doc/IPI) (interested party\ninformation) code is an identifying number assigned by the CISAC database for\nmusical rights management.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -4330,6 +4281,18 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -4537,6 +4500,550 @@
         },
         {
           "kind": "OBJECT",
+          "name": "TagConnection",
+          "description": "A connection to a list of items.",
+          "fields": [
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edges",
+              "description": "A list of edges.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "TagEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "TagEdge",
+          "description": "An edge in a connection.",
+          "fields": [
+            {
+              "name": "node",
+              "description": "The item at the end of the edge",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Tag",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Tag",
+          "description": "[Tags](https://musicbrainz.org/tags) are a way mark entities\nwith extra information – for example, the genres that apply to an artist,\nrelease, or recording.",
+          "fields": [
+            {
+              "name": "name",
+              "description": "The tag label.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "count",
+              "description": "How many times this tag has been applied to the entity.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ReleaseGroupConnection",
+          "description": "A connection to a list of items.",
+          "fields": [
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edges",
+              "description": "A list of edges.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ReleaseGroupEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ReleaseGroupEdge",
+          "description": "An edge in a connection.",
+          "fields": [
+            {
+              "name": "node",
+              "description": "The item at the end of the edge",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReleaseGroup",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ReleaseGroup",
+          "description": "A [release group](https://musicbrainz.org/doc/Release_Group) is\nused to group several different releases into a single logical entity. Every\nrelease belongs to one, and only one release group.\n\nBoth release groups and releases are “albums” in a general sense, but with an\nimportant difference: a release is something you can buy as media such as a CD\nor a vinyl record, while a release group embraces the overall concept of an\nalbum – it doesn’t matter how many CDs or editions/versions it had.",
+          "fields": [
+            {
+              "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mbid",
+              "description": "The MBID of the entity.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "MBID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "title",
+              "description": "The official title of the entity.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "disambiguation",
+              "description": "A comment used to help distinguish identically named entitites.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "aliases",
+              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to store\nalternate names or misspellings.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Alias",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "artistCredit",
+              "description": "The main credited artist(s).",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ArtistCredit",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "firstReleaseDate",
+              "description": "The date of the earliest release in the group.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Date",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "primaryType",
+              "description": "The [type](https://musicbrainz.org/doc/Release_Group/Type)\nof a release group describes what kind of releases the release group represents,\ne.g. album, single, soundtrack, compilation, etc. A release group can have a\n“main” type and an unspecified number of additional types.",
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "ReleaseGroupType",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "primaryTypeID",
+              "description": "The MBID associated with the value of the `primaryType`\nfield.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "MBID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "secondaryTypes",
+              "description": "Additional [types](https://musicbrainz.org/doc/Release_Group/Type)\nthat apply to this release group.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "ReleaseGroupType",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "secondaryTypeIDs",
+              "description": "The MBIDs associated with the values of the `secondaryTypes`\nfield.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "MBID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "artists",
+              "description": "A list of artists linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ArtistConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "releases",
+              "description": "A list of releases linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "type",
+                  "description": null,
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ReleaseGroupType",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "status",
+                  "description": null,
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ReleaseStatus",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReleaseConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "relationships",
+              "description": "Relationships between this entity and other entitites.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Relationships",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "Entity",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "WorkConnection",
           "description": "A connection to a list of items.",
           "fields": [
@@ -4568,6 +5075,18 @@
                   "name": "WorkEdge",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -4679,6 +5198,22 @@
               "deprecationReason": null
             },
             {
+              "name": "aliases",
+              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to store\nalternate names or misspellings.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Alias",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "iswcs",
               "description": "A list of [ISWCs](https://musicbrainz.org/doc/ISWC) assigned\nto the work by copyright collecting agencies.",
               "args": [],
@@ -4732,7 +5267,7 @@
             },
             {
               "name": "artists",
-              "description": "A list of artist entities linked to this entity.",
+              "description": "A list of artists linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -4770,6 +5305,39 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Relationships",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -4825,6 +5393,18 @@
                   "name": "EventEdge",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -4936,6 +5516,22 @@
               "deprecationReason": null
             },
             {
+              "name": "aliases",
+              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to store\nalternate names or misspellings.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Alias",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "lifeSpan",
               "description": "The begin and end dates of the entity’s existence. Its exact\nmeaning depends on the type of entity.",
               "args": [],
@@ -5006,6 +5602,51 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "relationships",
+              "description": "Relationships between this entity and other entitites.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Relationships",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -5067,6 +5708,18 @@
                   "name": "PlaceEdge",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -5178,6 +5831,22 @@
               "deprecationReason": null
             },
             {
+              "name": "aliases",
+              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to store\nalternate names or misspellings.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Alias",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "address",
               "description": "The address describes the location of the place using the\nstandard addressing format for the country it is located in.",
               "args": [],
@@ -5251,7 +5920,7 @@
             },
             {
               "name": "events",
-              "description": "A list of event entities linked to this entity.",
+              "description": "A list of events linked to this entity.",
               "args": [
                 {
                   "name": "after",
@@ -5277,6 +5946,51 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "EventConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "relationships",
+              "description": "Relationships between this entity and other entitites.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Relationships",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -5406,6 +6120,22 @@
               "deprecationReason": null
             },
             {
+              "name": "aliases",
+              "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are used to store\nalternate names or misspellings.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Alias",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "description",
               "description": "A brief description of the main characteristics of the\ninstrument.",
               "args": [],
@@ -5436,6 +6166,51 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "MBID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "relationships",
+              "description": "Relationships between this entity and other entitites.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Relationships",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -5538,6 +6313,51 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "MBID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "relationships",
+              "description": "Relationships between this entity and other entitites.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Relationships",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "A list of tags linked to this entity.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TagConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -5658,6 +6478,49 @@
           "description": "A query for all MusicBrainz entities directly linked to another\nentity.",
           "fields": [
             {
+              "name": "areas",
+              "description": "Browse area entities linked to the given arguments.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "collection",
+                  "description": "The MBID of a collection in which the entity is found.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AreaConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "artists",
               "description": "Browse artist entities linked to the given arguments.",
               "args": [
@@ -5684,6 +6547,16 @@
                 {
                   "name": "area",
                   "description": "The MBID of an area to which the entity is linked.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "collection",
+                  "description": "The MBID of a collection in which the entity is found.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -5785,6 +6658,16 @@
                   "defaultValue": null
                 },
                 {
+                  "name": "collection",
+                  "description": "The MBID of a collection in which the entity is found.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "place",
                   "description": "The MBID of a place to which the event is linked.",
                   "type": {
@@ -5830,6 +6713,16 @@
                 {
                   "name": "area",
                   "description": "The MBID of an area to which the entity is linked.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "collection",
+                  "description": "The MBID of a collection in which the entity is found.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -5889,6 +6782,16 @@
                     "ofType": null
                   },
                   "defaultValue": null
+                },
+                {
+                  "name": "collection",
+                  "description": "The MBID of a collection in which the entity is found.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
                 }
               ],
               "type": {
@@ -5926,6 +6829,16 @@
                 {
                   "name": "artist",
                   "description": "The MBID of an artist to which the entity is linked.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "collection",
+                  "description": "The MBID of a collection in which the entity is found.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -5989,6 +6902,16 @@
                 {
                   "name": "artist",
                   "description": "The MBID of an artist to which the entity is linked.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "collection",
+                  "description": "The MBID of a collection in which the entity is found.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -6090,6 +7013,16 @@
                   "defaultValue": null
                 },
                 {
+                  "name": "collection",
+                  "description": "The MBID of a collection in which the entity is found.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "release",
                   "description": "The MBID of a release to which the entity is linked.",
                   "type": {
@@ -6135,6 +7068,16 @@
                 {
                   "name": "artist",
                   "description": "The MBID of an artist to which the entity is linked.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "collection",
+                  "description": "The MBID of a collection in which the entity is found.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -6202,6 +7145,100 @@
         },
         {
           "kind": "OBJECT",
+          "name": "AreaConnection",
+          "description": "A connection to a list of items.",
+          "fields": [
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edges",
+              "description": "A list of edges.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AreaEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AreaEdge",
+          "description": "An edge in a connection.",
+          "fields": [
+            {
+              "name": "node",
+              "description": "The item at the end of the edge",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Area",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "URLConnection",
           "description": "A connection to a list of items.",
           "fields": [
@@ -6233,6 +7270,18 @@
                   "name": "URLEdge",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -6293,7 +7342,7 @@
               "args": [
                 {
                   "name": "query",
-                  "description": null,
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -6340,7 +7389,7 @@
               "args": [
                 {
                   "name": "query",
-                  "description": null,
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -6382,12 +7431,106 @@
               "deprecationReason": null
             },
             {
+              "name": "events",
+              "description": "Search for event entities matching the given query.",
+              "args": [
+                {
+                  "name": "query",
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "EventConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "instruments",
+              "description": "Search for instrument entities matching the given query.",
+              "args": [
+                {
+                  "name": "query",
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "InstrumentConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "labels",
               "description": "Search for label entities matching the given query.",
               "args": [
                 {
                   "name": "query",
-                  "description": null,
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -6434,7 +7577,7 @@
               "args": [
                 {
                   "name": "query",
-                  "description": null,
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -6481,7 +7624,7 @@
               "args": [
                 {
                   "name": "query",
-                  "description": null,
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -6528,7 +7671,7 @@
               "args": [
                 {
                   "name": "query",
-                  "description": null,
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -6575,7 +7718,7 @@
               "args": [
                 {
                   "name": "query",
-                  "description": null,
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -6617,12 +7760,59 @@
               "deprecationReason": null
             },
             {
+              "name": "series",
+              "description": "Search for series entities matching the given query.",
+              "args": [
+                {
+                  "name": "query",
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SeriesConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "works",
               "description": "Search for work entities matching the given query.",
               "args": [
                 {
                   "name": "query",
-                  "description": null,
+                  "description": "The query terms, in Lucene search syntax. See [examples\nand search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -6671,7 +7861,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "AreaConnection",
+          "name": "InstrumentConnection",
           "description": "A connection to a list of items.",
           "fields": [
             {
@@ -6699,7 +7889,58 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "AreaEdge",
+                  "name": "InstrumentEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "InstrumentEdge",
+          "description": "An edge in a connection.",
+          "fields": [
+            {
+              "name": "node",
+              "description": "The item at the end of the edge",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Instrument",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
                   "ofType": null
                 }
               },
@@ -6714,7 +7955,62 @@
         },
         {
           "kind": "OBJECT",
-          "name": "AreaEdge",
+          "name": "SeriesConnection",
+          "description": "A connection to a list of items.",
+          "fields": [
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edges",
+              "description": "A list of edges.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SeriesEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "A count of the total number of items in this connection,\nignoring pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SeriesEdge",
           "description": "An edge in a connection.",
           "fields": [
             {
@@ -6723,7 +8019,7 @@
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "Area",
+                "name": "Series",
                 "ofType": null
               },
               "isDeprecated": false,

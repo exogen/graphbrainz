@@ -1,5 +1,4 @@
 import { GraphQLObjectType, GraphQLInt, GraphQLBoolean } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
 import {
@@ -7,10 +6,13 @@ import {
   mbid,
   title,
   disambiguation,
+  aliases,
   artistCredit,
   artists,
   releases,
-  relationships
+  relationships,
+  tags,
+  connectionWithCount
 } from './helpers'
 
 const Recording = new GraphQLObjectType({
@@ -33,6 +35,7 @@ or mixing.`,
     mbid,
     title,
     disambiguation,
+    aliases,
     artistCredit,
     length: {
       type: GraphQLInt,
@@ -45,10 +48,10 @@ from the lengths of the tracks using it.`
     },
     artists,
     releases,
-    relationships
+    relationships,
+    tags
   })
 })
 
-const { connectionType: RecordingConnection } = connectionDefinitions({ nodeType: Recording })
-export { RecordingConnection }
+export const RecordingConnection = connectionWithCount(Recording)
 export default Recording

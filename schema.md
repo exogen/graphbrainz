@@ -51,24 +51,34 @@ type Area implements Node, Entity {
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
 
+  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  # alternate names or misspellings.
+  aliases: [Alias]
+
   # [ISO 3166 codes](https://en.wikipedia.org/wiki/ISO_3166) are
   # the codes assigned by ISO to countries and subdivisions.
   isoCodes: [String]
 
-  # A list of artist entities linked to this entity.
+  # A list of artists linked to this entity.
   artists(after: String, first: Int): ArtistConnection
 
-  # A list of event entities linked to this entity.
+  # A list of events linked to this entity.
   events(after: String, first: Int): EventConnection
 
-  # A list of label entities linked to this entity.
+  # A list of labels linked to this entity.
   labels(after: String, first: Int): LabelConnection
 
-  # A list of place entities linked to this entity.
+  # A list of places linked to this entity.
   places(after: String, first: Int): PlaceConnection
 
-  # A list of release entities linked to this entity.
+  # A list of releases linked to this entity.
   releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
+
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
 }
 
 # A connection to a list of items.
@@ -78,6 +88,10 @@ type AreaConnection {
 
   # A list of edges.
   edges: [AreaEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # An edge in a connection.
@@ -112,8 +126,8 @@ type Artist implements Node, Entity {
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
 
-  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to
-  # store alternate names or misspellings.
+  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  # alternate names or misspellings.
   aliases: [Alias]
 
   # The country with which an artist is primarily identified. It
@@ -151,20 +165,23 @@ type Artist implements Node, Entity {
   # field.
   typeID: MBID
 
-  # A list of recording entities linked to this entity.
+  # A list of recordings linked to this entity.
   recordings(after: String, first: Int): RecordingConnection
 
-  # A list of release entities linked to this entity.
+  # A list of releases linked to this entity.
   releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
 
-  # A list of release group entities linked to this entity.
+  # A list of release groups linked to this entity.
   releaseGroups(after: String, first: Int, type: [ReleaseGroupType]): ReleaseGroupConnection
 
-  # A list of work entities linked to this entity.
+  # A list of works linked to this entity.
   works(after: String, first: Int): WorkConnection
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
 }
 
 # A connection to a list of items.
@@ -174,6 +191,10 @@ type ArtistConnection {
 
   # A list of edges.
   edges: [ArtistEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # [Artist credits](https://musicbrainz.org/doc/Artist_Credits)
@@ -207,6 +228,15 @@ type ArtistEdge {
 # A query for all MusicBrainz entities directly linked to another
 # entity.
 type BrowseQuery {
+  # Browse area entities linked to the given arguments.
+  areas(
+    after: String
+    first: Int
+
+    # The MBID of a collection in which the entity is found.
+    collection: MBID
+  ): AreaConnection
+
   # Browse artist entities linked to the given arguments.
   artists(
     after: String
@@ -214,6 +244,9 @@ type BrowseQuery {
 
     # The MBID of an area to which the entity is linked.
     area: MBID
+
+    # The MBID of a collection in which the entity is found.
+    collection: MBID
 
     # The MBID of a recording to which the entity is linked.
     recording: MBID
@@ -239,6 +272,9 @@ type BrowseQuery {
     # The MBID of an artist to which the entity is linked.
     artist: MBID
 
+    # The MBID of a collection in which the entity is found.
+    collection: MBID
+
     # The MBID of a place to which the event is linked.
     place: MBID
   ): EventConnection
@@ -251,6 +287,9 @@ type BrowseQuery {
     # The MBID of an area to which the entity is linked.
     area: MBID
 
+    # The MBID of a collection in which the entity is found.
+    collection: MBID
+
     # The MBID of a release to which the entity is linked.
     release: MBID
   ): LabelConnection
@@ -262,6 +301,9 @@ type BrowseQuery {
 
     # The MBID of an area to which the entity is linked.
     area: MBID
+
+    # The MBID of a collection in which the entity is found.
+    collection: MBID
   ): PlaceConnection
 
   # Browse recording entities linked to the given arguments.
@@ -271,6 +313,9 @@ type BrowseQuery {
 
     # The MBID of an artist to which the entity is linked.
     artist: MBID
+
+    # The MBID of a collection in which the entity is found.
+    collection: MBID
 
     # The MBID of a release to which the entity is linked.
     release: MBID
@@ -286,6 +331,9 @@ type BrowseQuery {
 
     # The MBID of an artist to which the entity is linked.
     artist: MBID
+
+    # The MBID of a collection in which the entity is found.
+    collection: MBID
 
     # The MBID of a label to which the release is linked.
     label: MBID
@@ -312,6 +360,9 @@ type BrowseQuery {
     # The MBID of an artist to which the entity is linked.
     artist: MBID
 
+    # The MBID of a collection in which the entity is found.
+    collection: MBID
+
     # The MBID of a release to which the entity is linked.
     release: MBID
   ): ReleaseGroupConnection
@@ -323,6 +374,9 @@ type BrowseQuery {
 
     # The MBID of an artist to which the entity is linked.
     artist: MBID
+
+    # The MBID of a collection in which the entity is found.
+    collection: MBID
   ): WorkConnection
 
   # Browse URL entities linked to the given arguments.
@@ -372,6 +426,10 @@ type Event implements Node, Entity {
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
 
+  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  # alternate names or misspellings.
+  aliases: [Alias]
+
   # The begin and end dates of the entity’s existence. Its exact
   # meaning depends on the type of entity.
   lifeSpan: LifeSpan
@@ -393,6 +451,12 @@ type Event implements Node, Entity {
   # The MBID associated with the value of the `type`
   # field.
   typeID: MBID
+
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
 }
 
 # A connection to a list of items.
@@ -402,6 +466,10 @@ type EventConnection {
 
   # A list of edges.
   edges: [EventEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # An edge in a connection.
@@ -429,6 +497,10 @@ type Instrument implements Node, Entity {
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
 
+  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  # alternate names or misspellings.
+  aliases: [Alias]
+
   # A brief description of the main characteristics of the
   # instrument.
   description: String
@@ -441,6 +513,34 @@ type Instrument implements Node, Entity {
   # The MBID associated with the value of the `type`
   # field.
   typeID: MBID
+
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
+}
+
+# A connection to a list of items.
+type InstrumentConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [InstrumentEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
+}
+
+# An edge in a connection.
+type InstrumentEdge {
+  # The item at the end of the edge
+  node: Instrument
+
+  # A cursor for use in pagination
+  cursor: String!
 }
 
 # An [IPI](https://musicbrainz.org/doc/IPI) (interested party
@@ -469,6 +569,10 @@ type Label implements Node, Entity {
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
 
+  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  # alternate names or misspellings.
+  aliases: [Alias]
+
   # The country of origin for the label.
   country: String
 
@@ -495,8 +599,14 @@ type Label implements Node, Entity {
   # field.
   typeID: MBID
 
-  # A list of release entities linked to this entity.
+  # A list of releases linked to this entity.
   releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
+
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
 }
 
 # A connection to a list of items.
@@ -506,6 +616,10 @@ type LabelConnection {
 
   # A list of edges.
   edges: [LabelEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # An edge in a connection.
@@ -640,6 +754,10 @@ type Place implements Node, Entity {
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
 
+  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  # alternate names or misspellings.
+  aliases: [Alias]
+
   # The address describes the location of the place using the
   # standard addressing format for the country it is located in.
   address: String
@@ -663,8 +781,14 @@ type Place implements Node, Entity {
   # field.
   typeID: MBID
 
-  # A list of event entities linked to this entity.
+  # A list of events linked to this entity.
   events(after: String, first: Int): EventConnection
+
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
 }
 
 # A connection to a list of items.
@@ -674,6 +798,10 @@ type PlaceConnection {
 
   # A list of edges.
   edges: [PlaceEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # An edge in a connection.
@@ -697,12 +825,10 @@ type Query {
   # Perform a lookup of a MusicBrainz entity by its MBID.
   lookup: LookupQuery
 
-  # Browse all MusicBrainz entities directly linked to another
-  # entity.
+  # Browse all MusicBrainz entities directly linked to another entity.
   browse: BrowseQuery
 
-  # Search for MusicBrainz entities using Lucene query
-  # syntax.
+  # Search for MusicBrainz entities using Lucene query syntax.
   search: SearchQuery
 }
 
@@ -731,6 +857,10 @@ type Recording implements Node, Entity {
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
 
+  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  # alternate names or misspellings.
+  aliases: [Alias]
+
   # The main credited artist(s).
   artistCredit: [ArtistCredit]
 
@@ -741,14 +871,17 @@ type Recording implements Node, Entity {
   # Whether this is a video recording.
   video: Boolean
 
-  # A list of artist entities linked to this entity.
+  # A list of artists linked to this entity.
   artists(after: String, first: Int): ArtistConnection
 
-  # A list of release entities linked to this entity.
+  # A list of releases linked to this entity.
   releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
 }
 
 # A connection to a list of items.
@@ -758,6 +891,10 @@ type RecordingConnection {
 
   # A list of edges.
   edges: [RecordingEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # An edge in a connection.
@@ -820,6 +957,10 @@ type RelationshipConnection {
 
   # A list of edges.
   edges: [RelationshipEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # An edge in a connection.
@@ -1068,6 +1209,10 @@ type Release implements Node, Entity {
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
 
+  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  # alternate names or misspellings.
+  aliases: [Alias]
+
   # The main credited artist(s).
   artistCredit: [ArtistCredit]
 
@@ -1109,20 +1254,23 @@ type Release implements Node, Entity {
   # [ratings](https://musicbrainz.org/doc/Rating_System).
   quality: String
 
-  # A list of artist entities linked to this entity.
+  # A list of artists linked to this entity.
   artists(after: String, first: Int): ArtistConnection
 
-  # A list of label entities linked to this entity.
+  # A list of labels linked to this entity.
   labels(after: String, first: Int): LabelConnection
 
-  # A list of recording entities linked to this entity.
+  # A list of recordings linked to this entity.
   recordings(after: String, first: Int): RecordingConnection
 
-  # A list of release group entities linked to this entity.
+  # A list of release groups linked to this entity.
   releaseGroups(after: String, first: Int, type: [ReleaseGroupType]): ReleaseGroupConnection
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
 }
 
 # A connection to a list of items.
@@ -1132,6 +1280,10 @@ type ReleaseConnection {
 
   # A list of edges.
   edges: [ReleaseEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # An edge in a connection.
@@ -1171,6 +1323,10 @@ type ReleaseGroup implements Node, Entity {
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
 
+  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  # alternate names or misspellings.
+  aliases: [Alias]
+
   # The main credited artist(s).
   artistCredit: [ArtistCredit]
 
@@ -1195,14 +1351,17 @@ type ReleaseGroup implements Node, Entity {
   # field.
   secondaryTypeIDs: [MBID]
 
-  # A list of artist entities linked to this entity.
+  # A list of artists linked to this entity.
   artists(after: String, first: Int): ArtistConnection
 
-  # A list of release entities linked to this entity.
+  # A list of releases linked to this entity.
   releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
 }
 
 # A connection to a list of items.
@@ -1212,6 +1371,10 @@ type ReleaseGroupConnection {
 
   # A list of edges.
   edges: [ReleaseGroupEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # An edge in a connection.
@@ -1326,28 +1489,103 @@ enum ReleaseStatus {
 # A search for MusicBrainz entities using Lucene query syntax.
 type SearchQuery {
   # Search for area entities matching the given query.
-  areas(query: String!, after: String, first: Int): AreaConnection
+  areas(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): AreaConnection
 
   # Search for artist entities matching the given query.
-  artists(query: String!, after: String, first: Int): ArtistConnection
+  artists(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): ArtistConnection
+
+  # Search for event entities matching the given query.
+  events(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): EventConnection
+
+  # Search for instrument entities matching the given query.
+  instruments(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): InstrumentConnection
 
   # Search for label entities matching the given query.
-  labels(query: String!, after: String, first: Int): LabelConnection
+  labels(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): LabelConnection
 
   # Search for place entities matching the given query.
-  places(query: String!, after: String, first: Int): PlaceConnection
+  places(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): PlaceConnection
 
   # Search for recording entities matching the given query.
-  recordings(query: String!, after: String, first: Int): RecordingConnection
+  recordings(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): RecordingConnection
 
   # Search for release entities matching the given query.
-  releases(query: String!, after: String, first: Int): ReleaseConnection
+  releases(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): ReleaseConnection
 
   # Search for release group entities matching the given query.
-  releaseGroups(query: String!, after: String, first: Int): ReleaseGroupConnection
+  releaseGroups(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): ReleaseGroupConnection
+
+  # Search for series entities matching the given query.
+  series(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): SeriesConnection
 
   # Search for work entities matching the given query.
-  works(query: String!, after: String, first: Int): WorkConnection
+  works(
+    # The query terms, in Lucene search syntax. See [examples
+    # and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).
+    query: String!
+    after: String
+    first: Int
+  ): WorkConnection
 }
 
 # A [series](https://musicbrainz.org/doc/Series) is a sequence of
@@ -1373,6 +1611,67 @@ type Series implements Node, Entity {
   # The MBID associated with the value of the `type`
   # field.
   typeID: MBID
+
+  # Relationships between this entity and other entitites.
+  relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
+}
+
+# A connection to a list of items.
+type SeriesConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [SeriesEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
+}
+
+# An edge in a connection.
+type SeriesEdge {
+  # The item at the end of the edge
+  node: Series
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+# [Tags](https://musicbrainz.org/tags) are a way mark entities
+# with extra information – for example, the genres that apply to an artist,
+# release, or recording.
+type Tag {
+  # The tag label.
+  name: String!
+
+  # How many times this tag has been applied to the entity.
+  count: Int
+}
+
+# A connection to a list of items.
+type TagConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [TagEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
+}
+
+# An edge in a connection.
+type TagEdge {
+  # The item at the end of the edge
+  node: Tag
+
+  # A cursor for use in pagination
+  cursor: String!
 }
 
 # A time of day, in 24-hour hh:mm notation.
@@ -1402,6 +1701,10 @@ type URLConnection {
 
   # A list of edges.
   edges: [URLEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # An edge in a connection.
@@ -1432,6 +1735,10 @@ type Work implements Node, Entity {
   # A comment used to help distinguish identically named entitites.
   disambiguation: String
 
+  # [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  # alternate names or misspellings.
+  aliases: [Alias]
+
   # A list of [ISWCs](https://musicbrainz.org/doc/ISWC) assigned
   # to the work by copyright collecting agencies.
   iswcs: [String]
@@ -1446,11 +1753,14 @@ type Work implements Node, Entity {
   # field.
   typeID: MBID
 
-  # A list of artist entities linked to this entity.
+  # A list of artists linked to this entity.
   artists(after: String, first: Int): ArtistConnection
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of tags linked to this entity.
+  tags(after: String, first: Int): TagConnection
 }
 
 # A connection to a list of items.
@@ -1460,6 +1770,10 @@ type WorkConnection {
 
   # A list of edges.
   edges: [WorkEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
 }
 
 # An edge in a connection.

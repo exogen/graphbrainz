@@ -4,6 +4,7 @@ import { browseResolver } from '../resolvers'
 import {
   MBID,
   URLString,
+  AreaConnection,
   ArtistConnection,
   EventConnection,
   LabelConnection,
@@ -23,6 +24,10 @@ const area = {
 const artist = {
   type: MBID,
   description: 'The MBID of an artist to which the entity is linked.'
+}
+const collection = {
+  type: MBID,
+  description: 'The MBID of a collection in which the entity is found.'
 }
 const recording = {
   type: MBID,
@@ -55,8 +60,12 @@ export const BrowseQuery = new GraphQLObjectType({
   description: `A query for all MusicBrainz entities directly linked to another
 entity.`,
   fields: {
+    areas: browseQuery(AreaConnection, {
+      collection
+    }),
     artists: browseQuery(ArtistConnection, {
       area,
+      collection,
       recording,
       release,
       releaseGroup,
@@ -68,6 +77,7 @@ entity.`,
     events: browseQuery(EventConnection, {
       area,
       artist,
+      collection,
       place: {
         type: MBID,
         description: 'The MBID of a place to which the event is linked.'
@@ -75,18 +85,22 @@ entity.`,
     }),
     labels: browseQuery(LabelConnection, {
       area,
+      collection,
       release
     }),
     places: browseQuery(PlaceConnection, {
-      area
+      area,
+      collection
     }),
     recordings: browseQuery(RecordingConnection, {
       artist,
+      collection,
       release
     }),
     releases: browseQuery(ReleaseConnection, {
       area,
       artist,
+      collection,
       label: {
         type: MBID,
         description: 'The MBID of a label to which the release is linked.'
@@ -105,10 +119,12 @@ release, but is not included in the credits for the release itself.`
     }),
     releaseGroups: browseQuery(ReleaseGroupConnection, {
       artist,
+      collection,
       release
     }),
     works: browseQuery(WorkConnection, {
-      artist
+      artist,
+      collection
     }),
     urls: browseQuery(URLConnection, {
       resource: {

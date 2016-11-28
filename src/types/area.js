@@ -1,5 +1,4 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql'
-import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
 import {
@@ -8,11 +7,15 @@ import {
   name,
   sortName,
   disambiguation,
+  aliases,
   artists,
   events,
   labels,
   places,
-  releases
+  releases,
+  relationships,
+  tags,
+  connectionWithCount
 } from './helpers'
 
 const Area = new GraphQLObjectType({
@@ -26,6 +29,7 @@ or settlements (countries, cities, or the like).`,
     name,
     sortName,
     disambiguation,
+    aliases,
     isoCodes: {
       type: new GraphQLList(GraphQLString),
       description: `[ISO 3166 codes](https://en.wikipedia.org/wiki/ISO_3166) are
@@ -36,10 +40,11 @@ the codes assigned by ISO to countries and subdivisions.`,
     events,
     labels,
     places,
-    releases
+    releases,
+    relationships,
+    tags
   })
 })
 
-const { connectionType: AreaConnection } = connectionDefinitions({ nodeType: Area })
-export { AreaConnection }
+export const AreaConnection = connectionWithCount(Area)
 export default Area

@@ -91,6 +91,14 @@ The `graphbrainz` middleware function accepts the following options:
   if you are running your own MusicBrainz mirror. Defaults to `http://musicbrainz.org/ws/2/`.
 * **`GRAPHBRAINZ_PATH`**: The URL route at which to expose the GraphQL endpoint,
   if running the standalone server. Defaults to `/`.
+* **`GRAPHBRAINZ_CACHE_SIZE`**: The maximum number of REST API responses to
+  cache. Increasing the cache size and TTL will greatly lower query execution
+  time for complex queries involving frequently accessed entities. Defaults to
+  `8192`.
+* **`GRAPHBRAINZ_CACHE_TTL`**: The maximum age of REST API responses in the
+  cache, in milliseconds. Responses older than this will be disposed of (and
+  re-requested) the next time they are accessed. Defaults to `86400000` (one
+  day).
 * **`GRAPHBRAINZ_GRAPHIQL`**: Set this to `true` if you want to force the
   [GraphiQL][] interface to be available even in production mode.
 * **`PORT`**: Port number to use, if running the standalone server.

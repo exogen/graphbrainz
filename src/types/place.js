@@ -1,5 +1,4 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
 import { Degrees } from './scalars'
@@ -9,9 +8,13 @@ import {
   mbid,
   name,
   disambiguation,
+  aliases,
   lifeSpan,
   events,
-  fieldWithID
+  fieldWithID,
+  relationships,
+  tags,
+  connectionWithCount
 } from './helpers'
 
 export const Coordinates = new GraphQLObjectType({
@@ -39,6 +42,7 @@ or other place where music is performed, recorded, engineered, etc.`,
     mbid,
     name,
     disambiguation,
+    aliases,
     address: {
       type: GraphQLString,
       description: `The address describes the location of the place using the
@@ -58,10 +62,11 @@ which the place is located.`
       description: `The type categorises the place based on its primary
 function.`
     }),
-    events
+    events,
+    relationships,
+    tags
   })
 })
 
-const { connectionType: PlaceConnection } = connectionDefinitions({ nodeType: Place })
-export { PlaceConnection }
+export const PlaceConnection = connectionWithCount(Place)
 export default Place

@@ -1,8 +1,6 @@
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
+import { GraphQLObjectType, GraphQLString } from 'graphql/type'
 import Node from './node'
 import Entity from './entity'
-import Alias from './alias'
 import Area from './area'
 import {
   getFallback,
@@ -12,12 +10,15 @@ import {
   name,
   sortName,
   disambiguation,
+  aliases,
   lifeSpan,
   recordings,
   releases,
   releaseGroups,
   works,
-  relationships
+  relationships,
+  tags,
+  connectionWithCount
 } from './helpers'
 
 const Artist = new GraphQLObjectType({
@@ -34,23 +35,7 @@ even a fictional character.`,
     name,
     sortName,
     disambiguation,
-    aliases: {
-      type: new GraphQLList(Alias),
-      description: `[Aliases](https://musicbrainz.org/doc/Aliases) are used to
-store alternate names or misspellings.`,
-      resolve: (source, args, { loaders }, info) => {
-        const key = 'aliases'
-        if (key in source) {
-          return source[key]
-        } else {
-          const { entityType, id } = source
-          const params = { inc: ['aliases'] }
-          return loaders.lookup.load([entityType, id, params]).then(entity => {
-            return entity[key]
-          })
-        }
-      }
-    },
+    aliases,
     country: {
       type: GraphQLString,
       description: `The country with which an artist is primarily identified. It
@@ -85,10 +70,10 @@ neither. Groups do not have genders.`
     releases,
     releaseGroups,
     works,
-    relationships
+    relationships,
+    tags
   })
 })
 
-const { connectionType: ArtistConnection } = connectionDefinitions({ nodeType: Artist })
-export { ArtistConnection }
+export const ArtistConnection = connectionWithCount(Artist)
 export default Artist

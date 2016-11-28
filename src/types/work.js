@@ -1,5 +1,4 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
 import {
@@ -7,9 +6,12 @@ import {
   mbid,
   title,
   disambiguation,
+  aliases,
   artists,
   relationships,
-  fieldWithID
+  tags,
+  fieldWithID,
+  connectionWithCount
 } from './helpers'
 
 const Work = new GraphQLObjectType({
@@ -23,6 +25,7 @@ more audio recordings.`,
     mbid,
     title,
     disambiguation,
+    aliases,
     iswcs: {
       type: new GraphQLList(GraphQLString),
       description: `A list of [ISWCs](https://musicbrainz.org/doc/ISWC) assigned
@@ -36,10 +39,10 @@ to the work by copyright collecting agencies.`
       description: 'The type of work.'
     }),
     artists,
-    relationships
+    relationships,
+    tags
   })
 })
 
-const { connectionType: WorkConnection } = connectionDefinitions({ nodeType: Work })
-export { WorkConnection }
+export const WorkConnection = connectionWithCount(Work)
 export default Work

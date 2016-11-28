@@ -5,11 +5,9 @@ export default new GraphQLInterfaceType({
   name: 'Entity',
   description: 'An entity in the MusicBrainz schema.',
   resolveType (value) {
-    if (value.entityType && require.resolve(`./${value.entityType}`)) {
-      return require(`./${value.entityType}`).default
+    if (value._type && require.resolve(`./${value._type}`)) {
+      return require(`./${value._type}`).default
     }
   },
-  fields: () => ({
-    mbid
-  })
+  fields: () => ({ mbid })
 })

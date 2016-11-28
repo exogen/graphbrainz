@@ -1,9 +1,8 @@
 import { GraphQLObjectType, GraphQLNonNull } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
 import { URLString } from './scalars'
-import { id, mbid, relationships } from './helpers'
+import { id, mbid, relationships, connectionWithCount } from './helpers'
 
 const URL = new GraphQLObjectType({
   name: 'URL',
@@ -22,6 +21,5 @@ acquired, an entry in another database, etc.`,
   })
 })
 
-const { connectionType: URLConnection } = connectionDefinitions({ nodeType: URL })
-export { URLConnection }
+export const URLConnection = connectionWithCount(URL)
 export default URL

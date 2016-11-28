@@ -4,7 +4,6 @@ import {
   GraphQLString,
   GraphQLInt
 } from 'graphql/type'
-import { connectionDefinitions } from 'graphql-relay'
 import Node from './node'
 import Entity from './entity'
 import { IPI } from './scalars'
@@ -15,9 +14,13 @@ import {
   name,
   sortName,
   disambiguation,
+  aliases,
   lifeSpan,
   releases,
-  fieldWithID
+  relationships,
+  tags,
+  fieldWithID,
+  connectionWithCount
 } from './helpers'
 
 const Label = new GraphQLObjectType({
@@ -32,6 +35,7 @@ represent a record company.`,
     name,
     sortName,
     disambiguation,
+    aliases,
     country: {
       type: GraphQLString,
       description: 'The country of origin for the label.'
@@ -55,10 +59,11 @@ label.`
       description: `A type describing the main activity of the label, e.g.
 imprint, production, distributor, rights society, etc.`
     }),
-    releases
+    releases,
+    relationships,
+    tags
   })
 })
 
-const { connectionType: LabelConnection } = connectionDefinitions({ nodeType: Label })
-export { LabelConnection }
+export const LabelConnection = connectionWithCount(Label)
 export default Label

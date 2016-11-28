@@ -6,7 +6,11 @@ import {
   id,
   mbid,
   name,
-  disambiguation
+  disambiguation,
+  aliases,
+  relationships,
+  tags,
+  connectionWithCount
 } from './helpers'
 
 const Instrument = new GraphQLObjectType({
@@ -20,6 +24,7 @@ used in relationships between two other entities.`,
     mbid,
     name,
     disambiguation,
+    aliases,
     description: {
       type: GraphQLString,
       description: `A brief description of the main characteristics of the
@@ -29,8 +34,11 @@ instrument.`
       description: `The type categorises the instrument by the way the sound is
 created, similar to the [Hornbostel-Sachs](https://en.wikipedia.org/wiki/Hornbostel%E2%80%93Sachs)
 classification.`
-    })
+    }),
+    relationships,
+    tags
   })
 })
 
+export const InstrumentConnection = connectionWithCount(Instrument)
 export default Instrument
