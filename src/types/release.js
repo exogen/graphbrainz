@@ -19,7 +19,7 @@ import {
   tags,
   fieldWithID,
   getHyphenated,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const Release = new GraphQLObjectType({
@@ -83,5 +83,5 @@ It is not a mark of how good or bad the music itself is – for that, use
   })
 })
 
-export const ReleaseConnection = connectionWithCount(Release)
+export const ReleaseConnection = connectionWithExtras(Release)
 export default Release

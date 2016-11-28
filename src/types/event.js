@@ -12,7 +12,7 @@ import {
   lifeSpan,
   relationships,
   tags,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const Event = new GraphQLObjectType({
@@ -50,5 +50,5 @@ for syntax and examples.`
   })
 })
 
-export const EventConnection = connectionWithCount(Event)
+export const EventConnection = connectionWithExtras(Event)
 export default Event

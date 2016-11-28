@@ -14,7 +14,7 @@ import {
   fieldWithID,
   relationships,
   tags,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 export const Coordinates = new GraphQLObjectType({
@@ -68,5 +68,5 @@ function.`
   })
 })
 
-export const PlaceConnection = connectionWithCount(Place)
+export const PlaceConnection = connectionWithExtras(Place)
 export default Place

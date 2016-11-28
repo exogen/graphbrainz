@@ -10,7 +10,7 @@ import Entity from './entity'
 import {
   getHyphenated,
   fieldWithID,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const Relationship = new GraphQLObjectType({
@@ -78,5 +78,5 @@ relationship type.`
   })
 })
 
-export const RelationshipConnection = connectionWithCount(Relationship)
+export const RelationshipConnection = connectionWithExtras(Relationship)
 export default Relationship

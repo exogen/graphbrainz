@@ -12,7 +12,7 @@ import {
   releases,
   relationships,
   tags,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const Recording = new GraphQLObjectType({
@@ -53,5 +53,5 @@ from the lengths of the tracks using it.`
   })
 })
 
-export const RecordingConnection = connectionWithCount(Recording)
+export const RecordingConnection = connectionWithExtras(Recording)
 export default Recording

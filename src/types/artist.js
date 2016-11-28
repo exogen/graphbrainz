@@ -18,7 +18,7 @@ import {
   works,
   relationships,
   tags,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const Artist = new GraphQLObjectType({
@@ -75,5 +75,5 @@ neither. Groups do not have genders.`
   })
 })
 
-export const ArtistConnection = connectionWithCount(Artist)
+export const ArtistConnection = connectionWithExtras(Artist)
 export default Artist

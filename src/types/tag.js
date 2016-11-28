@@ -4,7 +4,7 @@ import {
   GraphQLString,
   GraphQLInt
 } from 'graphql/type'
-import { connectionWithCount } from './helpers'
+import { connectionWithExtras } from './helpers'
 
 const Tag = new GraphQLObjectType({
   name: 'Tag',
@@ -23,5 +23,5 @@ release, or recording.`,
   })
 })
 
-export const TagConnection = connectionWithCount(Tag)
+export const TagConnection = connectionWithExtras(Tag)
 export default Tag

@@ -10,7 +10,7 @@ import {
   aliases,
   relationships,
   tags,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const Instrument = new GraphQLObjectType({
@@ -40,5 +40,5 @@ classification.`
   })
 })
 
-export const InstrumentConnection = connectionWithCount(Instrument)
+export const InstrumentConnection = connectionWithExtras(Instrument)
 export default Instrument

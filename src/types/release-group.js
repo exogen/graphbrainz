@@ -16,7 +16,7 @@ import {
   tags,
   fieldWithID,
   getHyphenated,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const ReleaseGroup = new GraphQLObjectType({
@@ -61,5 +61,5 @@ that apply to this release group.`
   })
 })
 
-export const ReleaseGroupConnection = connectionWithCount(ReleaseGroup)
+export const ReleaseGroupConnection = connectionWithExtras(ReleaseGroup)
 export default ReleaseGroup

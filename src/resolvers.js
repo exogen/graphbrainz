@@ -122,10 +122,16 @@ export function searchResolver () {
         count: arrayLength
       } = list
       const meta = { sliceStart, arrayLength }
-      return {
+      const connection = {
         totalCount: arrayLength,
         ...connectionFromArraySlice(arraySlice, { first, after }, meta)
       }
+      // Move the `score` field up to the edge object and make sure it's a
+      // number (MusicBrainz returns a string).
+      connection.edges.forEach(edge => {
+        edge.score = parseInt(edge.node.score, 10)
+      })
+      return connection
     })
   }
 }
@@ -164,14 +170,12 @@ export function linkedResolver () {
   }
 }
 
-const noop = value => value
-
 /**
  * If we weren't smart enough or weren't able to include the `inc` parameter
  * for a particular field that's being requested, make another request to grab
  * it (after making sure it isn't already available).
  */
-export function subqueryResolver (includeValue, handler = noop) {
+export function subqueryResolver (includeValue, handler = value => value) {
   return (source, args, { loaders }, info) => {
     const key = toDashed(info.fieldName)
     if (key in source || (source._inc && source._inc.indexOf(key) !== -1)) {

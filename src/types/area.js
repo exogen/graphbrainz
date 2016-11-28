@@ -15,7 +15,7 @@ import {
   releases,
   relationships,
   tags,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const Area = new GraphQLObjectType({
@@ -46,5 +46,5 @@ the codes assigned by ISO to countries and subdivisions.`,
   })
 })
 
-export const AreaConnection = connectionWithCount(Area)
+export const AreaConnection = connectionWithExtras(Area)
 export default Area

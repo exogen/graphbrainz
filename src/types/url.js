@@ -2,7 +2,7 @@ import { GraphQLObjectType, GraphQLNonNull } from 'graphql/type'
 import Node from './node'
 import Entity from './entity'
 import { URLString } from './scalars'
-import { id, mbid, relationships, connectionWithCount } from './helpers'
+import { id, mbid, relationships, connectionWithExtras } from './helpers'
 
 const URL = new GraphQLObjectType({
   name: 'URL',
@@ -21,5 +21,5 @@ acquired, an entry in another database, etc.`,
   })
 })
 
-export const URLConnection = connectionWithCount(URL)
+export const URLConnection = connectionWithExtras(URL)
 export default URL

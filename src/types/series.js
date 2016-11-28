@@ -9,7 +9,7 @@ import {
   relationships,
   tags,
   fieldWithID,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const Series = new GraphQLObjectType({
@@ -32,5 +32,5 @@ contains.`
   })
 })
 
-export const SeriesConnection = connectionWithCount(Series)
+export const SeriesConnection = connectionWithExtras(Series)
 export default Series

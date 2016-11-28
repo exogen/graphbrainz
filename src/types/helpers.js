@@ -231,9 +231,16 @@ export const totalCount = {
 ignoring pagination.`
 }
 
-export function connectionWithCount (nodeType) {
+export const score = {
+  type: GraphQLInt,
+  description: `The relevancy score (0–100) assigned by the search engine, if
+these results were found through a search.`
+}
+
+export function connectionWithExtras (nodeType) {
   return connectionDefinitions({
     nodeType,
-    connectionFields: () => ({ totalCount })
+    connectionFields: () => ({ totalCount }),
+    edgeFields: () => ({ score })
   }).connectionType
 }

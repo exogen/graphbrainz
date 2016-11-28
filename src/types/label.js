@@ -20,7 +20,7 @@ import {
   relationships,
   tags,
   fieldWithID,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const Label = new GraphQLObjectType({
@@ -65,5 +65,5 @@ imprint, production, distributor, rights society, etc.`
   })
 })
 
-export const LabelConnection = connectionWithCount(Label)
+export const LabelConnection = connectionWithExtras(Label)
 export default Label

@@ -11,7 +11,7 @@ import {
   relationships,
   tags,
   fieldWithID,
-  connectionWithCount
+  connectionWithExtras
 } from './helpers'
 
 const Work = new GraphQLObjectType({
@@ -44,5 +44,5 @@ to the work by copyright collecting agencies.`
   })
 })
 
-export const WorkConnection = connectionWithCount(Work)
+export const WorkConnection = connectionWithExtras(Work)
 export default Work
