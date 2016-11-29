@@ -1,4 +1,4 @@
-graphbrainz
+# graphbrainz
 
 An [Express][] server and middleware for querying [MusicBrainz][] using
 [GraphQL][].
