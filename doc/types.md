@@ -94,7 +94,7 @@ requests can be made.
   </tr>
   <tr>
     <td align="right" valign="top">id</td>
-    <td valign="top">[ID](#id)!</td>
+    <td valign="top"><a href="#id">ID</a>!</td>
     <td>The ID of an object</td>
   </tr>
   <tr>
@@ -218,12 +218,12 @@ the codes assigned by ISO to countries and subdivisions.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -233,12 +233,12 @@ the codes assigned by ISO to countries and subdivisions.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -248,12 +248,12 @@ the codes assigned by ISO to countries and subdivisions.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -263,12 +263,12 @@ the codes assigned by ISO to countries and subdivisions.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -278,22 +278,22 @@ the codes assigned by ISO to countries and subdivisions.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[[ReleaseGroupType](#releasegrouptype)]</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
   </tr>
   <tr>
     <td align="right" valign="top">status</td>
-    <td valign="top">[[ReleaseStatus](#releasestatus)]</td>
+    <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
     <td>Filter by one or more release statuses.</td>
   </tr>
   <tr>
@@ -308,12 +308,12 @@ the codes assigned by ISO to countries and subdivisions.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -472,12 +472,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -487,22 +487,22 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[[ReleaseGroupType](#releasegrouptype)]</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
   </tr>
   <tr>
     <td align="right" valign="top">status</td>
-    <td valign="top">[[ReleaseStatus](#releasestatus)]</td>
+    <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
     <td>Filter by one or more release statuses.</td>
   </tr>
   <tr>
@@ -512,17 +512,17 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[[ReleaseGroupType](#releasegrouptype)]</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
   </tr>
   <tr>
@@ -532,12 +532,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -552,12 +552,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -658,17 +658,17 @@ entity.
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">collection</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
@@ -678,42 +678,42 @@ entity.
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an area to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">collection</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
     <td align="right" valign="top">recording</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a recording to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">release</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a release to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">releaseGroup</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a release group to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">work</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a work to which the artist is linked.</td>
   </tr>
   <tr>
@@ -723,32 +723,32 @@ entity.
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an area to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">artist</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an artist to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">collection</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
     <td align="right" valign="top">place</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a place to which the event is linked.</td>
   </tr>
   <tr>
@@ -758,27 +758,27 @@ entity.
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an area to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">collection</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
     <td align="right" valign="top">release</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a release to which the entity is linked.</td>
   </tr>
   <tr>
@@ -788,22 +788,22 @@ entity.
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an area to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">collection</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
@@ -813,27 +813,27 @@ entity.
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">artist</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an artist to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">collection</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
     <td align="right" valign="top">release</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a release to which the entity is linked.</td>
   </tr>
   <tr>
@@ -843,53 +843,53 @@ entity.
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an area to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">artist</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an artist to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">collection</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
     <td align="right" valign="top">label</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a label to which the release is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">track</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a track that is included in the release.</td>
   </tr>
   <tr>
     <td align="right" valign="top">trackArtist</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an artist that appears on a track in the
 release, but is not included in the credits for the release itself.</td>
   </tr>
   <tr>
     <td align="right" valign="top">recording</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a recording to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">releaseGroup</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a release group to which the entity is linked.</td>
   </tr>
   <tr>
@@ -899,27 +899,27 @@ release, but is not included in the credits for the release itself.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">artist</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an artist to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">collection</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
     <td align="right" valign="top">release</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a release to which the entity is linked.</td>
   </tr>
   <tr>
@@ -929,22 +929,22 @@ release, but is not included in the credits for the release itself.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">artist</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of an artist to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">collection</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
@@ -954,17 +954,17 @@ release, but is not included in the credits for the release itself.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">resource</td>
-    <td valign="top">[URLString](#urlstring)</td>
+    <td valign="top"><a href="#urlstring">URLString</a></td>
     <td>The web address for which to browse URL entities.</td>
   </tr>
 </tbody></table>
@@ -1069,12 +1069,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -1195,12 +1195,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -1344,22 +1344,22 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[[ReleaseGroupType](#releasegrouptype)]</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
   </tr>
   <tr>
     <td align="right" valign="top">status</td>
-    <td valign="top">[[ReleaseStatus](#releasestatus)]</td>
+    <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
     <td>Filter by one or more release statuses.</td>
   </tr>
   <tr>
@@ -1374,12 +1374,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -1473,7 +1473,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1483,7 +1483,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1493,7 +1493,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1503,7 +1503,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1513,7 +1513,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1523,7 +1523,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1533,7 +1533,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1543,7 +1543,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1553,7 +1553,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1563,7 +1563,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1573,7 +1573,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
@@ -1583,7 +1583,7 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top">[MBID](#mbid)!</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
     <td>The MBID of the entity.</td>
   </tr>
 </tbody></table>
@@ -1693,12 +1693,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -1713,12 +1713,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -1840,12 +1840,12 @@ from the lengths of the tracks using it.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -1855,22 +1855,22 @@ from the lengths of the tracks using it.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[[ReleaseGroupType](#releasegrouptype)]</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
   </tr>
   <tr>
     <td align="right" valign="top">status</td>
-    <td valign="top">[[ReleaseStatus](#releasestatus)]</td>
+    <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
     <td>Filter by one or more release statuses.</td>
   </tr>
   <tr>
@@ -1885,12 +1885,12 @@ from the lengths of the tracks using it.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -2081,37 +2081,37 @@ Lists of entity relationships for each entity type.
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2122,37 +2122,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2163,37 +2163,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2204,37 +2204,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2245,37 +2245,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2286,37 +2286,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2327,37 +2327,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2368,37 +2368,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2409,37 +2409,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2450,37 +2450,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2491,37 +2491,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2532,37 +2532,37 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">before</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">last</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">direction</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship direction.</td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td>Filter by the relationship type.</td>
   </tr>
   <tr>
     <td align="right" valign="top">typeID</td>
-    <td valign="top">[MBID](#mbid)</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
   </tr>
@@ -2673,12 +2673,12 @@ It is not a mark of how good or bad the music itself is – for that, use
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -2688,12 +2688,12 @@ It is not a mark of how good or bad the music itself is – for that, use
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -2703,12 +2703,12 @@ It is not a mark of how good or bad the music itself is – for that, use
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -2718,17 +2718,17 @@ It is not a mark of how good or bad the music itself is – for that, use
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[[ReleaseGroupType](#releasegrouptype)]</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
   </tr>
   <tr>
@@ -2743,12 +2743,12 @@ It is not a mark of how good or bad the music itself is – for that, use
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -2906,12 +2906,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -2921,22 +2921,22 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">type</td>
-    <td valign="top">[[ReleaseGroupType](#releasegrouptype)]</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
   </tr>
   <tr>
     <td align="right" valign="top">status</td>
-    <td valign="top">[[ReleaseStatus](#releasestatus)]</td>
+    <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
     <td>Filter by one or more release statuses.</td>
   </tr>
   <tr>
@@ -2951,12 +2951,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -3025,18 +3025,18 @@ A search for MusicBrainz entities using Lucene query syntax.
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3046,18 +3046,18 @@ and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3067,18 +3067,18 @@ and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3088,18 +3088,18 @@ and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3109,18 +3109,18 @@ and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3130,18 +3130,18 @@ and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3151,18 +3151,18 @@ and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3172,18 +3172,18 @@ and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3193,18 +3193,18 @@ and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3214,18 +3214,18 @@ and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3235,18 +3235,18 @@ and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">query</td>
-    <td valign="top">[String](#string)!</td>
+    <td valign="top"><a href="#string">String</a>!</td>
     <td>The query terms, in Lucene search syntax. See <a href="https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search">examples
 and search fields</a>.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -3304,12 +3304,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>
@@ -3580,12 +3580,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
   <tr>
@@ -3600,12 +3600,12 @@ field.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
-    <td valign="top">[String](#string)</td>
+    <td valign="top"><a href="#string">String</a></td>
     <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">first</td>
-    <td valign="top">[Int](#int)</td>
+    <td valign="top"><a href="#int">Int</a></td>
     <td></td>
   </tr>
 </tbody></table>

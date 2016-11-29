@@ -52,7 +52,7 @@ function renderObject (type, { skipTitle = false } = {}) {
       field.args.forEach((arg, i) => {
         console.log('  <tr>')
         console.log(`    <td align="right" valign="top">${arg.name}</td>`)
-        console.log(`    <td valign="top">${renderType(arg.type)}</td>`)
+        console.log(`    <td valign="top">${markdown(renderType(arg.type))}</td>`)
         console.log(`    <td>${markdown(arg.description)}</td>`)
         console.log('  </tr>')
       })
