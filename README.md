@@ -283,7 +283,7 @@ agree, it’s ugly.
 
 ## Schema
 
-See the [GraphQL schema][schema].
+See the [GraphQL schema][schema] or the [rendered documentation][types].
 
 [demo]: https://graphbrainz.herokuapp.com/
 [Express]: http://expressjs.com/
@@ -294,4 +294,5 @@ See the [GraphQL schema][schema].
 [debug]: https://www.npmjs.com/package/debug
 [GraphiQL]: https://github.com/graphql/graphiql
 [Relay]: https://facebook.github.io/relay/
-[schema]: schema.md
+[schema]: doc/schema.md
+[types]: doc/types.md

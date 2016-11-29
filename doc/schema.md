@@ -72,7 +72,16 @@ type Area implements Node, Entity {
   places(after: String, first: Int): PlaceConnection
 
   # A list of releases linked to this entity.
-  releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
+  releases(
+    after: String
+    first: Int
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
+
+    # Filter by one or more release statuses.
+    status: [ReleaseStatus]
+  ): ReleaseConnection
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
@@ -173,10 +182,25 @@ type Artist implements Node, Entity {
   recordings(after: String, first: Int): RecordingConnection
 
   # A list of releases linked to this entity.
-  releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
+  releases(
+    after: String
+    first: Int
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
+
+    # Filter by one or more release statuses.
+    status: [ReleaseStatus]
+  ): ReleaseConnection
 
   # A list of release groups linked to this entity.
-  releaseGroups(after: String, first: Int, type: [ReleaseGroupType]): ReleaseGroupConnection
+  releaseGroups(
+    after: String
+    first: Int
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
+  ): ReleaseGroupConnection
 
   # A list of works linked to this entity.
   works(after: String, first: Int): WorkConnection
@@ -616,7 +640,16 @@ type Label implements Node, Entity {
   typeID: MBID
 
   # A list of releases linked to this entity.
-  releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
+  releases(
+    after: String
+    first: Int
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
+
+    # Filter by one or more release statuses.
+    status: [ReleaseStatus]
+  ): ReleaseConnection
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
@@ -654,8 +687,13 @@ type LabelEdge {
 # Fields indicating the begin and end date of an entity’s
 # lifetime, including whether it has ended (even if the date is unknown).
 type LifeSpan {
+  # The start date of the entity’s life span.
   begin: Date
+
+  # The end date of the entity’s life span.
   end: Date
+
+  # Whether or not the entity’s life span has ended.
   ended: Boolean
 }
 
@@ -899,7 +937,16 @@ type Recording implements Node, Entity {
   artists(after: String, first: Int): ArtistConnection
 
   # A list of releases linked to this entity.
-  releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
+  releases(
+    after: String
+    first: Int
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
+
+    # Filter by one or more release statuses.
+    status: [ReleaseStatus]
+  ): ReleaseConnection
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
@@ -1296,7 +1343,13 @@ type Release implements Node, Entity {
   recordings(after: String, first: Int): RecordingConnection
 
   # A list of release groups linked to this entity.
-  releaseGroups(after: String, first: Int, type: [ReleaseGroupType]): ReleaseGroupConnection
+  releaseGroups(
+    after: String
+    first: Int
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
+  ): ReleaseGroupConnection
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
@@ -1391,7 +1444,16 @@ type ReleaseGroup implements Node, Entity {
   artists(after: String, first: Int): ArtistConnection
 
   # A list of releases linked to this entity.
-  releases(after: String, first: Int, type: [ReleaseGroupType], status: [ReleaseStatus]): ReleaseConnection
+  releases(
+    after: String
+    first: Int
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
+
+    # Filter by one or more release statuses.
+    status: [ReleaseStatus]
+  ): ReleaseConnection
 
   # Relationships between this entity and other entitites.
   relationships: Relationships

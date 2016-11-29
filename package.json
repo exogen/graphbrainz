@@ -17,7 +17,10 @@
   },
   "scripts": {
     "build": "npm run build:lib && npm run update-schema && npm run build:docs",
-    "build:docs": "doctoc --title \"## Contents\" README.md",
+    "build:docs": "npm run build:docs:readme && npm run build:docs:schema && npm run build:docs:types",
+    "build:docs:readme": "doctoc --title \"## Contents\" README.md",
+    "build:docs:schema": "printf '# GraphQL Schema\\n\\n%s' \"$(npm run -s print-schema:md)\" > doc/schema.md",
+    "build:docs:types": "babel-node scripts/render-types.js > doc/types.md",
     "build:lib": "babel --out-dir lib src",
     "clean": "npm run clean:lib",
     "clean:lib": "rm -rf lib",
@@ -31,9 +34,7 @@
     "start": "node lib/index.js",
     "start:dev": "nodemon --exec babel-node src/index.js",
     "test": "mocha --compilers js:babel-register",
-    "update-schema": "npm run update-schema:json && npm run update-schema:md",
-    "update-schema:json": "npm run -s print-schema:json > schema.json",
-    "update-schema:md": "printf '# GraphQL Schema\\n\\n%s' \"$(npm run -s print-schema:md)\" > schema.md"
+    "update-schema": "npm run -s print-schema:json > schema.json"
   },
   "keywords": [
     "musicbrainz",
@@ -80,6 +81,7 @@
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "doctoc": "^1.2.0",
+    "marked": "^0.3.6",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "snazzy": "^5.0.0",

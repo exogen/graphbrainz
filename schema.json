@@ -787,7 +787,7 @@
                 },
                 {
                   "name": "type",
-                  "description": null,
+                  "description": "Filter by one or more release group types.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -801,7 +801,7 @@
                 },
                 {
                   "name": "status",
-                  "description": null,
+                  "description": "Filter by one or more release statuses.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -1514,7 +1514,7 @@
                 },
                 {
                   "name": "type",
-                  "description": null,
+                  "description": "Filter by one or more release group types.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -1528,7 +1528,7 @@
                 },
                 {
                   "name": "status",
-                  "description": null,
+                  "description": "Filter by one or more release statuses.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -1575,7 +1575,7 @@
                 },
                 {
                   "name": "type",
-                  "description": null,
+                  "description": "Filter by one or more release group types.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -1698,7 +1698,7 @@
           "fields": [
             {
               "name": "begin",
-              "description": null,
+              "description": "The start date of the entity’s life span.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1710,7 +1710,7 @@
             },
             {
               "name": "end",
-              "description": null,
+              "description": "The end date of the entity’s life span.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1722,7 +1722,7 @@
             },
             {
               "name": "ended",
-              "description": null,
+              "description": "Whether or not the entity’s life span has ended.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -2030,7 +2030,7 @@
                 },
                 {
                   "name": "type",
-                  "description": null,
+                  "description": "Filter by one or more release group types.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -2044,7 +2044,7 @@
                 },
                 {
                   "name": "status",
-                  "description": null,
+                  "description": "Filter by one or more release statuses.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -2752,7 +2752,7 @@
                 },
                 {
                   "name": "type",
-                  "description": null,
+                  "description": "Filter by one or more release group types.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -3179,7 +3179,7 @@
                 },
                 {
                   "name": "type",
-                  "description": null,
+                  "description": "Filter by one or more release group types.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -3193,7 +3193,7 @@
                 },
                 {
                   "name": "status",
-                  "description": null,
+                  "description": "Filter by one or more release statuses.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -5029,7 +5029,7 @@
                 },
                 {
                   "name": "type",
-                  "description": null,
+                  "description": "Filter by one or more release group types.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -5043,7 +5043,7 @@
                 },
                 {
                   "name": "status",
-                  "description": null,
+                  "description": "Filter by one or more release statuses.",
                   "type": {
                     "kind": "LIST",
                     "name": null,

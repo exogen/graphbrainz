@@ -208,13 +208,22 @@ export const places = linkedQuery(PlaceConnection)
 export const recordings = linkedQuery(RecordingConnection)
 export const releases = linkedQuery(ReleaseConnection, {
   args: {
-    type: { type: new GraphQLList(ReleaseGroupType) },
-    status: { type: new GraphQLList(ReleaseStatus) }
+    type: {
+      type: new GraphQLList(ReleaseGroupType),
+      description: 'Filter by one or more release group types.'
+    },
+    status: {
+      type: new GraphQLList(ReleaseStatus),
+      description: 'Filter by one or more release statuses.'
+    }
   }
 })
 export const releaseGroups = linkedQuery(ReleaseGroupConnection, {
   args: {
-    type: { type: new GraphQLList(ReleaseGroupType) }
+    type: {
+      type: new GraphQLList(ReleaseGroupType),
+      description: 'Filter by one or more release group types.'
+    }
   }
 })
 export const tags = linkedQuery(TagConnection, {
