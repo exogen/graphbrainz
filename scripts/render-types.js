@@ -29,7 +29,7 @@ function renderType (type) {
   if (type.kind === 'LIST') {
     return `[${renderType(type.ofType)}]`
   }
-  return `[${type.name}](#fixme)`
+  return `[${type.name}](#${type.name.toLowerCase()})`
 }
 
 function renderObject (type, { skipTitle = false } = {}) {
@@ -44,8 +44,8 @@ function renderObject (type, { skipTitle = false } = {}) {
   console.log('</thead><tbody>')
   type.fields.forEach(field => {
     console.log('  <tr>')
-    console.log(`    <td valign="top">**${field.name}**</td>`)
-    console.log(`    <td valign="top">${renderType(field.type)}</td>`)
+    console.log(`    <td valign="top"><strong>${field.name}</strong></td>`)
+    console.log(`    <td valign="top">${markdown(renderType(field.type))}</td>`)
     console.log(`    <td>${markdown(field.description)}</td>`)
     console.log('  </tr>')
     if (field.args.length) {
@@ -78,25 +78,25 @@ console.log('# Schema Types\n')
 console.log('You may also be interested in the [schema in GraphQL syntax](schema.md).\n')
 
 console.log('<details><summary>**Table of Contents**</summary><p><ul>')
-console.log('  <li>[Query](#fixme)</li>')
-console.log('  <li>[Objects](#fixme)<ul>')
+console.log('  <li>[Query](#query)</li>')
+console.log('  <li>[Objects](#objects)<ul>')
 objects.forEach(type => {
-  console.log(`    <li>[${type.name}](#fixme)</li>`)
+  console.log(`    <li>[${type.name}](#${type.name.toLowerCase()})</li>`)
 })
 console.log('  </ul></li>')
-console.log('  <li>[Enums](#fixme)<ul>')
+console.log('  <li>[Enums](#enums)<ul>')
 enums.forEach(type => {
-  console.log(`    <li>[${type.name}](#fixme)</li>`)
+  console.log(`    <li>[${type.name}](#${type.name.toLowerCase()})</li>`)
 })
 console.log('  </ul></li>')
-console.log('  <li>[Scalars](#fixme)<ul>')
+console.log('  <li>[Scalars](#scalars)<ul>')
 scalars.forEach(type => {
-  console.log(`    <li>[${type.name}](#fixme)</li>`)
+  console.log(`    <li>[${type.name}](#${type.name.toLowerCase()})</li>`)
 })
 console.log('  </ul></li>')
-console.log('  <li>[Interfaces](#fixme)<ul>')
+console.log('  <li>[Interfaces](#interfaces)<ul>')
 interfaces.forEach(type => {
-  console.log(`    <li>[${type.name}](#fixme)</li>`)
+  console.log(`    <li>[${type.name}](#${type.name.toLowerCase()})</li>`)
 })
 console.log('  </ul></li>')
 console.log('</ul></p></details>')
@@ -119,7 +119,7 @@ enums.forEach(type => {
   console.log('</thead><tbody>')
   type.enumValues.forEach(value => {
     console.log('  <tr>')
-    console.log(`    <td valign="top">**${value.name}**</td>`)
+    console.log(`    <td valign="top"><strong>${value.name}</strong></td>`)
     console.log(`    <td>${markdown(value.description)}</td>`)
     console.log('  </tr>')
   })
