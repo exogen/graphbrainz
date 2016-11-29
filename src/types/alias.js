@@ -9,8 +9,7 @@ export default new GraphQLObjectType({
   name: 'Alias',
   description: `[Aliases](https://musicbrainz.org/doc/Aliases) are variant names
 that are mostly used as search help: if a search matches an entity’s alias, the
-entity will be given as a result – even if the actual name wouldn’t be. They are
-available for artists, labels, and works.`,
+entity will be given as a result – even if the actual name wouldn’t be.`,
   fields: () => ({
     name: {
       ...name,
