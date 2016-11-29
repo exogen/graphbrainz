@@ -985,7 +985,7 @@
         {
           "kind": "OBJECT",
           "name": "Alias",
-          "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are variant names\nthat are mostly used as search help: if a search matches an entity’s alias, the\nentity will be given as a result – even if the actual name wouldn’t be. They are\navailable for artists, labels, and works.",
+          "description": "[Aliases](https://musicbrainz.org/doc/Aliases) are variant names\nthat are mostly used as search help: if a search matches an entity’s alias, the\nentity will be given as a result – even if the actual name wouldn’t be.",
           "fields": [
             {
               "name": "name",
