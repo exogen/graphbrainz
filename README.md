@@ -1,14 +1,15 @@
+<center>
 # graphbrainz
 
 An [Express][] server and middleware for querying [MusicBrainz][] using
 [GraphQL][].
 
-```sh
-npm install graphbrainz --save
-```
+`npm install graphbrainz --save`
 
-**[Try out the live demo!][demo]** Use the “Docs” sidebar or see the [schema][]
-to help construct your query.
+**[Try out the live demo!][demo]**
+
+Use the “Docs” sidebar, the [schema][], or the [types][] docs to help construct your query.
+</center>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -283,7 +284,7 @@ agree, it’s ugly.
 
 ## Schema
 
-See the [GraphQL schema][schema] or the [rendered documentation][types].
+See the [GraphQL schema][schema] or the [types][] documentation.
 
 [demo]: https://graphbrainz.herokuapp.com/
 [Express]: http://expressjs.com/
@@ -294,5 +295,5 @@ See the [GraphQL schema][schema] or the [rendered documentation][types].
 [debug]: https://www.npmjs.com/package/debug
 [GraphiQL]: https://github.com/graphql/graphiql
 [Relay]: https://facebook.github.io/relay/
-[schema]: doc/schema.md
-[types]: doc/types.md
+[schema]: docs/schema.md
+[types]: docs/types.md
