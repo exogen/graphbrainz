@@ -3771,7 +3771,8 @@ these results were found through a search.</td>
 ### ReleaseGroupType
 
 <table><thead>
-  <th>Value</th><th>Description</th>
+  <th align="left">Value</th>
+  <th align="left">Description</th>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>ALBUM</strong></td>
@@ -3873,7 +3874,8 @@ reference use rather than for general public release.</td>
 ### ReleaseStatus
 
 <table><thead>
-  <th>Value</th><th>Description</th>
+  <th align="left">Value</th>
+  <th align="left">Description</th>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>OFFICIAL</strong></td>

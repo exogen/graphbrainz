@@ -117,7 +117,8 @@ enums.forEach(type => {
     console.log(`${type.description}\n`)
   }
   console.log('<table><thead>')
-  console.log('  <th>Value</th><th>Description</th>')
+  console.log('  <th align="left">Value</th>')
+  console.log('  <th align="left">Description</th>')
   console.log('</thead><tbody>')
   type.enumValues.forEach(value => {
     console.log('  <tr>')
