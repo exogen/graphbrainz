@@ -5,7 +5,7 @@ export default new GraphQLObjectType({
   name: 'ArtistCredit',
   description: `[Artist credits](https://musicbrainz.org/doc/Artist_Credits)
 indicate who is the main credited artist (or artists) for releases, release
-groups, tracks and recordings, and how they are credited. They consist of
+groups, tracks, and recordings, and how they are credited. They consist of
 artists, with (optionally) their names as credited in the specific release,
 track, etc., and join phrases between them.`,
   fields: () => ({

@@ -19,7 +19,7 @@
     "build": "npm run build:lib && npm run update-schema && npm run build:docs",
     "build:docs": "npm run build:docs:readme && npm run build:docs:schema && npm run build:docs:types",
     "build:docs:readme": "doctoc --title \"## Contents\" README.md",
-    "build:docs:schema": "printf '# GraphQL Schema\\n\\n%s' \"$(npm run -s print-schema:md)\" > docs/schema.md",
+    "build:docs:schema": "printf '# GraphQL Schema\\n\\n%s\n' \"$(npm run -s print-schema:md)\" > docs/schema.md",
     "build:docs:types": "babel-node scripts/render-types.js > docs/types.md",
     "build:lib": "babel --out-dir lib src",
     "clean": "npm run clean:lib",

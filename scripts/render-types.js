@@ -1,6 +1,12 @@
 import marked from 'marked'
 const schema = require('../schema.json').data.__schema
 
+// Ideally, we could just spit out the existing description Markdown everywhere
+// and leave it to be rendered by whatever processes the output. But some
+// Markdown renderers, including GitHub's, don't process Markdown if it's within
+// an HTML tag. So in some places (like descriptions of the types themselves) we
+// just output the raw description. In other places, like table cells, we need
+// to output pre-rendered Markdown, otherwise GitHub won't interpret it.
 marked.setOptions({
   breaks: false
 })
@@ -110,7 +116,6 @@ console.log('\n## Objects')
 objects.forEach(type => renderObject(type))
 
 console.log('\n## Enums')
-
 enums.forEach(type => {
   console.log(`\n### ${type.name}\n`)
   if (type.description) {
@@ -130,7 +135,6 @@ enums.forEach(type => {
 })
 
 console.log('\n## Scalars\n')
-
 scalars.forEach(type => {
   console.log(`### ${type.name}\n`)
   if (type.description) {
@@ -139,10 +143,4 @@ scalars.forEach(type => {
 })
 
 console.log('\n## Interfaces\n')
-
-interfaces.forEach(type => {
-  console.log(`### ${type.name}\n`)
-  if (type.description) {
-    console.log(`${type.description}\n`)
-  }
-})
+interfaces.forEach(type => renderObject(type))

@@ -2,6 +2,8 @@ import { GraphQLEnumType } from 'graphql/type'
 
 export const ArtistType = new GraphQLEnumType({
   name: 'ArtistType',
+  description: `A type used to describe artists, e.g. person, group, character,
+etc.`,
   values: {
     PERSON: {
       name: 'Person',
@@ -39,6 +41,8 @@ distinctive name.`,
 
 export const ReleaseStatus = new GraphQLEnumType({
   name: 'ReleaseStatus',
+  description: `A type used to describe the status of releases, e.g. official,
+bootleg, etc.`,
   values: {
     OFFICIAL: {
       name: 'Official',
@@ -70,6 +74,8 @@ translation/transliteration purposes.`,
 
 export const ReleaseGroupType = new GraphQLEnumType({
   name: 'ReleaseGroupType',
+  description: `A type used to describe release groups, e.g. album, single, EP,
+etc.`,
   values: {
     ALBUM: {
       name: 'Album',

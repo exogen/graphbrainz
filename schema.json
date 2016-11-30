@@ -2130,7 +2130,7 @@
         {
           "kind": "OBJECT",
           "name": "ArtistCredit",
-          "description": "[Artist credits](https://musicbrainz.org/doc/Artist_Credits)\nindicate who is the main credited artist (or artists) for releases, release\ngroups, tracks and recordings, and how they are credited. They consist of\nartists, with (optionally) their names as credited in the specific release,\ntrack, etc., and join phrases between them.",
+          "description": "[Artist credits](https://musicbrainz.org/doc/Artist_Credits)\nindicate who is the main credited artist (or artists) for releases, release\ngroups, tracks, and recordings, and how they are credited. They consist of\nartists, with (optionally) their names as credited in the specific release,\ntrack, etc., and join phrases between them.",
           "fields": [
             {
               "name": "artist",
@@ -2177,7 +2177,7 @@
         {
           "kind": "ENUM",
           "name": "ReleaseGroupType",
-          "description": null,
+          "description": "A type used to describe release groups, e.g. album, single, EP,\netc.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -2284,7 +2284,7 @@
         {
           "kind": "ENUM",
           "name": "ReleaseStatus",
-          "description": null,
+          "description": "A type used to describe the status of releases, e.g. official,\nbootleg, etc.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -5892,7 +5892,7 @@
         {
           "kind": "OBJECT",
           "name": "Place",
-          "description": "A [place](https://musicbrainz.org/doc/Place) is a venue, studio\nor other place where music is performed, recorded, engineered, etc.",
+          "description": "A [place](https://musicbrainz.org/doc/Place) is a venue, studio,\nor other place where music is performed, recorded, engineered, etc.",
           "fields": [
             {
               "name": "id",

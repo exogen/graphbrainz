@@ -604,7 +604,7 @@ ignoring pagination.</td>
 
 [Artist credits](https://musicbrainz.org/doc/Artist_Credits)
 indicate who is the main credited artist (or artists) for releases, release
-groups, tracks and recordings, and how they are credited. They consist of
+groups, tracks, and recordings, and how they are credited. They consist of
 artists, with (optionally) their names as credited in the specific release,
 track, etc., and join phrases between them.
 
@@ -1664,7 +1664,7 @@ Information about pagination in a connection.
 
 ### Place
 
-A [place](https://musicbrainz.org/doc/Place) is a venue, studio
+A [place](https://musicbrainz.org/doc/Place) is a venue, studio,
 or other place where music is performed, recorded, engineered, etc.
 
 <table><thead>
@@ -3769,6 +3769,9 @@ these results were found through a search.</td>
 
 ### ReleaseGroupType
 
+A type used to describe release groups, e.g. album, single, EP,
+etc.
+
 <table><thead>
   <th align="left">Value</th>
   <th align="left">Description</th>
@@ -3872,6 +3875,9 @@ reference use rather than for general public release.</td>
 
 ### ReleaseStatus
 
+A type used to describe the status of releases, e.g. official,
+bootleg, etc.
+
 <table><thead>
   <th align="left">Value</th>
   <th align="left">Description</th>
@@ -3947,11 +3953,35 @@ A web address.
 
 ## Interfaces
 
+
 ### Entity
 
 An entity in the MusicBrainz schema.
+
+<table><thead>
+  <th align="left">Field&nbsp;/&nbsp;Argument</th>
+  <th align="left">Type</th>
+  <th align="left">Description</th>
+</thead><tbody>
+  <tr>
+    <td valign="top"><strong>mbid</strong></td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
+    <td>The MBID of the entity.</td>
+  </tr>
+</tbody></table>
 
 ### Node
 
 An object with an ID
 
+<table><thead>
+  <th align="left">Field&nbsp;/&nbsp;Argument</th>
+  <th align="left">Type</th>
+  <th align="left">Description</th>
+</thead><tbody>
+  <tr>
+    <td valign="top"><strong>id</strong></td>
+    <td valign="top"><a href="#id">ID</a>!</td>
+    <td>The id of the object.</td>
+  </tr>
+</tbody></table>

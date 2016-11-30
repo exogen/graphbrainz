@@ -226,7 +226,7 @@ type ArtistConnection {
 
 # [Artist credits](https://musicbrainz.org/doc/Artist_Credits)
 # indicate who is the main credited artist (or artists) for releases, release
-# groups, tracks and recordings, and how they are credited. They consist of
+# groups, tracks, and recordings, and how they are credited. They consist of
 # artists, with (optionally) their names as credited in the specific release,
 # track, etc., and join phrases between them.
 type ArtistCredit {
@@ -796,7 +796,7 @@ type PageInfo {
   endCursor: String
 }
 
-# A [place](https://musicbrainz.org/doc/Place) is a venue, studio
+# A [place](https://musicbrainz.org/doc/Place) is a venue, studio,
 # or other place where music is performed, recorded, engineered, etc.
 type Place implements Node, Entity {
   # The ID of an object
@@ -1487,6 +1487,8 @@ type ReleaseGroupEdge {
   score: Int
 }
 
+# A type used to describe release groups, e.g. album, single, EP,
+# etc.
 enum ReleaseGroupType {
   # An album, perhaps better defined as a “Long Play” (LP)
   # release, generally consists of previously unreleased material (unless this type
@@ -1568,6 +1570,8 @@ enum ReleaseGroupType {
   NAT
 }
 
+# A type used to describe the status of releases, e.g. official,
+# bootleg, etc.
 enum ReleaseStatus {
   # Any release officially sanctioned by the artist and/or their
   # record company. (Most releases will fit into this category.)

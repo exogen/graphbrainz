@@ -34,7 +34,7 @@ export const Coordinates = new GraphQLObjectType({
 
 const Place = new GraphQLObjectType({
   name: 'Place',
-  description: `A [place](https://musicbrainz.org/doc/Place) is a venue, studio
+  description: `A [place](https://musicbrainz.org/doc/Place) is a venue, studio,
 or other place where music is performed, recorded, engineered, etc.`,
   interfaces: () => [Node, Entity],
   fields: () => ({
