@@ -1,6 +1,6 @@
 # Schema Types
 
-You may also be interested in the [schema in GraphQL syntax](schema.md).
+You may also be interested in reading the [schema in GraphQL syntax](schema.md).
 
 <details><summary>**Table of Contents**</summary><p><ul>
   <li>[Query](#query)</li>

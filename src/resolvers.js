@@ -6,16 +6,16 @@ import {
 } from 'graphql-relay'
 import { getFields, extendIncludes } from './util'
 
-export function includeRelationships (params, info) {
-  let fields = getFields(info)
+export function includeRelationships (params, info, fragments = info.fragments) {
+  let fields = getFields(info, fragments)
   if (info.fieldName !== 'relationships') {
     if (fields.relationships) {
-      fields = getFields(fields.relationships)
+      fields = getFields(fields.relationships, fragments)
     } else {
       if (fields.edges) {
-        fields = getFields(fields.edges)
+        fields = getFields(fields.edges, fragments)
         if (fields.node) {
-          return includeRelationships(params, fields.node)
+          return includeRelationships(params, fields.node, fragments)
         }
       }
       return params
@@ -36,13 +36,13 @@ export function includeRelationships (params, info) {
   return params
 }
 
-export function includeSubqueries (params, info) {
+export function includeSubqueries (params, info, fragments = info.fragments) {
   const subqueryIncludes = {
     aliases: 'aliases',
     artistCredit: 'artist-credits',
     tags: 'tags'
   }
-  let fields = getFields(info)
+  let fields = getFields(info, fragments)
   const include = []
   for (const key in subqueryIncludes) {
     if (fields[key]) {
@@ -55,9 +55,9 @@ export function includeSubqueries (params, info) {
     inc: extendIncludes(params.inc, include)
   }
   if (fields.edges) {
-    fields = getFields(fields.edges)
+    fields = getFields(fields.edges, fragments)
     if (fields.node) {
-      params = includeSubqueries(params, fields.node)
+      params = includeSubqueries(params, fields.node, fragments)
     }
   }
   return params
@@ -84,7 +84,7 @@ export function browseResolver () {
       offset: getOffsetWithDefault(after, -1) + 1
     }
     params = includeSubqueries(params, info)
-    params = includeRelationships(params, info)
+    params = includeRelationships(params, info, info.fragments)
     const formatValue = value => value.toLowerCase().replace(/ /g, '')
     params.type = params.type.map(formatValue)
     params.status = params.status.map(formatValue)

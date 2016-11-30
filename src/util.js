@@ -1,14 +1,24 @@
 import util from 'util'
 
-export function getFields (info) {
+export function getFields (info, fragments = info.fragments) {
   if (info.kind !== 'Field') {
     info = info.fieldNodes[0]
   }
   const selections = info.selectionSet.selections
-  return selections.reduce((fields, selection) => {
-    fields[selection.name.value] = selection
+  const reducer = (fields, selection) => {
+    if (selection.kind === 'FragmentSpread') {
+      const name = selection.name.value
+      const fragment = fragments[name]
+      if (!fragment) {
+        throw new Error(`Fragment '${name}' was not passed to getFields()`)
+      }
+      fragment.selectionSet.selections.reduce(reducer, fields)
+    } else {
+      fields[selection.name.value] = selection
+    }
     return fields
-  }, {})
+  }
+  return selections.reduce(reducer, {})
 }
 
 export function prettyPrint (obj, { depth = 5,

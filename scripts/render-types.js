@@ -83,7 +83,7 @@ sortBy(interfaces, 'name')
 
 console.log('# Schema Types\n')
 
-console.log('You may also be interested in the [schema in GraphQL syntax](schema.md).\n')
+console.log('You may also be interested in reading the [schema in GraphQL syntax](schema.md).\n')
 
 console.log('<details><summary>**Table of Contents**</summary><p><ul>')
 console.log('  <li>[Query](#query)</li>')
