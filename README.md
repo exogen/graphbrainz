@@ -281,6 +281,18 @@ schema. The schema was originally designed to be more user-friendly, but in the
 end I decided that being compatible with Relay was a worthwhile feature. I
 agree, it’s ugly.
 
+**Why does my query take so long?**
+
+It’s likely that your query requires multiple round trips to the MusicBrainz
+REST API, which is subject to [rate limiting][]. While the query resolver tries
+very hard to fetch only the data necessary, and with the smallest number of
+API requests, it is not 100% optimal (yet). Make sure you are only requesting
+the fields you need and a reasonable level of nested entities – unless you are
+willing to wait.
+
+You can also set up a [local MusicBrainz mirror][mirror] and configure
+graphbrainz to use that with no rate limiting.
+
 ## Schema
 
 See the [GraphQL schema][schema] or the [types][] documentation.
@@ -296,3 +308,5 @@ See the [GraphQL schema][schema] or the [types][] documentation.
 [Relay]: https://facebook.github.io/relay/
 [schema]: docs/schema.md
 [types]: docs/types.md
+[rate limiting]: https://musicbrainz.org/doc/XML_Web_Service/Rate_Limiting
+[mirror]: https://musicbrainz.org/doc/MusicBrainz_Server/Setup
