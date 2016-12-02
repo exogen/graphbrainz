@@ -90,16 +90,6 @@ requests can be made.
   <th align="left">Description</th>
 </thead><tbody>
   <tr>
-    <td valign="top"><strong>node</strong></td>
-    <td valign="top"><a href="#node">Node</a></td>
-    <td>Fetches an object given its ID</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">id</td>
-    <td valign="top"><a href="#id">ID</a>!</td>
-    <td>The ID of an object</td>
-  </tr>
-  <tr>
     <td valign="top"><strong>lookup</strong></td>
     <td valign="top"><a href="#lookupquery">LookupQuery</a></td>
     <td>Perform a lookup of a MusicBrainz entity by its MBID.</td>
@@ -113,6 +103,16 @@ requests can be made.
     <td valign="top"><strong>search</strong></td>
     <td valign="top"><a href="#searchquery">SearchQuery</a></td>
     <td>Search for MusicBrainz entities using Lucene query syntax.</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>node</strong></td>
+    <td valign="top"><a href="#node">Node</a></td>
+    <td>Fetches an object given its ID</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">id</td>
+    <td valign="top"><a href="#id">ID</a>!</td>
+    <td>The ID of an object</td>
   </tr>
 </tbody></table>
 

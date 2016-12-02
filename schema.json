@@ -13,33 +13,6 @@
           "description": "The query root, from which multiple types of MusicBrainz\nrequests can be made.",
           "fields": [
             {
-              "name": "node",
-              "description": "Fetches an object given its ID",
-              "args": [
-                {
-                  "name": "id",
-                  "description": "The ID of an object",
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "ID",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "INTERFACE",
-                "name": "Node",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "lookup",
               "description": "Perform a lookup of a MusicBrainz entity by its MBID.",
               "args": [],
@@ -74,110 +47,39 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "ID",
-          "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INTERFACE",
-          "name": "Node",
-          "description": "An object with an ID",
-          "fields": [
+            },
             {
-              "name": "id",
-              "description": "The id of the object.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
+              "name": "node",
+              "description": "Fetches an object given its ID",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The ID of an object",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
                 }
+              ],
+              "type": {
+                "kind": "INTERFACE",
+                "name": "Node",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             }
           ],
           "inputFields": null,
-          "interfaces": null,
+          "interfaces": [],
           "enumValues": null,
-          "possibleTypes": [
-            {
-              "kind": "OBJECT",
-              "name": "Area",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Artist",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Recording",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Release",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Label",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "ReleaseGroup",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Work",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Event",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Place",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Instrument",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "Series",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "URL",
-              "ofType": null
-            }
-          ]
+          "possibleTypes": null
         },
         {
           "kind": "OBJECT",
@@ -881,6 +783,104 @@
               "ofType": null
             }
           ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INTERFACE",
+          "name": "Node",
+          "description": "An object with an ID",
+          "fields": [
+            {
+              "name": "id",
+              "description": "The id of the object.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": [
+            {
+              "kind": "OBJECT",
+              "name": "Area",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Artist",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Recording",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Release",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Label",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "ReleaseGroup",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Work",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Event",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Place",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Instrument",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Series",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "URL",
+              "ofType": null
+            }
+          ]
+        },
+        {
+          "kind": "SCALAR",
+          "name": "ID",
+          "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },

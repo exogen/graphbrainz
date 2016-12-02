@@ -877,12 +877,6 @@ type PlaceEdge {
 # The query root, from which multiple types of MusicBrainz
 # requests can be made.
 type Query {
-  # Fetches an object given its ID
-  node(
-    # The ID of an object
-    id: ID!
-  ): Node
-
   # Perform a lookup of a MusicBrainz entity by its MBID.
   lookup: LookupQuery
 
@@ -891,6 +885,12 @@ type Query {
 
   # Search for MusicBrainz entities using Lucene query syntax.
   search: SearchQuery
+
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
 }
 
 # A [recording](https://musicbrainz.org/doc/Recording) is an
