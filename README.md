@@ -2,7 +2,7 @@
 
 [![build status](https://travis-ci.org/exogen/graphbrainz.svg?branch=master)](https://travis-ci.org/exogen/graphbrainz)
 [![latest release](https://img.shields.io/npm/v/graphbrainz.svg?label=latest+release)](https://www.npmjs.com/package/graphbrainz)
-[![license](https://img.shields.io/github/license/exogen/graphbrainz.svg)](https://github.com/exogen/graphbrainz/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/exogen/graphbrainz/blob/master/LICENSE)
 
 An [Express][] server and middleware for querying [MusicBrainz][] using
 [GraphQL][].
