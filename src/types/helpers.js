@@ -30,9 +30,9 @@ import { ReleaseGroupConnection } from './release-group'
 import { TagConnection } from './tag'
 import { WorkConnection } from './work'
 import {
-  linkedResolver,
-  relationshipResolver,
-  subqueryResolver,
+  resolveLinked,
+  resolveRelationship,
+  createSubqueryResolver,
   includeRelationships
 } from '../resolvers'
 
@@ -58,7 +58,7 @@ export function toWords (name) {
 export function fieldWithID (name, config = {}) {
   config = {
     type: GraphQLString,
-    resolve: getHyphenated,
+    resolve: resolveHyphenated,
     ...config
   }
   const isPlural = config.type instanceof GraphQLList
@@ -69,7 +69,7 @@ export function fieldWithID (name, config = {}) {
     type: isPlural ? new GraphQLList(MBID) : MBID,
     description: `The MBID${s} associated with the value${s} of the \`${name}\`
 field.`,
-    resolve: getHyphenated
+    resolve: resolveHyphenated
   }
   return {
     [name]: config,
@@ -77,17 +77,17 @@ field.`,
   }
 }
 
-export function getHyphenated (source, args, context, info) {
+export function resolveHyphenated (obj, args, context, info) {
   const name = dashify(info.fieldName)
-  return source[name]
+  return obj[name]
 }
 
-export function getFallback (keys) {
-  return (source) => {
+export function resolveWithFallback (keys) {
+  return (obj) => {
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i]
-      if (key in source) {
-        return source[key]
+      if (key in obj) {
+        return obj[key]
       }
     }
   }
@@ -97,7 +97,7 @@ export const id = globalIdField()
 export const mbid = {
   type: new GraphQLNonNull(MBID),
   description: 'The MBID of the entity.',
-  resolve: source => source.id
+  resolve: entity => entity.id
 }
 export const name = {
   type: GraphQLString,
@@ -108,7 +108,7 @@ export const sortName = {
   description: `The string to use for the purpose of ordering by name (for
 example, by moving articles like ‘the’ to the end or a person’s last name to
 the front).`,
-  resolve: getHyphenated
+  resolve: resolveHyphenated
 }
 export const title = {
   type: GraphQLString,
@@ -122,7 +122,7 @@ export const lifeSpan = {
   type: LifeSpan,
   description: `The begin and end dates of the entity’s existence. Its exact
 meaning depends on the type of entity.`,
-  resolve: getHyphenated
+  resolve: resolveHyphenated
 }
 
 function linkedQuery (connectionType, { args, ...config } = {}) {
@@ -134,7 +134,7 @@ function linkedQuery (connectionType, { args, ...config } = {}) {
       ...forwardConnectionArgs,
       ...args
     },
-    resolve: linkedResolver(),
+    resolve: resolveLinked,
     ...config
   }
 }
@@ -152,7 +152,7 @@ export const relationship = {
       description: 'Filter by the relationship type.'
     })
   },
-  resolve: relationshipResolver()
+  resolve: resolveRelationship
 }
 
 export const relationships = {
@@ -175,16 +175,17 @@ export const relationships = {
     })
   }),
   description: 'Relationships between this entity and other entitites.',
-  resolve: (source, args, { loaders }, info) => {
-    if (source.relations != null) {
-      return source.relations
+  resolve: (entity, args, { loaders }, info) => {
+    let promise
+    if (entity.relations != null) {
+      promise = Promise.resolve(entity)
+    } else {
+      const entityType = toDashed(info.parentType.name)
+      const id = entity.id
+      const params = includeRelationships({}, info)
+      promise = loaders.lookup.load([entityType, id, params])
     }
-    const entityType = toDashed(info.parentType.name)
-    const id = source.id
-    const params = includeRelationships({}, info)
-    return loaders.lookup.load([entityType, id, params]).then(entity => {
-      return entity.relations
-    })
+    return promise.then(entity => entity.relations)
   }
 }
 
@@ -192,13 +193,13 @@ export const aliases = {
   type: new GraphQLList(Alias),
   description: `[Aliases](https://musicbrainz.org/doc/Aliases) are used to store
 alternate names or misspellings.`,
-  resolve: subqueryResolver()
+  resolve: createSubqueryResolver()
 }
 
 export const artistCredit = {
   type: new GraphQLList(ArtistCredit),
   description: 'The main credited artist(s).',
-  resolve: subqueryResolver()
+  resolve: createSubqueryResolver()
 }
 
 export const artists = linkedQuery(ArtistConnection)
@@ -227,7 +228,7 @@ export const releaseGroups = linkedQuery(ReleaseGroupConnection, {
   }
 })
 export const tags = linkedQuery(TagConnection, {
-  resolve: subqueryResolver('tags', (value = [], args) => ({
+  resolve: createSubqueryResolver('tags', (value = [], args) => ({
     totalCount: value.length,
     ...connectionFromArray(value, args)
   }))

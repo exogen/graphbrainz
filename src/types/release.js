@@ -18,7 +18,7 @@ import {
   relationships,
   tags,
   fieldWithID,
-  getHyphenated,
+  resolveHyphenated,
   connectionWithExtras
 } from './helpers'
 
@@ -40,7 +40,7 @@ MusicBrainz as one release.`,
     releaseEvents: {
       type: new GraphQLList(ReleaseEvent),
       description: 'The release events for this release.',
-      resolve: getHyphenated
+      resolve: resolveHyphenated
     },
     date: {
       type: DateType,

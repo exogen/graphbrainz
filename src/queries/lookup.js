@@ -1,5 +1,5 @@
 import { GraphQLObjectType } from 'graphql'
-import { lookupResolver } from '../resolvers'
+import { resolveLookup } from '../resolvers'
 import { mbid, toWords } from '../types/helpers'
 import {
   Area,
@@ -16,13 +16,13 @@ import {
   Work
 } from '../types'
 
-function lookupQuery (entity) {
+function createLookupField (entity) {
   const typeName = toWords(entity.name)
   return {
     type: entity,
     description: `Look up a specific ${typeName} by its MBID.`,
     args: { mbid },
-    resolve: lookupResolver()
+    resolve: resolveLookup
   }
 }
 
@@ -30,22 +30,22 @@ export const LookupQuery = new GraphQLObjectType({
   name: 'LookupQuery',
   description: 'A lookup of an individual MusicBrainz entity by its MBID.',
   fields: {
-    area: lookupQuery(Area),
-    artist: lookupQuery(Artist),
-    event: lookupQuery(Event),
-    instrument: lookupQuery(Instrument),
-    label: lookupQuery(Label),
-    place: lookupQuery(Place),
-    recording: lookupQuery(Recording),
-    release: lookupQuery(Release),
-    releaseGroup: lookupQuery(ReleaseGroup),
-    series: lookupQuery(Series),
-    url: lookupQuery(URL),
-    work: lookupQuery(Work)
+    area: createLookupField(Area),
+    artist: createLookupField(Artist),
+    event: createLookupField(Event),
+    instrument: createLookupField(Instrument),
+    label: createLookupField(Label),
+    place: createLookupField(Place),
+    recording: createLookupField(Recording),
+    release: createLookupField(Release),
+    releaseGroup: createLookupField(ReleaseGroup),
+    series: createLookupField(Series),
+    url: createLookupField(URL),
+    work: createLookupField(Work)
   }
 })
 
-export const lookupField = {
+export const lookup = {
   type: LookupQuery,
   description: 'Perform a lookup of a MusicBrainz entity by its MBID.',
   // We only have work to do once we know what entity types are being requested,

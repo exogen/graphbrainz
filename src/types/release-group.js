@@ -15,7 +15,7 @@ import {
   relationships,
   tags,
   fieldWithID,
-  getHyphenated,
+  resolveHyphenated,
   connectionWithExtras
 } from './helpers'
 
@@ -40,7 +40,7 @@ album – it doesn’t matter how many CDs or editions/versions it had.`,
     firstReleaseDate: {
       type: DateType,
       description: 'The date of the earliest release in the group.',
-      resolve: getHyphenated
+      resolve: resolveHyphenated
     },
     ...fieldWithID('primaryType', {
       type: ReleaseGroupType,

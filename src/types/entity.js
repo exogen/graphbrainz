@@ -1,7 +1,7 @@
 import { GraphQLInterfaceType } from 'graphql'
-import { mbid } from './helpers'
+import { mbid, connectionWithExtras } from './helpers'
 
-export default new GraphQLInterfaceType({
+const Entity = new GraphQLInterfaceType({
   name: 'Entity',
   description: 'An entity in the MusicBrainz schema.',
   resolveType (value) {
@@ -11,3 +11,6 @@ export default new GraphQLInterfaceType({
   },
   fields: () => ({ mbid })
 })
+
+export const EntityConnection = connectionWithExtras(Entity)
+export default Entity

@@ -3,7 +3,7 @@ import Node from './node'
 import Entity from './entity'
 import Area from './area'
 import {
-  getFallback,
+  resolveWithFallback,
   fieldWithID,
   id,
   mbid,
@@ -50,13 +50,13 @@ is often, but not always, its birth/formation country.`
       type: Area,
       description: `The area in which an artist began their career (or where
 were born, if the artist is a person).`,
-      resolve: getFallback(['begin-area', 'begin_area'])
+      resolve: resolveWithFallback(['begin-area', 'begin_area'])
     },
     endArea: {
       type: Area,
       description: `The area in which an artist ended their career (or where
 they died, if the artist is a person).`,
-      resolve: getFallback(['end-area', 'end_area'])
+      resolve: resolveWithFallback(['end-area', 'end_area'])
     },
     lifeSpan,
     ...fieldWithID('gender', {

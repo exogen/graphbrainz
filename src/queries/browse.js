@@ -1,6 +1,6 @@
 import { GraphQLObjectType } from 'graphql'
 import { forwardConnectionArgs } from 'graphql-relay'
-import { browseResolver } from '../resolvers'
+import { resolveBrowse } from '../resolvers'
 import {
   MBID,
   URLString,
@@ -42,7 +42,7 @@ const releaseGroup = {
   description: 'The MBID of a release group to which the entity is linked.'
 }
 
-function browseQuery (connectionType, args) {
+function createBrowseField (connectionType, args) {
   const typeName = toWords(connectionType.name.slice(0, -10))
   return {
     type: connectionType,
@@ -51,7 +51,7 @@ function browseQuery (connectionType, args) {
       ...forwardConnectionArgs,
       ...args
     },
-    resolve: browseResolver()
+    resolve: resolveBrowse
   }
 }
 
@@ -60,10 +60,10 @@ export const BrowseQuery = new GraphQLObjectType({
   description: `A query for all MusicBrainz entities directly linked to another
 entity.`,
   fields: {
-    areas: browseQuery(AreaConnection, {
+    areas: createBrowseField(AreaConnection, {
       collection
     }),
-    artists: browseQuery(ArtistConnection, {
+    artists: createBrowseField(ArtistConnection, {
       area,
       collection,
       recording,
@@ -74,7 +74,7 @@ entity.`,
         description: 'The MBID of a work to which the artist is linked.'
       }
     }),
-    events: browseQuery(EventConnection, {
+    events: createBrowseField(EventConnection, {
       area,
       artist,
       collection,
@@ -83,21 +83,21 @@ entity.`,
         description: 'The MBID of a place to which the event is linked.'
       }
     }),
-    labels: browseQuery(LabelConnection, {
+    labels: createBrowseField(LabelConnection, {
       area,
       collection,
       release
     }),
-    places: browseQuery(PlaceConnection, {
+    places: createBrowseField(PlaceConnection, {
       area,
       collection
     }),
-    recordings: browseQuery(RecordingConnection, {
+    recordings: createBrowseField(RecordingConnection, {
       artist,
       collection,
       release
     }),
-    releases: browseQuery(ReleaseConnection, {
+    releases: createBrowseField(ReleaseConnection, {
       area,
       artist,
       collection,
@@ -117,16 +117,16 @@ release, but is not included in the credits for the release itself.`
       recording,
       releaseGroup
     }),
-    releaseGroups: browseQuery(ReleaseGroupConnection, {
+    releaseGroups: createBrowseField(ReleaseGroupConnection, {
       artist,
       collection,
       release
     }),
-    works: browseQuery(WorkConnection, {
+    works: createBrowseField(WorkConnection, {
       artist,
       collection
     }),
-    urls: browseQuery(URLConnection, {
+    urls: createBrowseField(URLConnection, {
       resource: {
         type: URLString,
         description: 'The web address for which to browse URL entities.'
@@ -135,7 +135,7 @@ release, but is not included in the credits for the release itself.`
   }
 })
 
-export const browseField = {
+export const browse = {
   type: BrowseQuery,
   description: 'Browse all MusicBrainz entities directly linked to another entity.',
   // We only have work to do once we know what entity types are being requested,

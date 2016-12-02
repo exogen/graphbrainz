@@ -8,7 +8,7 @@ import {
 import { DateType } from './scalars'
 import Entity from './entity'
 import {
-  getHyphenated,
+  resolveHyphenated,
   fieldWithID,
   connectionWithExtras
 } from './helpers'
@@ -36,19 +36,19 @@ other and to URLs outside MusicBrainz.`,
     targetType: {
       type: new GraphQLNonNull(GraphQLString),
       description: 'The type of entity on the receiving end of the relationship.',
-      resolve: getHyphenated
+      resolve: resolveHyphenated
     },
     sourceCredit: {
       type: GraphQLString,
       description: `How the source entity was actually credited, if different
 from its main (performance) name.`,
-      resolve: getHyphenated
+      resolve: resolveHyphenated
     },
     targetCredit: {
       type: GraphQLString,
       description: `How the target entity was actually credited, if different
 from its main (performance) name.`,
-      resolve: getHyphenated
+      resolve: resolveHyphenated
     },
     begin: {
       type: DateType,

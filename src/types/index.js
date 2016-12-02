@@ -1,7 +1,7 @@
 export { MBID, DateType, IPI, URLString } from './scalars'
 export { ReleaseGroupType, ReleaseStatus } from './enums'
 export { default as Node } from './node'
-export { default as Entity } from './entity'
+export { default as Entity, EntityConnection } from './entity'
 export { default as Area, AreaConnection } from './area'
 export { default as Artist, ArtistConnection } from './artist'
 export { default as Event, EventConnection } from './event'

@@ -63,111 +63,110 @@ export function includeSubqueries (params, info, fragments = info.fragments) {
   return params
 }
 
-export function lookupResolver () {
-  return (root, { mbid }, { loaders }, info) => {
-    const entityType = toDashed(info.fieldName)
-    let params = includeSubqueries({}, info)
-    params = includeRelationships(params, info)
-    return loaders.lookup.load([entityType, mbid, params])
-  }
+export function resolveLookup (root, { mbid }, { loaders }, info) {
+  const entityType = toDashed(info.fieldName)
+  let params = includeSubqueries({}, info)
+  params = includeRelationships(params, info)
+  return loaders.lookup.load([entityType, mbid, params])
 }
 
-export function browseResolver () {
-  return (source, { first = 25, after, type = [], status = [], ...args }, { loaders }, info) => {
-    const pluralName = toDashed(info.fieldName)
-    const singularName = toSingular(pluralName)
-    let params = {
-      ...args,
-      type,
-      status,
-      limit: first,
-      offset: getOffsetWithDefault(after, -1) + 1
-    }
-    params = includeSubqueries(params, info)
-    params = includeRelationships(params, info, info.fragments)
-    const formatValue = value => value.toLowerCase().replace(/ /g, '')
-    params.type = params.type.map(formatValue)
-    params.status = params.status.map(formatValue)
-    return loaders.browse.load([singularName, params]).then(list => {
-      // Grab the list, offet, and count from the response and use them to build
-      // a Relay connection object.
-      const {
-        [pluralName]: arraySlice,
-        [`${singularName}-offset`]: sliceStart,
-        [`${singularName}-count`]: arrayLength
-      } = list
-      const meta = { sliceStart, arrayLength }
-      return {
-        totalCount: arrayLength,
-        ...connectionFromArraySlice(arraySlice, { first, after }, meta)
-      }
-    })
+export function resolveBrowse (root, {
+  first,
+  after,
+  type = [],
+  status = [],
+  ...args
+}, { loaders }, info) {
+  const pluralName = toDashed(info.fieldName)
+  const singularName = toSingular(pluralName)
+  let params = {
+    ...args,
+    type,
+    status,
+    limit: first,
+    offset: getOffsetWithDefault(after, -1) + 1 || undefined
   }
-}
-
-export function searchResolver () {
-  return (source, { first = 25, after, query, ...args }, { loaders }, info) => {
-    const pluralName = toDashed(info.fieldName)
-    const singularName = toSingular(pluralName)
-    let params = {
-      ...args,
-      limit: first,
-      offset: getOffsetWithDefault(after, -1) + 1
-    }
-    params = includeSubqueries(params, info)
-    return loaders.search.load([singularName, query, params]).then(list => {
-      const {
-        [pluralName]: arraySlice,
-        offset: sliceStart,
-        count: arrayLength
-      } = list
-      const meta = { sliceStart, arrayLength }
-      const connection = {
-        totalCount: arrayLength,
-        ...connectionFromArraySlice(arraySlice, { first, after }, meta)
-      }
-      // Move the `score` field up to the edge object and make sure it's a
-      // number (MusicBrainz returns a string).
-      connection.edges.forEach(edge => {
-        edge.score = parseInt(edge.node.score, 10)
-      })
-      return connection
-    })
-  }
-}
-
-export function relationshipResolver () {
-  return (source, args, context, info) => {
-    const targetType = toDashed(toSingular(info.fieldName)).replace('-', '_')
-    // There's no way to filter these at the API level, so do it here.
-    const relationships = source.filter(rel => {
-      if (rel['target-type'] !== targetType) {
-        return false
-      }
-      if (args.direction != null && rel.direction !== args.direction) {
-        return false
-      }
-      if (args.type != null && rel.type !== args.type) {
-        return false
-      }
-      if (args.typeID != null && rel['type-id'] !== args.typeID) {
-        return false
-      }
-      return true
-    })
+  params = includeSubqueries(params, info)
+  params = includeRelationships(params, info, info.fragments)
+  const formatParam = value => value.toLowerCase().replace(/ /g, '')
+  params.type = params.type.map(formatParam)
+  params.status = params.status.map(formatParam)
+  return loaders.browse.load([singularName, params]).then(list => {
+    // Grab the list, offet, and count from the response and use them to build
+    // a Relay connection object.
+    const {
+      [pluralName]: arraySlice,
+      [`${singularName}-offset`]: sliceStart,
+      [`${singularName}-count`]: arrayLength
+    } = list
+    const meta = { sliceStart, arrayLength }
     return {
-      totalCount: relationships.length,
-      ...connectionFromArray(relationships, args)
+      totalCount: arrayLength,
+      ...connectionFromArraySlice(arraySlice, { first, after }, meta)
     }
+  })
+}
+
+export function resolveSearch (root, {
+  after,
+  first,
+  query,
+  ...args
+}, { loaders }, info) {
+  const pluralName = toDashed(info.fieldName)
+  const singularName = toSingular(pluralName)
+  let params = {
+    ...args,
+    limit: first,
+    offset: getOffsetWithDefault(after, -1) + 1 || undefined
+  }
+  params = includeSubqueries(params, info)
+  return loaders.search.load([singularName, query, params]).then(list => {
+    const {
+      [pluralName]: arraySlice,
+      offset: sliceStart,
+      count: arrayLength
+    } = list
+    const meta = { sliceStart, arrayLength }
+    const connection = {
+      totalCount: arrayLength,
+      ...connectionFromArraySlice(arraySlice, { first, after }, meta)
+    }
+    // Move the `score` field up to the edge object and make sure it's a
+    // number (MusicBrainz returns a string).
+    connection.edges.forEach(edge => { edge.score = +edge.node.score })
+    return connection
+  })
+}
+
+export function resolveRelationship (rels, args, context, info) {
+  const targetType = toDashed(toSingular(info.fieldName)).replace('-', '_')
+  // There's no way to filter these at the API level, so do it here.
+  const matches = rels.filter(rel => {
+    if (rel['target-type'] !== targetType) {
+      return false
+    }
+    if (args.direction != null && rel.direction !== args.direction) {
+      return false
+    }
+    if (args.type != null && rel.type !== args.type) {
+      return false
+    }
+    if (args.typeID != null && rel['type-id'] !== args.typeID) {
+      return false
+    }
+    return true
+  })
+  return {
+    totalCount: matches.length,
+    ...connectionFromArray(matches, args)
   }
 }
 
-export function linkedResolver () {
-  return (source, args, context, info) => {
-    const parentEntity = toDashed(info.parentType.name)
-    args = { ...args, [parentEntity]: source.id }
-    return browseResolver()(source, args, context, info)
-  }
+export function resolveLinked (entity, args, context, info) {
+  const parentEntity = toDashed(info.parentType.name)
+  args = { ...args, [parentEntity]: entity.id }
+  return resolveBrowse(entity, args, context, info)
 }
 
 /**
@@ -175,17 +174,17 @@ export function linkedResolver () {
  * for a particular field that's being requested, make another request to grab
  * it (after making sure it isn't already available).
  */
-export function subqueryResolver (includeValue, handler = value => value) {
-  return (source, args, { loaders }, info) => {
+export function createSubqueryResolver (includeValue, handler = value => value) {
+  return (entity, args, { loaders }, info) => {
     const key = toDashed(info.fieldName)
-    if (key in source || (source._inc && source._inc.indexOf(key) !== -1)) {
-      return handler(source[key], args)
+    let promise
+    if (key in entity || (entity._inc && entity._inc.indexOf(key) >= 0)) {
+      promise = Promise.resolve(entity)
     } else {
-      const { _type: entityType, id } = source
+      const { _type: entityType, id } = entity
       const params = { inc: [includeValue || key] }
-      return loaders.lookup.load([entityType, id, params]).then(entity => {
-        return handler(entity[key], args)
-      })
+      promise = loaders.lookup.load([entityType, id, params])
     }
+    return promise.then(entity => handler(entity[key], args))
   }
 }

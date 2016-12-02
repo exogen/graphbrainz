@@ -1,5 +1,5 @@
 import { GraphQLSchema, GraphQLObjectType } from 'graphql'
-import { lookupField, browseField, searchField } from './queries'
+import { lookup, browse, search } from './queries'
 import { nodeField } from './types/node'
 
 export default new GraphQLSchema({
@@ -8,10 +8,10 @@ export default new GraphQLSchema({
     description: `The query root, from which multiple types of MusicBrainz
 requests can be made.`,
     fields: () => ({
-      node: nodeField,
-      lookup: lookupField,
-      browse: browseField,
-      search: searchField
+      lookup,
+      browse,
+      search,
+      node: nodeField
     })
   })
 })
