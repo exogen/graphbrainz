@@ -46,9 +46,11 @@ function renderObject (type, { skipTitle = false } = {}) {
     console.log(`${type.description}\n`)
   }
   console.log('<table><thead>')
-  console.log('  <th align="left">Field&nbsp;/&nbsp;Argument</th>')
-  console.log('  <th align="left">Type</th>')
-  console.log('  <th align="left">Description</th>')
+  console.log('  <tr>')
+  console.log('    <th align="left">Field&nbsp;/&nbsp;Argument</th>')
+  console.log('    <th align="left">Type</th>')
+  console.log('    <th align="left">Description</th>')
+  console.log('  </tr>')
   console.log('</thead><tbody>')
   type.fields.forEach(field => {
     console.log('  <tr>')

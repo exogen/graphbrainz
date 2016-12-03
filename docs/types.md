@@ -85,9 +85,11 @@ The query root, from which multiple types of MusicBrainz
 requests can be made.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>lookup</strong></td>
@@ -125,9 +127,11 @@ that are mostly used as search help: if a search matches an entity’s alias, th
 entity will be given as a result – even if the actual name wouldn’t be.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>name</strong></td>
@@ -173,9 +177,11 @@ field.</td>
 or settlements (countries, cities, or the like).
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -328,9 +334,11 @@ the codes assigned by ISO to countries and subdivisions.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -355,9 +363,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -386,9 +396,11 @@ photographer, an illustrator, or a poet whose writings are set to music), or
 even a fictional character.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -578,9 +590,11 @@ field.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -609,9 +623,11 @@ artists, with (optionally) their names as credited in the specific release,
 track, etc., and join phrases between them.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>artist</strong></td>
@@ -638,9 +654,11 @@ separate artist names as they appear on the release, track, etc.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -666,9 +684,11 @@ A query for all MusicBrainz entities directly linked to another
 entity.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>areas</strong></td>
@@ -993,9 +1013,11 @@ release, but is not included in the credits for the release itself.</td>
 Geographic coordinates described with latitude and longitude.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>latitude</strong></td>
@@ -1016,9 +1038,11 @@ organised event which people can attend, and is relevant to MusicBrainz.
 Generally this means live performances, like concerts and festivals.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -1107,9 +1131,11 @@ field.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -1134,9 +1160,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -1163,9 +1191,11 @@ devices created or adapted to make musical sounds. Instruments are primarily
 used in relationships between two other entities.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -1239,9 +1269,11 @@ field.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -1266,9 +1298,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -1295,9 +1329,11 @@ these results were found through a search.</td>
 represent a record company.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -1424,9 +1460,11 @@ field.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -1451,9 +1489,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -1479,9 +1519,11 @@ Fields indicating the begin and end date of an entity’s
 lifetime, including whether it has ended (even if the date is unknown).
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>begin</strong></td>
@@ -1505,9 +1547,11 @@ lifetime, including whether it has ended (even if the date is unknown).
 A lookup of an individual MusicBrainz entity by its MBID.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>area</strong></td>
@@ -1636,9 +1680,11 @@ A lookup of an individual MusicBrainz entity by its MBID.
 Information about pagination in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>hasNextPage</strong></td>
@@ -1668,9 +1714,11 @@ A [place](https://musicbrainz.org/doc/Place) is a venue, studio,
 or other place where music is performed, recorded, engineered, etc.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -1775,9 +1823,11 @@ field.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -1802,9 +1852,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -1840,9 +1892,11 @@ stage in the production process before any final mastering but after any editing
 or mixing.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -1953,9 +2007,11 @@ from the lengths of the tracks using it.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -1980,9 +2036,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -2009,9 +2067,11 @@ way to represent all the different ways in which entities are connected to each
 other and to URLs outside MusicBrainz.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>target</strong></td>
@@ -2081,9 +2141,11 @@ field.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -2108,9 +2170,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -2135,9 +2199,11 @@ these results were found through a search.</td>
 Lists of entity relationships for each entity type.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>areas</strong></td>
@@ -2642,9 +2708,11 @@ walk into a store and purchase an album or single, they’re each represented in
 MusicBrainz as one release.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -2825,9 +2893,11 @@ It is not a mark of how good or bad the music itself is – for that, use
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -2852,9 +2922,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -2880,9 +2952,11 @@ Date on which a release was issued in a country/region with a
 particular label, catalog number, barcode, and what release format was used.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>area</strong></td>
@@ -2908,9 +2982,11 @@ or a vinyl record, while a release group embraces the overall concept of an
 album – it doesn’t matter how many CDs or editions/versions it had.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -3041,9 +3117,11 @@ field.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -3068,9 +3146,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -3095,9 +3175,11 @@ these results were found through a search.</td>
 A search for MusicBrainz entities using Lucene query syntax.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>areas</strong></td>
@@ -3339,9 +3421,11 @@ separate release groups, releases, recordings, works or events with a common
 theme.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -3402,9 +3486,11 @@ field.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -3429,9 +3515,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -3458,9 +3546,11 @@ with extra information – for example, the genres that apply to an artist,
 release, or recording.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>name</strong></td>
@@ -3479,9 +3569,11 @@ release, or recording.
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -3506,9 +3598,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -3535,9 +3629,11 @@ external to MusicBrainz, i.e. an official homepage, a site where music can be
 acquired, an entry in another database, etc.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -3566,9 +3662,11 @@ acquired, an entry in another database, etc.
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -3593,9 +3691,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -3622,9 +3722,11 @@ intellectual or artistic creation, which can be expressed in the form of one or
 more audio recordings.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
@@ -3716,9 +3818,11 @@ field.</td>
 A connection to a list of items.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>pageInfo</strong></td>
@@ -3743,9 +3847,11 @@ ignoring pagination.</td>
 An edge in a connection.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>node</strong></td>
@@ -3959,9 +4065,11 @@ A web address.
 An entity in the MusicBrainz schema.
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>mbid</strong></td>
@@ -3975,9 +4083,11 @@ An entity in the MusicBrainz schema.
 An object with an ID
 
 <table><thead>
-  <th align="left">Field&nbsp;/&nbsp;Argument</th>
-  <th align="left">Type</th>
-  <th align="left">Description</th>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
 </thead><tbody>
   <tr>
     <td valign="top"><strong>id</strong></td>
