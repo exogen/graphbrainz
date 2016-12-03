@@ -2,7 +2,7 @@
 
 [![build status](https://travis-ci.org/exogen/graphbrainz.svg?branch=master)](https://travis-ci.org/exogen/graphbrainz)
 [![latest release](https://img.shields.io/npm/v/graphbrainz.svg?label=latest+release)](https://www.npmjs.com/package/graphbrainz)
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/exogen/graphbrainz/blob/master/LICENSE)
+[![license](https://img.shields.io/npm/l/graphbrainz.svg)](https://github.com/exogen/graphbrainz/blob/master/LICENSE)
 
 An [Express][] server and middleware for querying [MusicBrainz][] using
 [GraphQL][].
@@ -285,6 +285,25 @@ schema. The schema was originally designed to be more user-friendly, but in the
 end I decided that being compatible with Relay was a worthwhile feature. I
 agree, it’s ugly.
 
+Don’t forget, though, that you can use [GraphQL aliases][aliases] to rename
+fields to your liking. For example, the following query renames `edges`, `node`,
+and `mbid` to `results`, `releaseGroup`, and `id`, respectively:
+
+```graphql
+query ChristmasAlbums {
+  search {
+    releaseGroups(query: "Christmas") {
+      results: edges {
+        releaseGroup: node {
+          id: mbid
+          title
+        }
+      }
+    }
+  }
+}
+```
+
 **Why does my query take so long?**
 
 It’s likely that your query requires multiple round trips to the MusicBrainz
@@ -314,3 +333,4 @@ See the [GraphQL schema][schema] or the [types][] documentation.
 [types]: docs/types.md
 [rate limiting]: https://musicbrainz.org/doc/XML_Web_Service/Rate_Limiting
 [mirror]: https://musicbrainz.org/doc/MusicBrainz_Server/Setup
+[aliases]: http://graphql.org/learn/queries/#aliases
