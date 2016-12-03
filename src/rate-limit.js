@@ -1,3 +1,5 @@
+const debug = require('debug')('graphbrainz:rate-limit')
+
 export default class RateLimit {
   constructor ({
     limit = 1,
@@ -16,9 +18,17 @@ export default class RateLimit {
     this.timer = null
     this.pendingFlush = false
     this.paused = false
+    this.prevTaskID = null
+  }
+
+  nextTaskID (prevTaskID = this.prevTaskID) {
+    const id = (prevTaskID || 0) + 1
+    this.prevTaskID = id
+    return id
   }
 
   pause () {
+    clearTimeout(this.timer)
     this.paused = true
   }
 
@@ -35,7 +45,9 @@ export default class RateLimit {
     priority = Math.max(0, priority)
     return new Promise((resolve, reject) => {
       const queue = this.queues[priority] = this.queues[priority] || []
-      queue.push({ fn, args, resolve, reject })
+      const id = this.nextTaskID()
+      debug(`Enqueuing task. id=${id} priority=${priority}`)
+      queue.push({ fn, args, resolve, reject, id })
       if (!this.pendingFlush) {
         this.pendingFlush = true
         process.nextTick(() => {
@@ -70,7 +82,7 @@ export default class RateLimit {
     if (this.numPending < this.concurrency && this.periodCapacity > 0) {
       const task = this.dequeue()
       if (task) {
-        const { resolve, reject, fn, args } = task
+        const { resolve, reject, fn, args, id } = task
         if (this.timer == null) {
           const now = Date.now()
           let timeout = this.period
@@ -99,6 +111,7 @@ export default class RateLimit {
           reject(err)
           this.flush()
         }
+        debug(`Running task. id=${id}`)
         fn(...args).then(onResolve, onReject)
         this.flush()
       }

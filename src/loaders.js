@@ -12,7 +12,7 @@ export default function createLoaders (client) {
     max: parseInt(process.env.GRAPHBRAINZ_CACHE_SIZE || 8192, 10),
     maxAge: parseInt(process.env.GRAPHBRAINZ_CACHE_TTL || ONE_DAY, 10),
     dispose (key) {
-      debug(`Removed '${key}' from cache.`)
+      debug(`Removed from cache. key=${key}`)
     }
   })
   // Make the cache Map-like.

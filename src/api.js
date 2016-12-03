@@ -94,7 +94,7 @@ export default class MusicBrainz {
         timeout: this.timeout
       }
 
-      debug(path, info.currentAttempt > 1 ? `(attempt #${info.currentAttempt})` : '')
+      debug(`Sending request. url=${path} attempt=${info.currentAttempt}`)
 
       request(options, (err, response, body) => {
         if (err) {
