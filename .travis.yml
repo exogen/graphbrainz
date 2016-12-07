@@ -2,7 +2,6 @@ language: node_js
 
 node_js:
   - "4"
-  - "5"
   - "6"
 
 # Use container-based Travis infrastructure.
@@ -13,4 +12,7 @@ branches:
     - master
 
 script:
-  - yarn run check
+  - yarn test
+
+after_success:
+  - $(yarn bin)/nyc report --reporter=text-lcov | $(yarn bin)/coveralls
