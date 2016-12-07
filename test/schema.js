@@ -86,6 +86,6 @@ test('schema has a browse query', t => {
     const { releaseGroups } = result.data.browse
     t.true(releaseGroups.totalCount > 0)
     t.true(releaseGroups.edges.length > 0)
-    releaseGroups.edges.forEach(edge => t.truthy(edge.node.title ))
+    releaseGroups.edges.forEach(edge => t.truthy(edge.node.title))
   })
 })
