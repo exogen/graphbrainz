@@ -13,3 +13,6 @@ branches:
 
 script:
   - yarn test
+
+after_success:
+  - $(yarn bin)/nyc report --reporter=text-lcov | $(yarn bin)/coveralls
