@@ -34,6 +34,7 @@ export default class MusicBrainz {
     baseURL = process.env.MUSICBRAINZ_BASE_URL || 'http://musicbrainz.org/ws/2/',
     userAgent = `${pkg.name}/${pkg.version} ` +
       `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
+    extraHeaders = {},
     timeout = 60000,
     // MusicBrainz API requests are limited to an *average* of 1 req/sec.
     // That means if, for example, we only need to make a few API requests to
@@ -56,6 +57,7 @@ export default class MusicBrainz {
   } = {}) {
     this.baseURL = baseURL
     this.userAgent = userAgent
+    this.extraHeaders = extraHeaders
     this.timeout = timeout
     this.limiter = new RateLimit({ limit, period, concurrency })
     this.retryOptions = {
@@ -90,7 +92,7 @@ export default class MusicBrainz {
         qs: { ...params, fmt: 'json' },
         json: true,
         gzip: true,
-        headers: { 'User-Agent': this.userAgent },
+        headers: { 'User-Agent': this.userAgent, ...this.extraHeaders },
         timeout: this.timeout
       }
 
@@ -132,19 +134,19 @@ export default class MusicBrainz {
   }
 
   stringifyParams (params) {
-    if (typeof params.inc === 'object') {
+    if (Array.isArray(params.inc)) {
       params = {
         ...params,
         inc: params.inc.join('+')
       }
     }
-    if (typeof params.type === 'object') {
+    if (Array.isArray(params.type)) {
       params = {
         ...params,
         type: params.type.join('|')
       }
     }
-    if (typeof params.status === 'object') {
+    if (Array.isArray(params.status)) {
       params = {
         ...params,
         status: params.status.join('|')
