@@ -1,22 +1,22 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Wed, 07 Dec 2016 14:15:04 GMT",
+    "date": "Wed, 07 Dec 2016 23:09:35 GMT",
     "content-type": "application/json; charset=utf-8",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "vary": "Accept-Encoding",
     "x-ratelimit-limit": "700",
-    "x-ratelimit-remaining": "559",
-    "x-ratelimit-reset": "1481120105",
+    "x-ratelimit-remaining": "154",
+    "x-ratelimit-reset": "1481152175",
     "server": "Plack::Handler::Starlet",
-    "etag": "W/\"0f2ce1fbd4358ed2ee61c9e461538573\"",
+    "etag": "W/\"141f49e0130d012e9f5ffc328bc55045\"",
     "access-control-allow-origin": "*",
     "content-encoding": "gzip"
   },
-  "url": "http://musicbrainz.org:80/ws/2/release-group?artist=c8da2e40-bd28-4d4e-813a-bd2f51958ba8&fmt=json",
-  "time": 390,
+  "url": "http://musicbrainz.org:80/ws/2/release-group?artist=c8da2e40-bd28-4d4e-813a-bd2f51958ba8&inc=artist-credits&fmt=json",
+  "time": 379,
   "request": {
     "method": "GET",
     "headers": {

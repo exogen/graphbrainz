@@ -76,6 +76,13 @@ test('schema has a browse query', t => {
             node {
               mbid
               title
+              artistCredit {
+                artist {
+                  mbid
+                }
+                name
+                joinPhrase
+              }
             }
           }
         }
