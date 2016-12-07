@@ -39,6 +39,10 @@
     "test:watch": "npm run test:only -- --watch",
     "update-schema": "npm run -s print-schema:json > schema.json"
   },
+  "pre-commit": [
+    "build:docs",
+    "lint"
+  ],
   "keywords": [
     "musicbrainz",
     "graphql",
@@ -92,6 +96,7 @@
     "marked": "^0.3.6",
     "nodemon": "^1.11.0",
     "nyc": "^10.0.0",
+    "pre-commit": "^1.1.3",
     "rimraf": "^2.5.4",
     "sepia": "^2.0.2",
     "snazzy": "^5.0.0",
