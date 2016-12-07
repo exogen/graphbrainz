@@ -40,3 +40,52 @@ test('schema has a lookup query', t => {
     })
   })
 })
+
+test('schema has a search query', t => {
+  const query = `
+    {
+      search {
+        recordings (query: "Burn the Witch") {
+          totalCount
+          edges {
+            score
+            node {
+              mbid
+              title
+            }
+          }
+        }
+      }
+    }
+  `
+  return graphql(schema, query, null, t.context).then(result => {
+    const { recordings } = result.data.search
+    t.true(recordings.totalCount > 0)
+    t.true(recordings.edges.length === 25)
+    recordings.edges.forEach(edge => t.true(edge.score > 0))
+  })
+})
+
+test('schema has a browse query', t => {
+  const query = `
+    {
+      browse {
+        releaseGroups (artist: "c8da2e40-bd28-4d4e-813a-bd2f51958ba8") {
+          totalCount
+          edges {
+            node {
+              mbid
+              title
+            }
+          }
+        }
+      }
+    }
+  `
+  return graphql(schema, query, null, t.context).then(result => {
+    const { releaseGroups } = result.data.browse
+    t.true(releaseGroups.totalCount > 0)
+    t.true(releaseGroups.edges.length > 0)
+    releaseGroups.edges.forEach(edge => t.truthy(edge.node.title ))
+  })
+})

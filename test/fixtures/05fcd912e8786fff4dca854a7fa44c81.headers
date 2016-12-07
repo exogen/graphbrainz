@@ -1,0 +1,29 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "date": "Wed, 07 Dec 2016 14:11:09 GMT",
+    "content-type": "application/json; charset=UTF-8",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "keep-alive": "timeout=15",
+    "vary": "Accept-Encoding",
+    "x-ratelimit-limit": "700",
+    "x-ratelimit-remaining": "623",
+    "x-ratelimit-reset": "1481119871",
+    "last-modified": "Wed, 09 Nov 2016 23:43:24 GMT",
+    "server": "Jetty(9.3.10.v20160621)",
+    "access-control-allow-origin": "*",
+    "content-encoding": "gzip"
+  },
+  "url": "http://musicbrainz.org:80/ws/2/recording?query=Burn%20the%20Witch&fmt=json",
+  "time": 435,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/3.1.0 ( https://github.com/exogen/graphbrainz )",
+      "host": "musicbrainz.org",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json"
+    }
+  }
+}
