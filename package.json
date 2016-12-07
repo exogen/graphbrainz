@@ -26,7 +26,7 @@
     "clean:lib": "rm -rf lib",
     "deploy": "./scripts/deploy.sh",
     "lint": "standard --verbose | snazzy",
-    "prepublish": "npm run clean && npm test && npm run build",
+    "prepublish": "npm run clean && npm run build",
     "print-schema": "babel-node scripts/print-schema.js",
     "print-schema:json": "npm run print-schema -- --json",
     "print-schema:md": "printf '```graphql\\n%s\\n```' \"$(npm run -s print-schema)\"",
