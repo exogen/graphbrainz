@@ -8,11 +8,9 @@ import createLoaders from '../src/loaders'
 
 sepia.fixtureDir(path.join(__dirname, 'fixtures'))
 
-test.beforeEach(t => {
-  const client = new MusicBrainz()
-  const loaders = createLoaders(client)
-  t.context = { client, loaders }
-})
+const client = new MusicBrainz()
+const loaders = createLoaders(client)
+const context = { client, loaders }
 
 test('schema has a lookup query', t => {
   const query = `
@@ -26,7 +24,7 @@ test('schema has a lookup query', t => {
       }
     }
   `
-  return graphql(schema, query, null, t.context).then(result => {
+  return graphql(schema, query, null, context).then(result => {
     t.deepEqual(result, {
       data: {
         lookup: {
@@ -58,7 +56,7 @@ test('schema has a search query', t => {
       }
     }
   `
-  return graphql(schema, query, null, t.context).then(result => {
+  return graphql(schema, query, null, context).then(result => {
     const { recordings } = result.data.search
     t.true(recordings.totalCount > 0)
     t.true(recordings.edges.length === 25)
@@ -89,10 +87,87 @@ test('schema has a browse query', t => {
       }
     }
   `
-  return graphql(schema, query, null, t.context).then(result => {
+  return graphql(schema, query, null, context).then(result => {
     const { releaseGroups } = result.data.browse
     t.true(releaseGroups.totalCount > 0)
     t.true(releaseGroups.edges.length > 0)
     releaseGroups.edges.forEach(edge => t.truthy(edge.node.title))
+  })
+})
+
+test('supports deeply nested queries', t => {
+  const query = `
+    query AppleRecordsMarriages {
+      search {
+        labels(query: "Apple Records", first: 1) {
+          edges {
+            node {
+              name
+              disambiguation
+              country
+              releases(first: 1) {
+                edges {
+                  node {
+                    title
+                    date
+                    artists {
+                      edges {
+                        node {
+                          name
+                          ...bandMembers
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    fragment bandMembers on Artist {
+      relationships {
+        artists(direction: "backward", type: "member of band") {
+          edges {
+            node {
+              type
+              target {
+                ... on Artist {
+                  name
+                  ...marriages
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    fragment marriages on Artist {
+      relationships {
+        artists(type: "married") {
+          edges {
+            node {
+              type
+              direction
+              begin
+              end
+              target {
+                ... on Artist {
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `
+  return graphql(schema, query, null, context).then(result => {
+    const { labels } = result.data.search
+    t.true(labels.edges.length > 0)
+    t.is(labels.edges[0].node.releases.edges.length, 1)
   })
 })

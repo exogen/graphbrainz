@@ -1,22 +1,22 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Thu, 08 Dec 2016 22:10:36 GMT",
-    "content-type": "application/json; charset=UTF-8",
+    "date": "Thu, 08 Dec 2016 22:10:47 GMT",
+    "content-type": "application/json; charset=utf-8",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "vary": "Accept-Encoding",
     "x-ratelimit-limit": "700",
-    "x-ratelimit-remaining": "547",
-    "x-ratelimit-reset": "1481235037",
-    "last-modified": "Wed, 09 Nov 2016 23:43:24 GMT",
-    "server": "Jetty(9.3.10.v20160621)",
+    "x-ratelimit-remaining": "297",
+    "x-ratelimit-reset": "1481235047",
+    "server": "Plack::Handler::Starlet",
+    "etag": "W/\"40e494f99de2f93d29eb00587cf919e8\"",
     "access-control-allow-origin": "*",
     "content-encoding": "gzip"
   },
-  "url": "http://musicbrainz.org:80/ws/2/recording?query=Burn%20the%20Witch&fmt=json",
-  "time": 604,
+  "url": "http://musicbrainz.org:80/ws/2/artist/ba550d0e-adac-4864-b88b-407cab5e76af?inc=artist-rels&fmt=json",
+  "time": 578,
   "request": {
     "method": "GET",
     "headers": {
