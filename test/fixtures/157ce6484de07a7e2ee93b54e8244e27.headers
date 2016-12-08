@@ -1,22 +1,22 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Thu, 08 Dec 2016 22:10:38 GMT",
+    "date": "Thu, 08 Dec 2016 22:32:02 GMT",
     "content-type": "application/json; charset=UTF-8",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "vary": "Accept-Encoding",
     "x-ratelimit-limit": "700",
-    "x-ratelimit-remaining": "679",
-    "x-ratelimit-reset": "1481235039",
-    "last-modified": "Thu, 08 Dec 2016 21:32:00 GMT",
+    "x-ratelimit-remaining": "334",
+    "x-ratelimit-reset": "1481236323",
+    "last-modified": "Thu, 08 Dec 2016 22:03:30 GMT",
     "server": "Jetty(9.3.10.v20160621)",
     "access-control-allow-origin": "*",
     "content-encoding": "gzip"
   },
   "url": "http://musicbrainz.org:80/ws/2/label?limit=1&query=Apple%20Records&fmt=json",
-  "time": 1473,
+  "time": 1539,
   "request": {
     "method": "GET",
     "headers": {

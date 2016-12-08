@@ -21,7 +21,7 @@ export default function createLoaders (client) {
 
   const lookup = new DataLoader(keys => {
     return Promise.all(keys.map(key => {
-      const [ entityType, id, params ] = key
+      const [ entityType, id, params = {} ] = key
       return client.lookup(entityType, id, params).then(entity => {
         if (entity) {
           // Store the entity type so we can determine what type of object this
@@ -39,7 +39,7 @@ export default function createLoaders (client) {
 
   const browse = new DataLoader(keys => {
     return Promise.all(keys.map(key => {
-      const [ entityType, params ] = key
+      const [ entityType, params = {} ] = key
       return client.browse(entityType, params).then(list => {
         list[toPlural(entityType)].forEach(entity => {
           // Store the entity type so we can determine what type of object this
@@ -57,7 +57,7 @@ export default function createLoaders (client) {
 
   const search = new DataLoader(keys => {
     return Promise.all(keys.map(key => {
-      const [ entityType, query, params ] = key
+      const [ entityType, query, params = {} ] = key
       return client.search(entityType, query, params).then(list => {
         list[toPlural(entityType)].forEach(entity => {
           // Store the entity type so we can determine what type of object this

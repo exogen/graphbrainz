@@ -12,6 +12,29 @@ const client = new MusicBrainz()
 const loaders = createLoaders(client)
 const context = { client, loaders }
 
+test('schema has a node field', t => {
+  const query = `
+    {
+      node(id: "UmVsZWFzZUdyb3VwOmUzN2QyNzQwLTQ1MDMtNGUzZi1hYjZkLWU2MjJhMjVlOTY0ZA==") {
+        __typename
+        ... on ReleaseGroup {
+          mbid
+        }
+      }
+    }
+  `
+  return graphql(schema, query, null, context).then(result => {
+    t.deepEqual(result, {
+      data: {
+        node: {
+          __typename: 'ReleaseGroup',
+          mbid: 'e37d2740-4503-4e3f-ab6d-e622a25e964d'
+        }
+      }
+    })
+  })
+})
+
 test('schema has a lookup query', t => {
   const query = `
     {
