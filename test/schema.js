@@ -8,9 +8,15 @@ import createLoaders from '../src/loaders'
 
 sepia.fixtureDir(path.join(__dirname, 'fixtures'))
 
-const client = new MusicBrainz()
-const loaders = createLoaders(client)
-const context = { client, loaders }
+let client
+let loaders
+let context
+
+test.before(t => {
+  client = new MusicBrainz()
+  loaders = createLoaders(client)
+  context = { client, loaders }
+})
 
 test('schema has a node field', t => {
   const query = `
