@@ -67,6 +67,7 @@ You may also be interested in reading the [schema in GraphQL syntax](schema.md).
     <li>[Degrees](#degrees)</li>
     <li>[ID](#id)</li>
     <li>[IPI](#ipi)</li>
+    <li>[ISNI](#isni)</li>
     <li>[Int](#int)</li>
     <li>[Locale](#locale)</li>
     <li>[MBID](#mbid)</li>
@@ -487,6 +488,18 @@ field.</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID associated with the value of the <code>type</code>
 field.</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>ipis</strong></td>
+    <td valign="top">[<a href="#ipi">IPI</a>]</td>
+    <td>List of <a href="https://musicbrainz.org/doc/IPI">Interested Parties Information</a>
+(IPI) codes for the artist.</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>isnis</strong></td>
+    <td valign="top">[<a href="#isni">ISNI</a>]</td>
+    <td>List of <a href="https://musicbrainz.org/doc/ISNI">International Standard Name Identifier</a>
+(ISNI) codes for the artist.</td>
   </tr>
   <tr>
     <td valign="top"><strong>recordings</strong></td>
@@ -1388,8 +1401,8 @@ of the label.</td>
   <tr>
     <td valign="top"><strong>ipis</strong></td>
     <td valign="top">[<a href="#ipi">IPI</a>]</td>
-    <td>List of IPI (interested party information) codes for the
-label.</td>
+    <td>List of <a href="https://musicbrainz.org/doc/IPI">Interested Parties Information</a>
+codes for the label.</td>
   </tr>
   <tr>
     <td valign="top"><strong>type</strong></td>
@@ -3985,9 +3998,15 @@ The `ID` scalar type represents a unique identifier, often used to refetch an ob
 
 ### IPI
 
-An [IPI](https://musicbrainz.org/doc/IPI) (interested party
-information) code is an identifying number assigned by the CISAC database for
-musical rights management.
+An [Interested Parties Information](https://musicbrainz.org/doc/IPI)
+(IPI) code is an identifying number assigned by the CISAC database for musical
+rights management.
+
+### ISNI
+
+The [International Standard Name Identifier](https://musicbrainz.org/doc/ISNI)
+(ISNI) is an ISO standard for uniquely identifying the public identities of
+contributors to media content.
 
 ### Int
 

@@ -463,3 +463,19 @@ test('Releases have an ASIN field', testData,
     const { release } = data.lookup
     t.is(release.asin, 'B01KN6XDS6')
   })
+
+test('Artists have a list of ISNIs and IPIs', testData,
+  `
+    {
+      lookup {
+        artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
+          ipis
+          isnis
+        }
+      }
+    }
+  `, (t, data) => {
+    const { artist } = data.lookup
+    t.deepEqual(artist.ipis, ['00006457004'])
+    t.deepEqual(artist.isnis, ['0000000110273481'])
+  })

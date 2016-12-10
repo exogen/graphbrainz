@@ -80,9 +80,9 @@ export const Duration = createScalar({
 
 export const IPI = createScalar({
   name: 'IPI',
-  description: `An [IPI](https://musicbrainz.org/doc/IPI) (interested party
-information) code is an identifying number assigned by the CISAC database for
-musical rights management.`
+  description: `An [Interested Parties Information](https://musicbrainz.org/doc/IPI)
+(IPI) code is an identifying number assigned by the CISAC database for musical
+rights management.`
 })
 
 export const ISNI = createScalar({
