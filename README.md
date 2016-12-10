@@ -276,6 +276,8 @@ fragment marriages on Artist {
 }
 ```
 
+You can find more example queries in the [schema tests][].
+
 ## Questions
 
 **What’s with the cumbersome `edges`/`node` nesting? Why `first`/`after`
@@ -335,3 +337,4 @@ See the [GraphQL schema][schema] or the [types][] documentation.
 [rate limiting]: https://musicbrainz.org/doc/XML_Web_Service/Rate_Limiting
 [mirror]: https://musicbrainz.org/doc/MusicBrainz_Server/Setup
 [aliases]: http://graphql.org/learn/queries/#aliases
+[schema tests]: tests/schema.js
