@@ -177,6 +177,14 @@ type Artist implements Node, Entity {
   # field.
   typeID: MBID
 
+  # List of [Interested Parties Information](https://musicbrainz.org/doc/IPI)
+  # (IPI) codes for the artist.
+  ipis: [IPI]
+
+  # List of [International Standard Name Identifier](https://musicbrainz.org/doc/ISNI)
+  # (ISNI) codes for the artist.
+  isnis: [ISNI]
+
   # A list of recordings linked to this entity.
   recordings(after: String, first: Int): RecordingConnection
 
@@ -587,10 +595,15 @@ type InstrumentEdge {
   score: Int
 }
 
-# An [IPI](https://musicbrainz.org/doc/IPI) (interested party
-# information) code is an identifying number assigned by the CISAC database for
-# musical rights management.
+# An [Interested Parties Information](https://musicbrainz.org/doc/IPI)
+# (IPI) code is an identifying number assigned by the CISAC database for musical
+# rights management.
 scalar IPI
+
+# The [International Standard Name Identifier](https://musicbrainz.org/doc/ISNI)
+# (ISNI) is an ISO standard for uniquely identifying the public identities of
+# contributors to media content.
+scalar ISNI
 
 # [Labels](https://musicbrainz.org/doc/Label) represent mostly
 # (but not only) imprints. To a lesser extent, a label entity may be created to
@@ -631,8 +644,8 @@ type Label implements Node, Entity {
   # of the label.
   labelCode: Int
 
-  # List of IPI (interested party information) codes for the
-  # label.
+  # List of [Interested Parties Information](https://musicbrainz.org/doc/IPI)
+  # codes for the label.
   ipis: [IPI]
 
   # A type describing the main activity of the label, e.g.

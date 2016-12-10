@@ -52,8 +52,8 @@ of the label.`
     },
     ipis: {
       type: new GraphQLList(IPI),
-      description: `List of IPI (interested party information) codes for the
-label.`
+      description: `List of [Interested Parties Information](https://musicbrainz.org/doc/IPI)
+codes for the label.`
     },
     ...fieldWithID('type', {
       description: `A type describing the main activity of the label, e.g.

@@ -1,7 +1,8 @@
-import { GraphQLObjectType, GraphQLString } from 'graphql/type'
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
 import Node from './node'
 import Entity from './entity'
 import Area from './area'
+import { IPI, ISNI } from './scalars'
 import {
   resolveWithFallback,
   fieldWithID,
@@ -66,6 +67,16 @@ neither. Groups do not have genders.`
     ...fieldWithID('type', {
       description: 'Whether an artist is a person, a group, or something else.'
     }),
+    ipis: {
+      type: new GraphQLList(IPI),
+      description: `List of [Interested Parties Information](https://musicbrainz.org/doc/IPI)
+(IPI) codes for the artist.`
+    },
+    isnis: {
+      type: new GraphQLList(ISNI),
+      description: `List of [International Standard Name Identifier](https://musicbrainz.org/doc/ISNI)
+(ISNI) codes for the artist.`
+    },
     recordings,
     releases,
     releaseGroups,

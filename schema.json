@@ -1472,6 +1472,38 @@
               "deprecationReason": null
             },
             {
+              "name": "ipis",
+              "description": "List of [Interested Parties Information](https://musicbrainz.org/doc/IPI)\n(IPI) codes for the artist.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "IPI",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isnis",
+              "description": "List of [International Standard Name Identifier](https://musicbrainz.org/doc/ISNI)\n(ISNI) codes for the artist.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ISNI",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "recordings",
               "description": "A list of recordings linked to this entity.",
               "args": [
@@ -1758,6 +1790,26 @@
           "kind": "SCALAR",
           "name": "Date",
           "description": "Year, month (optional), and day (optional) in YYYY-MM-DD format.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "IPI",
+          "description": "An [Interested Parties Information](https://musicbrainz.org/doc/IPI)\n(IPI) code is an identifying number assigned by the CISAC database for musical\nrights management.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "ISNI",
+          "description": "The [International Standard Name Identifier](https://musicbrainz.org/doc/ISNI)\n(ISNI) is an ISO standard for uniquely identifying the public identities of\ncontributors to media content.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -3153,7 +3205,7 @@
             },
             {
               "name": "ipis",
-              "description": "List of IPI (interested party information) codes for the\nlabel.",
+              "description": "List of [Interested Parties Information](https://musicbrainz.org/doc/IPI)\ncodes for the label.",
               "args": [],
               "type": {
                 "kind": "LIST",
@@ -3311,16 +3363,6 @@
               "ofType": null
             }
           ],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "IPI",
-          "description": "An [IPI](https://musicbrainz.org/doc/IPI) (interested party\ninformation) code is an identifying number assigned by the CISAC database for\nmusical rights management.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
