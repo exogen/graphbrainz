@@ -337,4 +337,4 @@ See the [GraphQL schema][schema] or the [types][] documentation.
 [rate limiting]: https://musicbrainz.org/doc/XML_Web_Service/Rate_Limiting
 [mirror]: https://musicbrainz.org/doc/MusicBrainz_Server/Setup
 [aliases]: http://graphql.org/learn/queries/#aliases
-[schema tests]: tests/schema.js
+[schema tests]: test/schema.js
