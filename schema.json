@@ -364,13 +364,19 @@
                   "name": "mbid",
                   "description": "The MBID of the entity.",
                   "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "MBID",
-                      "ofType": null
-                    }
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "resource",
+                  "description": "The web address of the URL entity to look up.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "URLString",
+                    "ofType": null
                   },
                   "defaultValue": null
                 }
@@ -1017,7 +1023,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Locale",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1062,6 +1068,16 @@
           ],
           "inputFields": null,
           "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Locale",
+          "description": "Language code, optionally with country and encoding.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -2556,6 +2572,18 @@
               "deprecationReason": null
             },
             {
+              "name": "asin",
+              "description": "The [Amazon Standard Identification Number](https://musicbrainz.org/doc/ASIN)\nof the release.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "ASIN",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "barcode",
               "description": "The [barcode](https://en.wikipedia.org/wiki/Barcode), if the\nrelease has one. The most common types found on releases are 12-digit\n[UPCs](https://en.wikipedia.org/wiki/Universal_Product_Code) and 13-digit\n[EANs](https://en.wikipedia.org/wiki/International_Article_Number).",
               "args": [],
@@ -2867,6 +2895,16 @@
           ],
           "inputFields": null,
           "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "ASIN",
+          "description": "An [Amazon Standard Identification Number](https://musicbrainz.org/doc/ASIN)\n(ASIN) is a 10-character alphanumeric unique identifier assigned by Amazon.com\nand its partners for product identification within the Amazon organization.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -6501,6 +6539,16 @@
           "possibleTypes": null
         },
         {
+          "kind": "SCALAR",
+          "name": "URLString",
+          "description": "A web address.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "OBJECT",
           "name": "URL",
           "description": "A [URL](https://musicbrainz.org/doc/URL) pointing to a resource\nexternal to MusicBrainz, i.e. an official homepage, a site where music can be\nacquired, an entry in another database, etc.",
@@ -6579,16 +6627,6 @@
               "ofType": null
             }
           ],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "URLString",
-          "description": "A web address.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -7088,6 +7126,34 @@
                     "ofType": null
                   },
                   "defaultValue": null
+                },
+                {
+                  "name": "type",
+                  "description": "Filter by one or more release group types.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ReleaseGroupType",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "status",
+                  "description": "Filter by one or more release statuses.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ReleaseStatus",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
                 }
               ],
               "type": {
@@ -7151,6 +7217,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
+                },
+                {
+                  "name": "type",
+                  "description": "Filter by one or more release group types.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ReleaseGroupType",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
                 }
               ],
               "type": {
@@ -7209,49 +7289,6 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "WorkConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "urls",
-              "description": "Browse URL entities linked to the given arguments.",
-              "args": [
-                {
-                  "name": "after",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "resource",
-                  "description": "The web address for which to browse URL entities.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "URLString",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "URLConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -7330,112 +7367,6 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Area",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "cursor",
-              "description": "A cursor for use in pagination",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "score",
-              "description": "The relevancy score (0–100) assigned by the search engine, if\nthese results were found through a search.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "URLConnection",
-          "description": "A connection to a list of items.",
-          "fields": [
-            {
-              "name": "pageInfo",
-              "description": "Information to aid in pagination.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "edges",
-              "description": "A list of edges.",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "URLEdge",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "totalCount",
-              "description": "A count of the total number of items in this connection,\nignoring pagination.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "URLEdge",
-          "description": "An edge in a connection.",
-          "fields": [
-            {
-              "name": "node",
-              "description": "The item at the end of the edge",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "URL",
                 "ofType": null
               },
               "isDeprecated": false,

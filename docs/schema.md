@@ -15,7 +15,7 @@ type Alias {
 
   # The locale (language and/or country) in which the alias is
   # used.
-  locale: String
+  locale: Locale
 
   # Whether this is the main alias for the entity in the
   # specified locale (this could mean the most recent or the most common).
@@ -256,6 +256,11 @@ type ArtistEdge {
   score: Int
 }
 
+# An [Amazon Standard Identification Number](https://musicbrainz.org/doc/ASIN)
+# (ASIN) is a 10-character alphanumeric unique identifier assigned by Amazon.com
+# and its partners for product identification within the Amazon organization.
+scalar ASIN
+
 # A query for all MusicBrainz entities directly linked to another
 # entity.
 type BrowseQuery {
@@ -381,6 +386,12 @@ type BrowseQuery {
 
     # The MBID of a release group to which the entity is linked.
     releaseGroup: MBID
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
+
+    # Filter by one or more release statuses.
+    status: [ReleaseStatus]
   ): ReleaseConnection
 
   # Browse release group entities linked to the given arguments.
@@ -396,6 +407,9 @@ type BrowseQuery {
 
     # The MBID of a release to which the entity is linked.
     release: MBID
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
   ): ReleaseGroupConnection
 
   # Browse work entities linked to the given arguments.
@@ -409,15 +423,6 @@ type BrowseQuery {
     # The MBID of a collection in which the entity is found.
     collection: MBID
   ): WorkConnection
-
-  # Browse URL entities linked to the given arguments.
-  urls(
-    after: String
-    first: Int
-
-    # The web address for which to browse URL entities.
-    resource: URLString
-  ): URLConnection
 }
 
 # Geographic coordinates described with latitude and longitude.
@@ -696,6 +701,9 @@ type LifeSpan {
   ended: Boolean
 }
 
+# Language code, optionally with country and encoding.
+scalar Locale
+
 # A lookup of an individual MusicBrainz entity by its MBID.
 type LookupQuery {
   # Look up a specific area by its MBID.
@@ -761,7 +769,10 @@ type LookupQuery {
   # Look up a specific URL by its MBID.
   url(
     # The MBID of the entity.
-    mbid: MBID!
+    mbid: MBID
+
+    # The web address of the URL entity to look up.
+    resource: URLString
   ): URL
 
   # Look up a specific work by its MBID.
@@ -1305,6 +1316,10 @@ type Release implements Node, Entity {
   # The country in which the release was issued.
   country: String
 
+  # The [Amazon Standard Identification Number](https://musicbrainz.org/doc/ASIN)
+  # of the release.
+  asin: ASIN
+
   # The [barcode](https://en.wikipedia.org/wiki/Barcode), if the
   # release has one. The most common types found on releases are 12-digit
   # [UPCs](https://en.wikipedia.org/wiki/Universal_Product_Code) and 13-digit
@@ -1805,32 +1820,6 @@ type URL implements Node, Entity {
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
-}
-
-# A connection to a list of items.
-type URLConnection {
-  # Information to aid in pagination.
-  pageInfo: PageInfo!
-
-  # A list of edges.
-  edges: [URLEdge]
-
-  # A count of the total number of items in this connection,
-  # ignoring pagination.
-  totalCount: Int
-}
-
-# An edge in a connection.
-type URLEdge {
-  # The item at the end of the edge
-  node: URL
-
-  # A cursor for use in pagination
-  cursor: String!
-
-  # The relevancy score (0–100) assigned by the search engine, if
-  # these results were found through a search.
-  score: Int
 }
 
 # A web address.

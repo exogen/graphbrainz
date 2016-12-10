@@ -52,8 +52,6 @@ You may also be interested in reading the [schema in GraphQL syntax](schema.md).
     <li>[TagConnection](#tagconnection)</li>
     <li>[TagEdge](#tagedge)</li>
     <li>[URL](#url)</li>
-    <li>[URLConnection](#urlconnection)</li>
-    <li>[URLEdge](#urledge)</li>
     <li>[Work](#work)</li>
     <li>[WorkConnection](#workconnection)</li>
     <li>[WorkEdge](#workedge)</li>
@@ -63,12 +61,14 @@ You may also be interested in reading the [schema in GraphQL syntax](schema.md).
     <li>[ReleaseStatus](#releasestatus)</li>
   </ul></li>
   <li>[Scalars](#scalars)<ul>
+    <li>[ASIN](#asin)</li>
     <li>[Boolean](#boolean)</li>
     <li>[Date](#date)</li>
     <li>[Degrees](#degrees)</li>
     <li>[ID](#id)</li>
     <li>[IPI](#ipi)</li>
     <li>[Int](#int)</li>
+    <li>[Locale](#locale)</li>
     <li>[MBID](#mbid)</li>
     <li>[String](#string)</li>
     <li>[Time](#time)</li>
@@ -147,7 +147,7 @@ the front).</td>
   </tr>
   <tr>
     <td valign="top"><strong>locale</strong></td>
-    <td valign="top"><a href="#string">String</a></td>
+    <td valign="top"><a href="#locale">Locale</a></td>
     <td>The locale (language and/or country) in which the alias is
 used.</td>
   </tr>
@@ -932,6 +932,16 @@ release, but is not included in the credits for the release itself.</td>
     <td>The MBID of a release group to which the entity is linked.</td>
   </tr>
   <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
+    <td>Filter by one or more release group types.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">status</td>
+    <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
+    <td>Filter by one or more release statuses.</td>
+  </tr>
+  <tr>
     <td valign="top"><strong>releaseGroups</strong></td>
     <td valign="top"><a href="#releasegroupconnection">ReleaseGroupConnection</a></td>
     <td>Browse release group entities linked to the given arguments.</td>
@@ -962,6 +972,11 @@ release, but is not included in the credits for the release itself.</td>
     <td>The MBID of a release to which the entity is linked.</td>
   </tr>
   <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
+    <td>Filter by one or more release group types.</td>
+  </tr>
+  <tr>
     <td valign="top"><strong>works</strong></td>
     <td valign="top"><a href="#workconnection">WorkConnection</a></td>
     <td>Browse work entities linked to the given arguments.</td>
@@ -985,26 +1000,6 @@ release, but is not included in the credits for the release itself.</td>
     <td align="right" valign="top">collection</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
-  </tr>
-  <tr>
-    <td valign="top"><strong>urls</strong></td>
-    <td valign="top"><a href="#urlconnection">URLConnection</a></td>
-    <td>Browse URL entities linked to the given arguments.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">after</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">first</td>
-    <td valign="top"><a href="#int">Int</a></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">resource</td>
-    <td valign="top"><a href="#urlstring">URLString</a></td>
-    <td>The web address for which to browse URL entities.</td>
   </tr>
 </tbody></table>
 
@@ -1660,8 +1655,13 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
   <tr>
     <td align="right" valign="top">mbid</td>
-    <td valign="top"><a href="#mbid">MBID</a>!</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of the entity.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">resource</td>
+    <td valign="top"><a href="#urlstring">URLString</a></td>
+    <td>The web address of the URL entity to look up.</td>
   </tr>
   <tr>
     <td valign="top"><strong>work</strong></td>
@@ -2763,6 +2763,12 @@ distribution mechanism.</td>
     <td>The country in which the release was issued.</td>
   </tr>
   <tr>
+    <td valign="top"><strong>asin</strong></td>
+    <td valign="top"><a href="#asin">ASIN</a></td>
+    <td>The <a href="https://musicbrainz.org/doc/ASIN">Amazon Standard Identification Number</a>
+of the release.</td>
+  </tr>
+  <tr>
     <td valign="top"><strong>barcode</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>The <a href="https://en.wikipedia.org/wiki/Barcode">barcode</a>, if the
@@ -3657,64 +3663,6 @@ acquired, an entry in another database, etc.
   </tr>
 </tbody></table>
 
-### URLConnection
-
-A connection to a list of items.
-
-<table><thead>
-  <tr>
-    <th align="left">Field&nbsp;/&nbsp;Argument</th>
-    <th align="left">Type</th>
-    <th align="left">Description</th>
-  </tr>
-</thead><tbody>
-  <tr>
-    <td valign="top"><strong>pageInfo</strong></td>
-    <td valign="top"><a href="#pageinfo">PageInfo</a>!</td>
-    <td>Information to aid in pagination.</td>
-  </tr>
-  <tr>
-    <td valign="top"><strong>edges</strong></td>
-    <td valign="top">[<a href="#urledge">URLEdge</a>]</td>
-    <td>A list of edges.</td>
-  </tr>
-  <tr>
-    <td valign="top"><strong>totalCount</strong></td>
-    <td valign="top"><a href="#int">Int</a></td>
-    <td>A count of the total number of items in this connection,
-ignoring pagination.</td>
-  </tr>
-</tbody></table>
-
-### URLEdge
-
-An edge in a connection.
-
-<table><thead>
-  <tr>
-    <th align="left">Field&nbsp;/&nbsp;Argument</th>
-    <th align="left">Type</th>
-    <th align="left">Description</th>
-  </tr>
-</thead><tbody>
-  <tr>
-    <td valign="top"><strong>node</strong></td>
-    <td valign="top"><a href="#url">URL</a></td>
-    <td>The item at the end of the edge</td>
-  </tr>
-  <tr>
-    <td valign="top"><strong>cursor</strong></td>
-    <td valign="top"><a href="#string">String</a>!</td>
-    <td>A cursor for use in pagination</td>
-  </tr>
-  <tr>
-    <td valign="top"><strong>score</strong></td>
-    <td valign="top"><a href="#int">Int</a></td>
-    <td>The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.</td>
-  </tr>
-</tbody></table>
-
 ### Work
 
 A [work](https://musicbrainz.org/doc/Work) is a distinct
@@ -4013,6 +3961,12 @@ translation/transliteration purposes.</td>
 
 ## Scalars
 
+### ASIN
+
+An [Amazon Standard Identification Number](https://musicbrainz.org/doc/ASIN)
+(ASIN) is a 10-character alphanumeric unique identifier assigned by Amazon.com
+and its partners for product identification within the Amazon organization.
+
 ### Boolean
 
 The `Boolean` scalar type represents `true` or `false`.
@@ -4038,6 +3992,10 @@ musical rights management.
 ### Int
 
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+
+### Locale
+
+Language code, optionally with country and encoding.
 
 ### MBID
 
