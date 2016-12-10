@@ -12,8 +12,8 @@
     "yarn.lock"
   ],
   "engines": {
-    "node": ">=4.3.0",
-    "npm": ">=3.8.0"
+    "node": "^4.3.0, ^6.2.0",
+    "npm": "^3.8.0, ^4.0.0"
   },
   "scripts": {
     "build": "npm run build:lib && npm run update-schema && npm run build:docs",
