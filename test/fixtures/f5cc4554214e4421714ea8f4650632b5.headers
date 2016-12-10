@@ -1,0 +1,29 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "date": "Fri, 09 Dec 2016 22:08:27 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "keep-alive": "timeout=15",
+    "vary": "Accept-Encoding",
+    "x-ratelimit-limit": "700",
+    "x-ratelimit-remaining": "287",
+    "x-ratelimit-reset": "1481321304",
+    "server": "Plack::Handler::Starlet",
+    "etag": "W/\"4466cd809101f3b9c834437d95f317ba\"",
+    "access-control-allow-origin": "*",
+    "content-encoding": "gzip"
+  },
+  "url": "http://musicbrainz.org:80/ws/2/artist/65314b12-0e08-43fa-ba33-baaa7b874c15?inc=artist-rels%2Brecording-rels%2Brelease-rels&fmt=json",
+  "time": 3639,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/3.1.1 ( https://github.com/exogen/graphbrainz )",
+      "host": "musicbrainz.org",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json"
+    }
+  }
+}

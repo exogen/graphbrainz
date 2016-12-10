@@ -1,26 +1,26 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Thu, 08 Dec 2016 22:32:10 GMT",
+    "date": "Fri, 09 Dec 2016 21:53:22 GMT",
     "content-type": "application/json; charset=utf-8",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "vary": "Accept-Encoding",
     "x-ratelimit-limit": "700",
-    "x-ratelimit-remaining": "255",
-    "x-ratelimit-reset": "1481236331",
+    "x-ratelimit-remaining": "263",
+    "x-ratelimit-reset": "1481320402",
     "server": "Plack::Handler::Starlet",
-    "etag": "W/\"dbec5286f8302667b6edff5be3352490\"",
+    "etag": "W/\"6594e99cea0327cd0491b879ebeb6baf\"",
     "access-control-allow-origin": "*",
     "content-encoding": "gzip"
   },
   "url": "http://musicbrainz.org:80/ws/2/artist/49a51491-650e-44b3-8085-2f07ac2986dd?inc=artist-rels&fmt=json",
-  "time": 672,
+  "time": 419,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/3.1.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/3.1.1 ( https://github.com/exogen/graphbrainz )",
       "host": "musicbrainz.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"

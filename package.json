@@ -34,8 +34,8 @@
     "start:dev": "nodemon --exec babel-node src/index.js",
     "test": "npm run lint && npm run test:coverage",
     "test:coverage": "cross-env NODE_ENV=test nyc npm run test:only",
-    "test:only": "cross-env VCR_MODE=cache ava",
-    "test:record": "rimraf test/fixtures && npm run test:only -- --serial",
+    "test:only": "cross-env VCR_MODE=playback ava",
+    "test:record": "cross-env VCR_MODE=record ava",
     "test:watch": "npm run test:only -- --watch",
     "update-schema": "npm run -s print-schema:json > schema.json"
   },
@@ -64,7 +64,6 @@
   "license": "MIT",
   "dependencies": {
     "babel-runtime": "^6.18.0",
-    "chalk": "^1.1.3",
     "compression": "^1.6.2",
     "dashify": "^0.2.2",
     "dataloader": "^1.2.0",

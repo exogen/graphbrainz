@@ -63,9 +63,12 @@ export function includeSubqueries (params, info, fragments = info.fragments) {
   return params
 }
 
-export function resolveLookup (root, { mbid }, { loaders }, info) {
+export function resolveLookup (root, { mbid, ...params }, { loaders }, info) {
+  if (!mbid && !params.resource) {
+    throw new Error('Lookups by a field other than MBID must provide: resource')
+  }
   const entityType = toDashed(info.fieldName)
-  let params = includeSubqueries({}, info)
+  params = includeSubqueries(params, info)
   params = includeRelationships(params, info)
   return loaders.lookup.load([entityType, mbid, params])
 }

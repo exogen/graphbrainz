@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
 import Node from './node'
 import Entity from './entity'
-import { DateType } from './scalars'
+import { ASIN, DateType } from './scalars'
 import { ReleaseStatus } from './enums'
 import ReleaseEvent from './release-event'
 import {
@@ -51,6 +51,11 @@ distribution mechanism.`
     country: {
       type: GraphQLString,
       description: 'The country in which the release was issued.'
+    },
+    asin: {
+      type: ASIN,
+      description: `The [Amazon Standard Identification Number](https://musicbrainz.org/doc/ASIN)
+of the release.`
     },
     barcode: {
       type: GraphQLString,

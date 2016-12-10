@@ -1,15 +1,6 @@
-import path from 'path'
 import test from 'ava'
-import sepia from 'sepia'
-import MusicBrainz, { MusicBrainzError } from '../src/api'
-
-sepia.fixtureDir(path.join(__dirname, 'fixtures'))
-
-let client
-
-test.before(t => {
-  client = new MusicBrainz()
-})
+import { MusicBrainzError } from '../src/api'
+import client from './helpers/client'
 
 test('getLookupURL() generates a lookup URL', t => {
   t.is(client.getLookupURL('artist', 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8', {
@@ -37,9 +28,8 @@ test('lookup() sends a lookup query', t => {
 })
 
 test('rejects the promise when the API returns an error', t => {
-  t.throws(
-    client.lookup('artist', '5b11f4ce-a62d-471e-81fc-a69a8278c7da', {
-      inc: ['foobar']
-    }), MusicBrainzError
-  )
+  const req = client.lookup('artist', '5b11f4ce-a62d-471e-81fc-a69a8278c7da', {
+    inc: ['foobar']
+  })
+  return t.throws(req, MusicBrainzError)
 })

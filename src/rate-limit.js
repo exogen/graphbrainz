@@ -17,7 +17,6 @@ export default class RateLimit {
     this.periodCapacity = this.limit
     this.timer = null
     this.pendingFlush = false
-    this.paused = false
     this.prevTaskID = null
   }
 
@@ -25,20 +24,6 @@ export default class RateLimit {
     const id = (prevTaskID || 0) + 1
     this.prevTaskID = id
     return id
-  }
-
-  pause () {
-    clearTimeout(this.timer)
-    this.paused = true
-  }
-
-  unpause () {
-    this.paused = false
-    this.flush()
-  }
-
-  clear () {
-    this.queues.length = 0
   }
 
   enqueue (fn, args, priority = this.defaultPriority) {
@@ -76,9 +61,6 @@ export default class RateLimit {
   }
 
   flush () {
-    if (this.paused) {
-      return
-    }
     if (this.numPending < this.concurrency && this.periodCapacity > 0) {
       const task = this.dequeue()
       if (task) {
@@ -117,38 +99,4 @@ export default class RateLimit {
       }
     }
   }
-}
-
-if (require.main === module) {
-  const t0 = Date.now()
-  const logTime = (...args) => {
-    const t = Date.now()
-    console.log(`[t=${t - t0}]`, ...args)
-  }
-
-  const limiter = new RateLimit({
-    limit: 3,
-    period: 3000,
-    concurrency: 5
-  })
-
-  const fn = (i) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        logTime(`Finished task ${i}`)
-        resolve(i)
-      }, 7000)
-    })
-  }
-
-  limiter.enqueue(fn, [1])
-  limiter.enqueue(fn, [2])
-  limiter.enqueue(fn, [3])
-  limiter.enqueue(fn, [4], 2)
-  limiter.enqueue(fn, [5], 10)
-  limiter.enqueue(fn, [6])
-  limiter.enqueue(fn, [7])
-  limiter.enqueue(fn, [8])
-  limiter.enqueue(fn, [9])
-  limiter.enqueue(fn, [10])
 }

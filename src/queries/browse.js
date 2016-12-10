@@ -3,7 +3,6 @@ import { forwardConnectionArgs } from 'graphql-relay'
 import { resolveBrowse } from '../resolvers'
 import {
   MBID,
-  URLString,
   AreaConnection,
   ArtistConnection,
   EventConnection,
@@ -12,10 +11,9 @@ import {
   RecordingConnection,
   ReleaseConnection,
   ReleaseGroupConnection,
-  URLConnection,
   WorkConnection
 } from '../types'
-import { toWords } from '../types/helpers'
+import { toWords, releaseGroupType, releaseStatus } from '../types/helpers'
 
 const area = {
   type: MBID,
@@ -115,22 +113,19 @@ entity.`,
 release, but is not included in the credits for the release itself.`
       },
       recording,
-      releaseGroup
+      releaseGroup,
+      type: releaseGroupType,
+      status: releaseStatus
     }),
     releaseGroups: createBrowseField(ReleaseGroupConnection, {
       artist,
       collection,
-      release
+      release,
+      type: releaseGroupType
     }),
     works: createBrowseField(WorkConnection, {
       artist,
       collection
-    }),
-    urls: createBrowseField(URLConnection, {
-      resource: {
-        type: URLString,
-        description: 'The web address for which to browse URL entities.'
-      }
     })
   }
 })

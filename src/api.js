@@ -1,7 +1,6 @@
 import request from 'request'
 import retry from 'retry'
 import qs from 'qs'
-import chalk from 'chalk'
 import ExtendableError from 'es6-error'
 import RateLimit from './rate-limit'
 import pkg from '../package.json'
@@ -164,6 +163,9 @@ export default class MusicBrainz {
   }
 
   getLookupURL (entity, id, params) {
+    if (id == null) {
+      return this.getBrowseURL(entity, params)
+    }
     return this.getURL(`${entity}/${id}`, params)
   }
 
@@ -189,20 +191,4 @@ export default class MusicBrainz {
     const url = this.getSearchURL(entity, query, params)
     return this.get(url)
   }
-}
-
-if (require.main === module) {
-  const client = new MusicBrainz()
-  const fn = (id) => {
-    return client.lookup('artist', id).then(artist => {
-      console.log(chalk.green(`Done: ${id} ✔ ${artist.name}`))
-    }).catch(err => {
-      console.log(chalk.red(`Error: ${id} ✘ ${err}`))
-    })
-  }
-  fn('f1106b17-dcbb-45f6-b938-199ccfab50cc')
-  fn('a74b1b7f-71a5-4011-9441-d0b5e4122711')
-  fn('9b5ae4cc-15ae-4f0b-8a4e-8c44e42ba52a')
-  fn('26f77379-968b-4435-b486-fc9acb4590d3')
-  fn('8538e728-ca0b-4321-b7e5-cff6565dd4c0')
 }

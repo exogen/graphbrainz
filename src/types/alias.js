@@ -1,8 +1,8 @@
 import {
   GraphQLObjectType,
-  GraphQLString,
   GraphQLBoolean
 } from 'graphql/type'
+import { Locale } from './scalars'
 import { name, sortName, fieldWithID } from './helpers'
 
 export default new GraphQLObjectType({
@@ -17,7 +17,7 @@ entity will be given as a result – even if the actual name wouldn’t be.`,
     },
     sortName,
     locale: {
-      type: GraphQLString,
+      type: Locale,
       description: `The locale (language and/or country) in which the alias is
 used.`
     },

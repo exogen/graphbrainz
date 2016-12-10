@@ -202,6 +202,16 @@ export const artistCredit = {
   resolve: createSubqueryResolver()
 }
 
+export const releaseGroupType = {
+  type: new GraphQLList(ReleaseGroupType),
+  description: 'Filter by one or more release group types.'
+}
+
+export const releaseStatus = {
+  type: new GraphQLList(ReleaseStatus),
+  description: 'Filter by one or more release statuses.'
+}
+
 export const artists = linkedQuery(ArtistConnection)
 export const events = linkedQuery(EventConnection)
 export const labels = linkedQuery(LabelConnection)
@@ -209,22 +219,13 @@ export const places = linkedQuery(PlaceConnection)
 export const recordings = linkedQuery(RecordingConnection)
 export const releases = linkedQuery(ReleaseConnection, {
   args: {
-    type: {
-      type: new GraphQLList(ReleaseGroupType),
-      description: 'Filter by one or more release group types.'
-    },
-    status: {
-      type: new GraphQLList(ReleaseStatus),
-      description: 'Filter by one or more release statuses.'
-    }
+    type: releaseGroupType,
+    status: releaseStatus
   }
 })
 export const releaseGroups = linkedQuery(ReleaseGroupConnection, {
   args: {
-    type: {
-      type: new GraphQLList(ReleaseGroupType),
-      description: 'Filter by one or more release group types.'
-    }
+    type: releaseGroupType
   }
 })
 export const tags = linkedQuery(TagConnection, {
