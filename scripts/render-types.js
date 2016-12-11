@@ -54,9 +54,15 @@ function renderObject (type, { skipTitle = false } = {}) {
   console.log('</thead><tbody>')
   type.fields.forEach(field => {
     console.log('  <tr>')
-    console.log(`    <td valign="top"><strong>${field.name}</strong></td>`)
+    console.log(`    <td valign="top"><strong>${field.name}</strong> ${field.isDeprecated ? '⚠️' : ''}</td>`)
     console.log(`    <td valign="top">${markdown(renderType(field.type))}</td>`)
-    console.log(`    <td>${markdown(field.description)}</td>`)
+    console.log(`    <td>`)
+    console.log(`      ${markdown(field.description)}`)
+    if (field.isDeprecated) {
+      console.log('      <br/><br/><p>⚠️ <strong>DEPRECATED</strong></p>')
+      console.log(`      <blockquote>${markdown(field.deprecationReason)}</blockquote>`)
+    }
+    console.log('    </td>')
     console.log('  </tr>')
     if (field.args.length) {
       field.args.forEach((arg, i) => {
@@ -129,8 +135,14 @@ enums.forEach(type => {
   console.log('</thead><tbody>')
   type.enumValues.forEach(value => {
     console.log('  <tr>')
-    console.log(`    <td valign="top"><strong>${value.name}</strong></td>`)
-    console.log(`    <td>${markdown(value.description)}</td>`)
+    console.log(`    <td valign="top"><strong>${value.name}</strong> ${value.isDeprecated ? '⚠️' : ''}</td>`)
+    console.log('    <td>')
+    console.log(`      ${markdown(value.description)}`)
+    if (value.isDeprecated) {
+      console.log('      <br/><br/><p>⚠️ <strong>DEPRECATED</strong></p>')
+      console.log(`      <blockquote>${markdown(value.deprecationReason)}</blockquote>`)
+    }
+    console.log('    </td>')
     console.log('  </tr>')
   })
   console.log('</tbody></table>')

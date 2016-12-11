@@ -40,6 +40,7 @@ export function includeSubqueries (params, info, fragments = info.fragments) {
   const subqueryIncludes = {
     aliases: 'aliases',
     artistCredit: 'artist-credits',
+    artistCredits: 'artist-credits',
     tags: 'tags'
   }
   let fields = getFields(info, fragments)
@@ -177,15 +178,15 @@ export function resolveLinked (entity, args, context, info) {
  * for a particular field that's being requested, make another request to grab
  * it (after making sure it isn't already available).
  */
-export function createSubqueryResolver (includeValue, handler = value => value) {
+export function createSubqueryResolver ({ inc, key } = {}, handler = value => value) {
   return (entity, args, { loaders }, info) => {
-    const key = toDashed(info.fieldName)
+    key = key || toDashed(info.fieldName)
     let promise
     if (key in entity || (entity._inc && entity._inc.indexOf(key) >= 0)) {
       promise = Promise.resolve(entity)
     } else {
       const { _type: entityType, id } = entity
-      const params = { inc: [includeValue || key] }
+      const params = { inc: [inc || key] }
       promise = loaders.lookup.load([entityType, id, params])
     }
     return promise.then(entity => handler(entity[key], args))

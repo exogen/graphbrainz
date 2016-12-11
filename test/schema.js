@@ -479,3 +479,59 @@ test('Artists have a list of ISNIs and IPIs', testData,
     t.deepEqual(artist.ipis, ['00006457004'])
     t.deepEqual(artist.isnis, ['0000000110273481'])
   })
+
+test('artistCredits is an alias for artistCredit', testData,
+  `
+    {
+      lookup {
+        recording(mbid: "07649758-09c8-4d70-bc6f-5c37ab36334d") {
+          artistCredit {
+            name
+            joinPhrase
+          }
+          artistCredits {
+            name
+            joinPhrase
+          }
+        }
+        release(mbid: "d5cdb7fd-c7e9-460a-9549-8a369655cc52") {
+          artistCredit {
+            name
+            joinPhrase
+          }
+          artistCredits {
+            name
+            joinPhrase
+          }
+        }
+        releaseGroup(mbid: "53614893-6f25-4519-9cae-b1db904e2887") {
+          artistCredit {
+            name
+            joinPhrase
+          }
+          artistCredits {
+            name
+            joinPhrase
+          }
+        }
+      }
+    }
+  `, (t, data) => {
+    const { recording, release, releaseGroup } = data.lookup
+    t.deepEqual(recording.artistCredit, [
+      { name: 'Holly Golightly', joinPhrase: ' & ' },
+      { name: 'The Brokeoffs', joinPhrase: '' }
+    ])
+    t.deepEqual(recording.artistCredits, recording.artistCredit)
+
+    t.deepEqual(release.artistCredit, [
+      { name: 'Leonard Cohen', joinPhrase: '' }
+    ])
+    t.deepEqual(release.artistCredits, release.artistCredit)
+
+    t.deepEqual(releaseGroup.artistCredit, [
+      { name: 'DJ Muggs', joinPhrase: ' vs. ' },
+      { name: 'Ill Bill', joinPhrase: '' }
+    ])
+    t.deepEqual(releaseGroup.artistCredits, releaseGroup.artistCredit)
+  })

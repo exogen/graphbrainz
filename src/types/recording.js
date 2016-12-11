@@ -8,6 +8,7 @@ import {
   disambiguation,
   aliases,
   artistCredit,
+  artistCredits,
   artists,
   releases,
   relationships,
@@ -37,6 +38,7 @@ or mixing.`,
     disambiguation,
     aliases,
     artistCredit,
+    artistCredits,
     length: {
       type: GraphQLInt,
       description: `An approximation to the length of the recording, calculated

@@ -947,7 +947,10 @@ type Recording implements Node, Entity {
   aliases: [Alias]
 
   # The main credited artist(s).
-  artistCredit: [ArtistCredit]
+  artistCredit: [ArtistCredit] @deprecated(reason: "The `artistCredit` field has been renamed to\\n`artistCredits`, since it is a list of credits and is referred to in the\\nplural form throughout the MusicBrainz documentation. This field is deprecated\\nand will be removed in a major release in the future. Use the equivalent\\n`artistCredits` field.")
+
+  # The main credited artist(s).
+  artistCredits: [ArtistCredit]
 
   # An approximation to the length of the recording, calculated
   # from the lengths of the tracks using it.
@@ -1316,7 +1319,10 @@ type Release implements Node, Entity {
   aliases: [Alias]
 
   # The main credited artist(s).
-  artistCredit: [ArtistCredit]
+  artistCredit: [ArtistCredit] @deprecated(reason: "The `artistCredit` field has been renamed to\\n`artistCredits`, since it is a list of credits and is referred to in the\\nplural form throughout the MusicBrainz documentation. This field is deprecated\\nand will be removed in a major release in the future. Use the equivalent\\n`artistCredits` field.")
+
+  # The main credited artist(s).
+  artistCredits: [ArtistCredit]
 
   # The release events for this release.
   releaseEvents: [ReleaseEvent]
@@ -1444,7 +1450,10 @@ type ReleaseGroup implements Node, Entity {
   aliases: [Alias]
 
   # The main credited artist(s).
-  artistCredit: [ArtistCredit]
+  artistCredit: [ArtistCredit] @deprecated(reason: "The `artistCredit` field has been renamed to\\n`artistCredits`, since it is a list of credits and is referred to in the\\nplural form throughout the MusicBrainz documentation. This field is deprecated\\nand will be removed in a major release in the future. Use the equivalent\\n`artistCredits` field.")
+
+  # The main credited artist(s).
+  artistCredits: [ArtistCredit]
 
   # The date of the earliest release in the group.
   firstReleaseDate: Date

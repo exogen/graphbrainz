@@ -2012,6 +2012,22 @@
                   "ofType": null
                 }
               },
+              "isDeprecated": true,
+              "deprecationReason": "The `artistCredit` field has been renamed to\n`artistCredits`, since it is a list of credits and is referred to in the\nplural form throughout the MusicBrainz documentation. This field is deprecated\nand will be removed in a major release in the future. Use the equivalent\n`artistCredits` field."
+            },
+            {
+              "name": "artistCredits",
+              "description": "The main credited artist(s).",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ArtistCredit",
+                  "ofType": null
+                }
+              },
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -2569,6 +2585,22 @@
             },
             {
               "name": "artistCredit",
+              "description": "The main credited artist(s).",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ArtistCredit",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": true,
+              "deprecationReason": "The `artistCredit` field has been renamed to\n`artistCredits`, since it is a list of credits and is referred to in the\nplural form throughout the MusicBrainz documentation. This field is deprecated\nand will be removed in a major release in the future. Use the equivalent\n`artistCredits` field."
+            },
+            {
+              "name": "artistCredits",
               "description": "The main credited artist(s).",
               "args": [],
               "type": {
@@ -4968,6 +5000,22 @@
             },
             {
               "name": "artistCredit",
+              "description": "The main credited artist(s).",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ArtistCredit",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": true,
+              "deprecationReason": "The `artistCredit` field has been renamed to\n`artistCredits`, since it is a list of credits and is referred to in the\nplural form throughout the MusicBrainz documentation. This field is deprecated\nand will be removed in a major release in the future. Use the equivalent\n`artistCredits` field."
+            },
+            {
+              "name": "artistCredits",
               "description": "The main credited artist(s).",
               "args": [],
               "type": {
