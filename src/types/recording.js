@@ -6,7 +6,7 @@ import {
 } from 'graphql/type'
 import Node from './node'
 import Entity from './entity'
-import { ISRC } from './scalars'
+import { Duration, ISRC } from './scalars'
 import {
   id,
   mbid,
@@ -51,7 +51,7 @@ or mixing.`,
 (ISRCs) for this recording.`
     },
     length: {
-      type: GraphQLInt,
+      type: Duration,
       description: `An approximation to the length of the recording, calculated
 from the lengths of the tracks using it.`
     },
