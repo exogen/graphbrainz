@@ -30,7 +30,7 @@ track, etc.`
       type: GraphQLString,
       description: `Join phrases might include words and/or punctuation to
 separate artist names as they appear on the release, track, etc.`,
-      resolve: data => data['joinphrase']
+      resolve: data => data.joinphrase
     }
   })
 })

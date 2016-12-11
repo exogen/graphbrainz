@@ -55,6 +55,22 @@ export function toWords (name) {
   })
 }
 
+export function resolveHyphenated (obj, args, context, info) {
+  const name = toDashed(info.fieldName)
+  return obj[name]
+}
+
+export function resolveWithFallback (keys) {
+  return (obj) => {
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i]
+      if (key in obj) {
+        return obj[key]
+      }
+    }
+  }
+}
+
 export function fieldWithID (name, config = {}) {
   config = {
     type: GraphQLString,
@@ -74,22 +90,6 @@ field.`,
   return {
     [name]: config,
     [idName]: idConfig
-  }
-}
-
-export function resolveHyphenated (obj, args, context, info) {
-  const name = dashify(info.fieldName)
-  return obj[name]
-}
-
-export function resolveWithFallback (keys) {
-  return (obj) => {
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i]
-      if (key in obj) {
-        return obj[key]
-      }
-    }
   }
 }
 
@@ -196,10 +196,19 @@ alternate names or misspellings.`,
   resolve: createSubqueryResolver()
 }
 
-export const artistCredit = {
+export const artistCredits = {
   type: new GraphQLList(ArtistCredit),
   description: 'The main credited artist(s).',
-  resolve: createSubqueryResolver()
+  resolve: createSubqueryResolver({ key: 'artist-credit' })
+}
+
+export const artistCredit = {
+  ...artistCredits,
+  deprecationReason: `The \`artistCredit\` field has been renamed to
+\`artistCredits\`, since it is a list of credits and is referred to in the
+plural form throughout the MusicBrainz documentation. This field is deprecated
+and will be removed in a major release in the future. Use the equivalent
+\`artistCredits\` field.`
 }
 
 export const releaseGroupType = {
@@ -229,7 +238,7 @@ export const releaseGroups = linkedQuery(ReleaseGroupConnection, {
   }
 })
 export const tags = linkedQuery(TagConnection, {
-  resolve: createSubqueryResolver('tags', (value = [], args) => ({
+  resolve: createSubqueryResolver({}, (value = [], args) => ({
     totalCount: value.length,
     ...connectionFromArray(value, args)
   }))
