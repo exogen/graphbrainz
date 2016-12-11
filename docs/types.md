@@ -2286,11 +2286,11 @@ alternate names or misspellings.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>artistCredit</strong> :warning:</td>
+    <td valign="top"><strong>artistCredit</strong> ⚠️</td>
     <td valign="top">[<a href="#artistcredit">ArtistCredit</a>]</td>
     <td>
       The main credited artist(s).
-      <h5>DEPRECATED</h5>
+      <br/><br/><p>⚠️ <strong>DEPRECATED</strong></p>
       <blockquote>The <code>artistCredit</code> field has been renamed to
 <code>artistCredits</code>, since it is a list of credits and is referred to in the
 plural form throughout the MusicBrainz documentation. This field is deprecated
@@ -3209,11 +3209,11 @@ alternate names or misspellings.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>artistCredit</strong> :warning:</td>
+    <td valign="top"><strong>artistCredit</strong> ⚠️</td>
     <td valign="top">[<a href="#artistcredit">ArtistCredit</a>]</td>
     <td>
       The main credited artist(s).
-      <h5>DEPRECATED</h5>
+      <br/><br/><p>⚠️ <strong>DEPRECATED</strong></p>
       <blockquote>The <code>artistCredit</code> field has been renamed to
 <code>artistCredits</code>, since it is a list of credits and is referred to in the
 plural form throughout the MusicBrainz documentation. This field is deprecated
@@ -3562,11 +3562,11 @@ alternate names or misspellings.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>artistCredit</strong> :warning:</td>
+    <td valign="top"><strong>artistCredit</strong> ⚠️</td>
     <td valign="top">[<a href="#artistcredit">ArtistCredit</a>]</td>
     <td>
       The main credited artist(s).
-      <h5>DEPRECATED</h5>
+      <br/><br/><p>⚠️ <strong>DEPRECATED</strong></p>
       <blockquote>The <code>artistCredit</code> field has been renamed to
 <code>artistCredits</code>, since it is a list of credits and is referred to in the
 plural form throughout the MusicBrainz documentation. This field is deprecated
