@@ -2032,6 +2032,22 @@
               "deprecationReason": null
             },
             {
+              "name": "isrcs",
+              "description": "A list of [International Standard Recording Codes](https://musicbrainz.org/doc/ISRC)\n(ISRCs) for this recording.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ISRC",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "length",
               "description": "An approximation to the length of the recording, calculated\nfrom the lengths of the tracks using it.",
               "args": [],
@@ -2255,6 +2271,16 @@
           ],
           "inputFields": null,
           "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "ISRC",
+          "description": "The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)\n(ISRC) is an identification system for audio and music video recordings. It is\nstandarized by the [IFPI](http://www.ifpi.org/) in ISO 3901:2001 and used by\nIFPI members to assign a unique identifier to every distinct sound recording\nthey release. An ISRC identifies a particular [sound recording](https://musicbrainz.org/doc/Recording),\nnot the song itself. Therefore, different recordings, edits, remixes and\nremasters of the same song will each be assigned their own ISRC. However, note\nthat same recording should carry the same ISRC in all countries/territories.\nSongs are identified by analogous [International Standard Musical Work Codes](https://musicbrainz.org/doc/ISWC)\n(ISWCs).",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -7103,6 +7129,16 @@
                     "ofType": null
                   },
                   "defaultValue": null
+                },
+                {
+                  "name": "isrc",
+                  "description": "The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)\n(ISRC) of the recording.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "ISRC",
+                    "ofType": null
+                  },
+                  "defaultValue": null
                 }
               ],
               "type": {
@@ -7244,6 +7280,16 @@
                     }
                   },
                   "defaultValue": null
+                },
+                {
+                  "name": "discID",
+                  "description": "A [disc ID](https://musicbrainz.org/doc/Disc_ID)\nassociated with the release.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "DiscID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
                 }
               ],
               "type": {
@@ -7374,6 +7420,16 @@
                     "ofType": null
                   },
                   "defaultValue": null
+                },
+                {
+                  "name": "iswc",
+                  "description": "The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)\n(ISWC) of the work.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "ISWC",
+                    "ofType": null
+                  },
+                  "defaultValue": null
                 }
               ],
               "type": {
@@ -7493,6 +7549,26 @@
           ],
           "inputFields": null,
           "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "DiscID",
+          "description": "[Disc ID](https://musicbrainz.org/doc/Disc_ID) is the code\nnumber which MusicBrainz uses to link a physical CD to a [release](https://musicbrainz.org/doc/Release)\nlisting.\n\nA release may have any number of disc IDs, and a disc ID may be linked to\nmultiple releases. This is because disc ID calculation involves a hash of the\nframe offsets of the CD tracks.\n\nDifferent pressing of a CD often have slightly different frame offsets, and\nhence different disc IDs.\n\nConversely, two different CDs may happen to have exactly the same set of frame\noffsets and hence the same disc ID.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "ISWC",
+          "description": "The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)\n(ISWC) is an ISO standard similar to ISBNs for identifying musical works /\ncompositions.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },

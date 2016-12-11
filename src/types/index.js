@@ -1,4 +1,4 @@
-export { MBID, DateType, IPI, URLString } from './scalars'
+export { DateType, DiscID, IPI, ISRC, ISWC, MBID, URLString } from './scalars'
 export { ReleaseGroupType, ReleaseStatus } from './enums'
 export { default as Node } from './node'
 export { default as Entity, EntityConnection } from './entity'
