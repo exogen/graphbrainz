@@ -65,9 +65,12 @@ You may also be interested in reading the [schema in GraphQL syntax](schema.md).
     <li>[Boolean](#boolean)</li>
     <li>[Date](#date)</li>
     <li>[Degrees](#degrees)</li>
+    <li>[DiscID](#discid)</li>
     <li>[ID](#id)</li>
     <li>[IPI](#ipi)</li>
     <li>[ISNI](#isni)</li>
+    <li>[ISRC](#isrc)</li>
+    <li>[ISWC](#iswc)</li>
     <li>[Int](#int)</li>
     <li>[Locale](#locale)</li>
     <li>[MBID](#mbid)</li>
@@ -1025,6 +1028,12 @@ entity.
     <td>The MBID of a release to which the entity is linked.</td>
   </tr>
   <tr>
+    <td align="right" valign="top">isrc</td>
+    <td valign="top"><a href="#isrc">ISRC</a></td>
+    <td>The <a href="https://musicbrainz.org/doc/ISRC">International Standard Recording Code</a>
+(ISRC) of the recording.</td>
+  </tr>
+  <tr>
     <td valign="top"><strong>releases</strong> </td>
     <td valign="top"><a href="#releaseconnection">ReleaseConnection</a></td>
     <td>
@@ -1093,6 +1102,12 @@ release, but is not included in the credits for the release itself.</td>
     <td>Filter by one or more release statuses.</td>
   </tr>
   <tr>
+    <td align="right" valign="top">discID</td>
+    <td valign="top"><a href="#discid">DiscID</a></td>
+    <td>A <a href="https://musicbrainz.org/doc/Disc_ID">disc ID</a>
+associated with the release.</td>
+  </tr>
+  <tr>
     <td valign="top"><strong>releaseGroups</strong> </td>
     <td valign="top"><a href="#releasegroupconnection">ReleaseGroupConnection</a></td>
     <td>
@@ -1155,6 +1170,12 @@ release, but is not included in the credits for the release itself.</td>
     <td align="right" valign="top">collection</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a collection in which the entity is found.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">iswc</td>
+    <td valign="top"><a href="#iswc">ISWC</a></td>
+    <td>The <a href="https://musicbrainz.org/doc/ISWC">International Standard Musical Work Code</a>
+(ISWC) of the work.</td>
   </tr>
 </tbody></table>
 
@@ -2303,6 +2324,14 @@ and will be removed in a major release in the future. Use the equivalent
     <td valign="top">[<a href="#artistcredit">ArtistCredit</a>]</td>
     <td>
       The main credited artist(s).
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>isrcs</strong> </td>
+    <td valign="top">[<a href="#isrc">ISRC</a>]</td>
+    <td>
+      A list of <a href="https://musicbrainz.org/doc/ISRC">International Standard Recording Codes</a>
+(ISRCs) for this recording.
     </td>
   </tr>
   <tr>
@@ -4715,6 +4744,22 @@ Year, month (optional), and day (optional) in YYYY-MM-DD format.
 
 Decimal degrees, used for latitude and longitude.
 
+### DiscID
+
+[Disc ID](https://musicbrainz.org/doc/Disc_ID) is the code
+number which MusicBrainz uses to link a physical CD to a [release](https://musicbrainz.org/doc/Release)
+listing.
+
+A release may have any number of disc IDs, and a disc ID may be linked to
+multiple releases. This is because disc ID calculation involves a hash of the
+frame offsets of the CD tracks.
+
+Different pressing of a CD often have slightly different frame offsets, and
+hence different disc IDs.
+
+Conversely, two different CDs may happen to have exactly the same set of frame
+offsets and hence the same disc ID.
+
 ### ID
 
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -4730,6 +4775,25 @@ rights management.
 The [International Standard Name Identifier](https://musicbrainz.org/doc/ISNI)
 (ISNI) is an ISO standard for uniquely identifying the public identities of
 contributors to media content.
+
+### ISRC
+
+The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
+(ISRC) is an identification system for audio and music video recordings. It is
+standarized by the [IFPI](http://www.ifpi.org/) in ISO 3901:2001 and used by
+IFPI members to assign a unique identifier to every distinct sound recording
+they release. An ISRC identifies a particular [sound recording](https://musicbrainz.org/doc/Recording),
+not the song itself. Therefore, different recordings, edits, remixes and
+remasters of the same song will each be assigned their own ISRC. However, note
+that same recording should carry the same ISRC in all countries/territories.
+Songs are identified by analogous [International Standard Musical Work Codes](https://musicbrainz.org/doc/ISWC)
+(ISWCs).
+
+### ISWC
+
+The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)
+(ISWC) is an ISO standard similar to ISBNs for identifying musical works /
+compositions.
 
 ### Int
 

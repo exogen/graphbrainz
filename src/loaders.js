@@ -28,6 +28,22 @@ export default function createLoaders (client) {
           // is elsewhere in the code.
           entity._type = entityType
           entity._inc = params.inc
+          if (entityType === 'discid' && entity.releases) {
+            entity.releases.forEach(release => {
+              release._type = 'release'
+              release._inc = params.inc
+            })
+          } else if (entityType === 'isrc' && entity.recordings) {
+            entity.recordings.forEach(recording => {
+              recording._type = 'recording'
+              recording._inc = params.inc
+            })
+          } else if (entityType === 'iswc' && entity.works) {
+            entity.works.forEach(work => {
+              work._type = 'work'
+              work._inc = params.inc
+            })
+          }
         }
         return entity
       })

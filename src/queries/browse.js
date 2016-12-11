@@ -6,6 +6,9 @@ import {
   AreaConnection,
   ArtistConnection,
   EventConnection,
+  DiscID,
+  ISRC,
+  ISWC,
   LabelConnection,
   PlaceConnection,
   RecordingConnection,
@@ -93,7 +96,12 @@ entity.`,
     recordings: createBrowseField(RecordingConnection, {
       artist,
       collection,
-      release
+      release,
+      isrc: {
+        type: ISRC,
+        description: `The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
+(ISRC) of the recording.`
+      }
     }),
     releases: createBrowseField(ReleaseConnection, {
       area,
@@ -115,7 +123,12 @@ release, but is not included in the credits for the release itself.`
       recording,
       releaseGroup,
       type: releaseGroupType,
-      status: releaseStatus
+      status: releaseStatus,
+      discID: {
+        type: DiscID,
+        description: `A [disc ID](https://musicbrainz.org/doc/Disc_ID)
+associated with the release.`
+      }
     }),
     releaseGroups: createBrowseField(ReleaseGroupConnection, {
       artist,
@@ -125,7 +138,12 @@ release, but is not included in the credits for the release itself.`
     }),
     works: createBrowseField(WorkConnection, {
       artist,
-      collection
+      collection,
+      iswc: {
+        type: ISWC,
+        description: `The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)
+(ISWC) of the work.`
+      }
     })
   }
 })

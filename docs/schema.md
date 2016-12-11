@@ -363,6 +363,10 @@ type BrowseQuery {
 
     # The MBID of a release to which the entity is linked.
     release: MBID
+
+    # The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
+    # (ISRC) of the recording.
+    isrc: ISRC
   ): RecordingConnection
 
   # Browse release entities linked to the given arguments.
@@ -400,6 +404,10 @@ type BrowseQuery {
 
     # Filter by one or more release statuses.
     status: [ReleaseStatus]
+
+    # A [disc ID](https://musicbrainz.org/doc/Disc_ID)
+    # associated with the release.
+    discID: DiscID
   ): ReleaseConnection
 
   # Browse release group entities linked to the given arguments.
@@ -430,6 +438,10 @@ type BrowseQuery {
 
     # The MBID of a collection in which the entity is found.
     collection: MBID
+
+    # The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)
+    # (ISWC) of the work.
+    iswc: ISWC
   ): WorkConnection
 }
 
@@ -447,6 +459,21 @@ scalar Date
 
 # Decimal degrees, used for latitude and longitude.
 scalar Degrees
+
+# [Disc ID](https://musicbrainz.org/doc/Disc_ID) is the code
+# number which MusicBrainz uses to link a physical CD to a [release](https://musicbrainz.org/doc/Release)
+# listing.
+#
+# A release may have any number of disc IDs, and a disc ID may be linked to
+# multiple releases. This is because disc ID calculation involves a hash of the
+# frame offsets of the CD tracks.
+#
+# Different pressing of a CD often have slightly different frame offsets, and
+# hence different disc IDs.
+#
+# Conversely, two different CDs may happen to have exactly the same set of frame
+# offsets and hence the same disc ID.
+scalar DiscID
 
 # An entity in the MusicBrainz schema.
 interface Entity {
@@ -604,6 +631,23 @@ scalar IPI
 # (ISNI) is an ISO standard for uniquely identifying the public identities of
 # contributors to media content.
 scalar ISNI
+
+# The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
+# (ISRC) is an identification system for audio and music video recordings. It is
+# standarized by the [IFPI](http://www.ifpi.org/) in ISO 3901:2001 and used by
+# IFPI members to assign a unique identifier to every distinct sound recording
+# they release. An ISRC identifies a particular [sound recording](https://musicbrainz.org/doc/Recording),
+# not the song itself. Therefore, different recordings, edits, remixes and
+# remasters of the same song will each be assigned their own ISRC. However, note
+# that same recording should carry the same ISRC in all countries/territories.
+# Songs are identified by analogous [International Standard Musical Work Codes](https://musicbrainz.org/doc/ISWC)
+# (ISWCs).
+scalar ISRC
+
+# The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)
+# (ISWC) is an ISO standard similar to ISBNs for identifying musical works /
+# compositions.
+scalar ISWC
 
 # [Labels](https://musicbrainz.org/doc/Label) represent mostly
 # (but not only) imprints. To a lesser extent, a label entity may be created to
@@ -951,6 +995,10 @@ type Recording implements Node, Entity {
 
   # The main credited artist(s).
   artistCredits: [ArtistCredit]
+
+  # A list of [International Standard Recording Codes](https://musicbrainz.org/doc/ISRC)
+  # (ISRCs) for this recording.
+  isrcs: [ISRC]
 
   # An approximation to the length of the recording, calculated
   # from the lengths of the tracks using it.

@@ -514,3 +514,68 @@ test('artistCredits is an alias for artistCredit', testData, `
   ])
   t.deepEqual(releaseGroup.artistCredits, releaseGroup.artistCredit)
 })
+
+test('Recordings can be browsed by isrc', testData, `
+  {
+    browse {
+      recordings(isrc: "USSUB0200002") {
+        totalCount
+        edges {
+          node {
+            title
+            isrcs
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const recordings = data.browse.recordings.edges.map(edge => edge.node)
+  t.is(data.browse.recordings.totalCount, 1)
+  t.deepEqual(recordings, [
+    { title: 'About a Girl', isrcs: ['USSUB0200002', 'USUG10200084'] }
+  ])
+})
+
+test('Releases can be browsed by discID', testData, `
+  {
+    browse {
+      releases(discID: "XzPS7vW.HPHsYemQh0HBUGr8vuU-") {
+        totalCount
+        edges {
+          node {
+            mbid
+            title
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const releases = data.browse.releases.edges.map(edge => edge.node)
+  t.true(data.browse.releases.totalCount >= 2)
+  t.true(releases.some(release => release.mbid === '5a6e5ad7-c2bd-3484-a20e-121bf981c883'))
+  t.true(releases.some(release => release.mbid === '96f6f90e-d831-4f37-bf72-ce2982e459fb'))
+})
+
+test('Works can be browsed by iswc', testData, `
+  {
+    browse {
+      works(iswc: "T-900.755.682-3") {
+        totalCount
+        edges {
+          node {
+            title
+            iswcs
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const works = data.browse.works.edges.map(edge => edge.node)
+  t.is(data.browse.works.totalCount, 1)
+  t.deepEqual(works, [
+    { title: 'Song of the French Partisan', iswcs: ['T-900.755.682-3'] }
+  ])
+})

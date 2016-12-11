@@ -1,6 +1,12 @@
-import { GraphQLObjectType, GraphQLInt, GraphQLBoolean } from 'graphql/type'
+import {
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLInt,
+  GraphQLBoolean
+} from 'graphql/type'
 import Node from './node'
 import Entity from './entity'
+import { ISRC } from './scalars'
 import {
   id,
   mbid,
@@ -39,6 +45,11 @@ or mixing.`,
     aliases,
     artistCredit,
     artistCredits,
+    isrcs: {
+      type: new GraphQLList(ISRC),
+      description: `A list of [International Standard Recording Codes](https://musicbrainz.org/doc/ISRC)
+(ISRCs) for this recording.`
+    },
     length: {
       type: GraphQLInt,
       description: `An approximation to the length of the recording, calculated

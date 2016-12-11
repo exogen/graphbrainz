@@ -41,6 +41,7 @@ export function includeSubqueries (params, info, fragments = info.fragments) {
     aliases: 'aliases',
     artistCredit: 'artist-credits',
     artistCredits: 'artist-credits',
+    isrcs: 'isrcs',
     tags: 'tags'
   }
   let fields = getFields(info, fragments)
@@ -79,6 +80,9 @@ export function resolveBrowse (root, {
   after,
   type = [],
   status = [],
+  discID,
+  isrc,
+  iswc,
   ...args
 }, { loaders }, info) {
   const pluralName = toDashed(info.fieldName)
@@ -95,13 +99,23 @@ export function resolveBrowse (root, {
   const formatParam = value => value.toLowerCase().replace(/ /g, '')
   params.type = params.type.map(formatParam)
   params.status = params.status.map(formatParam)
-  return loaders.browse.load([singularName, params]).then(list => {
+  let request
+  if (discID) {
+    request = loaders.lookup.load(['discid', discID, params])
+  } else if (isrc) {
+    request = loaders.lookup.load(['isrc', isrc, params])
+  } else if (iswc) {
+    request = loaders.lookup.load(['iswc', iswc, params])
+  } else {
+    request = loaders.browse.load([singularName, params])
+  }
+  return request.then(list => {
     // Grab the list, offet, and count from the response and use them to build
     // a Relay connection object.
     const {
       [pluralName]: arraySlice,
-      [`${singularName}-offset`]: sliceStart,
-      [`${singularName}-count`]: arrayLength
+      [`${singularName}-offset`]: sliceStart = 0,
+      [`${singularName}-count`]: arrayLength = arraySlice.length
     } = list
     const meta = { sliceStart, arrayLength }
     return {
