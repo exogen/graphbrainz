@@ -18,6 +18,7 @@ import { MBID } from './scalars'
 import { ReleaseGroupType, ReleaseStatus } from './enums'
 import Alias from './alias'
 import ArtistCredit from './artist-credit'
+import { AreaConnection } from './area'
 import { ArtistConnection } from './artist'
 import { EventConnection } from './event'
 import { LabelConnection } from './label'
@@ -221,6 +222,7 @@ export const releaseStatus = {
   description: 'Filter by one or more release statuses.'
 }
 
+export const areas = linkedQuery(AreaConnection)
 export const artists = linkedQuery(ArtistConnection)
 export const events = linkedQuery(EventConnection)
 export const labels = linkedQuery(LabelConnection)

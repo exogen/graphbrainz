@@ -4,6 +4,7 @@ import { mbid, toWords } from '../types/helpers'
 import {
   Area,
   Artist,
+  Collection,
   Event,
   Instrument,
   Label,
@@ -34,6 +35,7 @@ export const LookupQuery = new GraphQLObjectType({
   fields: {
     area: createLookupField(Area),
     artist: createLookupField(Artist),
+    collection: createLookupField(Collection),
     event: createLookupField(Event),
     instrument: createLookupField(Instrument),
     label: createLookupField(Label),

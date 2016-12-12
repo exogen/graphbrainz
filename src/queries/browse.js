@@ -1,10 +1,11 @@
-import { GraphQLObjectType } from 'graphql'
+import { GraphQLObjectType, GraphQLString } from 'graphql'
 import { forwardConnectionArgs } from 'graphql-relay'
 import { resolveBrowse } from '../resolvers'
 import {
   MBID,
   AreaConnection,
   ArtistConnection,
+  CollectionConnection,
   EventConnection,
   DiscID,
   ISRC,
@@ -30,6 +31,18 @@ const collection = {
   type: MBID,
   description: 'The MBID of a collection in which the entity is found.'
 }
+const event = {
+  type: MBID,
+  description: 'The MBID of an event to which the entity is linked.'
+}
+const label = {
+  type: MBID,
+  description: 'The MBID of a label to which the entity is linked.'
+}
+const place = {
+  type: MBID,
+  description: 'The MBID of a place to which the entity is linked.'
+}
 const recording = {
   type: MBID,
   description: 'The MBID of a recording to which the entity is linked.'
@@ -41,6 +54,10 @@ const release = {
 const releaseGroup = {
   type: MBID,
   description: 'The MBID of a release group to which the entity is linked.'
+}
+const work = {
+  type: MBID,
+  description: 'The MBID of a work to which the entity is linked.'
 }
 
 function createBrowseField (connectionType, args) {
@@ -70,19 +87,28 @@ entity.`,
       recording,
       release,
       releaseGroup,
-      work: {
-        type: MBID,
-        description: 'The MBID of a work to which the artist is linked.'
-      }
+      work
+    }),
+    collections: createBrowseField(CollectionConnection, {
+      area,
+      artist,
+      editor: {
+        type: GraphQLString,
+        description: 'The username of the editor who created the collection.'
+      },
+      event,
+      label,
+      place,
+      recording,
+      release,
+      releaseGroup,
+      work
     }),
     events: createBrowseField(EventConnection, {
       area,
       artist,
       collection,
-      place: {
-        type: MBID,
-        description: 'The MBID of a place to which the event is linked.'
-      }
+      place
     }),
     labels: createBrowseField(LabelConnection, {
       area,
@@ -107,10 +133,7 @@ entity.`,
       area,
       artist,
       collection,
-      label: {
-        type: MBID,
-        description: 'The MBID of a label to which the release is linked.'
-      },
+      label,
       track: {
         type: MBID,
         description: 'The MBID of a track that is included in the release.'
