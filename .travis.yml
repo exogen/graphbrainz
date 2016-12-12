@@ -16,3 +16,4 @@ script:
 
 after_success:
   - $(yarn bin)/nyc report --reporter=text-lcov | $(yarn bin)/coveralls
+  - bash <(curl -s https://codecov.io/bash)

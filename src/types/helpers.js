@@ -227,7 +227,9 @@ export const releaseStatus = {
 
 export const areas = linkedQuery(AreaConnection)
 export const artists = linkedQuery(ArtistConnection)
-export const collections = linkedQuery(CollectionConnection)
+export const collections = linkedQuery(CollectionConnection, {
+  description: 'A list of collections containing this entity.'
+})
 export const events = linkedQuery(EventConnection)
 export const instruments = linkedQuery(InstrumentConnection)
 export const labels = linkedQuery(LabelConnection)
