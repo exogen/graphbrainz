@@ -685,3 +685,37 @@ test('entities have a collections field', testData, `
   t.true(release.collections.edges.length > 0)
   t.true(artist.collections.edges.length > 0)
 })
+
+test('Releases support a list of media', testData, `
+  {
+    lookup {
+      release(mbid: "a4864e94-6d75-4ade-bc93-0dabf3521453") {
+        media {
+          title
+          format
+          formatID
+          position
+          trackCount
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { release } = data.lookup
+  t.deepEqual(release.media, [
+    {
+      title: 'Left',
+      format: 'CD',
+      formatID: '9712d52a-4509-3d4b-a1a2-67c88c643e31',
+      position: 1,
+      trackCount: 12
+    },
+    {
+      title: 'Right',
+      format: 'CD',
+      formatID: '9712d52a-4509-3d4b-a1a2-67c88c643e31',
+      position: 2,
+      trackCount: 11
+    }
+  ])
+})

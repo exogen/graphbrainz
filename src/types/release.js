@@ -2,6 +2,7 @@ import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
 import Node from './node'
 import Entity from './entity'
 import { ASIN, DateType } from './scalars'
+import Media from './media'
 import { ReleaseStatus } from './enums'
 import ReleaseEvent from './release-event'
 import {
@@ -81,6 +82,10 @@ information.`
       description: `Data quality indicates how good the data for a release is.
 It is not a mark of how good or bad the music itself is – for that, use
 [ratings](https://musicbrainz.org/doc/Rating_System).`
+    },
+    media: {
+      type: new GraphQLList(Media),
+      description: 'The media on which the release was distributed.'
     },
     artists,
     labels,
