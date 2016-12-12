@@ -367,6 +367,23 @@ the codes assigned by ISO to countries and subdivisions.
     </td>
   </tr>
   <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
     <td valign="top"><strong>tags</strong> </td>
     <td valign="top"><a href="#tagconnection">TagConnection</a></td>
     <td>
@@ -691,6 +708,23 @@ field.
     <td>
       Relationships between this entity and other entitites.
     </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -1364,6 +1398,23 @@ field.
     <td></td>
   </tr>
   <tr>
+    <td valign="top"><strong>instruments</strong> </td>
+    <td valign="top"><a href="#instrumentconnection">InstrumentConnection</a></td>
+    <td>
+      A list of instruments linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
     <td valign="top"><strong>labels</strong> </td>
     <td valign="top"><a href="#labelconnection">LabelConnection</a></td>
     <td>
@@ -1452,6 +1503,23 @@ field.
     <td align="right" valign="top">type</td>
     <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>series</strong> </td>
+    <td valign="top"><a href="#seriesconnection">SeriesConnection</a></td>
+    <td>
+      A list of series linked to this entity.
+    </td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
@@ -1682,6 +1750,23 @@ field.
     </td>
   </tr>
   <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
     <td valign="top"><strong>tags</strong> </td>
     <td valign="top"><a href="#tagconnection">TagConnection</a></td>
     <td>
@@ -1850,6 +1935,23 @@ field.
     <td>
       Relationships between this entity and other entitites.
     </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -2085,6 +2187,23 @@ field.
     <td>
       Relationships between this entity and other entitites.
     </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -2545,6 +2664,23 @@ field.
     </td>
   </tr>
   <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
     <td valign="top"><strong>tags</strong> </td>
     <td valign="top"><a href="#tagconnection">TagConnection</a></td>
     <td>
@@ -2784,6 +2920,23 @@ from the lengths of the tracks using it.
     <td>
       Relationships between this entity and other entitites.
     </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -3061,6 +3214,22 @@ Lists of entity relationships for each entity type.
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3079,22 +3248,6 @@ Lists of entity relationships for each entity type.
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>artists</strong> </td>
@@ -3104,6 +3257,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3122,22 +3291,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>events</strong> </td>
@@ -3147,6 +3300,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3165,22 +3334,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>instruments</strong> </td>
@@ -3190,6 +3343,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3208,22 +3377,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>labels</strong> </td>
@@ -3233,6 +3386,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3251,22 +3420,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>places</strong> </td>
@@ -3276,6 +3429,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3294,22 +3463,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>recordings</strong> </td>
@@ -3319,6 +3472,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3337,22 +3506,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>releases</strong> </td>
@@ -3362,6 +3515,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3380,22 +3549,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>releaseGroups</strong> </td>
@@ -3405,6 +3558,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3423,22 +3592,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>series</strong> </td>
@@ -3448,6 +3601,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3466,22 +3635,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>urls</strong> </td>
@@ -3491,6 +3644,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3509,22 +3678,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
   <tr>
     <td valign="top"><strong>works</strong> </td>
@@ -3534,6 +3687,22 @@ field.</td>
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">direction</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship direction.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>Filter by the relationship type.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">typeID</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID associated with the value of the <code>type</code>
+field.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3552,22 +3721,6 @@ field.</td>
     <td align="right" valign="top">last</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">direction</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship direction.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td>Filter by the relationship type.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">typeID</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
   </tr>
 </tbody></table>
 
@@ -3803,6 +3956,23 @@ It is not a mark of how good or bad the music itself is – for that, use
     <td>
       Relationships between this entity and other entitites.
     </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -4086,6 +4256,23 @@ field.
     <td>
       Relationships between this entity and other entitites.
     </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -4507,6 +4694,23 @@ field.
     </td>
   </tr>
   <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
     <td valign="top"><strong>tags</strong> </td>
     <td valign="top"><a href="#tagconnection">TagConnection</a></td>
     <td>
@@ -4839,6 +5043,23 @@ field.
     <td>
       Relationships between this entity and other entitites.
     </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      A list of collections linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>

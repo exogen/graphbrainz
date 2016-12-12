@@ -84,6 +84,9 @@ type Area implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
+
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
 }
@@ -211,6 +214,9 @@ type Artist implements Node, Entity {
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
@@ -502,6 +508,9 @@ type Collection implements Node, Entity {
   # A list of events linked to this entity.
   events(after: String, first: Int): EventConnection
 
+  # A list of instruments linked to this entity.
+  instruments(after: String, first: Int): InstrumentConnection
+
   # A list of labels linked to this entity.
   labels(after: String, first: Int): LabelConnection
 
@@ -529,6 +538,9 @@ type Collection implements Node, Entity {
     after: String
     first: Int
   ): ReleaseGroupConnection
+
+  # A list of series linked to this entity.
+  series(after: String, first: Int): SeriesConnection
 
   # A list of works linked to this entity.
   works(after: String, first: Int): WorkConnection
@@ -644,6 +656,9 @@ type Event implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
+
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
 }
@@ -709,6 +724,9 @@ type Instrument implements Node, Entity {
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
@@ -831,6 +849,9 @@ type Label implements Node, Entity {
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
@@ -1035,6 +1056,9 @@ type Place implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
+
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
 }
@@ -1147,6 +1171,9 @@ type Recording implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
+
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
 }
@@ -1251,11 +1278,6 @@ type RelationshipEdge {
 type Relationships {
   # A list of relationships between these two entity types.
   areas(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1265,15 +1287,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   artists(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1283,15 +1304,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   events(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1301,15 +1321,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   instruments(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1319,15 +1338,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   labels(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1337,15 +1355,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   places(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1355,15 +1372,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   recordings(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1373,15 +1389,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   releases(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1391,15 +1406,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   releaseGroups(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1409,15 +1423,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   series(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1427,15 +1440,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   urls(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1445,15 +1457,14 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 
   # A list of relationships between these two entity types.
   works(
-    after: String
-    first: Int
-    before: String
-    last: Int
-
     # Filter by the relationship direction.
     direction: String
 
@@ -1463,6 +1474,10 @@ type Relationships {
     # The MBID associated with the value of the `type`
     # field.
     typeID: MBID
+    after: String
+    first: Int
+    before: String
+    last: Int
   ): RelationshipConnection
 }
 
@@ -1555,6 +1570,9 @@ type Release implements Node, Entity {
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
@@ -1661,6 +1679,9 @@ type ReleaseGroup implements Node, Entity {
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
@@ -1925,6 +1946,9 @@ type Series implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
+
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
 }
@@ -2054,6 +2078,9 @@ type Work implements Node, Entity {
 
   # Relationships between this entity and other entitites.
   relationships: Relationships
+
+  # A list of collections linked to this entity.
+  collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
