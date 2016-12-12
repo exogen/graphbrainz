@@ -579,3 +579,16 @@ test('Works can be browsed by iswc', testData, `
     { title: 'Song of the French Partisan', iswcs: ['T-900.755.682-3'] }
   ])
 })
+
+test('Recordings have a length in milliseconds', testData, `
+  {
+    lookup {
+      recording(mbid: "9f9cf187-d6f9-437f-9d98-d59cdbd52757") {
+        length
+      }
+    }
+  }
+`, (t, data) => {
+  const { recording } = data.lookup
+  t.is(recording.length, 383493)
+})
