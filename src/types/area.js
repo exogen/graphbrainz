@@ -14,6 +14,7 @@ import {
   places,
   releases,
   relationships,
+  collections,
   tags,
   connectionWithExtras
 } from './helpers'
@@ -42,6 +43,7 @@ the codes assigned by ISO to countries and subdivisions.`,
     places,
     releases,
     relationships,
+    collections,
     tags
   })
 })

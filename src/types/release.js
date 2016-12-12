@@ -17,6 +17,7 @@ import {
   recordings,
   releaseGroups,
   relationships,
+  collections,
   tags,
   fieldWithID,
   resolveHyphenated,
@@ -86,6 +87,7 @@ It is not a mark of how good or bad the music itself is – for that, use
     recordings,
     releaseGroups,
     relationships,
+    collections,
     tags
   })
 })

@@ -17,6 +17,7 @@ import {
   artists,
   releases,
   relationships,
+  collections,
   tags,
   connectionWithExtras
 } from './helpers'
@@ -61,6 +62,7 @@ from the lengths of the tracks using it.`
     artists,
     releases,
     relationships,
+    collections,
     tags
   })
 })

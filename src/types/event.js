@@ -11,6 +11,7 @@ import {
   aliases,
   lifeSpan,
   relationships,
+  collections,
   tags,
   connectionWithExtras
 } from './helpers'
@@ -46,6 +47,7 @@ for syntax and examples.`
       description: 'What kind of event the event is, e.g. concert, festival, etc.'
     }),
     relationships,
+    collections,
     tags
   })
 })

@@ -14,6 +14,7 @@ import {
   artists,
   releases,
   relationships,
+  collections,
   tags,
   fieldWithID,
   resolveHyphenated,
@@ -59,6 +60,7 @@ that apply to this release group.`
     artists,
     releases,
     relationships,
+    collections,
     tags
   })
 })

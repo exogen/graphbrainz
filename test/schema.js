@@ -651,3 +651,37 @@ test('Collections can be looked up by MBID', testData, `
   t.is(collection.name, 'Beets Music Collection')
   t.is(collection.releases.edges.length, 25)
 })
+
+test('entities have a collections field', testData, `
+  {
+    lookup {
+      release(mbid: "0702057c-cb90-43d3-b7b4-6d0cc37e8644") {
+        title
+        collections {
+          totalCount
+          edges {
+            node {
+              editor
+            }
+          }
+        }
+      }
+      artist(mbid: "24f1766e-9635-4d58-a4d4-9413f9f98a4c") {
+        name
+        collections {
+          totalCount
+          edges {
+            node {
+              editor
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { release, artist } = data.lookup
+  t.true(release.collections.totalCount > 0)
+  t.true(release.collections.edges.length > 0)
+  t.true(artist.collections.edges.length > 0)
+})
