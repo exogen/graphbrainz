@@ -1,7 +1,6 @@
 import {
   GraphQLObjectType,
   GraphQLList,
-  GraphQLInt,
   GraphQLBoolean
 } from 'graphql/type'
 import Node from './node'
