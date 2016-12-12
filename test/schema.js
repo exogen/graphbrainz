@@ -83,7 +83,7 @@ test('schema has a search query', testData, `
 test('schema has a browse query', testData, `
   {
     browse {
-      releaseGroups (artist: "c8da2e40-bd28-4d4e-813a-bd2f51958ba8") {
+      releaseGroups(artist: "c8da2e40-bd28-4d4e-813a-bd2f51958ba8") {
         totalCount
         edges {
           node {
@@ -591,4 +591,63 @@ test('Recordings have a length in milliseconds', testData, `
 `, (t, data) => {
   const { recording } = data.lookup
   t.is(recording.length, 383493)
+})
+
+test('Collections can be browsed by the entities they contain', testData, `
+  {
+    browse {
+      collections(artist: "24f1766e-9635-4d58-a4d4-9413f9f98a4c") {
+        totalCount
+        edges {
+          node {
+            name
+            editor
+            entityType
+            type
+            artists {
+              totalCount
+              edges {
+                node {
+                  mbid
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const collections = data.browse.collections.edges.map(edge => edge.node)
+  t.true(collections.length >= 2)
+  t.true(collections.some(collection => collection.editor === 'arist.on'))
+  t.true(collections.some(collection => collection.editor === 'ListMyCDs.com'))
+  collections.forEach(collection => {
+    t.is(collection.entityType, 'artist')
+    t.is(collection.type, 'Artist')
+    t.true(collection.artists.totalCount > 0)
+    t.true(collection.artists.edges.length > 0)
+  })
+})
+
+test('Collections can be looked up by MBID', testData, `
+  {
+    lookup {
+      collection(mbid: "85da782d-2ec0-41ec-a97f-9be464bba309") {
+        name
+        releases {
+          edges {
+            node {
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { collection } = data.lookup
+  t.is(collection.name, 'Beets Music Collection')
+  t.is(collection.releases.edges.length, 25)
 })

@@ -301,9 +301,45 @@ type BrowseQuery {
     # The MBID of a release group to which the entity is linked.
     releaseGroup: MBID
 
-    # The MBID of a work to which the artist is linked.
+    # The MBID of a work to which the entity is linked.
     work: MBID
   ): ArtistConnection
+
+  # Browse collection entities linked to the given arguments.
+  collections(
+    after: String
+    first: Int
+
+    # The MBID of an area to which the entity is linked.
+    area: MBID
+
+    # The MBID of an artist to which the entity is linked.
+    artist: MBID
+
+    # The username of the editor who created the collection.
+    editor: String
+
+    # The MBID of an event to which the entity is linked.
+    event: MBID
+
+    # The MBID of a label to which the entity is linked.
+    label: MBID
+
+    # The MBID of a place to which the entity is linked.
+    place: MBID
+
+    # The MBID of a recording to which the entity is linked.
+    recording: MBID
+
+    # The MBID of a release to which the entity is linked.
+    release: MBID
+
+    # The MBID of a release group to which the entity is linked.
+    releaseGroup: MBID
+
+    # The MBID of a work to which the entity is linked.
+    work: MBID
+  ): CollectionConnection
 
   # Browse event entities linked to the given arguments.
   events(
@@ -319,7 +355,7 @@ type BrowseQuery {
     # The MBID of a collection in which the entity is found.
     collection: MBID
 
-    # The MBID of a place to which the event is linked.
+    # The MBID of a place to which the entity is linked.
     place: MBID
   ): EventConnection
 
@@ -383,7 +419,7 @@ type BrowseQuery {
     # The MBID of a collection in which the entity is found.
     collection: MBID
 
-    # The MBID of a label to which the release is linked.
+    # The MBID of a label to which the entity is linked.
     label: MBID
 
     # The MBID of a track that is included in the release.
@@ -445,6 +481,100 @@ type BrowseQuery {
   ): WorkConnection
 }
 
+# [Collections](https://musicbrainz.org/doc/Collections) are
+# lists of entities that users can create.
+type Collection implements Node, Entity {
+  # The ID of an object
+  id: ID!
+
+  # The MBID of the entity.
+  mbid: MBID!
+
+  # The official name of the entity.
+  name: String
+
+  # The username of the editor who created the collection.
+  editor: String!
+
+  # The type of entity listed in the collection.
+  entityType: String!
+
+  # The type of collection.
+  type: String
+
+  # The MBID associated with the value of the `type`
+  # field.
+  typeID: MBID
+
+  # A list of areas linked to this entity.
+  areas(after: String, first: Int): AreaConnection
+
+  # A list of artists linked to this entity.
+  artists(after: String, first: Int): ArtistConnection
+
+  # A list of events linked to this entity.
+  events(after: String, first: Int): EventConnection
+
+  # A list of labels linked to this entity.
+  labels(after: String, first: Int): LabelConnection
+
+  # A list of places linked to this entity.
+  places(after: String, first: Int): PlaceConnection
+
+  # A list of recordings linked to this entity.
+  recordings(after: String, first: Int): RecordingConnection
+
+  # A list of releases linked to this entity.
+  releases(
+    after: String
+    first: Int
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
+
+    # Filter by one or more release statuses.
+    status: [ReleaseStatus]
+  ): ReleaseConnection
+
+  # A list of release groups linked to this entity.
+  releaseGroups(
+    after: String
+    first: Int
+
+    # Filter by one or more release group types.
+    type: [ReleaseGroupType]
+  ): ReleaseGroupConnection
+
+  # A list of works linked to this entity.
+  works(after: String, first: Int): WorkConnection
+}
+
+# A connection to a list of items.
+type CollectionConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [CollectionEdge]
+
+  # A count of the total number of items in this connection,
+  # ignoring pagination.
+  totalCount: Int
+}
+
+# An edge in a connection.
+type CollectionEdge {
+  # The item at the end of the edge
+  node: Collection
+
+  # A cursor for use in pagination
+  cursor: String!
+
+  # The relevancy score (0–100) assigned by the search engine, if
+  # these results were found through a search.
+  score: Int
+}
+
 # Geographic coordinates described with latitude and longitude.
 type Coordinates {
   # The north–south position of a point on the Earth’s surface.
@@ -474,6 +604,9 @@ scalar Degrees
 # Conversely, two different CDs may happen to have exactly the same set of frame
 # offsets and hence the same disc ID.
 scalar DiscID
+
+# A length of time, in milliseconds.
+scalar Duration
 
 # An entity in the MusicBrainz schema.
 interface Entity {
@@ -775,6 +908,12 @@ type LookupQuery {
     mbid: MBID!
   ): Artist
 
+  # Look up a specific collection by its MBID.
+  collection(
+    # The MBID of the entity.
+    mbid: MBID!
+  ): Collection
+
   # Look up a specific event by its MBID.
   event(
     # The MBID of the entity.
@@ -1002,7 +1141,7 @@ type Recording implements Node, Entity {
 
   # An approximation to the length of the recording, calculated
   # from the lengths of the tracks using it.
-  length: Int
+  length: Duration
 
   # Whether this is a video recording.
   video: Boolean

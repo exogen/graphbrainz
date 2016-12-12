@@ -14,6 +14,9 @@ You may also be interested in reading the [schema in GraphQL syntax](schema.md).
     <li>[ArtistCredit](#artistcredit)</li>
     <li>[ArtistEdge](#artistedge)</li>
     <li>[BrowseQuery](#browsequery)</li>
+    <li>[Collection](#collection)</li>
+    <li>[CollectionConnection](#collectionconnection)</li>
+    <li>[CollectionEdge](#collectionedge)</li>
     <li>[Coordinates](#coordinates)</li>
     <li>[Event](#event)</li>
     <li>[EventConnection](#eventconnection)</li>
@@ -66,6 +69,7 @@ You may also be interested in reading the [schema in GraphQL syntax](schema.md).
     <li>[Date](#date)</li>
     <li>[Degrees](#degrees)</li>
     <li>[DiscID](#discid)</li>
+    <li>[Duration](#duration)</li>
     <li>[ID](#id)</li>
     <li>[IPI](#ipi)</li>
     <li>[ISNI](#isni)</li>
@@ -897,7 +901,74 @@ entity.
   <tr>
     <td align="right" valign="top">work</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID of a work to which the artist is linked.</td>
+    <td>The MBID of a work to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      Browse collection entities linked to the given arguments.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">area</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of an area to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">artist</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of an artist to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">editor</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>The username of the editor who created the collection.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">event</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of an event to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">label</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of a label to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">place</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of a place to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">recording</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of a recording to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">release</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of a release to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">releaseGroup</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of a release group to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">work</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of a work to which the entity is linked.</td>
   </tr>
   <tr>
     <td valign="top"><strong>events</strong> </td>
@@ -934,7 +1005,7 @@ entity.
   <tr>
     <td align="right" valign="top">place</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID of a place to which the event is linked.</td>
+    <td>The MBID of a place to which the entity is linked.</td>
   </tr>
   <tr>
     <td valign="top"><strong>labels</strong> </td>
@@ -1068,7 +1139,7 @@ entity.
   <tr>
     <td align="right" valign="top">label</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID of a label to which the release is linked.</td>
+    <td>The MBID of a label to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">track</td>
@@ -1176,6 +1247,308 @@ associated with the release.</td>
     <td valign="top"><a href="#iswc">ISWC</a></td>
     <td>The <a href="https://musicbrainz.org/doc/ISWC">International Standard Musical Work Code</a>
 (ISWC) of the work.</td>
+  </tr>
+</tbody></table>
+
+### Collection
+
+[Collections](https://musicbrainz.org/doc/Collections) are
+lists of entities that users can create.
+
+<table><thead>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
+</thead><tbody>
+  <tr>
+    <td valign="top"><strong>id</strong> </td>
+    <td valign="top"><a href="#id">ID</a>!</td>
+    <td>
+      The ID of an object
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>mbid</strong> </td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
+    <td>
+      The MBID of the entity.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>name</strong> </td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>
+      The official name of the entity.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>editor</strong> </td>
+    <td valign="top"><a href="#string">String</a>!</td>
+    <td>
+      The username of the editor who created the collection.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>entityType</strong> </td>
+    <td valign="top"><a href="#string">String</a>!</td>
+    <td>
+      The type of entity listed in the collection.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>type</strong> </td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>
+      The type of collection.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>typeID</strong> </td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>
+      The MBID associated with the value of the <code>type</code>
+field.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>areas</strong> </td>
+    <td valign="top"><a href="#areaconnection">AreaConnection</a></td>
+    <td>
+      A list of areas linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>artists</strong> </td>
+    <td valign="top"><a href="#artistconnection">ArtistConnection</a></td>
+    <td>
+      A list of artists linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>events</strong> </td>
+    <td valign="top"><a href="#eventconnection">EventConnection</a></td>
+    <td>
+      A list of events linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>labels</strong> </td>
+    <td valign="top"><a href="#labelconnection">LabelConnection</a></td>
+    <td>
+      A list of labels linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>places</strong> </td>
+    <td valign="top"><a href="#placeconnection">PlaceConnection</a></td>
+    <td>
+      A list of places linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>recordings</strong> </td>
+    <td valign="top"><a href="#recordingconnection">RecordingConnection</a></td>
+    <td>
+      A list of recordings linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>releases</strong> </td>
+    <td valign="top"><a href="#releaseconnection">ReleaseConnection</a></td>
+    <td>
+      A list of releases linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
+    <td>Filter by one or more release group types.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">status</td>
+    <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
+    <td>Filter by one or more release statuses.</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>releaseGroups</strong> </td>
+    <td valign="top"><a href="#releasegroupconnection">ReleaseGroupConnection</a></td>
+    <td>
+      A list of release groups linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
+    <td>Filter by one or more release group types.</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>works</strong> </td>
+    <td valign="top"><a href="#workconnection">WorkConnection</a></td>
+    <td>
+      A list of works linked to this entity.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+</tbody></table>
+
+### CollectionConnection
+
+A connection to a list of items.
+
+<table><thead>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
+</thead><tbody>
+  <tr>
+    <td valign="top"><strong>pageInfo</strong> </td>
+    <td valign="top"><a href="#pageinfo">PageInfo</a>!</td>
+    <td>
+      Information to aid in pagination.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>edges</strong> </td>
+    <td valign="top">[<a href="#collectionedge">CollectionEdge</a>]</td>
+    <td>
+      A list of edges.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>totalCount</strong> </td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td>
+      A count of the total number of items in this connection,
+ignoring pagination.
+    </td>
+  </tr>
+</tbody></table>
+
+### CollectionEdge
+
+An edge in a connection.
+
+<table><thead>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
+</thead><tbody>
+  <tr>
+    <td valign="top"><strong>node</strong> </td>
+    <td valign="top"><a href="#collection">Collection</a></td>
+    <td>
+      The item at the end of the edge
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>cursor</strong> </td>
+    <td valign="top"><a href="#string">String</a>!</td>
+    <td>
+      A cursor for use in pagination
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>score</strong> </td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td>
+      The relevancy score (0–100) assigned by the search engine, if
+these results were found through a search.
+    </td>
   </tr>
 </tbody></table>
 
@@ -1873,6 +2246,18 @@ A lookup of an individual MusicBrainz entity by its MBID.
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
+    <td valign="top"><strong>collection</strong> </td>
+    <td valign="top"><a href="#collection">Collection</a></td>
+    <td>
+      Look up a specific collection by its MBID.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">mbid</td>
+    <td valign="top"><a href="#mbid">MBID</a>!</td>
+    <td>The MBID of the entity.</td>
+  </tr>
+  <tr>
     <td valign="top"><strong>event</strong> </td>
     <td valign="top"><a href="#event">Event</a></td>
     <td>
@@ -2336,7 +2721,7 @@ and will be removed in a major release in the future. Use the equivalent
   </tr>
   <tr>
     <td valign="top"><strong>length</strong> </td>
-    <td valign="top"><a href="#int">Int</a></td>
+    <td valign="top"><a href="#duration">Duration</a></td>
     <td>
       An approximation to the length of the recording, calculated
 from the lengths of the tracks using it.
@@ -4759,6 +5144,10 @@ hence different disc IDs.
 
 Conversely, two different CDs may happen to have exactly the same set of frame
 offsets and hence the same disc ID.
+
+### Duration
+
+A length of time, in milliseconds.
 
 ### ID
 
