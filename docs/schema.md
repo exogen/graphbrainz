@@ -72,14 +72,13 @@ type Area implements Node, Entity {
 
   # A list of releases linked to this entity.
   releases(
-    after: String
-    first: Int
-
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
 
     # Filter by one or more release statuses.
     status: [ReleaseStatus]
+    after: String
+    first: Int
   ): ReleaseConnection
 
   # Relationships between this entity and other entitites.
@@ -190,23 +189,21 @@ type Artist implements Node, Entity {
 
   # A list of releases linked to this entity.
   releases(
-    after: String
-    first: Int
-
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
 
     # Filter by one or more release statuses.
     status: [ReleaseStatus]
+    after: String
+    first: Int
   ): ReleaseConnection
 
   # A list of release groups linked to this entity.
   releaseGroups(
-    after: String
-    first: Int
-
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
+    after: String
+    first: Int
   ): ReleaseGroupConnection
 
   # A list of works linked to this entity.
@@ -274,18 +271,14 @@ scalar ASIN
 type BrowseQuery {
   # Browse area entities linked to the given arguments.
   areas(
-    after: String
-    first: Int
-
     # The MBID of a collection in which the entity is found.
     collection: MBID
+    after: String
+    first: Int
   ): AreaConnection
 
   # Browse artist entities linked to the given arguments.
   artists(
-    after: String
-    first: Int
-
     # The MBID of an area to which the entity is linked.
     area: MBID
 
@@ -303,13 +296,12 @@ type BrowseQuery {
 
     # The MBID of a work to which the entity is linked.
     work: MBID
+    after: String
+    first: Int
   ): ArtistConnection
 
   # Browse collection entities linked to the given arguments.
   collections(
-    after: String
-    first: Int
-
     # The MBID of an area to which the entity is linked.
     area: MBID
 
@@ -339,13 +331,12 @@ type BrowseQuery {
 
     # The MBID of a work to which the entity is linked.
     work: MBID
+    after: String
+    first: Int
   ): CollectionConnection
 
   # Browse event entities linked to the given arguments.
   events(
-    after: String
-    first: Int
-
     # The MBID of an area to which the entity is linked.
     area: MBID
 
@@ -357,13 +348,12 @@ type BrowseQuery {
 
     # The MBID of a place to which the entity is linked.
     place: MBID
+    after: String
+    first: Int
   ): EventConnection
 
   # Browse label entities linked to the given arguments.
   labels(
-    after: String
-    first: Int
-
     # The MBID of an area to which the entity is linked.
     area: MBID
 
@@ -372,25 +362,23 @@ type BrowseQuery {
 
     # The MBID of a release to which the entity is linked.
     release: MBID
+    after: String
+    first: Int
   ): LabelConnection
 
   # Browse place entities linked to the given arguments.
   places(
-    after: String
-    first: Int
-
     # The MBID of an area to which the entity is linked.
     area: MBID
 
     # The MBID of a collection in which the entity is found.
     collection: MBID
+    after: String
+    first: Int
   ): PlaceConnection
 
   # Browse recording entities linked to the given arguments.
   recordings(
-    after: String
-    first: Int
-
     # The MBID of an artist to which the entity is linked.
     artist: MBID
 
@@ -403,13 +391,12 @@ type BrowseQuery {
     # The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
     # (ISRC) of the recording.
     isrc: ISRC
+    after: String
+    first: Int
   ): RecordingConnection
 
   # Browse release entities linked to the given arguments.
   releases(
-    after: String
-    first: Int
-
     # The MBID of an area to which the entity is linked.
     area: MBID
 
@@ -444,13 +431,12 @@ type BrowseQuery {
     # A [disc ID](https://musicbrainz.org/doc/Disc_ID)
     # associated with the release.
     discID: DiscID
+    after: String
+    first: Int
   ): ReleaseConnection
 
   # Browse release group entities linked to the given arguments.
   releaseGroups(
-    after: String
-    first: Int
-
     # The MBID of an artist to which the entity is linked.
     artist: MBID
 
@@ -462,13 +448,12 @@ type BrowseQuery {
 
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
+    after: String
+    first: Int
   ): ReleaseGroupConnection
 
   # Browse work entities linked to the given arguments.
   works(
-    after: String
-    first: Int
-
     # The MBID of an artist to which the entity is linked.
     artist: MBID
 
@@ -478,6 +463,8 @@ type BrowseQuery {
     # The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)
     # (ISWC) of the work.
     iswc: ISWC
+    after: String
+    first: Int
   ): WorkConnection
 }
 
@@ -526,23 +513,21 @@ type Collection implements Node, Entity {
 
   # A list of releases linked to this entity.
   releases(
-    after: String
-    first: Int
-
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
 
     # Filter by one or more release statuses.
     status: [ReleaseStatus]
+    after: String
+    first: Int
   ): ReleaseConnection
 
   # A list of release groups linked to this entity.
   releaseGroups(
-    after: String
-    first: Int
-
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
+    after: String
+    first: Int
   ): ReleaseGroupConnection
 
   # A list of works linked to this entity.
@@ -835,14 +820,13 @@ type Label implements Node, Entity {
 
   # A list of releases linked to this entity.
   releases(
-    after: String
-    first: Int
-
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
 
     # Filter by one or more release statuses.
     status: [ReleaseStatus]
+    after: String
+    first: Int
   ): ReleaseConnection
 
   # Relationships between this entity and other entitites.
@@ -1151,14 +1135,13 @@ type Recording implements Node, Entity {
 
   # A list of releases linked to this entity.
   releases(
-    after: String
-    first: Int
-
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
 
     # Filter by one or more release statuses.
     status: [ReleaseStatus]
+    after: String
+    first: Int
   ): ReleaseConnection
 
   # Relationships between this entity and other entitites.
@@ -1564,11 +1547,10 @@ type Release implements Node, Entity {
 
   # A list of release groups linked to this entity.
   releaseGroups(
-    after: String
-    first: Int
-
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
+    after: String
+    first: Int
   ): ReleaseGroupConnection
 
   # Relationships between this entity and other entitites.
@@ -1668,14 +1650,13 @@ type ReleaseGroup implements Node, Entity {
 
   # A list of releases linked to this entity.
   releases(
-    after: String
-    first: Int
-
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
 
     # Filter by one or more release statuses.
     status: [ReleaseStatus]
+    after: String
+    first: Int
   ): ReleaseConnection
 
   # Relationships between this entity and other entitites.

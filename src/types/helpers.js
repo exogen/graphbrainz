@@ -132,8 +132,8 @@ function linkedQuery (connectionType, { args, ...config } = {}) {
     type: connectionType,
     description: `A list of ${typeName} linked to this entity.`,
     args: {
-      ...forwardConnectionArgs,
-      ...args
+      ...args,
+      ...forwardConnectionArgs
     },
     resolve: resolveLinked,
     ...config

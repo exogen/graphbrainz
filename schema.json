@@ -701,26 +701,6 @@
               "description": "A list of releases linked to this entity.",
               "args": [
                 {
-                  "name": "after",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
                   "name": "type",
                   "description": "Filter by one or more release group types.",
                   "type": {
@@ -745,6 +725,26 @@
                       "name": "ReleaseStatus",
                       "ofType": null
                     }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
                   },
                   "defaultValue": null
                 }
@@ -1578,26 +1578,6 @@
               "description": "A list of releases linked to this entity.",
               "args": [
                 {
-                  "name": "after",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
                   "name": "type",
                   "description": "Filter by one or more release group types.",
                   "type": {
@@ -1624,20 +1604,7 @@
                     }
                   },
                   "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ReleaseConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "releaseGroups",
-              "description": "A list of release groups linked to this entity.",
-              "args": [
+                },
                 {
                   "name": "after",
                   "description": null,
@@ -1657,7 +1624,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReleaseConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "releaseGroups",
+              "description": "A list of release groups linked to this entity.",
+              "args": [
                 {
                   "name": "type",
                   "description": "Filter by one or more release group types.",
@@ -1669,6 +1649,26 @@
                       "name": "ReleaseGroupType",
                       "ofType": null
                     }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
                   },
                   "defaultValue": null
                 }
@@ -2146,26 +2146,6 @@
               "description": "A list of releases linked to this entity.",
               "args": [
                 {
-                  "name": "after",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
                   "name": "type",
                   "description": "Filter by one or more release group types.",
                   "type": {
@@ -2190,6 +2170,26 @@
                       "name": "ReleaseStatus",
                       "ofType": null
                     }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
                   },
                   "defaultValue": null
                 }
@@ -2916,6 +2916,20 @@
               "description": "A list of release groups linked to this entity.",
               "args": [
                 {
+                  "name": "type",
+                  "description": "Filter by one or more release group types.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ReleaseGroupType",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "after",
                   "description": null,
                   "type": {
@@ -2932,20 +2946,6 @@
                     "kind": "SCALAR",
                     "name": "Int",
                     "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "type",
-                  "description": "Filter by one or more release group types.",
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "ReleaseGroupType",
-                      "ofType": null
-                    }
                   },
                   "defaultValue": null
                 }
@@ -3353,26 +3353,6 @@
               "description": "A list of releases linked to this entity.",
               "args": [
                 {
-                  "name": "after",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
                   "name": "type",
                   "description": "Filter by one or more release group types.",
                   "type": {
@@ -3397,6 +3377,26 @@
                       "name": "ReleaseStatus",
                       "ofType": null
                     }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
                   },
                   "defaultValue": null
                 }
@@ -5209,26 +5209,6 @@
               "description": "A list of releases linked to this entity.",
               "args": [
                 {
-                  "name": "after",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
                   "name": "type",
                   "description": "Filter by one or more release group types.",
                   "type": {
@@ -5253,6 +5233,26 @@
                       "name": "ReleaseStatus",
                       "ofType": null
                     }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
                   },
                   "defaultValue": null
                 }
@@ -6687,26 +6687,6 @@
               "description": "A list of releases linked to this entity.",
               "args": [
                 {
-                  "name": "after",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
                   "name": "type",
                   "description": "Filter by one or more release group types.",
                   "type": {
@@ -6733,20 +6713,7 @@
                     }
                   },
                   "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ReleaseConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "releaseGroups",
-              "description": "A list of release groups linked to this entity.",
-              "args": [
+                },
                 {
                   "name": "after",
                   "description": null,
@@ -6766,7 +6733,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReleaseConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "releaseGroups",
+              "description": "A list of release groups linked to this entity.",
+              "args": [
                 {
                   "name": "type",
                   "description": "Filter by one or more release group types.",
@@ -6778,6 +6758,26 @@
                       "name": "ReleaseGroupType",
                       "ofType": null
                     }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
                   },
                   "defaultValue": null
                 }
@@ -7370,6 +7370,16 @@
               "description": "Browse area entities linked to the given arguments.",
               "args": [
                 {
+                  "name": "collection",
+                  "description": "The MBID of a collection in which the entity is found.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "after",
                   "description": null,
                   "type": {
@@ -7385,16 +7395,6 @@
                   "type": {
                     "kind": "SCALAR",
                     "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "collection",
-                  "description": "The MBID of a collection in which the entity is found.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "MBID",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -7412,26 +7412,6 @@
               "name": "artists",
               "description": "Browse artist entities linked to the given arguments.",
               "args": [
-                {
-                  "name": "after",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
                 {
                   "name": "area",
                   "description": "The MBID of an area to which the entity is linked.",
@@ -7491,20 +7471,7 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ArtistConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "collections",
-              "description": "Browse collection entities linked to the given arguments.",
-              "args": [
+                },
                 {
                   "name": "after",
                   "description": null,
@@ -7524,7 +7491,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ArtistConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "collections",
+              "description": "Browse collection entities linked to the given arguments.",
+              "args": [
                 {
                   "name": "area",
                   "description": "The MBID of an area to which the entity is linked.",
@@ -7624,20 +7604,7 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CollectionConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "events",
-              "description": "Browse event entities linked to the given arguments.",
-              "args": [
+                },
                 {
                   "name": "after",
                   "description": null,
@@ -7657,7 +7624,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CollectionConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "events",
+              "description": "Browse event entities linked to the given arguments.",
+              "args": [
                 {
                   "name": "area",
                   "description": "The MBID of an area to which the entity is linked.",
@@ -7697,20 +7677,7 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "EventConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "labels",
-              "description": "Browse label entities linked to the given arguments.",
-              "args": [
+                },
                 {
                   "name": "after",
                   "description": null,
@@ -7730,7 +7697,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "EventConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "labels",
+              "description": "Browse label entities linked to the given arguments.",
+              "args": [
                 {
                   "name": "area",
                   "description": "The MBID of an area to which the entity is linked.",
@@ -7760,20 +7740,7 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "LabelConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "places",
-              "description": "Browse place entities linked to the given arguments.",
-              "args": [
+                },
                 {
                   "name": "after",
                   "description": null,
@@ -7793,7 +7760,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "LabelConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "places",
+              "description": "Browse place entities linked to the given arguments.",
+              "args": [
                 {
                   "name": "area",
                   "description": "The MBID of an area to which the entity is linked.",
@@ -7813,20 +7793,7 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "PlaceConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "recordings",
-              "description": "Browse recording entities linked to the given arguments.",
-              "args": [
+                },
                 {
                   "name": "after",
                   "description": null,
@@ -7846,7 +7813,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PlaceConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "recordings",
+              "description": "Browse recording entities linked to the given arguments.",
+              "args": [
                 {
                   "name": "artist",
                   "description": "The MBID of an artist to which the entity is linked.",
@@ -7886,20 +7866,7 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "RecordingConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "releases",
-              "description": "Browse release entities linked to the given arguments.",
-              "args": [
+                },
                 {
                   "name": "after",
                   "description": null,
@@ -7919,7 +7886,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RecordingConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "releases",
+              "description": "Browse release entities linked to the given arguments.",
+              "args": [
                 {
                   "name": "area",
                   "description": "The MBID of an area to which the entity is linked.",
@@ -8037,20 +8017,7 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ReleaseConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "releaseGroups",
-              "description": "Browse release group entities linked to the given arguments.",
-              "args": [
+                },
                 {
                   "name": "after",
                   "description": null,
@@ -8070,7 +8037,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReleaseConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "releaseGroups",
+              "description": "Browse release group entities linked to the given arguments.",
+              "args": [
                 {
                   "name": "artist",
                   "description": "The MBID of an artist to which the entity is linked.",
@@ -8114,20 +8094,7 @@
                     }
                   },
                   "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ReleaseGroupConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "works",
-              "description": "Browse work entities linked to the given arguments.",
-              "args": [
+                },
                 {
                   "name": "after",
                   "description": null,
@@ -8147,7 +8114,20 @@
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReleaseGroupConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "works",
+              "description": "Browse work entities linked to the given arguments.",
+              "args": [
                 {
                   "name": "artist",
                   "description": "The MBID of an artist to which the entity is linked.",
@@ -8174,6 +8154,26 @@
                   "type": {
                     "kind": "SCALAR",
                     "name": "ISWC",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
                     "ofType": null
                   },
                   "defaultValue": null

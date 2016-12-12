@@ -340,16 +340,6 @@ the codes assigned by ISO to countries and subdivisions.
     </td>
   </tr>
   <tr>
-    <td align="right" valign="top">after</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">first</td>
-    <td valign="top"><a href="#int">Int</a></td>
-    <td></td>
-  </tr>
-  <tr>
     <td align="right" valign="top">type</td>
     <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
@@ -358,6 +348,16 @@ the codes assigned by ISO to countries and subdivisions.
     <td align="right" valign="top">status</td>
     <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
     <td>Filter by one or more release statuses.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>relationships</strong> </td>
@@ -627,16 +627,6 @@ field.
     </td>
   </tr>
   <tr>
-    <td align="right" valign="top">after</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">first</td>
-    <td valign="top"><a href="#int">Int</a></td>
-    <td></td>
-  </tr>
-  <tr>
     <td align="right" valign="top">type</td>
     <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
@@ -647,13 +637,6 @@ field.
     <td>Filter by one or more release statuses.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>releaseGroups</strong> </td>
-    <td valign="top"><a href="#releasegroupconnection">ReleaseGroupConnection</a></td>
-    <td>
-      A list of release groups linked to this entity.
-    </td>
-  </tr>
-  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -664,9 +647,26 @@ field.
     <td></td>
   </tr>
   <tr>
+    <td valign="top"><strong>releaseGroups</strong> </td>
+    <td valign="top"><a href="#releasegroupconnection">ReleaseGroupConnection</a></td>
+    <td>
+      A list of release groups linked to this entity.
+    </td>
+  </tr>
+  <tr>
     <td align="right" valign="top">type</td>
     <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>works</strong> </td>
@@ -842,6 +842,11 @@ entity.
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">collection</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of a collection in which the entity is found.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -850,11 +855,6 @@ entity.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">collection</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
     <td valign="top"><strong>artists</strong> </td>
@@ -862,16 +862,6 @@ entity.
     <td>
       Browse artist entities linked to the given arguments.
     </td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">after</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">first</td>
-    <td valign="top"><a href="#int">Int</a></td>
-    <td></td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
@@ -904,13 +894,6 @@ entity.
     <td>The MBID of a work to which the entity is linked.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>collections</strong> </td>
-    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
-    <td>
-      Browse collection entities linked to the given arguments.
-    </td>
-  </tr>
-  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -919,6 +902,13 @@ entity.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>collections</strong> </td>
+    <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
+    <td>
+      Browse collection entities linked to the given arguments.
+    </td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
@@ -971,13 +961,6 @@ entity.
     <td>The MBID of a work to which the entity is linked.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>events</strong> </td>
-    <td valign="top"><a href="#eventconnection">EventConnection</a></td>
-    <td>
-      Browse event entities linked to the given arguments.
-    </td>
-  </tr>
-  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -986,6 +969,13 @@ entity.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>events</strong> </td>
+    <td valign="top"><a href="#eventconnection">EventConnection</a></td>
+    <td>
+      Browse event entities linked to the given arguments.
+    </td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
@@ -1008,13 +998,6 @@ entity.
     <td>The MBID of a place to which the entity is linked.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>labels</strong> </td>
-    <td valign="top"><a href="#labelconnection">LabelConnection</a></td>
-    <td>
-      Browse label entities linked to the given arguments.
-    </td>
-  </tr>
-  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -1023,6 +1006,13 @@ entity.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>labels</strong> </td>
+    <td valign="top"><a href="#labelconnection">LabelConnection</a></td>
+    <td>
+      Browse label entities linked to the given arguments.
+    </td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
@@ -1040,13 +1030,6 @@ entity.
     <td>The MBID of a release to which the entity is linked.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>places</strong> </td>
-    <td valign="top"><a href="#placeconnection">PlaceConnection</a></td>
-    <td>
-      Browse place entities linked to the given arguments.
-    </td>
-  </tr>
-  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -1055,6 +1038,13 @@ entity.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>places</strong> </td>
+    <td valign="top"><a href="#placeconnection">PlaceConnection</a></td>
+    <td>
+      Browse place entities linked to the given arguments.
+    </td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
@@ -1067,13 +1057,6 @@ entity.
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>recordings</strong> </td>
-    <td valign="top"><a href="#recordingconnection">RecordingConnection</a></td>
-    <td>
-      Browse recording entities linked to the given arguments.
-    </td>
-  </tr>
-  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -1082,6 +1065,13 @@ entity.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>recordings</strong> </td>
+    <td valign="top"><a href="#recordingconnection">RecordingConnection</a></td>
+    <td>
+      Browse recording entities linked to the given arguments.
+    </td>
   </tr>
   <tr>
     <td align="right" valign="top">artist</td>
@@ -1105,13 +1095,6 @@ entity.
 (ISRC) of the recording.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>releases</strong> </td>
-    <td valign="top"><a href="#releaseconnection">ReleaseConnection</a></td>
-    <td>
-      Browse release entities linked to the given arguments.
-    </td>
-  </tr>
-  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -1120,6 +1103,13 @@ entity.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>releases</strong> </td>
+    <td valign="top"><a href="#releaseconnection">ReleaseConnection</a></td>
+    <td>
+      Browse release entities linked to the given arguments.
+    </td>
   </tr>
   <tr>
     <td align="right" valign="top">area</td>
@@ -1179,13 +1169,6 @@ release, but is not included in the credits for the release itself.</td>
 associated with the release.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>releaseGroups</strong> </td>
-    <td valign="top"><a href="#releasegroupconnection">ReleaseGroupConnection</a></td>
-    <td>
-      Browse release group entities linked to the given arguments.
-    </td>
-  </tr>
-  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -1194,6 +1177,13 @@ associated with the release.</td>
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>releaseGroups</strong> </td>
+    <td valign="top"><a href="#releasegroupconnection">ReleaseGroupConnection</a></td>
+    <td>
+      Browse release group entities linked to the given arguments.
+    </td>
   </tr>
   <tr>
     <td align="right" valign="top">artist</td>
@@ -1216,13 +1206,6 @@ associated with the release.</td>
     <td>Filter by one or more release group types.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>works</strong> </td>
-    <td valign="top"><a href="#workconnection">WorkConnection</a></td>
-    <td>
-      Browse work entities linked to the given arguments.
-    </td>
-  </tr>
-  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -1231,6 +1214,13 @@ associated with the release.</td>
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>works</strong> </td>
+    <td valign="top"><a href="#workconnection">WorkConnection</a></td>
+    <td>
+      Browse work entities linked to the given arguments.
+    </td>
   </tr>
   <tr>
     <td align="right" valign="top">artist</td>
@@ -1247,6 +1237,16 @@ associated with the release.</td>
     <td valign="top"><a href="#iswc">ISWC</a></td>
     <td>The <a href="https://musicbrainz.org/doc/ISWC">International Standard Musical Work Code</a>
 (ISWC) of the work.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
 </tbody></table>
 
@@ -1422,16 +1422,6 @@ field.
     </td>
   </tr>
   <tr>
-    <td align="right" valign="top">after</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">first</td>
-    <td valign="top"><a href="#int">Int</a></td>
-    <td></td>
-  </tr>
-  <tr>
     <td align="right" valign="top">type</td>
     <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
@@ -1442,13 +1432,6 @@ field.
     <td>Filter by one or more release statuses.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>releaseGroups</strong> </td>
-    <td valign="top"><a href="#releasegroupconnection">ReleaseGroupConnection</a></td>
-    <td>
-      A list of release groups linked to this entity.
-    </td>
-  </tr>
-  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -1459,9 +1442,26 @@ field.
     <td></td>
   </tr>
   <tr>
+    <td valign="top"><strong>releaseGroups</strong> </td>
+    <td valign="top"><a href="#releasegroupconnection">ReleaseGroupConnection</a></td>
+    <td>
+      A list of release groups linked to this entity.
+    </td>
+  </tr>
+  <tr>
     <td align="right" valign="top">type</td>
     <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>works</strong> </td>
@@ -2060,16 +2060,6 @@ field.
     </td>
   </tr>
   <tr>
-    <td align="right" valign="top">after</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">first</td>
-    <td valign="top"><a href="#int">Int</a></td>
-    <td></td>
-  </tr>
-  <tr>
     <td align="right" valign="top">type</td>
     <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
@@ -2078,6 +2068,16 @@ field.
     <td align="right" valign="top">status</td>
     <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
     <td>Filter by one or more release statuses.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>relationships</strong> </td>
@@ -2759,16 +2759,6 @@ from the lengths of the tracks using it.
     </td>
   </tr>
   <tr>
-    <td align="right" valign="top">after</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">first</td>
-    <td valign="top"><a href="#int">Int</a></td>
-    <td></td>
-  </tr>
-  <tr>
     <td align="right" valign="top">type</td>
     <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
@@ -2777,6 +2767,16 @@ from the lengths of the tracks using it.
     <td align="right" valign="top">status</td>
     <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
     <td>Filter by one or more release statuses.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>relationships</strong> </td>
@@ -3783,6 +3783,11 @@ It is not a mark of how good or bad the music itself is – for that, use
     </td>
   </tr>
   <tr>
+    <td align="right" valign="top">type</td>
+    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
+    <td>Filter by one or more release group types.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">after</td>
     <td valign="top"><a href="#string">String</a></td>
     <td></td>
@@ -3791,11 +3796,6 @@ It is not a mark of how good or bad the music itself is – for that, use
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">type</td>
-    <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
-    <td>Filter by one or more release group types.</td>
   </tr>
   <tr>
     <td valign="top"><strong>relationships</strong> </td>
@@ -4061,16 +4061,6 @@ field.
     </td>
   </tr>
   <tr>
-    <td align="right" valign="top">after</td>
-    <td valign="top"><a href="#string">String</a></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">first</td>
-    <td valign="top"><a href="#int">Int</a></td>
-    <td></td>
-  </tr>
-  <tr>
     <td align="right" valign="top">type</td>
     <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
@@ -4079,6 +4069,16 @@ field.
     <td align="right" valign="top">status</td>
     <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
     <td>Filter by one or more release statuses.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
   </tr>
   <tr>
     <td valign="top"><strong>relationships</strong> </td>

@@ -66,8 +66,8 @@ function createBrowseField (connectionType, args) {
     type: connectionType,
     description: `Browse ${typeName} entities linked to the given arguments.`,
     args: {
-      ...forwardConnectionArgs,
-      ...args
+      ...args,
+      ...forwardConnectionArgs
     },
     resolve: resolveBrowse
   }
