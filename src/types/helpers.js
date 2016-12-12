@@ -144,14 +144,14 @@ export const relationship = {
   type: RelationshipConnection,
   description: 'A list of relationships between these two entity types.',
   args: {
-    ...connectionArgs,
     direction: {
       type: GraphQLString,
       description: 'Filter by the relationship direction.'
     },
     ...fieldWithID('type', {
       description: 'Filter by the relationship type.'
-    })
+    }),
+    ...connectionArgs
   },
   resolve: resolveRelationship
 }
