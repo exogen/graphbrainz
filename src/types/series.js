@@ -7,6 +7,7 @@ import {
   name,
   disambiguation,
   relationships,
+  collections,
   tags,
   fieldWithID,
   connectionWithExtras
@@ -28,6 +29,7 @@ theme.`,
 contains.`
     }),
     relationships,
+    collections,
     tags
   })
 })

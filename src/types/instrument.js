@@ -9,6 +9,7 @@ import {
   disambiguation,
   aliases,
   relationships,
+  collections,
   tags,
   connectionWithExtras
 } from './helpers'
@@ -36,6 +37,7 @@ created, similar to the [Hornbostel-Sachs](https://en.wikipedia.org/wiki/Hornbos
 classification.`
     }),
     relationships,
+    collections,
     tags
   })
 })

@@ -18,6 +18,7 @@ import {
   lifeSpan,
   releases,
   relationships,
+  collections,
   tags,
   fieldWithID,
   connectionWithExtras
@@ -61,6 +62,7 @@ imprint, production, distributor, rights society, etc.`
     }),
     releases,
     relationships,
+    collections,
     tags
   })
 })

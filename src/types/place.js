@@ -13,6 +13,7 @@ import {
   events,
   fieldWithID,
   relationships,
+  collections,
   tags,
   connectionWithExtras
 } from './helpers'
@@ -64,6 +65,7 @@ function.`
     }),
     events,
     relationships,
+    collections,
     tags
   })
 })

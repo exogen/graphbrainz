@@ -20,7 +20,9 @@ import Alias from './alias'
 import ArtistCredit from './artist-credit'
 import { AreaConnection } from './area'
 import { ArtistConnection } from './artist'
+import { CollectionConnection } from './collection'
 import { EventConnection } from './event'
+import { InstrumentConnection } from './instrument'
 import { LabelConnection } from './label'
 import LifeSpan from './life-span'
 import { PlaceConnection } from './place'
@@ -28,6 +30,7 @@ import { RecordingConnection } from './recording'
 import { RelationshipConnection } from './relationship'
 import { ReleaseConnection } from './release'
 import { ReleaseGroupConnection } from './release-group'
+import { SeriesConnection } from './series'
 import { TagConnection } from './tag'
 import { WorkConnection } from './work'
 import {
@@ -224,7 +227,9 @@ export const releaseStatus = {
 
 export const areas = linkedQuery(AreaConnection)
 export const artists = linkedQuery(ArtistConnection)
+export const collections = linkedQuery(CollectionConnection)
 export const events = linkedQuery(EventConnection)
+export const instruments = linkedQuery(InstrumentConnection)
 export const labels = linkedQuery(LabelConnection)
 export const places = linkedQuery(PlaceConnection)
 export const recordings = linkedQuery(RecordingConnection)
@@ -239,6 +244,7 @@ export const releaseGroups = linkedQuery(ReleaseGroupConnection, {
     type: releaseGroupType
   }
 })
+export const series = linkedQuery(SeriesConnection)
 export const tags = linkedQuery(TagConnection, {
   resolve: createSubqueryResolver({}, (value = [], args) => ({
     totalCount: value.length,
