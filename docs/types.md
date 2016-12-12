@@ -29,6 +29,7 @@ You may also be interested in reading the [schema in GraphQL syntax](schema.md).
     <li>[LabelEdge](#labeledge)</li>
     <li>[LifeSpan](#lifespan)</li>
     <li>[LookupQuery](#lookupquery)</li>
+    <li>[Medium](#medium)</li>
     <li>[PageInfo](#pageinfo)</li>
     <li>[Place](#place)</li>
     <li>[PlaceConnection](#placeconnection)</li>
@@ -2503,6 +2504,61 @@ A lookup of an individual MusicBrainz entity by its MBID.
   </tr>
 </tbody></table>
 
+### Medium
+
+A medium is the actual physical medium the audio content is
+stored upon. This means that each CD in a multi-disc release will be entered as
+separate mediums within the release, and that both sides of a vinyl record or
+cassette will exist on one medium. Mediums have a format (e.g. CD, DVD, vinyl,
+cassette) and can optionally also have a title.
+
+<table><thead>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
+</thead><tbody>
+  <tr>
+    <td valign="top"><strong>title</strong> </td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>
+      The title of this particular medium.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>format</strong> </td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td>
+      The <a href="https://musicbrainz.org/doc/Release/Format">format</a> of
+the medium (e.g. CD, DVD, vinyl, cassette).
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>formatID</strong> </td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>
+      The MBID associated with the value of the <code>format</code>
+field.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>position</strong> </td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td>
+      The order of this medium in the release (for example, in a
+multi-disc release).
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>trackCount</strong> </td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td>
+      The number of audio tracks on this medium.
+    </td>
+  </tr>
+</tbody></table>
+
 ### PageInfo
 
 Information about pagination in a connection.
@@ -3875,6 +3931,13 @@ field.
       Data quality indicates how good the data for a release is.
 It is not a mark of how good or bad the music itself is – for that, use
 <a href="https://musicbrainz.org/doc/Rating_System">ratings</a>.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>media</strong> </td>
+    <td valign="top">[<a href="#medium">Medium</a>]</td>
+    <td>
+      The media on which the release was distributed.
     </td>
   </tr>
   <tr>

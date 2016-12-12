@@ -987,6 +987,31 @@ type LookupQuery {
 # 36-character UUIDs.
 scalar MBID
 
+# A medium is the actual physical medium the audio content is
+# stored upon. This means that each CD in a multi-disc release will be entered as
+# separate mediums within the release, and that both sides of a vinyl record or
+# cassette will exist on one medium. Mediums have a format (e.g. CD, DVD, vinyl,
+# cassette) and can optionally also have a title.
+type Medium {
+  # The title of this particular medium.
+  title: String
+
+  # The [format](https://musicbrainz.org/doc/Release/Format) of
+  # the medium (e.g. CD, DVD, vinyl, cassette).
+  format: String
+
+  # The MBID associated with the value of the `format`
+  # field.
+  formatID: MBID
+
+  # The order of this medium in the release (for example, in a
+  # multi-disc release).
+  position: Int
+
+  # The number of audio tracks on this medium.
+  trackCount: Int
+}
+
 # An object with an ID
 interface Node {
   # The id of the object.
@@ -1550,6 +1575,9 @@ type Release implements Node, Entity {
   # It is not a mark of how good or bad the music itself is – for that, use
   # [ratings](https://musicbrainz.org/doc/Rating_System).
   quality: String
+
+  # The media on which the release was distributed.
+  media: [Medium]
 
   # A list of artists linked to this entity.
   artists(after: String, first: Int): ArtistConnection

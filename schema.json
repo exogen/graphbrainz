@@ -2912,6 +2912,22 @@
               "deprecationReason": null
             },
             {
+              "name": "media",
+              "description": "The media on which the release was distributed.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Medium",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "artists",
               "description": "A list of artists linked to this entity.",
               "args": [
@@ -3194,6 +3210,77 @@
           "fields": null,
           "inputFields": null,
           "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Medium",
+          "description": "A medium is the actual physical medium the audio content is\nstored upon. This means that each CD in a multi-disc release will be entered as\nseparate mediums within the release, and that both sides of a vinyl record or\ncassette will exist on one medium. Mediums have a format (e.g. CD, DVD, vinyl,\ncassette) and can optionally also have a title.",
+          "fields": [
+            {
+              "name": "title",
+              "description": "The title of this particular medium.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "format",
+              "description": "The [format](https://musicbrainz.org/doc/Release/Format) of\nthe medium (e.g. CD, DVD, vinyl, cassette).",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "formatID",
+              "description": "The MBID associated with the value of the `format`\nfield.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "MBID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "position",
+              "description": "The order of this medium in the release (for example, in a\nmulti-disc release).",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "trackCount",
+              "description": "The number of audio tracks on this medium.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
         },
