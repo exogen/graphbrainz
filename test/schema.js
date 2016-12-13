@@ -196,7 +196,7 @@ test('throws an error if given a malformed MBID', testError, `
   t.is(err.message, 'Malformed MBID: ABC123')
 })
 
-test('Artist beginArea/endArea pulls from begin_area/end_area for lookup queries', testData, `
+test('artist areas access begin_area/end_area for lookup queries', testData, `
   {
     lookup {
       artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
@@ -215,7 +215,7 @@ test('Artist beginArea/endArea pulls from begin_area/end_area for lookup queries
   t.is(artist.endArea.name, 'Los Angeles')
 })
 
-test('Artist beginArea/endArea pull from begin_area/end_area for browse queries', testData, `
+test('artist areas access begin_area/end_area for browse queries', testData, `
   {
     browse {
       artists(area: "3f504d54-c40c-487d-bc16-c1990eac887f") {
@@ -239,7 +239,7 @@ test('Artist beginArea/endArea pull from begin_area/end_area for browse queries'
   t.true(artists.some(artist => artist.endArea))
 })
 
-test('Artist beginArea/endArea pulls from begin-area/end-area for search queries', testData, `
+test('artist areas access begin-area/end-area for search queries', testData, `
   {
     search {
       artists(query: "Leonard Cohen", first: 1) {
@@ -263,7 +263,7 @@ test('Artist beginArea/endArea pulls from begin-area/end-area for search queries
   t.is(artists[0].endArea.name, 'Los Angeles')
 })
 
-test('relationships filter by type', testData, `
+test('relationships are grouped by target type', testData, `
   {
     lookup {
       artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
@@ -321,7 +321,102 @@ test('relationships filter by type', testData, `
   })
 })
 
-test('Area maps iso-3166-1-codes to isoCodes', testData, `
+test('relationships can be filtered by type', testData, `
+  {
+    lookup {
+      artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
+        relationships {
+          artists(type: "parent") {
+            edges {
+              node {
+                targetType
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { artist } = data.lookup
+  const rels = artist.relationships.artists.edges.map(edge => edge.node)
+  t.is(rels.length, 2)
+  rels.forEach(rel => {
+    t.is(rel.targetType, 'artist')
+    t.is(rel.type, 'parent')
+  })
+})
+
+test('relationships can be filtered by type ID', testData, `
+  {
+    lookup {
+      artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
+        relationships {
+          artists(typeID: "fd3927ba-fd51-4fa9-bcc2-e83637896fe8") {
+            edges {
+              node {
+                targetType
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { artist } = data.lookup
+  const rels = artist.relationships.artists.edges.map(edge => edge.node)
+  t.is(rels.length, 1)
+  rels.forEach(rel => {
+    t.is(rel.targetType, 'artist')
+    t.is(rel.type, 'involved with')
+  })
+})
+
+test('relationships can be filtered by direction', testData, `
+  {
+    lookup {
+      area(mbid: "10cb2ebd-1bc7-4c11-b10d-54f60c421d20") {
+        relationships {
+          isPartOf: areas(direction: "backward") {
+            edges {
+              node {
+                type
+                direction
+              }
+            }
+          }
+          hasParts: areas(direction: "forward") {
+            edges {
+              node {
+                type
+                direction
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { area } = data.lookup
+  const isPartOf = area.relationships.isPartOf.edges.map(edge => edge.node)
+  const hasParts = area.relationships.hasParts.edges.map(edge => edge.node)
+  t.true(isPartOf.length > 0)
+  t.true(hasParts.length > 0)
+  isPartOf.forEach(rel => {
+    t.is(rel.type, 'part of')
+    t.is(rel.direction, 'backward')
+  })
+  hasParts.forEach(rel => {
+    t.is(rel.type, 'part of')
+    t.is(rel.direction, 'forward')
+  })
+})
+
+test('area maps iso-3166-1-codes to isoCodes', testData, `
   {
     lookup {
       area(mbid: "489ce91b-6658-3307-9877-795b68554c98") {
@@ -334,7 +429,7 @@ test('Area maps iso-3166-1-codes to isoCodes', testData, `
   t.deepEqual(data.lookup.area.isoCodes, ['US'])
 })
 
-test('Alias locales use the Locale scalar', testData, `
+test('alias locales use the locale scalar', testData, `
   {
     lookup {
       artist(mbid: "f99b7d67-4e63-4678-aa66-4c6ac0f7d24a") {
@@ -351,7 +446,7 @@ test('Alias locales use the Locale scalar', testData, `
   t.is(aliases.find(alias => alias.locale === 'ko').name, '싸이')
 })
 
-test('Work ISWCs use the ISWC scalar', testData, `
+test('work ISWCs use the ISWC scalar', testData, `
   {
     lookup {
       work(mbid: "ef7d0814-da6a-32f5-a600-ff81cffd1aed") {
@@ -381,7 +476,7 @@ test('URLs may be looked up by resource', testData, `
   t.is(url.resource, 'http://www.nirvana.com/')
 })
 
-test('throws an error if given a malformed URLString', testError, `
+test('throws an error if given a malformed resource URL', testError, `
   {
     lookup {
       url(resource: "http:foo") {
@@ -396,7 +491,7 @@ test('throws an error if given a malformed URLString', testError, `
   t.is(err.message, 'Malformed URL: http:foo')
 })
 
-test('Release groups can be browsed by type', testData, `
+test('release groups can be browsed by type', testData, `
   {
     browse {
       releaseGroups(artist: "5b11f4ce-a62d-471e-81fc-a69a8278c7da", type: EP) {
@@ -414,7 +509,7 @@ test('Release groups can be browsed by type', testData, `
   releaseGroups.forEach(releaseGroup => t.is(releaseGroup.primaryType, 'EP'))
 })
 
-test('Releases can be browsed by type and status', testData, `
+test('releases can be browsed by type and status', testData, `
   {
     browse {
       releases(artist: "5b11f4ce-a62d-471e-81fc-a69a8278c7da", type: EP, status: BOOTLEG) {
@@ -432,7 +527,7 @@ test('Releases can be browsed by type and status', testData, `
   releases.forEach(release => t.is(release.status, 'BOOTLEG'))
 })
 
-test('Releases have an ASIN field', testData, `
+test('releases have an ASIN field', testData, `
   {
     lookup {
       release(mbid: "d5cdb7fd-c7e9-460a-9549-8a369655cc52") {
@@ -445,7 +540,7 @@ test('Releases have an ASIN field', testData, `
   t.is(release.asin, 'B01KN6XDS6')
 })
 
-test('Artists have a list of ISNIs and IPIs', testData, `
+test('artists have a list of ISNIs and IPIs', testData, `
   {
     lookup {
       artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
@@ -515,7 +610,7 @@ test('artistCredits is an alias for artistCredit', testData, `
   t.deepEqual(releaseGroup.artistCredits, releaseGroup.artistCredit)
 })
 
-test('Recordings can be browsed by isrc', testData, `
+test('recordings can be browsed by ISRC', testData, `
   {
     browse {
       recordings(isrc: "USSUB0200002") {
@@ -537,7 +632,7 @@ test('Recordings can be browsed by isrc', testData, `
   ])
 })
 
-test('Releases can be browsed by discID', testData, `
+test('releases can be browsed by Disc ID', testData, `
   {
     browse {
       releases(discID: "XzPS7vW.HPHsYemQh0HBUGr8vuU-") {
@@ -558,7 +653,7 @@ test('Releases can be browsed by discID', testData, `
   t.true(releases.some(release => release.mbid === '96f6f90e-d831-4f37-bf72-ce2982e459fb'))
 })
 
-test('Works can be browsed by iswc', testData, `
+test('works can be browsed by ISWC', testData, `
   {
     browse {
       works(iswc: "T-900.755.682-3") {
@@ -580,7 +675,7 @@ test('Works can be browsed by iswc', testData, `
   ])
 })
 
-test('Recordings have a length in milliseconds', testData, `
+test('recordings have a length in milliseconds', testData, `
   {
     lookup {
       recording(mbid: "9f9cf187-d6f9-437f-9d98-d59cdbd52757") {
@@ -593,7 +688,7 @@ test('Recordings have a length in milliseconds', testData, `
   t.is(recording.length, 383493)
 })
 
-test('Collections can be browsed by the entities they contain', testData, `
+test('collections can be browsed by the entities they contain', testData, `
   {
     browse {
       collections(artist: "24f1766e-9635-4d58-a4d4-9413f9f98a4c") {
@@ -631,7 +726,7 @@ test('Collections can be browsed by the entities they contain', testData, `
   })
 })
 
-test('Collections can be looked up by MBID', testData, `
+test('collections can be looked up by MBID', testData, `
   {
     lookup {
       collection(mbid: "85da782d-2ec0-41ec-a97f-9be464bba309") {
@@ -686,7 +781,7 @@ test('entities have a collections field', testData, `
   t.true(artist.collections.edges.length > 0)
 })
 
-test('Releases support a list of media', testData, `
+test('releases support a list of media', testData, `
   {
     lookup {
       release(mbid: "a4864e94-6d75-4ade-bc93-0dabf3521453") {
@@ -718,4 +813,16 @@ test('Releases support a list of media', testData, `
       trackCount: 11
     }
   ])
+})
+
+test('throws an error if looking up a URL without an argument', testError, `
+  {
+    lookup {
+      url {
+        mbid
+      }
+    }
+  }
+`, (t, errors) => {
+  t.is(errors[0].message, 'Lookups by a field other than MBID must provide: resource')
 })

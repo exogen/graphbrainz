@@ -160,22 +160,17 @@ export function resolveSearch (root, {
 
 export function resolveRelationship (rels, args, context, info) {
   const targetType = toDashed(toSingular(info.fieldName)).replace('-', '_')
+  let matches = rels.filter(rel => rel['target-type'] === targetType)
   // There's no way to filter these at the API level, so do it here.
-  const matches = rels.filter(rel => {
-    if (rel['target-type'] !== targetType) {
-      return false
-    }
-    if (args.direction != null && rel.direction !== args.direction) {
-      return false
-    }
-    if (args.type != null && rel.type !== args.type) {
-      return false
-    }
-    if (args.typeID != null && rel['type-id'] !== args.typeID) {
-      return false
-    }
-    return true
-  })
+  if (args.direction != null) {
+    matches = matches.filter(rel => rel.direction === args.direction)
+  }
+  if (args.type != null) {
+    matches = matches.filter(rel => rel.type === args.type)
+  }
+  if (args.typeID != null) {
+    matches = matches.filter(rel => rel['type-id'] === args.typeID)
+  }
   return {
     totalCount: matches.length,
     ...connectionFromArray(matches, args)
