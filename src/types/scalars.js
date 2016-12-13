@@ -16,7 +16,7 @@ function createScalar (config) {
 }
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
-const locale = /^([a-z]{2})(_[A-Z]{2})?(\.[A-Z0-9-]+)?$/
+const locale = /^([a-z]{2})(_[A-Z]{2})?(\.[a-zA-Z0-9-]+)?$/
 // Be extremely lenient; just prevent major input errors.
 const url = /^\w+:\/\/[\w-]+\.\w+/
 
