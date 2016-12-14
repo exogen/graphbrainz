@@ -1,6 +1,6 @@
 import test from 'ava'
 import { Kind } from 'graphql/language'
-import { Locale, Duration, URLString } from '../../src/types/scalars'
+import { Duration, Locale, MBID, ISWC, URLString } from '../../src/types/scalars'
 
 test('Locale scalar allows language code', t => {
   t.is(Locale.parseLiteral({ kind: Kind.STRING, value: 'en' }), 'en')
@@ -54,4 +54,20 @@ test('URLString scalar must be a valid URL', t => {
   t.throws(() => URLString.parseLiteral({ kind: Kind.STRING, value: 'foo:/bar' }), TypeError)
   t.throws(() => URLString.parseLiteral({ kind: Kind.STRING, value: 'foo://bar' }), TypeError)
   t.throws(() => URLString.parseLiteral({ kind: Kind.STRING, value: 'foo://bar.' }), TypeError)
+})
+
+test('ISWC scalar only accepts strings', t => {
+  t.is(ISWC.parseLiteral({ kind: Kind.STRING, value: 'foo' }), 'foo')
+  t.is(ISWC.parseLiteral({ kind: Kind.INT, value: 5 }), null)
+  t.is(ISWC.parseLiteral({ kind: Kind.ENUM, value: 'xx' }), null)
+})
+
+test('MBID scalar only accepts strings', t => {
+  t.is(MBID.parseLiteral({ kind: Kind.INT, value: 12345 }), null)
+  t.is(MBID.parseLiteral({ kind: Kind.ENUM, value: 'xx' }), null)
+})
+
+test('MBID scalar must be a valid UUID', t => {
+  t.is(MBID.parseLiteral({ kind: Kind.STRING, value: 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8' }), 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8')
+  t.throws(() => MBID.parseLiteral({ kind: Kind.STRING, value: 'c8da2e40-bd28-4d4e-813a-bd2f51958bag' }), TypeError)
 })
