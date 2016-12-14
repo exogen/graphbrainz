@@ -15,6 +15,7 @@ import {
   releases,
   relationships,
   collections,
+  rating,
   tags,
   fieldWithID,
   resolveHyphenated,
@@ -61,6 +62,7 @@ that apply to this release group.`
     releases,
     relationships,
     collections,
+    rating,
     tags
   })
 })

@@ -218,6 +218,9 @@ type Artist implements Node, Entity {
   # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
+  # The rating users have given to this entity.
+  rating: Rating
+
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
 }
@@ -681,6 +684,9 @@ type Event implements Node, Entity {
   # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
+  # The rating users have given to this entity.
+  rating: Rating
+
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
 }
@@ -874,6 +880,9 @@ type Label implements Node, Entity {
 
   # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
+
+  # The rating users have given to this entity.
+  rating: Rating
 
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
@@ -1165,6 +1174,18 @@ type Query {
   ): Node
 }
 
+# [Ratings](https://musicbrainz.org/doc/Rating_System) allow users
+# to rate MusicBrainz entities. User may assign a value between 1 and 5; these
+# values are then aggregated by the server to compute an average community rating
+# for the entity.
+type Rating {
+  # The number of votes that have contributed to the rating.
+  voteCount: Int!
+
+  # The average rating value based on the aggregated votes.
+  value: Int
+}
+
 # A [recording](https://musicbrainz.org/doc/Recording) is an
 # entity in MusicBrainz which can be linked to tracks on releases. Each track must
 # always be associated with a single recording, but a recording can be linked to
@@ -1230,6 +1251,9 @@ type Recording implements Node, Entity {
 
   # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
+
+  # The rating users have given to this entity.
+  rating: Rating
 
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
@@ -1743,6 +1767,9 @@ type ReleaseGroup implements Node, Entity {
   # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
+  # The rating users have given to this entity.
+  rating: Rating
+
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection
 }
@@ -2141,6 +2168,9 @@ type Work implements Node, Entity {
 
   # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
+
+  # The rating users have given to this entity.
+  rating: Rating
 
   # A list of tags linked to this entity.
   tags(after: String, first: Int): TagConnection

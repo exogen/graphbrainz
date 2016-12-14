@@ -10,6 +10,7 @@ import {
   artists,
   relationships,
   collections,
+  rating,
   tags,
   fieldWithID,
   connectionWithExtras
@@ -42,6 +43,7 @@ to the work by copyright collecting agencies.`
     artists,
     relationships,
     collections,
+    rating,
     tags
   })
 })

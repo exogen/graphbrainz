@@ -12,6 +12,7 @@ import {
   lifeSpan,
   relationships,
   collections,
+  rating,
   tags,
   connectionWithExtras
 } from './helpers'
@@ -48,6 +49,7 @@ for syntax and examples.`
     }),
     relationships,
     collections,
+    rating,
     tags
   })
 })
