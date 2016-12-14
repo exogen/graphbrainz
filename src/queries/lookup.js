@@ -1,10 +1,12 @@
-import { GraphQLObjectType } from 'graphql'
+import { GraphQLObjectType, GraphQLNonNull } from 'graphql'
 import { resolveLookup } from '../resolvers'
 import { mbid, toWords } from '../types/helpers'
 import {
   Area,
   Artist,
   Collection,
+  Disc,
+  DiscID,
   Event,
   Instrument,
   Label,
@@ -36,6 +38,20 @@ export const LookupQuery = new GraphQLObjectType({
     area: createLookupField(Area),
     artist: createLookupField(Artist),
     collection: createLookupField(Collection),
+    disc: {
+      type: Disc,
+      description: 'Look up a specific physical disc by its disc ID.',
+      args: {
+        discID: {
+          type: new GraphQLNonNull(DiscID),
+          description: `The [disc ID](https://musicbrainz.org/doc/Disc_ID)
+of the disc.`
+        }
+      },
+      resolve: (root, { discID }, { loaders }, info) => {
+        return loaders.lookup.load(['discid', discID])
+      }
+    },
     event: createLookupField(Event),
     instrument: createLookupField(Instrument),
     label: createLookupField(Label),

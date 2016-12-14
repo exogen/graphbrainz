@@ -38,20 +38,20 @@ export function includeRelationships (params, info, fragments = info.fragments) 
 
 export function includeSubqueries (params, info, fragments = info.fragments) {
   const subqueryIncludes = {
-    aliases: 'aliases',
-    artistCredit: 'artist-credits',
-    artistCredits: 'artist-credits',
-    isrcs: 'isrcs',
-    media: 'media',
-    rating: 'ratings',
-    tags: 'tags'
+    aliases: ['aliases'],
+    artistCredit: ['artist-credits'],
+    artistCredits: ['artist-credits'],
+    isrcs: ['isrcs'],
+    media: ['media', 'discids'],
+    rating: ['ratings'],
+    tags: ['tags']
   }
   let fields = getFields(info, fragments)
   const include = []
   for (const key in subqueryIncludes) {
     if (fields[key]) {
       const value = subqueryIncludes[key]
-      include.push(value)
+      include.push(...value)
     }
   }
   params = {
@@ -104,6 +104,13 @@ export function resolveBrowse (root, {
   let request
   if (discID) {
     request = loaders.lookup.load(['discid', discID, params])
+    // If fetching releases by disc ID, they will already include the `media`
+    // and `discids` subqueries, and it is invalid to specify them.
+    if (params.inc) {
+      params.inc = params.inc.filter(value => {
+        return value !== 'media' && value !== 'discids'
+      })
+    }
   } else if (isrc) {
     request = loaders.lookup.load(['isrc', isrc, params])
   } else if (iswc) {
@@ -193,7 +200,7 @@ export function createSubqueryResolver ({ inc, key } = {}, handler = value => va
   return (entity, args, { loaders }, info) => {
     key = key || toDashed(info.fieldName)
     let promise
-    if (key in entity || (entity._inc && entity._inc.indexOf(key) >= 0)) {
+    if (key in entity) {
       promise = Promise.resolve(entity)
     } else {
       const { _type: entityType, id } = entity
@@ -202,4 +209,16 @@ export function createSubqueryResolver ({ inc, key } = {}, handler = value => va
     }
     return promise.then(entity => handler(entity[key], args))
   }
+}
+
+export function resolveDiscReleases (disc, args, context, info) {
+  const { releases } = disc
+  if (releases != null) {
+    return {
+      totalCount: releases.length,
+      ...connectionFromArray(releases, args)
+    }
+  }
+  args = { ...args, discID: disc.id }
+  return resolveBrowse(disc, args, context, info)
 }
