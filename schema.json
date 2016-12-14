@@ -771,7 +771,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -1761,7 +1761,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -1787,6 +1787,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CollectionConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rating",
+              "description": "The rating users have given to this entity.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Rating",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -2282,7 +2294,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -2308,6 +2320,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CollectionConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rating",
+              "description": "The rating users have given to this entity.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Rating",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -3087,7 +3111,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -3642,7 +3666,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -3668,6 +3692,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CollectionConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rating",
+              "description": "The rating users have given to this entity.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Rating",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6003,7 +6039,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -6029,6 +6065,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CollectionConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rating",
+              "description": "The rating users have given to this entity.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Rating",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6091,6 +6139,45 @@
           "fields": null,
           "inputFields": null,
           "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Rating",
+          "description": "[Ratings](https://musicbrainz.org/doc/Rating_System) allow users\nto rate MusicBrainz entities. User may assign a value between 1 and 5; these\nvalues are then aggregated by the server to compute an average community rating\nfor the entity.",
+          "fields": [
+            {
+              "name": "voteCount",
+              "description": "The number of votes that have contributed to the rating.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "value",
+              "description": "The average rating value based on the aggregated votes.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
         },
@@ -6472,7 +6559,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -6855,7 +6942,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -7372,7 +7459,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -7398,6 +7485,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CollectionConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rating",
+              "description": "The rating users have given to this entity.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Rating",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -7658,7 +7757,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -8021,7 +8120,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -8047,6 +8146,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CollectionConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rating",
+              "description": "The rating users have given to this entity.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Rating",
                 "ofType": null
               },
               "isDeprecated": false,

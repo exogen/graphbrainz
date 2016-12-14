@@ -19,6 +19,7 @@ import {
   works,
   relationships,
   collections,
+  rating,
   tags,
   connectionWithExtras
 } from './helpers'
@@ -84,6 +85,7 @@ neither. Groups do not have genders.`
     works,
     relationships,
     collections,
+    rating,
     tags
   })
 })

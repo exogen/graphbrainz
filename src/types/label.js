@@ -20,6 +20,7 @@ import {
   relationships,
   collections,
   tags,
+  rating,
   fieldWithID,
   connectionWithExtras
 } from './helpers'
@@ -63,6 +64,7 @@ imprint, production, distributor, rights society, etc.`
     releases,
     relationships,
     collections,
+    rating,
     tags
   })
 })

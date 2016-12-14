@@ -18,6 +18,7 @@ import {
   releases,
   relationships,
   collections,
+  rating,
   tags,
   connectionWithExtras
 } from './helpers'
@@ -63,6 +64,7 @@ from the lengths of the tracks using it.`
     releases,
     relationships,
     collections,
+    rating,
     tags
   })
 })

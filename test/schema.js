@@ -826,3 +826,84 @@ test('throws an error if looking up a URL without an argument', testError, `
 `, (t, errors) => {
   t.is(errors[0].message, 'Lookups by a field other than MBID must provide: resource')
 })
+
+test('some entities support ratings', testData, `
+  {
+    lookup {
+      event(mbid: "eec75a81-8864-4cea-b8b4-e99cd08b29f1") {
+        rating {
+          voteCount
+          value
+        }
+      }
+      work(mbid: "12b53203-64af-3a94-b3ec-11fad7c7d809") {
+        rating {
+          voteCount
+          value
+        }
+      }
+    }
+    browse {
+      artists(work: "8a25ce1e-8695-42c0-b668-8f0aa057c72b") {
+        edges {
+          node {
+            rating {
+              voteCount
+              value
+            }
+          }
+        }
+      }
+      recordings(artist: "c8da2e40-bd28-4d4e-813a-bd2f51958ba8") {
+        edges {
+          node {
+            rating {
+              voteCount
+              value
+            }
+          }
+        }
+      }
+    }
+    search {
+      labels(query: "Fin Records") {
+        edges {
+          node {
+            rating {
+              voteCount
+              value
+            }
+          }
+        }
+      }
+      releaseGroups(query: "arid:c8da2e40-bd28-4d4e-813a-bd2f51958ba8") {
+        edges {
+          node {
+            rating {
+              voteCount
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { event, work } = data.lookup
+  const artists = data.browse.artists.edges.map(edge => edge.node)
+  const recordings = data.browse.recordings.edges.map(edge => edge.node)
+  const labels = data.search.labels.edges.map(edge => edge.node)
+  const releaseGroups = data.search.releaseGroups.edges.map(edge => edge.node)
+  t.is(event.rating.voteCount, 0)
+  t.is(event.rating.value, null)
+  t.true(work.rating.voteCount > 0)
+  t.true(work.rating.value >= 4)
+  t.true(artists.some(artist => artist.rating.voteCount > 0))
+  t.true(artists.some(artist => artist.rating.value > 3))
+  t.true(recordings.some(recording => recording.rating.voteCount > 0))
+  t.true(recordings.some(recording => recording.rating.value > 3))
+  t.true(labels.some(label => label.rating.voteCount > 0))
+  t.true(labels.some(label => label.rating.value > 3))
+  t.true(releaseGroups.some(releaseGroup => releaseGroup.rating.voteCount > 0))
+  t.true(releaseGroups.some(releaseGroup => releaseGroup.rating.value > 3))
+})
