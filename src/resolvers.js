@@ -42,7 +42,7 @@ export function includeSubqueries (params, info, fragments = info.fragments) {
     artistCredit: ['artist-credits'],
     artistCredits: ['artist-credits'],
     isrcs: ['isrcs'],
-    media: ['media', 'discids']
+    media: ['media', 'discids'],
     rating: ['ratings'],
     tags: ['tags']
   }
