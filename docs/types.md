@@ -34,6 +34,7 @@ You may also be interested in reading the [schema in GraphQL syntax](schema.md).
     <li>[Place](#place)</li>
     <li>[PlaceConnection](#placeconnection)</li>
     <li>[PlaceEdge](#placeedge)</li>
+    <li>[Rating](#rating)</li>
     <li>[Recording](#recording)</li>
     <li>[RecordingConnection](#recordingconnection)</li>
     <li>[RecordingEdge](#recordingedge)</li>
@@ -371,7 +372,7 @@ the codes assigned by ISO to countries and subdivisions.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -714,7 +715,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -726,6 +727,13 @@ field.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>rating</strong> </td>
+    <td valign="top"><a href="#rating">Rating</a></td>
+    <td>
+      The rating users have given to this entity.
+    </td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -1754,7 +1762,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -1766,6 +1774,13 @@ field.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>rating</strong> </td>
+    <td valign="top"><a href="#rating">Rating</a></td>
+    <td>
+      The rating users have given to this entity.
+    </td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -1941,7 +1956,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -2193,7 +2208,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -2205,6 +2220,13 @@ field.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>rating</strong> </td>
+    <td valign="top"><a href="#rating">Rating</a></td>
+    <td>
+      The rating users have given to this entity.
+    </td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -2723,7 +2745,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -2821,6 +2843,36 @@ An edge in a connection.
     <td>
       The relevancy score (0–100) assigned by the search engine, if
 these results were found through a search.
+    </td>
+  </tr>
+</tbody></table>
+
+### Rating
+
+[Ratings](https://musicbrainz.org/doc/Rating_System) allow users
+to rate MusicBrainz entities. User may assign a value between 1 and 5; these
+values are then aggregated by the server to compute an average community rating
+for the entity.
+
+<table><thead>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
+</thead><tbody>
+  <tr>
+    <td valign="top"><strong>voteCount</strong> </td>
+    <td valign="top"><a href="#int">Int</a>!</td>
+    <td>
+      The number of votes that have contributed to the rating.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>value</strong> </td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td>
+      The average rating value based on the aggregated votes.
     </td>
   </tr>
 </tbody></table>
@@ -2981,7 +3033,7 @@ from the lengths of the tracks using it.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -2993,6 +3045,13 @@ from the lengths of the tracks using it.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>rating</strong> </td>
+    <td valign="top"><a href="#rating">Rating</a></td>
+    <td>
+      The rating users have given to this entity.
+    </td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -4024,7 +4083,7 @@ It is not a mark of how good or bad the music itself is – for that, use
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -4324,7 +4383,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -4336,6 +4395,13 @@ field.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>rating</strong> </td>
+    <td valign="top"><a href="#rating">Rating</a></td>
+    <td>
+      The rating users have given to this entity.
+    </td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>
@@ -4760,7 +4826,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -5111,7 +5177,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -5123,6 +5189,13 @@ field.
     <td align="right" valign="top">first</td>
     <td valign="top"><a href="#int">Int</a></td>
     <td></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>rating</strong> </td>
+    <td valign="top"><a href="#rating">Rating</a></td>
+    <td>
+      The rating users have given to this entity.
+    </td>
   </tr>
   <tr>
     <td valign="top"><strong>tags</strong> </td>

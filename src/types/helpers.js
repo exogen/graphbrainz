@@ -26,6 +26,7 @@ import { InstrumentConnection } from './instrument'
 import { LabelConnection } from './label'
 import LifeSpan from './life-span'
 import { PlaceConnection } from './place'
+import Rating from './rating'
 import { RecordingConnection } from './recording'
 import { RelationshipConnection } from './relationship'
 import { ReleaseConnection } from './release'
@@ -213,6 +214,12 @@ export const artistCredit = {
 plural form throughout the MusicBrainz documentation. This field is deprecated
 and will be removed in a major release in the future. Use the equivalent
 \`artistCredits\` field.`
+}
+
+export const rating = {
+  type: Rating,
+  description: 'The rating users have given to this entity.',
+  resolve: createSubqueryResolver({ inc: 'ratings' })
 }
 
 export const releaseGroupType = {

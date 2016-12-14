@@ -43,6 +43,7 @@ export function includeSubqueries (params, info, fragments = info.fragments) {
     artistCredits: 'artist-credits',
     isrcs: 'isrcs',
     media: 'media',
+    rating: 'ratings',
     tags: 'tags'
   }
   let fields = getFields(info, fragments)
