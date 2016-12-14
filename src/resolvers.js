@@ -200,7 +200,7 @@ export function createSubqueryResolver ({ inc, key } = {}, handler = value => va
   return (entity, args, { loaders }, info) => {
     key = key || toDashed(info.fieldName)
     let promise
-    if (key in entity || (entity._inc && entity._inc.indexOf(inc) >= 0)) {
+    if (key in entity) {
       promise = Promise.resolve(entity)
     } else {
       const { _type: entityType, id } = entity
