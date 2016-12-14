@@ -18,6 +18,7 @@ You may also be interested in reading the [schema in GraphQL syntax](schema.md).
     <li>[CollectionConnection](#collectionconnection)</li>
     <li>[CollectionEdge](#collectionedge)</li>
     <li>[Coordinates](#coordinates)</li>
+    <li>[Disc](#disc)</li>
     <li>[Event](#event)</li>
     <li>[EventConnection](#eventconnection)</li>
     <li>[EventEdge](#eventedge)</li>
@@ -371,7 +372,7 @@ the codes assigned by ISO to countries and subdivisions.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -554,7 +555,7 @@ is often, but not always, its birth/formation country.
     <td valign="top"><a href="#area">Area</a></td>
     <td>
       The area in which an artist began their career (or where
-were born, if the artist is a person).
+they were born, if the artist is a person).
     </td>
   </tr>
   <tr>
@@ -714,7 +715,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -1648,6 +1649,72 @@ Geographic coordinates described with latitude and longitude.
   </tr>
 </tbody></table>
 
+### Disc
+
+Information about the physical CD and releases associated with a
+particular [disc ID](https://musicbrainz.org/doc/Disc_ID).
+
+<table><thead>
+  <tr>
+    <th align="left">Field&nbsp;/&nbsp;Argument</th>
+    <th align="left">Type</th>
+    <th align="left">Description</th>
+  </tr>
+</thead><tbody>
+  <tr>
+    <td valign="top"><strong>id</strong> </td>
+    <td valign="top"><a href="#id">ID</a>!</td>
+    <td>
+      The ID of an object
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>discID</strong> </td>
+    <td valign="top"><a href="#discid">DiscID</a>!</td>
+    <td>
+      The <a href="https://musicbrainz.org/doc/Disc_ID">disc ID</a> of this disc.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>offsetCount</strong> </td>
+    <td valign="top"><a href="#int">Int</a>!</td>
+    <td>
+      The number of offsets (tracks) on the disc.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>offsets</strong> </td>
+    <td valign="top">[<a href="#int">Int</a>]</td>
+    <td>
+      The sector offset of each track on the disc.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>sectors</strong> </td>
+    <td valign="top"><a href="#int">Int</a>!</td>
+    <td>
+      The sector offset of the lead-out (the end of the disc).
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>releases</strong> </td>
+    <td valign="top"><a href="#releaseconnection">ReleaseConnection</a></td>
+    <td>
+      The list of releases linked to this disc ID.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">after</td>
+    <td valign="top"><a href="#string">String</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">first</td>
+    <td valign="top"><a href="#int">Int</a></td>
+    <td></td>
+  </tr>
+</tbody></table>
+
 ### Event
 
 An [event](https://musicbrainz.org/doc/Event) refers to an
@@ -1754,7 +1821,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -1941,7 +2008,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -2193,7 +2260,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -2378,6 +2445,19 @@ A lookup of an individual MusicBrainz entity by its MBID.
     <td>The MBID of the entity.</td>
   </tr>
   <tr>
+    <td valign="top"><strong>disc</strong> </td>
+    <td valign="top"><a href="#disc">Disc</a></td>
+    <td>
+      Look up a specific physical disc by its disc ID.
+    </td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">discID</td>
+    <td valign="top"><a href="#discid">DiscID</a>!</td>
+    <td>The <a href="https://musicbrainz.org/doc/Disc_ID">disc ID</a>
+of the disc.</td>
+  </tr>
+  <tr>
     <td valign="top"><strong>event</strong> </td>
     <td valign="top"><a href="#event">Event</a></td>
     <td>
@@ -2557,6 +2637,13 @@ multi-disc release).
       The number of audio tracks on this medium.
     </td>
   </tr>
+  <tr>
+    <td valign="top"><strong>discs</strong> </td>
+    <td valign="top">[<a href="#disc">Disc</a>]</td>
+    <td>
+      A list of physical discs and their disc IDs for this medium.
+    </td>
+  </tr>
 </tbody></table>
 
 ### PageInfo
@@ -2723,7 +2810,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -2981,7 +3068,7 @@ from the lengths of the tracks using it.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -4024,7 +4111,7 @@ It is not a mark of how good or bad the music itself is – for that, use
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -4324,7 +4411,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -4760,7 +4847,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>
@@ -5111,7 +5198,7 @@ field.
     <td valign="top"><strong>collections</strong> </td>
     <td valign="top"><a href="#collectionconnection">CollectionConnection</a></td>
     <td>
-      A list of collections linked to this entity.
+      A list of collections containing this entity.
     </td>
   </tr>
   <tr>

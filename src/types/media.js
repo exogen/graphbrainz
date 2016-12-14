@@ -1,4 +1,10 @@
-import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql/type'
+import {
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLString,
+  GraphQLInt
+} from 'graphql/type'
+import Disc from './disc'
 import { resolveHyphenated, fieldWithID } from './helpers'
 
 export default new GraphQLObjectType({
@@ -26,6 +32,10 @@ multi-disc release).`
       type: GraphQLInt,
       description: 'The number of audio tracks on this medium.',
       resolve: resolveHyphenated
+    },
+    discs: {
+      type: new GraphQLList(Disc),
+      description: 'A list of physical discs and their disc IDs for this medium.'
     }
   })
 })

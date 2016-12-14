@@ -826,3 +826,127 @@ test('throws an error if looking up a URL without an argument', testError, `
 `, (t, errors) => {
   t.is(errors[0].message, 'Lookups by a field other than MBID must provide: resource')
 })
+
+test('discs can be looked up by disc ID', testData, `
+  {
+    lookup {
+      disc(discID: "TMXdzZkTcc9Jq24PD0w5J9_AXms-") {
+        id
+        discID
+        offsetCount
+        offsets
+        sectors
+        releases {
+          totalCount
+          edges {
+            node {
+              mbid
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { disc } = data.lookup
+  t.is(disc.discID, 'TMXdzZkTcc9Jq24PD0w5J9_AXms-')
+  t.is(disc.offsetCount, 9)
+  t.is(disc.sectors, 193443)
+  t.deepEqual(disc.offsets, [
+    150, 18190, 34163, 66150, 87453, 116853, 151413, 166833, 184123
+  ])
+  t.is(disc.releases.totalCount, 1)
+  t.is(disc.releases.edges.length, 1)
+  t.is(disc.releases.edges[0].node.mbid, '7f6d3088-837d-495e-905f-be5c70ac2d82')
+})
+
+test('release media has a list of discs', testData, `
+  {
+    lookup {
+      release(mbid: "7f6d3088-837d-495e-905f-be5c70ac2d82") {
+        media {
+          discs {
+            discID
+            releases {
+              totalCount
+              edges {
+                node {
+                  mbid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { release } = data.lookup
+  t.is(release.media.length, 1)
+  t.is(release.media[0].discs.length, 2)
+})
+
+test('disc queries can be deeply nested', testData, `
+  {
+    lookup {
+      disc(discID: "TMXdzZkTcc9Jq24PD0w5J9_AXms-") {
+        discID
+        offsetCount
+        offsets
+        sectors
+        releases {
+          totalCount
+          edges {
+            node {
+              mbid
+              title
+              date
+              media {
+                discs {
+                  discID
+                  releases {
+                    edges {
+                      node {
+                        date
+                        media {
+                          discs {
+                            discID
+                            releases {
+                              edges {
+                                node {
+                                  date
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { disc } = data.lookup
+  t.true(disc.releases.edges.length > 0)
+  disc.releases.edges.forEach(release => {
+    t.true(release.node.media.length > 0)
+    release.node.media.forEach(medium => {
+      t.true(medium.discs.length > 0)
+      medium.discs.forEach(disc => {
+        t.true(disc.releases.edges.length > 0)
+        disc.releases.edges.forEach(release => {
+          t.true(release.node.media.length > 0)
+          release.node.media.forEach(medium => {
+            t.true(medium.discs.length > 0)
+          })
+        })
+      })
+    })
+  })
+})

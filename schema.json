@@ -168,6 +168,33 @@
               "deprecationReason": null
             },
             {
+              "name": "disc",
+              "description": "Look up a specific physical disc by its disc ID.",
+              "args": [
+                {
+                  "name": "discID",
+                  "description": "The [disc ID](https://musicbrainz.org/doc/Disc_ID)\nof the disc.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "DiscID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Disc",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "event",
               "description": "Look up a specific event by its MBID.",
               "args": [
@@ -771,7 +798,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -896,6 +923,11 @@
             {
               "kind": "OBJECT",
               "name": "Release",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Disc",
               "ofType": null
             },
             {
@@ -1459,7 +1491,7 @@
             },
             {
               "name": "beginArea",
-              "description": "The area in which an artist began their career (or where\nwere born, if the artist is a person).",
+              "description": "The area in which an artist began their career (or where\nthey were born, if the artist is a person).",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -1761,7 +1793,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -2282,7 +2314,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -3087,7 +3119,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -3277,10 +3309,166 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "discs",
+              "description": "A list of physical discs and their disc IDs for this medium.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Disc",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
           "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Disc",
+          "description": "Information about the physical CD and releases associated with a\nparticular [disc ID](https://musicbrainz.org/doc/Disc_ID).",
+          "fields": [
+            {
+              "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "discID",
+              "description": "The [disc ID](https://musicbrainz.org/doc/Disc_ID) of this disc.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DiscID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "offsetCount",
+              "description": "The number of offsets (tracks) on the disc.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "offsets",
+              "description": "The sector offset of each track on the disc.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sectors",
+              "description": "The sector offset of the lead-out (the end of the disc).",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "releases",
+              "description": "The list of releases linked to this disc ID.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReleaseConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "DiscID",
+          "description": "[Disc ID](https://musicbrainz.org/doc/Disc_ID) is the code\nnumber which MusicBrainz uses to link a physical CD to a [release](https://musicbrainz.org/doc/Release)\nlisting.\n\nA release may have any number of disc IDs, and a disc ID may be linked to\nmultiple releases. This is because disc ID calculation involves a hash of the\nframe offsets of the CD tracks.\n\nDifferent pressing of a CD often have slightly different frame offsets, and\nhence different disc IDs.\n\nConversely, two different CDs may happen to have exactly the same set of frame\noffsets and hence the same disc ID.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -3642,7 +3830,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -6003,7 +6191,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -6472,7 +6660,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -6855,7 +7043,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -7372,7 +7560,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -7658,7 +7846,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -8021,7 +8209,7 @@
             },
             {
               "name": "collections",
-              "description": "A list of collections linked to this entity.",
+              "description": "A list of collections containing this entity.",
               "args": [
                 {
                   "name": "after",
@@ -9024,16 +9212,6 @@
           ],
           "inputFields": null,
           "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "DiscID",
-          "description": "[Disc ID](https://musicbrainz.org/doc/Disc_ID) is the code\nnumber which MusicBrainz uses to link a physical CD to a [release](https://musicbrainz.org/doc/Release)\nlisting.\n\nA release may have any number of disc IDs, and a disc ID may be linked to\nmultiple releases. This is because disc ID calculation involves a hash of the\nframe offsets of the CD tracks.\n\nDifferent pressing of a CD often have slightly different frame offsets, and\nhence different disc IDs.\n\nConversely, two different CDs may happen to have exactly the same set of frame\noffsets and hence the same disc ID.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },

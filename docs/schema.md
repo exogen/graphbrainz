@@ -84,7 +84,7 @@ type Area implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
@@ -153,7 +153,7 @@ type Artist implements Node, Entity {
   area: Area
 
   # The area in which an artist began their career (or where
-  # were born, if the artist is a person).
+  # they were born, if the artist is a person).
   beginArea: Area
 
   # The area in which an artist ended their career (or where
@@ -215,7 +215,7 @@ type Artist implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
@@ -587,6 +587,28 @@ scalar Date
 # Decimal degrees, used for latitude and longitude.
 scalar Degrees
 
+# Information about the physical CD and releases associated with a
+# particular [disc ID](https://musicbrainz.org/doc/Disc_ID).
+type Disc implements Node {
+  # The ID of an object
+  id: ID!
+
+  # The [disc ID](https://musicbrainz.org/doc/Disc_ID) of this disc.
+  discID: DiscID!
+
+  # The number of offsets (tracks) on the disc.
+  offsetCount: Int!
+
+  # The sector offset of each track on the disc.
+  offsets: [Int]
+
+  # The sector offset of the lead-out (the end of the disc).
+  sectors: Int!
+
+  # The list of releases linked to this disc ID.
+  releases(after: String, first: Int): ReleaseConnection
+}
+
 # [Disc ID](https://musicbrainz.org/doc/Disc_ID) is the code
 # number which MusicBrainz uses to link a physical CD to a [release](https://musicbrainz.org/doc/Release)
 # listing.
@@ -656,7 +678,7 @@ type Event implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
@@ -725,7 +747,7 @@ type Instrument implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
@@ -850,7 +872,7 @@ type Label implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
@@ -918,6 +940,13 @@ type LookupQuery {
     # The MBID of the entity.
     mbid: MBID!
   ): Collection
+
+  # Look up a specific physical disc by its disc ID.
+  disc(
+    # The [disc ID](https://musicbrainz.org/doc/Disc_ID)
+    # of the disc.
+    discID: DiscID!
+  ): Disc
 
   # Look up a specific event by its MBID.
   event(
@@ -1010,6 +1039,9 @@ type Medium {
 
   # The number of audio tracks on this medium.
   trackCount: Int
+
+  # A list of physical discs and their disc IDs for this medium.
+  discs: [Disc]
 }
 
 # An object with an ID
@@ -1081,7 +1113,7 @@ type Place implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
@@ -1196,7 +1228,7 @@ type Recording implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
@@ -1599,7 +1631,7 @@ type Release implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
@@ -1708,7 +1740,7 @@ type ReleaseGroup implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
@@ -1974,7 +2006,7 @@ type Series implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
@@ -2107,7 +2139,7 @@ type Work implements Node, Entity {
   # Relationships between this entity and other entitites.
   relationships: Relationships
 
-  # A list of collections linked to this entity.
+  # A list of collections containing this entity.
   collections(after: String, first: Int): CollectionConnection
 
   # A list of tags linked to this entity.
