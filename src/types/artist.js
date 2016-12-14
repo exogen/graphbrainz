@@ -51,7 +51,7 @@ is often, but not always, its birth/formation country.`
     beginArea: {
       type: Area,
       description: `The area in which an artist began their career (or where
-were born, if the artist is a person).`,
+they were born, if the artist is a person).`,
       resolve: resolveWithFallback(['begin-area', 'begin_area'])
     },
     endArea: {
