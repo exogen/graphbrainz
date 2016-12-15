@@ -39,10 +39,6 @@
     "test:watch": "npm run test:only -- --watch",
     "update-schema": "npm run -s print-schema:json > schema.json"
   },
-  "pre-commit": [
-    "build:docs",
-    "lint"
-  ],
   "keywords": [
     "musicbrainz",
     "graphql",
@@ -67,7 +63,7 @@
     "compression": "^1.6.2",
     "dashify": "^0.2.2",
     "dataloader": "^1.2.0",
-    "debug": "^2.3.3",
+    "debug": "^2.4.3",
     "dotenv": "^2.0.0",
     "es6-error": "^4.0.0",
     "express": "^4.14.0",
@@ -78,7 +74,7 @@
     "pascalcase": "^0.1.1",
     "qs": "^6.3.0",
     "request": "^2.79.0",
-    "retry": "^0.10.0"
+    "retry": "^0.10.1"
   },
   "devDependencies": {
     "ava": "^0.17.0",
@@ -95,9 +91,9 @@
     "marked": "^0.3.6",
     "nodemon": "^1.11.0",
     "nyc": "^10.0.0",
-    "pre-commit": "^1.2.1",
     "rimraf": "^2.5.4",
     "sepia": "^2.0.2",
+    "sinon": "^1.17.6",
     "snazzy": "^5.0.0",
     "standard": "^8.6.0"
   },

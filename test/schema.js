@@ -1031,3 +1031,43 @@ test('disc queries can be deeply nested', testData, `
     })
   })
 })
+
+test('entities support tags', testData, `
+  {
+    lookup {
+      label(mbid: "38dc88de-7720-4100-9d5b-3cdc41b0c474") {
+        tags {
+          edges {
+            node {
+              name
+              count
+            }
+          }
+        }
+      }
+    }
+    search {
+      artists(query: "Leonard Cohen", first: 1) {
+        edges {
+          node {
+            tags {
+              edges {
+                node {
+                  name
+                  count
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { label } = data.lookup
+  const artists = data.search.artists.edges.map(edge => edge.node)
+  t.true(label.tags.edges.some(edge => edge.node.name === 'indie folk'))
+  t.true(label.tags.edges.some(edge => edge.node.count > 0))
+  t.true(artists[0].tags.edges.some(edge => edge.node.name === 'blues rock'))
+  t.true(artists[0].tags.edges.some(edge => edge.node.count > 0))
+})

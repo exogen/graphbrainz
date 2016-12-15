@@ -22,6 +22,7 @@ import {
   works,
   fieldWithID,
   resolveHyphenated,
+  createCollectionField,
   connectionWithExtras
 } from './helpers'
 
@@ -46,17 +47,17 @@ lists of entities that users can create.`,
     ...fieldWithID('type', {
       description: 'The type of collection.'
     }),
-    areas,
-    artists,
-    events,
-    instruments,
-    labels,
-    places,
-    recordings,
-    releases,
-    releaseGroups,
-    series,
-    works
+    areas: createCollectionField(areas),
+    artists: createCollectionField(artists),
+    events: createCollectionField(events),
+    instruments: createCollectionField(instruments),
+    labels: createCollectionField(labels),
+    places: createCollectionField(places),
+    recordings: createCollectionField(recordings),
+    releases: createCollectionField(releases),
+    releaseGroups: createCollectionField(releaseGroups),
+    series: createCollectionField(series),
+    works: createCollectionField(works)
   })
 })
 

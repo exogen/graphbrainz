@@ -1,0 +1,29 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "date": "Wed, 14 Dec 2016 22:14:47 GMT",
+    "content-type": "application/json; charset=UTF-8",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "keep-alive": "timeout=15",
+    "vary": "Accept-Encoding",
+    "x-ratelimit-limit": "700",
+    "x-ratelimit-remaining": "145",
+    "x-ratelimit-reset": "1481753687",
+    "last-modified": "Wed, 14 Dec 2016 21:34:26 GMT",
+    "server": "Jetty(9.3.10.v20160621)",
+    "access-control-allow-origin": "*",
+    "content-encoding": "gzip"
+  },
+  "url": "http://musicbrainz.org:80/ws/2/artist?limit=1&inc=tags&query=Leonard%20Cohen&fmt=json",
+  "time": 1884,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/4.5.0 ( https://github.com/exogen/graphbrainz )",
+      "host": "musicbrainz.org",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json"
+    }
+  }
+}

@@ -98,6 +98,14 @@ field.`,
   }
 }
 
+export function createCollectionField (config) {
+  const typeName = toPlural(toWords(config.type.name.slice(0, -10)))
+  return {
+    ...config,
+    description: `The list of ${typeName} found in this collection.`
+  }
+}
+
 export const id = globalIdField()
 export const mbid = {
   type: new GraphQLNonNull(MBID),

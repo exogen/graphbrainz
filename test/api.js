@@ -1,5 +1,5 @@
 import test from 'ava'
-import { MusicBrainzError } from '../src/api'
+import MusicBrainz, { MusicBrainzError } from '../src/api'
 import client from './helpers/client'
 
 test('getLookupURL() generates a lookup URL', t => {
@@ -32,4 +32,33 @@ test('rejects the promise when the API returns an error', t => {
     inc: ['foobar']
   })
   return t.throws(req, MusicBrainzError)
+})
+
+test('shouldRetry() retries only 5xx responses from MusicBrainz', t => {
+  t.true(client.shouldRetry(new MusicBrainzError('error', 500)))
+  t.true(client.shouldRetry(new MusicBrainzError('error', 501)))
+  t.true(client.shouldRetry(new MusicBrainzError('error', 598)))
+  t.true(client.shouldRetry(new MusicBrainzError('error', 599)))
+  t.false(client.shouldRetry(new MusicBrainzError('error', 404)))
+  t.false(client.shouldRetry(new MusicBrainzError('error', 499)))
+  t.false(client.shouldRetry(new MusicBrainzError('error', 600)))
+})
+
+test('shouldRetry() retries only transient local connection issues', t => {
+  t.true(client.shouldRetry({ code: 'ECONNRESET' }))
+  t.true(client.shouldRetry({ code: 'ENOTFOUND' }))
+  t.true(client.shouldRetry({ code: 'ESOCKETTIMEDOUT' }))
+  t.true(client.shouldRetry({ code: 'ETIMEDOUT' }))
+  t.true(client.shouldRetry({ code: 'ECONNREFUSED' }))
+  t.true(client.shouldRetry({ code: 'EHOSTUNREACH' }))
+  t.true(client.shouldRetry({ code: 'EPIPE' }))
+  t.true(client.shouldRetry({ code: 'EAI_AGAIN' }))
+  t.false(client.shouldRetry({ code: 'ENOENT' }))
+  t.false(client.shouldRetry({ code: 'EACCES' }))
+  t.false(client.shouldRetry({ code: 'EPERM' }))
+})
+
+test('rejects non-MusicBrainz errors', t => {
+  const client = new MusicBrainz({ baseURL: '$!@#$' })
+  t.throws(client.get('artist/5b11f4ce-a62d-471e-81fc-a69a8278c7da'), Error)
 })

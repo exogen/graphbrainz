@@ -394,12 +394,12 @@ type BrowseQuery {
     # The MBID of a collection in which the entity is found.
     collection: MBID
 
-    # The MBID of a release to which the entity is linked.
-    release: MBID
-
     # The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
     # (ISRC) of the recording.
     isrc: ISRC
+
+    # The MBID of a release to which the entity is linked.
+    release: MBID
     after: String
     first: Int
   ): RecordingConnection
@@ -415,8 +415,18 @@ type BrowseQuery {
     # The MBID of a collection in which the entity is found.
     collection: MBID
 
+    # A [disc ID](https://musicbrainz.org/doc/Disc_ID)
+    # associated with the release.
+    discID: DiscID
+
     # The MBID of a label to which the entity is linked.
     label: MBID
+
+    # The MBID of a recording to which the entity is linked.
+    recording: MBID
+
+    # The MBID of a release group to which the entity is linked.
+    releaseGroup: MBID
 
     # The MBID of a track that is included in the release.
     track: MBID
@@ -425,21 +435,11 @@ type BrowseQuery {
     # release, but is not included in the credits for the release itself.
     trackArtist: MBID
 
-    # The MBID of a recording to which the entity is linked.
-    recording: MBID
-
-    # The MBID of a release group to which the entity is linked.
-    releaseGroup: MBID
-
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
 
     # Filter by one or more release statuses.
     status: [ReleaseStatus]
-
-    # A [disc ID](https://musicbrainz.org/doc/Disc_ID)
-    # associated with the release.
-    discID: DiscID
     after: String
     first: Int
   ): ReleaseConnection
@@ -502,28 +502,28 @@ type Collection implements Node, Entity {
   # field.
   typeID: MBID
 
-  # A list of areas linked to this entity.
+  # The list of areas found in this collection.
   areas(after: String, first: Int): AreaConnection
 
-  # A list of artists linked to this entity.
+  # The list of artists found in this collection.
   artists(after: String, first: Int): ArtistConnection
 
-  # A list of events linked to this entity.
+  # The list of events found in this collection.
   events(after: String, first: Int): EventConnection
 
-  # A list of instruments linked to this entity.
+  # The list of instruments found in this collection.
   instruments(after: String, first: Int): InstrumentConnection
 
-  # A list of labels linked to this entity.
+  # The list of labels found in this collection.
   labels(after: String, first: Int): LabelConnection
 
-  # A list of places linked to this entity.
+  # The list of places found in this collection.
   places(after: String, first: Int): PlaceConnection
 
-  # A list of recordings linked to this entity.
+  # The list of recordings found in this collection.
   recordings(after: String, first: Int): RecordingConnection
 
-  # A list of releases linked to this entity.
+  # The list of releases found in this collection.
   releases(
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
@@ -534,7 +534,7 @@ type Collection implements Node, Entity {
     first: Int
   ): ReleaseConnection
 
-  # A list of release groups linked to this entity.
+  # The list of release groups found in this collection.
   releaseGroups(
     # Filter by one or more release group types.
     type: [ReleaseGroupType]
@@ -542,10 +542,10 @@ type Collection implements Node, Entity {
     first: Int
   ): ReleaseGroupConnection
 
-  # A list of series linked to this entity.
+  # The list of series found in this collection.
   series(after: String, first: Int): SeriesConnection
 
-  # A list of works linked to this entity.
+  # The list of works found in this collection.
   works(after: String, first: Int): WorkConnection
 }
 
@@ -1688,8 +1688,8 @@ type ReleaseEdge {
   score: Int
 }
 
-# Date on which a release was issued in a country/region with a
-# particular label, catalog number, barcode, and what release format was used.
+# The date on which a release was issued in a country/region with
+# a particular label, catalog number, barcode, and format.
 type ReleaseEvent {
   area: Area
   date: Date

@@ -122,18 +122,25 @@ entity.`,
     recordings: createBrowseField(RecordingConnection, {
       artist,
       collection,
-      release,
       isrc: {
         type: ISRC,
         description: `The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
 (ISRC) of the recording.`
-      }
+      },
+      release
     }),
     releases: createBrowseField(ReleaseConnection, {
       area,
       artist,
       collection,
+      discID: {
+        type: DiscID,
+        description: `A [disc ID](https://musicbrainz.org/doc/Disc_ID)
+associated with the release.`
+      },
       label,
+      recording,
+      releaseGroup,
       track: {
         type: MBID,
         description: 'The MBID of a track that is included in the release.'
@@ -143,15 +150,8 @@ entity.`,
         description: `The MBID of an artist that appears on a track in the
 release, but is not included in the credits for the release itself.`
       },
-      recording,
-      releaseGroup,
       type: releaseGroupType,
-      status: releaseStatus,
-      discID: {
-        type: DiscID,
-        description: `A [disc ID](https://musicbrainz.org/doc/Disc_ID)
-associated with the release.`
-      }
+      status: releaseStatus
     }),
     releaseGroups: createBrowseField(ReleaseGroupConnection, {
       artist,

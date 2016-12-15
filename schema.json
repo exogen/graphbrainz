@@ -3227,7 +3227,7 @@
         {
           "kind": "OBJECT",
           "name": "ReleaseEvent",
-          "description": "Date on which a release was issued in a country/region with a\nparticular label, catalog number, barcode, and what release format was used.",
+          "description": "The date on which a release was issued in a country/region with\na particular label, catalog number, barcode, and format.",
           "fields": [
             {
               "name": "area",
@@ -5432,7 +5432,7 @@
             },
             {
               "name": "areas",
-              "description": "A list of areas linked to this entity.",
+              "description": "The list of areas found in this collection.",
               "args": [
                 {
                   "name": "after",
@@ -5465,7 +5465,7 @@
             },
             {
               "name": "artists",
-              "description": "A list of artists linked to this entity.",
+              "description": "The list of artists found in this collection.",
               "args": [
                 {
                   "name": "after",
@@ -5498,7 +5498,7 @@
             },
             {
               "name": "events",
-              "description": "A list of events linked to this entity.",
+              "description": "The list of events found in this collection.",
               "args": [
                 {
                   "name": "after",
@@ -5531,7 +5531,7 @@
             },
             {
               "name": "instruments",
-              "description": "A list of instruments linked to this entity.",
+              "description": "The list of instruments found in this collection.",
               "args": [
                 {
                   "name": "after",
@@ -5564,7 +5564,7 @@
             },
             {
               "name": "labels",
-              "description": "A list of labels linked to this entity.",
+              "description": "The list of labels found in this collection.",
               "args": [
                 {
                   "name": "after",
@@ -5597,7 +5597,7 @@
             },
             {
               "name": "places",
-              "description": "A list of places linked to this entity.",
+              "description": "The list of places found in this collection.",
               "args": [
                 {
                   "name": "after",
@@ -5630,7 +5630,7 @@
             },
             {
               "name": "recordings",
-              "description": "A list of recordings linked to this entity.",
+              "description": "The list of recordings found in this collection.",
               "args": [
                 {
                   "name": "after",
@@ -5663,7 +5663,7 @@
             },
             {
               "name": "releases",
-              "description": "A list of releases linked to this entity.",
+              "description": "The list of releases found in this collection.",
               "args": [
                 {
                   "name": "type",
@@ -5724,7 +5724,7 @@
             },
             {
               "name": "releaseGroups",
-              "description": "A list of release groups linked to this entity.",
+              "description": "The list of release groups found in this collection.",
               "args": [
                 {
                   "name": "type",
@@ -5771,7 +5771,7 @@
             },
             {
               "name": "series",
-              "description": "A list of series linked to this entity.",
+              "description": "The list of series found in this collection.",
               "args": [
                 {
                   "name": "after",
@@ -5804,7 +5804,7 @@
             },
             {
               "name": "works",
-              "description": "A list of works linked to this entity.",
+              "description": "The list of works found in this collection.",
               "args": [
                 {
                   "name": "after",
@@ -8981,21 +8981,21 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "release",
-                  "description": "The MBID of a release to which the entity is linked.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "MBID",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
                   "name": "isrc",
                   "description": "The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)\n(ISRC) of the recording.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "ISRC",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "release",
+                  "description": "The MBID of a release to which the entity is linked.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -9064,28 +9064,18 @@
                   "defaultValue": null
                 },
                 {
+                  "name": "discID",
+                  "description": "A [disc ID](https://musicbrainz.org/doc/Disc_ID)\nassociated with the release.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "DiscID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "label",
                   "description": "The MBID of a label to which the entity is linked.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "MBID",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "track",
-                  "description": "The MBID of a track that is included in the release.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "MBID",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "trackArtist",
-                  "description": "The MBID of an artist that appears on a track in the\nrelease, but is not included in the credits for the release itself.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -9106,6 +9096,26 @@
                 {
                   "name": "releaseGroup",
                   "description": "The MBID of a release group to which the entity is linked.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "track",
+                  "description": "The MBID of a track that is included in the release.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "MBID",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "trackArtist",
+                  "description": "The MBID of an artist that appears on a track in the\nrelease, but is not included in the credits for the release itself.",
                   "type": {
                     "kind": "SCALAR",
                     "name": "MBID",
@@ -9138,16 +9148,6 @@
                       "name": "ReleaseStatus",
                       "ofType": null
                     }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "discID",
-                  "description": "A [disc ID](https://musicbrainz.org/doc/Disc_ID)\nassociated with the release.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "DiscID",
-                    "ofType": null
                   },
                   "defaultValue": null
                 },

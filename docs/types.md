@@ -1128,15 +1128,15 @@ entity.
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
-    <td align="right" valign="top">release</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID of a release to which the entity is linked.</td>
-  </tr>
-  <tr>
     <td align="right" valign="top">isrc</td>
     <td valign="top"><a href="#isrc">ISRC</a></td>
     <td>The <a href="https://musicbrainz.org/doc/ISRC">International Standard Recording Code</a>
 (ISRC) of the recording.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">release</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of a release to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
@@ -1171,9 +1171,25 @@ entity.
     <td>The MBID of a collection in which the entity is found.</td>
   </tr>
   <tr>
+    <td align="right" valign="top">discID</td>
+    <td valign="top"><a href="#discid">DiscID</a></td>
+    <td>A <a href="https://musicbrainz.org/doc/Disc_ID">disc ID</a>
+associated with the release.</td>
+  </tr>
+  <tr>
     <td align="right" valign="top">label</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>The MBID of a label to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">recording</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of a recording to which the entity is linked.</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top">releaseGroup</td>
+    <td valign="top"><a href="#mbid">MBID</a></td>
+    <td>The MBID of a release group to which the entity is linked.</td>
   </tr>
   <tr>
     <td align="right" valign="top">track</td>
@@ -1187,16 +1203,6 @@ entity.
 release, but is not included in the credits for the release itself.</td>
   </tr>
   <tr>
-    <td align="right" valign="top">recording</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID of a recording to which the entity is linked.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">releaseGroup</td>
-    <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID of a release group to which the entity is linked.</td>
-  </tr>
-  <tr>
     <td align="right" valign="top">type</td>
     <td valign="top">[<a href="#releasegrouptype">ReleaseGroupType</a>]</td>
     <td>Filter by one or more release group types.</td>
@@ -1205,12 +1211,6 @@ release, but is not included in the credits for the release itself.</td>
     <td align="right" valign="top">status</td>
     <td valign="top">[<a href="#releasestatus">ReleaseStatus</a>]</td>
     <td>Filter by one or more release statuses.</td>
-  </tr>
-  <tr>
-    <td align="right" valign="top">discID</td>
-    <td valign="top"><a href="#discid">DiscID</a></td>
-    <td>A <a href="https://musicbrainz.org/doc/Disc_ID">disc ID</a>
-associated with the release.</td>
   </tr>
   <tr>
     <td align="right" valign="top">after</td>
@@ -1360,7 +1360,7 @@ field.
     <td valign="top"><strong>areas</strong> </td>
     <td valign="top"><a href="#areaconnection">AreaConnection</a></td>
     <td>
-      A list of areas linked to this entity.
+      The list of areas found in this collection.
     </td>
   </tr>
   <tr>
@@ -1377,7 +1377,7 @@ field.
     <td valign="top"><strong>artists</strong> </td>
     <td valign="top"><a href="#artistconnection">ArtistConnection</a></td>
     <td>
-      A list of artists linked to this entity.
+      The list of artists found in this collection.
     </td>
   </tr>
   <tr>
@@ -1394,7 +1394,7 @@ field.
     <td valign="top"><strong>events</strong> </td>
     <td valign="top"><a href="#eventconnection">EventConnection</a></td>
     <td>
-      A list of events linked to this entity.
+      The list of events found in this collection.
     </td>
   </tr>
   <tr>
@@ -1411,7 +1411,7 @@ field.
     <td valign="top"><strong>instruments</strong> </td>
     <td valign="top"><a href="#instrumentconnection">InstrumentConnection</a></td>
     <td>
-      A list of instruments linked to this entity.
+      The list of instruments found in this collection.
     </td>
   </tr>
   <tr>
@@ -1428,7 +1428,7 @@ field.
     <td valign="top"><strong>labels</strong> </td>
     <td valign="top"><a href="#labelconnection">LabelConnection</a></td>
     <td>
-      A list of labels linked to this entity.
+      The list of labels found in this collection.
     </td>
   </tr>
   <tr>
@@ -1445,7 +1445,7 @@ field.
     <td valign="top"><strong>places</strong> </td>
     <td valign="top"><a href="#placeconnection">PlaceConnection</a></td>
     <td>
-      A list of places linked to this entity.
+      The list of places found in this collection.
     </td>
   </tr>
   <tr>
@@ -1462,7 +1462,7 @@ field.
     <td valign="top"><strong>recordings</strong> </td>
     <td valign="top"><a href="#recordingconnection">RecordingConnection</a></td>
     <td>
-      A list of recordings linked to this entity.
+      The list of recordings found in this collection.
     </td>
   </tr>
   <tr>
@@ -1479,7 +1479,7 @@ field.
     <td valign="top"><strong>releases</strong> </td>
     <td valign="top"><a href="#releaseconnection">ReleaseConnection</a></td>
     <td>
-      A list of releases linked to this entity.
+      The list of releases found in this collection.
     </td>
   </tr>
   <tr>
@@ -1506,7 +1506,7 @@ field.
     <td valign="top"><strong>releaseGroups</strong> </td>
     <td valign="top"><a href="#releasegroupconnection">ReleaseGroupConnection</a></td>
     <td>
-      A list of release groups linked to this entity.
+      The list of release groups found in this collection.
     </td>
   </tr>
   <tr>
@@ -1528,7 +1528,7 @@ field.
     <td valign="top"><strong>series</strong> </td>
     <td valign="top"><a href="#seriesconnection">SeriesConnection</a></td>
     <td>
-      A list of series linked to this entity.
+      The list of series found in this collection.
     </td>
   </tr>
   <tr>
@@ -1545,7 +1545,7 @@ field.
     <td valign="top"><strong>works</strong> </td>
     <td valign="top"><a href="#workconnection">WorkConnection</a></td>
     <td>
-      A list of works linked to this entity.
+      The list of works found in this collection.
     </td>
   </tr>
   <tr>
@@ -4274,8 +4274,8 @@ these results were found through a search.
 
 ### ReleaseEvent
 
-Date on which a release was issued in a country/region with a
-particular label, catalog number, barcode, and what release format was used.
+The date on which a release was issued in a country/region with
+a particular label, catalog number, barcode, and format.
 
 <table><thead>
   <tr>
