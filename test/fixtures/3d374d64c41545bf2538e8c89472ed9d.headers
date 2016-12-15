@@ -1,26 +1,26 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Tue, 13 Dec 2016 23:27:57 GMT",
+    "date": "Thu, 15 Dec 2016 00:55:01 GMT",
     "content-type": "application/json; charset=utf-8",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "vary": "Accept-Encoding",
     "x-ratelimit-limit": "700",
-    "x-ratelimit-remaining": "424",
-    "x-ratelimit-reset": "1481671678",
+    "x-ratelimit-remaining": "549",
+    "x-ratelimit-reset": "1481763302",
     "server": "Plack::Handler::Starlet",
-    "etag": "W/\"7ccfb462ff6e8aad1443307559453420\"",
+    "etag": "W/\"ad5d4cc4b5981de0ce4bc22a42ec4d6d\"",
     "access-control-allow-origin": "*",
     "content-encoding": "gzip"
   },
   "url": "http://musicbrainz.org:80/ws/2/label/4f63389d-c520-4d57-ade5-0e3c737931e3?inc=ratings&fmt=json",
-  "time": 398,
+  "time": 509,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/4.4.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/4.5.0 ( https://github.com/exogen/graphbrainz )",
       "host": "musicbrainz.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"
