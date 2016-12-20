@@ -1,6 +1,7 @@
 import { GraphQLObjectType, GraphQLList } from 'graphql/type'
 import Node from './node'
 import Entity from './entity'
+import { ReleaseGroupCoverArt } from './cover-art'
 import { DateType } from './scalars'
 import { ReleaseGroupType } from './enums'
 import {
@@ -58,6 +59,14 @@ e.g. album, single, soundtrack, compilation, etc. A release group can have a
       description: `Additional [types](https://musicbrainz.org/doc/Release_Group/Type)
 that apply to this release group.`
     }),
+    coverArt: {
+      type: ReleaseGroupCoverArt,
+      description: `The cover art for a release group, obtained from the [Cover
+Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive).`,
+      resolve: (releaseGroup, args, { loaders }) => {
+        return loaders.coverArt.load(['release-group', releaseGroup.id])
+      }
+    },
     artists,
     releases,
     relationships,

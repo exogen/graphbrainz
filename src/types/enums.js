@@ -39,6 +39,29 @@ distinctive name.`,
   }
 })
 
+export const CoverArtImageSize = new GraphQLEnumType({
+  name: 'CoverArtImageSize',
+  description: `The image sizes that may be requested at the [Cover Art
+Archive](https://musicbrainz.org/doc/Cover_Art_Archive).`,
+  values: {
+    SMALL: {
+      name: 'Small',
+      description: 'A maximum dimension of 250px.',
+      value: 250
+    },
+    LARGE: {
+      name: 'Large',
+      description: 'A maximum dimension of 500px.',
+      value: 500
+    },
+    FULL: {
+      name: 'Full',
+      description: 'The image’s original dimensions, with no maximum.',
+      value: null
+    }
+  }
+})
+
 export const ReleaseStatus = new GraphQLEnumType({
   name: 'ReleaseStatus',
   description: `A type used to describe the status of releases, e.g. official,

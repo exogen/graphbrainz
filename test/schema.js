@@ -1071,3 +1071,224 @@ test('entities support tags', testData, `
   t.true(artists[0].tags.edges.some(edge => edge.node.name === 'blues rock'))
   t.true(artists[0].tags.edges.some(edge => edge.node.count > 0))
 })
+
+test('releases have a cover art summary', testData, `
+  {
+    lookup {
+      release(mbid: "b84ee12a-09ef-421b-82de-0441a926375b") {
+        coverArt {
+          artwork
+          darkened
+          count
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { coverArt } = data.lookup.release
+  t.true(coverArt.artwork)
+  t.false(coverArt.darkened)
+  t.true(coverArt.count >= 10)
+})
+
+test('releases have a set of cover art images', testData, `
+  {
+    lookup {
+      release(mbid: "b84ee12a-09ef-421b-82de-0441a926375b") {
+        coverArt {
+          front
+          back
+          images {
+            front
+            back
+            types
+            approved
+            edit
+            comment
+            fileID
+            image
+            thumbnails {
+              small
+              large
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { coverArt } = data.lookup.release
+  t.is(coverArt.front, 'http://archive.org/download/mbid-b84ee12a-09ef-421b-82de-0441a926375b/mbid-b84ee12a-09ef-421b-82de-0441a926375b-1611507818.jpg')
+  t.is(coverArt.back, 'http://archive.org/download/mbid-b84ee12a-09ef-421b-82de-0441a926375b/mbid-b84ee12a-09ef-421b-82de-0441a926375b-13536418798.jpg')
+  t.true(coverArt.images.length >= 10)
+  t.true(coverArt.images.some(image => image.front === true))
+  t.true(coverArt.images.some(image => image.back === true))
+  t.true(coverArt.images.some(image => image.types.indexOf('Front') >= 0))
+  t.true(coverArt.images.some(image => image.types.indexOf('Back') >= 0))
+  t.true(coverArt.images.some(image => image.types.indexOf('Liner') >= 0))
+  t.true(coverArt.images.some(image => image.types.indexOf('Poster') >= 0))
+  t.true(coverArt.images.some(image => image.types.indexOf('Medium') >= 0))
+  t.true(coverArt.images.some(image => image.edit === 18544122))
+  t.true(coverArt.images.some(image => image.comment === ''))
+  t.true(coverArt.images.some(image => image.fileID === '1611507818'))
+  t.true(coverArt.images.some(image => image.image === 'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/13536422691.jpg'))
+  t.true(coverArt.images.every(image => image.approved === true))
+  t.true(coverArt.images.every(image => image.thumbnails.small))
+  t.true(coverArt.images.every(image => image.thumbnails.large))
+})
+
+test('can request a size for front and back cover art', testData, `
+  {
+    lookup {
+      release(mbid: "b84ee12a-09ef-421b-82de-0441a926375b") {
+        coverArt {
+          front(size: LARGE)
+          back(size: SMALL)
+          fullFront: front(size: FULL)
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { coverArt } = data.lookup.release
+  t.is(coverArt.front, 'http://archive.org/download/mbid-b84ee12a-09ef-421b-82de-0441a926375b/mbid-b84ee12a-09ef-421b-82de-0441a926375b-1611507818_thumb500.jpg')
+  t.is(coverArt.back, 'http://archive.org/download/mbid-b84ee12a-09ef-421b-82de-0441a926375b/mbid-b84ee12a-09ef-421b-82de-0441a926375b-13536418798_thumb250.jpg')
+  t.is(coverArt.fullFront, 'http://archive.org/download/mbid-b84ee12a-09ef-421b-82de-0441a926375b/mbid-b84ee12a-09ef-421b-82de-0441a926375b-1611507818.jpg')
+})
+
+test('release groups have a front cover art image', testData, `
+  {
+    lookup {
+      releaseGroup(mbid: "f5093c06-23e3-404f-aeaa-40f72885ee3a") {
+        coverArt {
+          artwork
+          front
+          images {
+            front
+            image
+          }
+          release {
+            mbid
+            title
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { coverArt } = data.lookup.releaseGroup
+  t.true(coverArt.artwork)
+  t.is(coverArt.front, 'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275.jpg')
+  t.is(coverArt.release.mbid, '25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27')
+  t.is(coverArt.release.title, 'The Dark Side of the Moon')
+  t.is(coverArt.images.length, 1)
+  t.true(coverArt.images[0].front)
+})
+
+test('release groups have different cover art sizes available', testData, `
+  {
+    lookup {
+      releaseGroup(mbid: "f5093c06-23e3-404f-aeaa-40f72885ee3a") {
+        coverArt {
+          small: front(size: SMALL)
+          large: front(size: LARGE)
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { coverArt } = data.lookup.releaseGroup
+  t.is(coverArt.small, 'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275-250.jpg')
+  t.is(coverArt.large, 'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275-500.jpg')
+})
+
+test('can retrieve cover art in searches', testData, `
+  {
+    search {
+      releases(query: "You Want It Darker") {
+        edges {
+          node {
+            coverArt {
+              artwork
+              darkened
+              front
+              back
+              images {
+                image
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const releases = data.search.releases.edges.map(edge => edge.node)
+  t.is(releases.length, 25)
+  t.true(releases.some(release => release.coverArt.artwork === true))
+  t.true(releases.every(release => release.coverArt.darkened === false))
+  t.true(releases.some(release => release.coverArt.images.length > 0))
+  t.true(releases.some(release => release.coverArt.front === null))
+  t.true(releases.some(release => release.coverArt.back === null))
+})
+
+test('cover art release field does not make a request unless necessary', testData, `
+  {
+    lookup {
+      release(mbid: "b84ee12a-09ef-421b-82de-0441a926375b") {
+        coverArt {
+          release {
+            mbid
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  // TODO: Add ability to check how many requests were made to fulfill a query.
+  const { coverArt } = data.lookup.release
+  t.is(coverArt.release.mbid, 'b84ee12a-09ef-421b-82de-0441a926375b')
+})
+
+test('cover art fields can be calculated instead of making another request', testData, `
+  {
+    search {
+      releases(query: "reid:b84ee12a-09ef-421b-82de-0441a926375b", first: 1) {
+        edges {
+          node {
+            coverArt {
+              artwork
+              count
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  // TODO: Add ability to check how many requests were made to fulfill a query.
+  const releases = data.search.releases.edges.map(edge => edge.node)
+  t.is(releases.length, 1)
+  t.true(releases[0].coverArt.artwork)
+  t.is(releases[0].coverArt.count, 10)
+})
+
+test('cover art is not fetched if the count is 0', testData, `
+  {
+    lookup {
+      release(mbid: "c0f74d5a-7534-414d-8b90-0ebe6c5da19e") {
+        coverArt {
+          count
+          images {
+            image
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  // TODO: Add ability to check how many requests were made to fulfill a query.
+  const { coverArt } = data.lookup.release
+  t.is(coverArt.count, 0)
+  t.deepEqual(coverArt.images, [])
+})

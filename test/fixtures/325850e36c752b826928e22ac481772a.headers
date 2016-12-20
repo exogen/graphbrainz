@@ -1,0 +1,29 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "date": "Tue, 20 Dec 2016 01:39:58 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "keep-alive": "timeout=15",
+    "vary": "Accept-Encoding",
+    "x-ratelimit-limit": "700",
+    "x-ratelimit-remaining": "203",
+    "x-ratelimit-reset": "1482197998",
+    "server": "Plack::Handler::Starlet",
+    "etag": "W/\"08dc9c7327d0e7a8b9ede6ae8509c80b\"",
+    "access-control-allow-origin": "*",
+    "content-encoding": "gzip"
+  },
+  "url": "http://musicbrainz.org:80/ws/2/release/dd15903e-0ee7-45ec-aba1-2fc7b3a44e19?fmt=json",
+  "time": 449,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/4.5.0 ( https://github.com/exogen/graphbrainz )",
+      "host": "musicbrainz.org",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json"
+    }
+  }
+}

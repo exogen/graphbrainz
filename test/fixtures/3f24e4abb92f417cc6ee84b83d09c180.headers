@@ -1,0 +1,22 @@
+{
+  "statusCode": 404,
+  "headers": {
+    "date": "Tue, 20 Dec 2016 01:39:57 GMT",
+    "content-type": "text/html",
+    "content-length": "179",
+    "connection": "keep-alive",
+    "keep-alive": "timeout=15",
+    "server": "d8b8a8eb2a2a"
+  },
+  "url": "http://coverartarchive.org:80/release/b2d35202-f793-487f-b796-ad0f1882a777",
+  "time": 392,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/4.5.0 ( https://github.com/exogen/graphbrainz )",
+      "host": "coverartarchive.org",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json"
+    }
+  }
+}

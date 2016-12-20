@@ -45,6 +45,11 @@ test('Duration scalar must be a positive integer', t => {
   t.is(Duration.parseLiteral({ kind: Kind.STRING, value: '1000' }), null)
   t.throws(() => Duration.parseLiteral({ kind: Kind.INT, value: -1 }), TypeError)
   t.throws(() => Duration.parseLiteral({ kind: Kind.INT, value: -1000 }), TypeError)
+  t.is(Duration.parseValue(0), 0)
+  t.is(Duration.parseValue(1), 1)
+  t.is(Duration.parseValue(3000), 3000)
+  t.throws(() => Duration.parseValue(-1), TypeError)
+  t.throws(() => Duration.parseValue(-1000), TypeError)
 })
 
 test('URLString scalar must be a valid URL', t => {
@@ -60,6 +65,12 @@ test('ISWC scalar only accepts strings', t => {
   t.is(ISWC.parseLiteral({ kind: Kind.STRING, value: 'foo' }), 'foo')
   t.is(ISWC.parseLiteral({ kind: Kind.INT, value: 5 }), null)
   t.is(ISWC.parseLiteral({ kind: Kind.ENUM, value: 'xx' }), null)
+})
+
+test('ISWC scalar can be any string', t => {
+  t.is(ISWC.parseValue('foo'), 'foo')
+  t.is(ISWC.parseValue('123-456'), '123-456')
+  t.is(ISWC.parseValue('!@#$%^&*'), '!@#$%^&*')
 })
 
 test('MBID scalar only accepts strings', t => {

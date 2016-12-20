@@ -5,7 +5,7 @@ import { toPlural } from './types/helpers'
 const debug = require('debug')('graphbrainz:loaders')
 const ONE_DAY = 24 * 60 * 60 * 1000
 
-export default function createLoaders (client) {
+export default function createLoaders (client, coverArtClient) {
   // All loaders share a single LRU cache that will remember 8192 responses,
   // each cached for 1 day.
   const cache = LRUCache({
@@ -27,23 +27,6 @@ export default function createLoaders (client) {
           // Store the entity type so we can determine what type of object this
           // is elsewhere in the code.
           entity._type = entityType
-          entity._inc = params.inc
-          if (entityType === 'discid' && entity.releases) {
-            entity.releases.forEach(release => {
-              release._type = 'release'
-              release._inc = params.inc
-            })
-          } else if (entityType === 'isrc' && entity.recordings) {
-            entity.recordings.forEach(recording => {
-              recording._type = 'recording'
-              recording._inc = params.inc
-            })
-          } else if (entityType === 'iswc' && entity.works) {
-            entity.works.forEach(work => {
-              work._type = 'work'
-              work._inc = params.inc
-            })
-          }
         }
         return entity
       })
@@ -61,7 +44,6 @@ export default function createLoaders (client) {
           // Store the entity type so we can determine what type of object this
           // is elsewhere in the code.
           entity._type = entityType
-          entity._inc = params.inc
         })
         return list
       })
@@ -79,15 +61,45 @@ export default function createLoaders (client) {
           // Store the entity type so we can determine what type of object this
           // is elsewhere in the code.
           entity._type = entityType
-          entity._inc = params.inc
         })
         return list
       })
     }))
   }, {
-    cacheKeyFn: (key) => client.getSearchURL(...key),
+    cacheKeyFn: key => client.getSearchURL(...key),
     cacheMap: cache
   })
 
-  return { lookup, browse, search }
+  const coverArt = new DataLoader(keys => {
+    return Promise.all(keys.map(key => {
+      const [ entityType, id ] = key
+      return coverArtClient.images(...key).catch(err => {
+        if (err.statusCode === 404) {
+          return { images: [] }
+        }
+        throw err
+      }).then(coverArt => {
+        coverArt._parentType = entityType
+        coverArt._parentID = id
+        if (entityType === 'release') {
+          coverArt._release = id
+        } else {
+          coverArt._release = coverArt.release && coverArt.release.split('/').pop()
+        }
+        return coverArt
+      })
+    }))
+  }, {
+    cacheKeyFn: key => `cover-art/${coverArtClient.getImagesURL(...key)}`,
+    cacheMap: cache
+  })
+
+  const coverArtURL = new DataLoader(keys => {
+    return Promise.all(keys.map(key => coverArtClient.imageURL(...key)))
+  }, {
+    cacheKeyFn: key => `cover-art/url/${coverArtClient.getImageURL(...key)}`,
+    cacheMap: cache
+  })
+
+  return { lookup, browse, search, coverArt, coverArtURL }
 }
