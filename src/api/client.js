@@ -1,11 +1,10 @@
 import request from 'request'
 import retry from 'retry'
-import qs from 'qs'
 import ExtendableError from 'es6-error'
-import RateLimit from './rate-limit'
-import pkg from '../package.json'
+import RateLimit from '../rate-limit'
+import pkg from '../../package.json'
 
-const debug = require('debug')('graphbrainz:api')
+const debug = require('debug')('graphbrainz:api/client')
 
 // If the `request` callback returns an error, it indicates a failure at a lower
 // level than the HTTP response itself. If it's any of the following error
@@ -21,19 +20,20 @@ const RETRY_CODES = {
   EAI_AGAIN: true
 }
 
-export class MusicBrainzError extends ExtendableError {
+export class ClientError extends ExtendableError {
   constructor (message, statusCode) {
     super(message)
     this.statusCode = statusCode
   }
 }
 
-export default class MusicBrainz {
+export default class Client {
   constructor ({
     baseURL = process.env.MUSICBRAINZ_BASE_URL || 'http://musicbrainz.org/ws/2/',
     userAgent = `${pkg.name}/${pkg.version} ` +
       `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
     extraHeaders = {},
+    errorClass = ClientError,
     timeout = 60000,
     // MusicBrainz API requests are limited to an *average* of 1 req/sec.
     // That means if, for example, we only need to make a few API requests to
@@ -41,8 +41,8 @@ export default class MusicBrainz {
     // we then wait a few seconds before making more. In practice this can
     // seemingly be set to about 5 requests every 5 seconds before we're
     // considered to exceed the rate limit.
-    limit = 5,
-    period = 5500,
+    limit = 1,
+    period = 1000,
     concurrency = 10,
     retries = 10,
     // It's OK for `retryDelayMin` to be less than one second, even 0, because
@@ -57,6 +57,7 @@ export default class MusicBrainz {
     this.baseURL = baseURL
     this.userAgent = userAgent
     this.extraHeaders = extraHeaders
+    this.errorClass = errorClass
     this.timeout = timeout
     this.limiter = new RateLimit({ limit, period, concurrency })
     this.retryOptions = {
@@ -73,36 +74,48 @@ export default class MusicBrainz {
    * `RETRY_CODES`.
    */
   shouldRetry (err) {
-    if (err instanceof MusicBrainzError) {
+    if (err instanceof this.errorClass) {
       return err.statusCode >= 500 && err.statusCode < 600
     }
     return RETRY_CODES[err.code] || false
+  }
+
+  parseErrorMessage (response, body) {
+    return typeof body === 'string' && body ? body : `${response.statusCode}`
   }
 
   /**
    * Send a request without any retrying or rate limiting.
    * Use `get` instead.
    */
-  _get (path, params, info = {}) {
+  _get (path, options = {}, info = {}) {
     return new Promise((resolve, reject) => {
-      const options = {
+      options = {
         baseUrl: this.baseURL,
         url: path,
-        qs: { ...params, fmt: 'json' },
-        json: true,
         gzip: true,
-        headers: { 'User-Agent': this.userAgent, ...this.extraHeaders },
-        timeout: this.timeout
+        timeout: this.timeout,
+        ...options,
+        headers: {
+          'User-Agent': this.userAgent,
+          ...this.extraHeaders,
+          ...options.headers
+        }
       }
 
-      debug(`Sending request. url=${path} attempt=${info.currentAttempt}`)
+      debug(`Sending request. url=${this.baseURL}${path} attempt=${info.currentAttempt}`)
 
       request(options, (err, response, body) => {
         if (err) {
+          debug(`Error: “${err}” url=${this.baseURL}${path}`)
           reject(err)
-        } else if (response.statusCode !== 200) {
-          const message = (body && body.error) || ''
-          reject(new MusicBrainzError(message, response.statusCode))
+        } else if (response.statusCode >= 400) {
+          const message = this.parseErrorMessage(response, body)
+          debug(`Error: “${message}” url=${this.baseURL}${path}`)
+          const ClientError = this.errorClass
+          reject(new ClientError(message, response.statusCode))
+        } else if (options.method === 'HEAD') {
+          resolve(response.headers)
         } else {
           resolve(body)
         }
@@ -113,7 +126,7 @@ export default class MusicBrainz {
   /**
    * Send a request with retrying and rate limiting.
    */
-  get (path, params) {
+  get (path, options = {}) {
     return new Promise((resolve, reject) => {
       const fn = this._get.bind(this)
       const operation = retry.operation(this.retryOptions)
@@ -121,7 +134,7 @@ export default class MusicBrainz {
         // This will increase the priority in our `RateLimit` queue for each
         // retry, so that newer requests don't delay this one further.
         const priority = currentAttempt
-        this.limiter.enqueue(fn, [path, params, { currentAttempt }], priority)
+        this.limiter.enqueue(fn, [path, options, { currentAttempt }], priority)
           .then(resolve)
           .catch(err => {
             if (!this.shouldRetry(err) || !operation.retry(err)) {
@@ -130,65 +143,5 @@ export default class MusicBrainz {
           })
       })
     })
-  }
-
-  stringifyParams (params) {
-    if (Array.isArray(params.inc)) {
-      params = {
-        ...params,
-        inc: params.inc.join('+')
-      }
-    }
-    if (Array.isArray(params.type)) {
-      params = {
-        ...params,
-        type: params.type.join('|')
-      }
-    }
-    if (Array.isArray(params.status)) {
-      params = {
-        ...params,
-        status: params.status.join('|')
-      }
-    }
-    return qs.stringify(params, {
-      skipNulls: true,
-      filter: (key, value) => value === '' ? undefined : value
-    })
-  }
-
-  getURL (path, params) {
-    const query = params ? this.stringifyParams(params) : ''
-    return query ? `${path}?${query}` : path
-  }
-
-  getLookupURL (entity, id, params) {
-    if (id == null) {
-      return this.getBrowseURL(entity, params)
-    }
-    return this.getURL(`${entity}/${id}`, params)
-  }
-
-  lookup (entity, id, params = {}) {
-    const url = this.getLookupURL(entity, id, params)
-    return this.get(url)
-  }
-
-  getBrowseURL (entity, params) {
-    return this.getURL(entity, params)
-  }
-
-  browse (entity, params = {}) {
-    const url = this.getBrowseURL(entity, params)
-    return this.get(url)
-  }
-
-  getSearchURL (entity, query, params) {
-    return this.getURL(entity, { ...params, query })
-  }
-
-  search (entity, query, params = {}) {
-    const url = this.getSearchURL(entity, query, params)
-    return this.get(url)
   }
 }

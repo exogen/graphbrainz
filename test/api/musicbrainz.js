@@ -1,6 +1,6 @@
 import test from 'ava'
-import MusicBrainz, { MusicBrainzError } from '../src/api'
-import client from './helpers/client'
+import MusicBrainz, { MusicBrainzError } from '../../src/api'
+import client from '../helpers/client/musicbrainz'
 
 test('getLookupURL() generates a lookup URL', t => {
   t.is(client.getLookupURL('artist', 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8', {
@@ -61,4 +61,10 @@ test('shouldRetry() retries only transient local connection issues', t => {
 test('rejects non-MusicBrainz errors', t => {
   const client = new MusicBrainz({ baseURL: '$!@#$' })
   t.throws(client.get('artist/5b11f4ce-a62d-471e-81fc-a69a8278c7da'), Error)
+})
+
+test('uses the default error impementation if there is no JSON error', t => {
+  t.is(client.parseErrorMessage({ statusCode: 501 }, 'yikes'), 'yikes')
+  t.is(client.parseErrorMessage({ statusCode: 500 }, {}), '500')
+  t.is(client.parseErrorMessage({ statusCode: 404 }, null), '404')
 })

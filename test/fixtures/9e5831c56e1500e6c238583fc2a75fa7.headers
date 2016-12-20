@@ -1,0 +1,27 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "server": "nginx/1.4.6 (Ubuntu)",
+    "date": "Tue, 20 Dec 2016 01:39:57 GMT",
+    "content-type": "application/json",
+    "content-length": "520",
+    "last-modified": "Mon, 01 Aug 2016 19:02:55 GMT",
+    "connection": "keep-alive",
+    "etag": "\"579f9cdf-208\"",
+    "expires": "Tue, 20 Dec 2016 07:39:57 GMT",
+    "cache-control": "max-age=21600",
+    "accept-ranges": "bytes"
+  },
+  "url": "http://ia601204.us.archive.org:80/4/items/mbid-3ee3723e-ed1e-4baa-a718-7f1d9ecb3bec/index.json",
+  "time": 118,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/4.5.0 ( https://github.com/exogen/graphbrainz )",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json",
+      "referer": "http://archive.org/download/mbid-3ee3723e-ed1e-4baa-a718-7f1d9ecb3bec/index.json",
+      "host": "ia601204.us.archive.org"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import express from 'express'
 import graphqlHTTP from 'express-graphql'
 import compression from 'compression'
-import MusicBrainz from './api'
+import MusicBrainz, { CoverArtArchive } from './api'
 import schema from './schema'
 import createLoaders from './loaders'
 
@@ -11,13 +11,17 @@ const formatError = (err) => ({
   stack: err.stack
 })
 
-const middleware = ({ client = new MusicBrainz(), ...options } = {}) => {
+const middleware = ({
+  client = new MusicBrainz(),
+  coverArtClient = new CoverArtArchive(),
+  ...options
+} = {}) => {
   const DEV = process.env.NODE_ENV !== 'production'
   const graphiql = DEV || process.env.GRAPHBRAINZ_GRAPHIQL === 'true'
-  const loaders = createLoaders(client)
+  const loaders = createLoaders(client, coverArtClient)
   return graphqlHTTP({
     schema,
-    context: { client, loaders },
+    context: { client, coverArtClient, loaders },
     pretty: DEV,
     graphiql,
     formatError: DEV ? formatError : undefined,

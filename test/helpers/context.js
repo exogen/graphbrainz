@@ -1,7 +1,9 @@
 import createLoaders from '../../src/loaders'
-import client from './client'
+import client from './client/musicbrainz'
+import coverArtClient from './client/cover-art-archive'
 
 export default {
   client,
-  loaders: createLoaders(client)
+  coverArtClient,
+  loaders: createLoaders(client, coverArtClient)
 }

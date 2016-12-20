@@ -1,0 +1,25 @@
+{
+  "statusCode": 302,
+  "headers": {
+    "server": "nginx/1.4.6 (Ubuntu)",
+    "date": "Tue, 20 Dec 2016 01:39:57 GMT",
+    "content-type": "text/html; charset=UTF-8",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "x-powered-by": "PHP/5.5.9-1ubuntu4.20",
+    "accept-ranges": "bytes",
+    "location": "http://ia902608.us.archive.org/12/items/mbid-533e14a8-519d-4f04-95e8-8a84833f26b1/index.json"
+  },
+  "url": "http://archive.org:80/download/mbid-533e14a8-519d-4f04-95e8-8a84833f26b1/index.json",
+  "time": 202,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/4.5.0 ( https://github.com/exogen/graphbrainz )",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json",
+      "referer": "http://coverartarchive.org/release/533e14a8-519d-4f04-95e8-8a84833f26b1",
+      "host": "archive.org"
+    }
+  }
+}
