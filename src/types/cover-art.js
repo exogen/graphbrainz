@@ -160,7 +160,7 @@ export const ReleaseGroupCoverArt = new GraphQLObjectType({
   name: 'ReleaseGroupCoverArt',
   description: `An object containing the cover art for a release group obtained
 from the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive). For
-release groups, just the front cover of particular release will be selected.`,
+release groups, just the front cover of a particular release will be selected.`,
   fields: () => ({
     front: {
       type: URLString,
