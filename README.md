@@ -22,6 +22,7 @@ npm install graphbrainz --save
 - [Usage](#usage)
   - [As a standalone server](#as-a-standalone-server)
   - [As middleware](#as-middleware)
+  - [As a client](#as-a-client)
   - [Environment Variables](#environment-variables)
   - [Debugging](#debugging)
 - [Example Queries](#example-queries)
