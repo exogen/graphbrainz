@@ -1,12 +1,12 @@
-# graphbrainz
+# GraphBrainz
 
 [![build status](https://img.shields.io/travis/exogen/graphbrainz.svg)](https://travis-ci.org/exogen/graphbrainz)
 [![coverage](https://img.shields.io/codecov/c/github/exogen/graphbrainz.svg)](https://codecov.io/gh/exogen/graphbrainz)
 [![npm version](https://img.shields.io/npm/v/graphbrainz.svg)](https://www.npmjs.com/package/graphbrainz)
 [![license](https://img.shields.io/npm/l/graphbrainz.svg)](https://github.com/exogen/graphbrainz/blob/master/LICENSE)
 
-An [Express][] server and middleware for querying [MusicBrainz][] using
-[GraphQL][].
+A [GraphQL][] schema, [Express][] server, and middleware for querying the
+[MusicBrainz][] API.
 
 ```sh
 npm install graphbrainz --save
@@ -89,6 +89,40 @@ The `graphbrainz` middleware function accepts the following options:
   behavior.
 * Any remaining options are passed along to the standard GraphQL middleware.
   See the [express-graphql][] documentation for more information.
+
+### As a client
+
+If you just want to make queries from your app without running a separate server
+or exposing a GraphQL endpoint, use the GraphBrainz schema with a library like
+[GraphQL.js][graphql-js]. You just need to create the `context` object that the
+GraphBrainz resolvers expect, like so:
+
+```js
+import { graphql } from 'graphql';
+import { MusicBrainz, CoverArtArchive } from 'graphbrainz/api';
+import createLoaders from 'graphbrainz/loaders';
+import schema from 'graphbrainz/schema';
+
+const client = new MusicBrainz();
+const coverArtClient = new CoverArtArchive();
+const loaders = createLoaders(client, coverArtClient);
+const context = { client, coverArtClient, loaders };
+
+graphql(schema, `
+  {
+    lookup {
+      releaseGroup(mbid: "99599db8-0e36-4a93-b0e8-350e9d7502a9") {
+        title
+      }
+    }
+  }
+`, null, context).then(result => {
+  const { releaseGroup } = result.data.lookup;
+  console.log(`The album title is “${releaseGroup.title}”.`);
+}).catch(err => {
+  console.error(err);
+});
+```
 
 ### Environment Variables
 
@@ -317,7 +351,7 @@ the fields you need and a reasonable level of nested entities – unless you ar
 willing to wait.
 
 You can also set up a [local MusicBrainz mirror][mirror] and configure
-graphbrainz to use that with no rate limiting.
+GraphBrainz to use that with no rate limiting.
 
 ## Schema
 
@@ -331,6 +365,7 @@ See the [GraphQL schema][schema] or the [types][] documentation.
 [dotenv]: https://www.npmjs.com/package/dotenv
 [debug]: https://www.npmjs.com/package/debug
 [GraphiQL]: https://github.com/graphql/graphiql
+[graphql-js]: https://github.com/graphql/graphql-js
 [Relay]: https://facebook.github.io/relay/
 [schema]: docs/schema.md
 [types]: docs/types.md
