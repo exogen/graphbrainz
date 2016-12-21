@@ -8121,7 +8121,7 @@
         {
           "kind": "OBJECT",
           "name": "ReleaseGroupCoverArt",
-          "description": "An object containing the cover art for a release group obtained\nfrom the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive). For\nrelease groups, just the front cover of particular release will be selected.",
+          "description": "An object containing the cover art for a release group obtained\nfrom the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive). For\nrelease groups, just the front cover of a particular release will be selected.",
           "fields": [
             {
               "name": "front",
