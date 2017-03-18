@@ -2,99 +2,98 @@
 
 You may also be interested in reading the [schema in GraphQL syntax](schema.md).
 
-<details><summary><strong>Table of Contents</strong></summary><p><ul>
-  <li>[Query](#query)</li>
-  <li>[Objects](#objects)<ul>
-    <li>[Alias](#alias)</li>
-    <li>[Area](#area)</li>
-    <li>[AreaConnection](#areaconnection)</li>
-    <li>[AreaEdge](#areaedge)</li>
-    <li>[Artist](#artist)</li>
-    <li>[ArtistConnection](#artistconnection)</li>
-    <li>[ArtistCredit](#artistcredit)</li>
-    <li>[ArtistEdge](#artistedge)</li>
-    <li>[BrowseQuery](#browsequery)</li>
-    <li>[Collection](#collection)</li>
-    <li>[CollectionConnection](#collectionconnection)</li>
-    <li>[CollectionEdge](#collectionedge)</li>
-    <li>[Coordinates](#coordinates)</li>
-    <li>[CoverArtImage](#coverartimage)</li>
-    <li>[CoverArtImageThumbnails](#coverartimagethumbnails)</li>
-    <li>[Disc](#disc)</li>
-    <li>[Event](#event)</li>
-    <li>[EventConnection](#eventconnection)</li>
-    <li>[EventEdge](#eventedge)</li>
-    <li>[Instrument](#instrument)</li>
-    <li>[InstrumentConnection](#instrumentconnection)</li>
-    <li>[InstrumentEdge](#instrumentedge)</li>
-    <li>[Label](#label)</li>
-    <li>[LabelConnection](#labelconnection)</li>
-    <li>[LabelEdge](#labeledge)</li>
-    <li>[LifeSpan](#lifespan)</li>
-    <li>[LookupQuery](#lookupquery)</li>
-    <li>[Medium](#medium)</li>
-    <li>[PageInfo](#pageinfo)</li>
-    <li>[Place](#place)</li>
-    <li>[PlaceConnection](#placeconnection)</li>
-    <li>[PlaceEdge](#placeedge)</li>
-    <li>[Rating](#rating)</li>
-    <li>[Recording](#recording)</li>
-    <li>[RecordingConnection](#recordingconnection)</li>
-    <li>[RecordingEdge](#recordingedge)</li>
-    <li>[Relationship](#relationship)</li>
-    <li>[RelationshipConnection](#relationshipconnection)</li>
-    <li>[RelationshipEdge](#relationshipedge)</li>
-    <li>[Relationships](#relationships)</li>
-    <li>[Release](#release)</li>
-    <li>[ReleaseConnection](#releaseconnection)</li>
-    <li>[ReleaseCoverArt](#releasecoverart)</li>
-    <li>[ReleaseEdge](#releaseedge)</li>
-    <li>[ReleaseEvent](#releaseevent)</li>
-    <li>[ReleaseGroup](#releasegroup)</li>
-    <li>[ReleaseGroupConnection](#releasegroupconnection)</li>
-    <li>[ReleaseGroupCoverArt](#releasegroupcoverart)</li>
-    <li>[ReleaseGroupEdge](#releasegroupedge)</li>
-    <li>[SearchQuery](#searchquery)</li>
-    <li>[Series](#series)</li>
-    <li>[SeriesConnection](#seriesconnection)</li>
-    <li>[SeriesEdge](#seriesedge)</li>
-    <li>[Tag](#tag)</li>
-    <li>[TagConnection](#tagconnection)</li>
-    <li>[TagEdge](#tagedge)</li>
-    <li>[URL](#url)</li>
-    <li>[Work](#work)</li>
-    <li>[WorkConnection](#workconnection)</li>
-    <li>[WorkEdge](#workedge)</li>
-  </ul></li>
-  <li>[Enums](#enums)<ul>
-    <li>[CoverArtImageSize](#coverartimagesize)</li>
-    <li>[ReleaseGroupType](#releasegrouptype)</li>
-    <li>[ReleaseStatus](#releasestatus)</li>
-  </ul></li>
-  <li>[Scalars](#scalars)<ul>
-    <li>[ASIN](#asin)</li>
-    <li>[Boolean](#boolean)</li>
-    <li>[Date](#date)</li>
-    <li>[Degrees](#degrees)</li>
-    <li>[DiscID](#discid)</li>
-    <li>[Duration](#duration)</li>
-    <li>[ID](#id)</li>
-    <li>[IPI](#ipi)</li>
-    <li>[ISNI](#isni)</li>
-    <li>[ISRC](#isrc)</li>
-    <li>[ISWC](#iswc)</li>
-    <li>[Int](#int)</li>
-    <li>[Locale](#locale)</li>
-    <li>[MBID](#mbid)</li>
-    <li>[String](#string)</li>
-    <li>[Time](#time)</li>
-    <li>[URLString](#urlstring)</li>
-  </ul></li>
-  <li>[Interfaces](#interfaces)<ul>
-    <li>[Entity](#entity)</li>
-    <li>[Node](#node)</li>
-  </ul></li>
-</ul></p></details>
+<details>
+  <summary><strong>Table of Contents</strong></summary>
+
+  * [Query](#query)
+  * [Objects](#objects)
+    * [Alias](#alias)
+    * [Area](#area)
+    * [AreaConnection](#areaconnection)
+    * [AreaEdge](#areaedge)
+    * [Artist](#artist)
+    * [ArtistConnection](#artistconnection)
+    * [ArtistCredit](#artistcredit)
+    * [ArtistEdge](#artistedge)
+    * [BrowseQuery](#browsequery)
+    * [Collection](#collection)
+    * [CollectionConnection](#collectionconnection)
+    * [CollectionEdge](#collectionedge)
+    * [Coordinates](#coordinates)
+    * [CoverArtImage](#coverartimage)
+    * [CoverArtImageThumbnails](#coverartimagethumbnails)
+    * [Disc](#disc)
+    * [Event](#event)
+    * [EventConnection](#eventconnection)
+    * [EventEdge](#eventedge)
+    * [Instrument](#instrument)
+    * [InstrumentConnection](#instrumentconnection)
+    * [InstrumentEdge](#instrumentedge)
+    * [Label](#label)
+    * [LabelConnection](#labelconnection)
+    * [LabelEdge](#labeledge)
+    * [LifeSpan](#lifespan)
+    * [LookupQuery](#lookupquery)
+    * [Medium](#medium)
+    * [PageInfo](#pageinfo)
+    * [Place](#place)
+    * [PlaceConnection](#placeconnection)
+    * [PlaceEdge](#placeedge)
+    * [Rating](#rating)
+    * [Recording](#recording)
+    * [RecordingConnection](#recordingconnection)
+    * [RecordingEdge](#recordingedge)
+    * [Relationship](#relationship)
+    * [RelationshipConnection](#relationshipconnection)
+    * [RelationshipEdge](#relationshipedge)
+    * [Relationships](#relationships)
+    * [Release](#release)
+    * [ReleaseConnection](#releaseconnection)
+    * [ReleaseCoverArt](#releasecoverart)
+    * [ReleaseEdge](#releaseedge)
+    * [ReleaseEvent](#releaseevent)
+    * [ReleaseGroup](#releasegroup)
+    * [ReleaseGroupConnection](#releasegroupconnection)
+    * [ReleaseGroupCoverArt](#releasegroupcoverart)
+    * [ReleaseGroupEdge](#releasegroupedge)
+    * [SearchQuery](#searchquery)
+    * [Series](#series)
+    * [SeriesConnection](#seriesconnection)
+    * [SeriesEdge](#seriesedge)
+    * [Tag](#tag)
+    * [TagConnection](#tagconnection)
+    * [TagEdge](#tagedge)
+    * [URL](#url)
+    * [Work](#work)
+    * [WorkConnection](#workconnection)
+    * [WorkEdge](#workedge)
+  * [Enums](#enums)
+    * [CoverArtImageSize](#coverartimagesize)
+    * [ReleaseGroupType](#releasegrouptype)
+    * [ReleaseStatus](#releasestatus)
+  * [Scalars](#scalars)
+    * [ASIN](#asin)
+    * [Boolean](#boolean)
+    * [Date](#date)
+    * [Degrees](#degrees)
+    * [DiscID](#discid)
+    * [Duration](#duration)
+    * [ID](#id)
+    * [IPI](#ipi)
+    * [ISNI](#isni)
+    * [ISRC](#isrc)
+    * [ISWC](#iswc)
+    * [Int](#int)
+    * [Locale](#locale)
+    * [MBID](#mbid)
+    * [String](#string)
+    * [Time](#time)
+    * [URLString](#urlstring)
+  * [Interfaces](#interfaces)
+    * [Entity](#entity)
+    * [Node](#node)
+
+</details>
 
 ## Query 
 The query root, from which multiple types of MusicBrainz
