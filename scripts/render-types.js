@@ -1,5 +1,5 @@
 import marked from 'marked'
-const schema = require('../schema.json').data.__schema
+const schema = require('../schema.json').__schema
 
 // Ideally, we could just spit out the existing description Markdown everywhere
 // and leave it to be rendered by whatever processes the output. But some
@@ -55,10 +55,12 @@ function renderObject (type, { skipTitle = false } = {}) {
   console.log('</thead><tbody>')
   type.fields.forEach(field => {
     console.log('  <tr>')
-    console.log(`    <td colspan="2" valign="top"><strong>${field.name}</strong> ${field.isDeprecated ? '⚠️' : ''}</td>`)
+    console.log(`    <td colspan="2" valign="top"><strong>${field.name}</strong>${field.isDeprecated ? ' ⚠️' : ''}</td>`)
     console.log(`    <td valign="top">${markdown(renderType(field.type))}</td>`)
     console.log(`    <td>`)
-    console.log(`      ${markdown(field.description)}`)
+    if (field.description) {
+      console.log(markdown(field.description))
+    }
     if (field.isDeprecated) {
       console.log('      <br/><br/><p>⚠️ <strong>DEPRECATED</strong></p>')
       console.log(`      <blockquote>${markdown(field.deprecationReason)}</blockquote>`)
@@ -135,7 +137,9 @@ enums.forEach(type => {
     console.log('  <tr>')
     console.log(`    <td valign="top"><strong>${value.name}</strong>${value.isDeprecated ? ' ⚠️' : ''}</td>`)
     console.log('    <td>')
-    console.log(`      ${markdown(value.description)}`)
+    if (value.description) {
+      console.log(markdown(value.description))
+    }
     if (value.isDeprecated) {
       console.log('      <br/><br/><p>⚠️ <strong>DEPRECATED</strong></p>')
       console.log(`      <blockquote>${markdown(value.deprecationReason)}</blockquote>`)
