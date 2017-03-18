@@ -132,7 +132,7 @@ enums.forEach(type => {
   console.log('</thead><tbody>')
   type.enumValues.forEach(value => {
     console.log('  <tr>')
-    console.log(`    <td valign="top"><strong>${value.name}</strong> ${value.isDeprecated ? '⚠️' : ''}</td>`)
+    console.log(`    <td valign="top"><strong>${value.name}</strong>${value.isDeprecated ? ' ⚠️' : ''}</td>`)
     console.log('    <td>')
     console.log(`      ${markdown(value.description)}`)
     if (value.isDeprecated) {

@@ -5657,19 +5657,19 @@ Archive](https://musicbrainz.org/doc/Cover_Art_Archive).
   <th align="left">Description</th>
 </thead><tbody>
   <tr>
-    <td valign="top"><strong>SMALL</strong> </td>
+    <td valign="top"><strong>SMALL</strong></td>
     <td>
       A maximum dimension of 250px.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>LARGE</strong> </td>
+    <td valign="top"><strong>LARGE</strong></td>
     <td>
       A maximum dimension of 500px.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>FULL</strong> </td>
+    <td valign="top"><strong>FULL</strong></td>
     <td>
       The image’s original dimensions, with no maximum.
     </td>
@@ -5686,7 +5686,7 @@ etc.
   <th align="left">Description</th>
 </thead><tbody>
   <tr>
-    <td valign="top"><strong>ALBUM</strong> </td>
+    <td valign="top"><strong>ALBUM</strong></td>
     <td>
       An album, perhaps better defined as a “Long Play” (LP)
 release, generally consists of previously unreleased material (unless this type
@@ -5695,7 +5695,7 @@ includes album re-issues, with or without bonus tracks.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>SINGLE</strong> </td>
+    <td valign="top"><strong>SINGLE</strong></td>
     <td>
       A single typically has one main song and possibly a handful
 of additional tracks or remixes of the main track. A single is usually named
@@ -5703,7 +5703,7 @@ after its main song.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>EP</strong> </td>
+    <td valign="top"><strong>EP</strong></td>
     <td>
       An EP is a so-called “Extended Play” release and often
 contains the letters EP in the title. Generally an EP will be shorter than a
@@ -5714,66 +5714,66 @@ that a release is an EP if the artist defines it as such.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>OTHER</strong> </td>
+    <td valign="top"><strong>OTHER</strong></td>
     <td>
       Any release that does not fit any of the other categories.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>BROADCAST</strong> </td>
+    <td valign="top"><strong>BROADCAST</strong></td>
     <td>
       An episodic release that was originally broadcast via radio,
 television, or the Internet, including podcasts.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>COMPILATION</strong> </td>
+    <td valign="top"><strong>COMPILATION</strong></td>
     <td>
       A compilation is a collection of previously released tracks
 by one or more artists.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>SOUNDTRACK</strong> </td>
+    <td valign="top"><strong>SOUNDTRACK</strong></td>
     <td>
       A soundtrack is the musical score to a movie, TV series,
 stage show, computer game, etc.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>SPOKENWORD</strong> </td>
+    <td valign="top"><strong>SPOKENWORD</strong></td>
     <td>
       A non-music spoken word release.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>INTERVIEW</strong> </td>
+    <td valign="top"><strong>INTERVIEW</strong></td>
     <td>
       An interview release contains an interview, generally with
 an artist.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>AUDIOBOOK</strong> </td>
+    <td valign="top"><strong>AUDIOBOOK</strong></td>
     <td>
       An audiobook is a book read by a narrator without music.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>LIVE</strong> </td>
+    <td valign="top"><strong>LIVE</strong></td>
     <td>
       A release that was recorded live.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>REMIX</strong> </td>
+    <td valign="top"><strong>REMIX</strong></td>
     <td>
       A release that was (re)mixed from previously released
 material.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>DJMIX</strong> </td>
+    <td valign="top"><strong>DJMIX</strong></td>
     <td>
       A DJ-mix is a sequence of several recordings played one
 after the other, each one modified so that they blend together into a continuous
@@ -5783,7 +5783,7 @@ credited in a fairly prominent way.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>MIXTAPE</strong> </td>
+    <td valign="top"><strong>MIXTAPE</strong></td>
     <td>
       Promotional in nature (but not necessarily free), mixtapes
 and street albums are often released by artists to promote new artists, or
@@ -5800,14 +5800,14 @@ to labels.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>DEMO</strong> </td>
+    <td valign="top"><strong>DEMO</strong></td>
     <td>
       A release that was recorded for limited circulation or
 reference use rather than for general public release.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>NAT</strong> </td>
+    <td valign="top"><strong>NAT</strong></td>
     <td>
       A non-album track (special case).
     </td>
@@ -5824,14 +5824,14 @@ bootleg, etc.
   <th align="left">Description</th>
 </thead><tbody>
   <tr>
-    <td valign="top"><strong>OFFICIAL</strong> </td>
+    <td valign="top"><strong>OFFICIAL</strong></td>
     <td>
       Any release officially sanctioned by the artist and/or their
 record company. (Most releases will fit into this category.)
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>PROMOTION</strong> </td>
+    <td valign="top"><strong>PROMOTION</strong></td>
     <td>
       A giveaway release or a release intended to promote an
 upcoming official release, e.g. prerelease albums or releases included with a
@@ -5839,14 +5839,14 @@ magazine.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>BOOTLEG</strong> </td>
+    <td valign="top"><strong>BOOTLEG</strong></td>
     <td>
       An unofficial/underground release that was not sanctioned by
 the artist and/or the record company.
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>PSEUDORELEASE</strong> </td>
+    <td valign="top"><strong>PSEUDORELEASE</strong></td>
     <td>
       A pseudo-release is a duplicate release for
 translation/transliteration purposes.
