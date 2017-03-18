@@ -47,14 +47,15 @@ function renderObject (type, { skipTitle = false } = {}) {
   }
   console.log('<table><thead>')
   console.log('  <tr>')
-  console.log('    <th align="left">Field&nbsp;/&nbsp;Argument</th>')
+  console.log('    <th align="left">Field</th>');
+  console.log('    <th align="right">Argument</th>')
   console.log('    <th align="left">Type</th>')
   console.log('    <th align="left">Description</th>')
   console.log('  </tr>')
   console.log('</thead><tbody>')
   type.fields.forEach(field => {
     console.log('  <tr>')
-    console.log(`    <td valign="top"><strong>${field.name}</strong> ${field.isDeprecated ? '⚠️' : ''}</td>`)
+    console.log(`    <td colspan="2" valign="top"><strong>${field.name}</strong> ${field.isDeprecated ? '⚠️' : ''}</td>`)
     console.log(`    <td valign="top">${markdown(renderType(field.type))}</td>`)
     console.log(`    <td>`)
     console.log(`      ${markdown(field.description)}`)
@@ -67,7 +68,7 @@ function renderObject (type, { skipTitle = false } = {}) {
     if (field.args.length) {
       field.args.forEach((arg, i) => {
         console.log('  <tr>')
-        console.log(`    <td align="right" valign="top">${arg.name}</td>`)
+        console.log(`    <td colspan="2" align="right" valign="top">${arg.name}</td>`)
         console.log(`    <td valign="top">${markdown(renderType(arg.type))}</td>`)
         console.log(`    <td>${markdown(arg.description)}</td>`)
         console.log('  </tr>')
