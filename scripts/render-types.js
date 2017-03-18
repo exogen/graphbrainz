@@ -47,7 +47,7 @@ function renderObject (type, { skipTitle = false } = {}) {
   }
   console.log('<table><thead>')
   console.log('  <tr>')
-  console.log('    <th align="left">Field</th>');
+  console.log('    <th align="left">Field</th>')
   console.log('    <th align="right">Argument</th>')
   console.log('    <th align="left">Type</th>')
   console.log('    <th align="left">Description</th>')
