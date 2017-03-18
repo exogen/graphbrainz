@@ -2,7 +2,7 @@
 
 You may also be interested in reading the [schema in GraphQL syntax](schema.md).
 
-<details><summary>**Table of Contents**</summary><p><ul>
+<details><summary><strong>Table of Contents</strong></summary><p><ul>
   <li>[Query](#query)</li>
   <li>[Objects](#objects)<ul>
     <li>[Alias](#alias)</li>

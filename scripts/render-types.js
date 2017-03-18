@@ -93,7 +93,7 @@ console.log('# Schema Types\n')
 
 console.log('You may also be interested in reading the [schema in GraphQL syntax](schema.md).\n')
 
-console.log('<details><summary>**Table of Contents**</summary><p><ul>')
+console.log('<details><summary><strong>Table of Contents</strong></summary><p><ul>')
 console.log('  <li>[Query](#query)</li>')
 console.log('  <li>[Objects](#objects)<ul>')
 objects.forEach(type => {
