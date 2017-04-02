@@ -2385,19 +2385,9 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.4, graceful-fs@^4.1.6:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-graphql-markdown@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/graphql-markdown/-/graphql-markdown-1.2.1.tgz#5e595fe5520031d9c5b474d3ae0f6a288a46b79c"
-  dependencies:
-    graphql "^0.9.1"
-    marked "^0.3.6"
-    minimist "^1.2.0"
-    node-fetch "^1.6.3"
-    resolve-from "^2.0.0"
-
-graphql-markdown@exogen/graphql-markdown#update-markdown-rendering:
-  version "1.2.1"
-  resolved "https://codeload.github.com/exogen/graphql-markdown/tar.gz/0641a3921d45d84fd85b0c7b53a018a7a02757c4"
+graphql-markdown@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/graphql-markdown/-/graphql-markdown-1.3.0.tgz#6a68252b79335f837b54df7f5b4cfe7a9edb01f4"
   dependencies:
     graphql "^0.9.1"
     marked "^0.3.6"
