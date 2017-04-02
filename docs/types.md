@@ -169,41 +169,37 @@ The aliased name of the entity.
     <td colspan="2" valign="top"><strong>sortName</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The string to use for the purpose of ordering by name (for
-example, by moving articles like ‘the’ to the end or a person’s last name to
-the front).
+The string to use for the purpose of ordering by name (for example, by moving
+articles like ‘the’ to the end or a person’s last name to the front).
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>locale</strong></td>
     <td valign="top"><a href="#locale">Locale</a></td>
     <td>
-The locale (language and/or country) in which the alias is
-used.
+The locale (language and/or country) in which the alias is used.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>primary</strong></td>
     <td valign="top"><a href="#boolean">Boolean</a></td>
     <td>
-Whether this is the main alias for the entity in the
-specified locale (this could mean the most recent or the most common).
+Whether this is the main alias for the entity in the specified locale (this could
+mean the most recent or the most common).
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>type</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The type or purpose of the alias – whether it is a variant,
-search hint, etc.
+The type or purpose of the alias – whether it is a variant, search hint, etc.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>typeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>type</code>
-field.
+The MBID associated with the value of the <code>type</code> field.
     </td>
   </tr>
 </tbody></table>
@@ -246,9 +242,8 @@ The official name of the entity.
     <td colspan="2" valign="top"><strong>sortName</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The string to use for the purpose of ordering by name (for
-example, by moving articles like ‘the’ to the end or a person’s last name to
-the front).
+The string to use for the purpose of ordering by name (for example, by moving
+articles like ‘the’ to the end or a person’s last name to the front).
     </td>
   </tr>
   <tr>
@@ -262,16 +257,16 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>aliases</strong></td>
     <td valign="top">[<a href="#alias">Alias</a>]</td>
     <td>
-<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store
-alternate names or misspellings.
+<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store alternate
+names or misspellings.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>isoCodes</strong></td>
     <td valign="top">[<a href="#string">String</a>]</td>
     <td>
-<a href="https://en.wikipedia.org/wiki/ISO_3166">ISO 3166 codes</a> are
-the codes assigned by ISO to countries and subdivisions.
+<a href="https://en.wikipedia.org/wiki/ISO_3166">ISO 3166 codes</a> are the codes
+assigned by ISO to countries and subdivisions.
     </td>
   </tr>
   <tr>
@@ -442,8 +437,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -478,8 +472,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -525,9 +519,8 @@ The official name of the entity.
     <td colspan="2" valign="top"><strong>sortName</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The string to use for the purpose of ordering by name (for
-example, by moving articles like ‘the’ to the end or a person’s last name to
-the front).
+The string to use for the purpose of ordering by name (for example, by moving
+articles like ‘the’ to the end or a person’s last name to the front).
     </td>
   </tr>
   <tr>
@@ -541,64 +534,63 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>aliases</strong></td>
     <td valign="top">[<a href="#alias">Alias</a>]</td>
     <td>
-<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store
-alternate names or misspellings.
+<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store alternate
+names or misspellings.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>country</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The country with which an artist is primarily identified. It
-is often, but not always, its birth/formation country.
+The country with which an artist is primarily identified. It is often, but not
+always, its birth/formation country.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>area</strong></td>
     <td valign="top"><a href="#area">Area</a></td>
     <td>
-The area with which an artist is primarily identified. It
-is often, but not always, its birth/formation country.
+The area with which an artist is primarily identified. It is often, but not always,
+its birth/formation country.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>beginArea</strong></td>
     <td valign="top"><a href="#area">Area</a></td>
     <td>
-The area in which an artist began their career (or where
-they were born, if the artist is a person).
+The area in which an artist began their career (or where they were born, if the
+artist is a person).
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>endArea</strong></td>
     <td valign="top"><a href="#area">Area</a></td>
     <td>
-The area in which an artist ended their career (or where
-they died, if the artist is a person).
+The area in which an artist ended their career (or where they died, if the artist
+is a person).
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>lifeSpan</strong></td>
     <td valign="top"><a href="#lifespan">LifeSpan</a></td>
     <td>
-The begin and end dates of the entity’s existence. Its exact
-meaning depends on the type of entity.
+The begin and end dates of the entity’s existence. Its exact meaning depends on
+the type of entity.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>gender</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-Whether a person or character identifies as male, female, or
-neither. Groups do not have genders.
+Whether a person or character identifies as male, female, or neither. Groups do
+not have genders.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>genderID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>gender</code>
-field.
+The MBID associated with the value of the <code>gender</code> field.
     </td>
   </tr>
   <tr>
@@ -612,8 +604,7 @@ Whether an artist is a person, a group, or something else.
     <td colspan="2" valign="top"><strong>typeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>type</code>
-field.
+The MBID associated with the value of the <code>type</code> field.
     </td>
   </tr>
   <tr>
@@ -628,8 +619,8 @@ List of <a href="https://musicbrainz.org/doc/IPI">Interested Parties Information
     <td colspan="2" valign="top"><strong>isnis</strong></td>
     <td valign="top">[<a href="#isni">ISNI</a>]</td>
     <td>
-List of <a href="https://musicbrainz.org/doc/ISNI">International Standard Name Identifier</a>
-(ISNI) codes for the artist.
+List of <a href="https://musicbrainz.org/doc/ISNI">International Standard Name
+Identifier</a> (ISNI) codes for the artist.
     </td>
   </tr>
   <tr>
@@ -795,8 +786,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -821,24 +811,22 @@ track, etc., and join phrases between them.
     <td colspan="2" valign="top"><strong>artist</strong></td>
     <td valign="top"><a href="#artist">Artist</a></td>
     <td>
-The entity representing the artist referenced in the
-credits.
+The entity representing the artist referenced in the credits.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>name</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The name of the artist as credited in the specific release,
-track, etc.
+The name of the artist as credited in the specific release, track, etc.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>joinPhrase</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-Join phrases might include words and/or punctuation to
-separate artist names as they appear on the release, track, etc.
+Join phrases might include words and/or punctuation to separate artist names as
+they appear on the release, track, etc.
     </td>
   </tr>
 </tbody></table>
@@ -873,8 +861,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -1144,8 +1132,8 @@ Browse recording entities linked to the given arguments.
   <tr>
     <td colspan="2" align="right" valign="top">isrc</td>
     <td valign="top"><a href="#isrc">ISRC</a></td>
-    <td>The <a href="https://musicbrainz.org/doc/ISRC">International Standard Recording Code</a>
-(ISRC) of the recording.</td>
+    <td>The <a href="https://musicbrainz.org/doc/ISRC">International Standard Recording
+Code</a> (ISRC) of the recording.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">release</td>
@@ -1187,8 +1175,8 @@ Browse release entities linked to the given arguments.
   <tr>
     <td colspan="2" align="right" valign="top">discID</td>
     <td valign="top"><a href="#discid">DiscID</a></td>
-    <td>A <a href="https://musicbrainz.org/doc/Disc_ID">disc ID</a>
-associated with the release.</td>
+    <td>A <a href="https://musicbrainz.org/doc/Disc_ID">disc ID</a> associated with the
+release.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">label</td>
@@ -1213,8 +1201,8 @@ associated with the release.</td>
   <tr>
     <td colspan="2" align="right" valign="top">trackArtist</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID of an artist that appears on a track in the
-release, but is not included in the credits for the release itself.</td>
+    <td>The MBID of an artist that appears on a track in the release, but is not included
+in the credits for the release itself.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">type</td>
@@ -1293,8 +1281,8 @@ Browse work entities linked to the given arguments.
   <tr>
     <td colspan="2" align="right" valign="top">iswc</td>
     <td valign="top"><a href="#iswc">ISWC</a></td>
-    <td>The <a href="https://musicbrainz.org/doc/ISWC">International Standard Musical Work Code</a>
-(ISWC) of the work.</td>
+    <td>The <a href="https://musicbrainz.org/doc/ISWC">International Standard Musical
+Work Code</a> (ISWC) of the work.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -1367,8 +1355,7 @@ The type of collection.
     <td colspan="2" valign="top"><strong>typeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>type</code>
-field.
+The MBID associated with the value of the <code>type</code> field.
     </td>
   </tr>
   <tr>
@@ -1605,8 +1592,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -1641,8 +1627,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -1770,16 +1756,14 @@ cover art.
     <td colspan="2" valign="top"><strong>small</strong></td>
     <td valign="top"><a href="#urlstring">URLString</a></td>
     <td>
-The URL of a small version of the cover art, where the
-maximum dimension is 250px.
+The URL of a small version of the cover art, where the maximum dimension is 250px.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>large</strong></td>
     <td valign="top"><a href="#urlstring">URLString</a></td>
     <td>
-The URL of a large version of the cover art, where the
-maximum dimension is 500px.
+The URL of a large version of the cover art, where the maximum dimension is 500px.
     </td>
   </tr>
 </tbody></table>
@@ -1897,16 +1881,16 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>aliases</strong></td>
     <td valign="top">[<a href="#alias">Alias</a>]</td>
     <td>
-<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store
-alternate names or misspellings.
+<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store alternate
+names or misspellings.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>lifeSpan</strong></td>
     <td valign="top"><a href="#lifespan">LifeSpan</a></td>
     <td>
-The begin and end dates of the entity’s existence. Its exact
-meaning depends on the type of entity.
+The begin and end dates of the entity’s existence. Its exact meaning depends on
+the type of entity.
     </td>
   </tr>
   <tr>
@@ -1927,8 +1911,8 @@ Whether or not the event took place.
     <td colspan="2" valign="top"><strong>setlist</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-A list of songs performed, optionally including links to
-artists and works. See the <a href="https://musicbrainz.org/doc/Event/Setlist">setlist documentation</a>
+A list of songs performed, optionally including links to artists and works. See
+the <a href="https://musicbrainz.org/doc/Event/Setlist">setlist documentation</a>
 for syntax and examples.
     </td>
   </tr>
@@ -1943,8 +1927,7 @@ What kind of event the event is, e.g. concert, festival, etc.
     <td colspan="2" valign="top"><strong>typeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>type</code>
-field.
+The MBID associated with the value of the <code>type</code> field.
     </td>
   </tr>
   <tr>
@@ -2027,8 +2010,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -2063,8 +2045,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -2115,24 +2097,23 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>aliases</strong></td>
     <td valign="top">[<a href="#alias">Alias</a>]</td>
     <td>
-<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store
-alternate names or misspellings.
+<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store alternate
+names or misspellings.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>description</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-A brief description of the main characteristics of the
-instrument.
+A brief description of the main characteristics of the instrument.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>type</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The type categorises the instrument by the way the sound is
-created, similar to the <a href="https://en.wikipedia.org/wiki/Hornbostel%E2%80%93Sachs">Hornbostel-Sachs</a>
+The type categorises the instrument by the way the sound is created, similar to
+the <a href="https://en.wikipedia.org/wiki/Hornbostel%E2%80%93Sachs">Hornbostel-Sachs</a>
 classification.
     </td>
   </tr>
@@ -2140,8 +2121,7 @@ classification.
     <td colspan="2" valign="top"><strong>typeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>type</code>
-field.
+The MBID associated with the value of the <code>type</code> field.
     </td>
   </tr>
   <tr>
@@ -2217,8 +2197,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -2253,8 +2232,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -2298,9 +2277,8 @@ The official name of the entity.
     <td colspan="2" valign="top"><strong>sortName</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The string to use for the purpose of ordering by name (for
-example, by moving articles like ‘the’ to the end or a person’s last name to
-the front).
+The string to use for the purpose of ordering by name (for example, by moving
+articles like ‘the’ to the end or a person’s last name to the front).
     </td>
   </tr>
   <tr>
@@ -2314,8 +2292,8 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>aliases</strong></td>
     <td valign="top">[<a href="#alias">Alias</a>]</td>
     <td>
-<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store
-alternate names or misspellings.
+<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store alternate
+names or misspellings.
     </td>
   </tr>
   <tr>
@@ -2336,16 +2314,16 @@ The area in which the label is based.
     <td colspan="2" valign="top"><strong>lifeSpan</strong></td>
     <td valign="top"><a href="#lifespan">LifeSpan</a></td>
     <td>
-The begin and end dates of the entity’s existence. Its exact
-meaning depends on the type of entity.
+The begin and end dates of the entity’s existence. Its exact meaning depends on
+the type of entity.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>labelCode</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The <a href="https://musicbrainz.org/doc/Label/Label_Code">“LC” code</a>
-of the label.
+The <a href="https://musicbrainz.org/doc/Label/Label_Code">“LC” code</a> of the
+label.
     </td>
   </tr>
   <tr>
@@ -2360,16 +2338,15 @@ codes for the label.
     <td colspan="2" valign="top"><strong>type</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-A type describing the main activity of the label, e.g.
-imprint, production, distributor, rights society, etc.
+A type describing the main activity of the label, e.g. imprint, production, distributor,
+rights society, etc.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>typeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>type</code>
-field.
+The MBID associated with the value of the <code>type</code> field.
     </td>
   </tr>
   <tr>
@@ -2479,8 +2456,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -2515,8 +2491,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -2615,8 +2591,7 @@ Look up a specific physical disc by its disc ID.
   <tr>
     <td colspan="2" align="right" valign="top">discID</td>
     <td valign="top"><a href="#discid">DiscID</a>!</td>
-    <td>The <a href="https://musicbrainz.org/doc/Disc_ID">disc ID</a>
-of the disc.</td>
+    <td>The <a href="https://musicbrainz.org/doc/Disc_ID">disc ID</a> of the disc.</td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>event</strong></td>
@@ -2772,24 +2747,22 @@ The title of this particular medium.
     <td colspan="2" valign="top"><strong>format</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The <a href="https://musicbrainz.org/doc/Release/Format">format</a> of
-the medium (e.g. CD, DVD, vinyl, cassette).
+The <a href="https://musicbrainz.org/doc/Release/Format">format</a> of the medium
+(e.g. CD, DVD, vinyl, cassette).
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>formatID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>format</code>
-field.
+The MBID associated with the value of the <code>format</code> field.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>position</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The order of this medium in the release (for example, in a
-multi-disc release).
+The order of this medium in the release (for example, in a multi-disc release).
     </td>
   </tr>
   <tr>
@@ -2895,24 +2868,24 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>aliases</strong></td>
     <td valign="top">[<a href="#alias">Alias</a>]</td>
     <td>
-<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store
-alternate names or misspellings.
+<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store alternate
+names or misspellings.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>address</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The address describes the location of the place using the
-standard addressing format for the country it is located in.
+The address describes the location of the place using the standard addressing
+format for the country it is located in.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>area</strong></td>
     <td valign="top"><a href="#area">Area</a></td>
     <td>
-The area entity representing the area, such as the city, in
-which the place is located.
+The area entity representing the area, such as the city, in which the place is
+located.
     </td>
   </tr>
   <tr>
@@ -2926,24 +2899,22 @@ The geographic coordinates of the place.
     <td colspan="2" valign="top"><strong>lifeSpan</strong></td>
     <td valign="top"><a href="#lifespan">LifeSpan</a></td>
     <td>
-The begin and end dates of the entity’s existence. Its exact
-meaning depends on the type of entity.
+The begin and end dates of the entity’s existence. Its exact meaning depends on
+the type of entity.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>type</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The type categorises the place based on its primary
-function.
+The type categorises the place based on its primary function.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>typeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>type</code>
-field.
+The MBID associated with the value of the <code>type</code> field.
     </td>
   </tr>
   <tr>
@@ -3036,8 +3007,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -3072,8 +3042,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -3164,8 +3134,8 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>aliases</strong></td>
     <td valign="top">[<a href="#alias">Alias</a>]</td>
     <td>
-<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store
-alternate names or misspellings.
+<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store alternate
+names or misspellings.
     </td>
   </tr>
   <tr>
@@ -3176,8 +3146,8 @@ The main credited artist(s).
       <br/><br/><p>⚠️ <strong>DEPRECATED</strong></p>
       <blockquote>The <code>artistCredit</code> field has been renamed to
 <code>artistCredits</code>, since it is a list of credits and is referred to in the
-plural form throughout the MusicBrainz documentation. This field is deprecated
-and will be removed in a major release in the future. Use the equivalent
+plural form throughout the MusicBrainz documentation. This field is deprecated and
+will be removed in a major release in the future. Use the equivalent
 <code>artistCredits</code> field.</blockquote>
     </td>
   </tr>
@@ -3192,16 +3162,16 @@ The main credited artist(s).
     <td colspan="2" valign="top"><strong>isrcs</strong></td>
     <td valign="top">[<a href="#isrc">ISRC</a>]</td>
     <td>
-A list of <a href="https://musicbrainz.org/doc/ISRC">International Standard Recording Codes</a>
-(ISRCs) for this recording.
+A list of <a href="https://musicbrainz.org/doc/ISRC">International Standard Recording
+Codes</a> (ISRCs) for this recording.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>length</strong></td>
     <td valign="top"><a href="#duration">Duration</a></td>
     <td>
-An approximation to the length of the recording, calculated
-from the lengths of the tracks using it.
+An approximation to the length of the recording, calculated from the lengths of
+the tracks using it.
     </td>
   </tr>
   <tr>
@@ -3335,8 +3305,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -3371,8 +3340,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -3416,16 +3385,16 @@ The type of entity on the receiving end of the relationship.
     <td colspan="2" valign="top"><strong>sourceCredit</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-How the source entity was actually credited, if different
-from its main (performance) name.
+How the source entity was actually credited, if different from its main (performance)
+name.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>targetCredit</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-How the target entity was actually credited, if different
-from its main (performance) name.
+How the target entity was actually credited, if different from its main (performance)
+name.
     </td>
   </tr>
   <tr>
@@ -3454,9 +3423,8 @@ Whether the relationship still applies.
     <td valign="top">[<a href="#string">String</a>]</td>
     <td>
 Attributes which modify the relationship. There is a <a href="https://musicbrainz.org/relationship-attributes">list
-of all attributes</a>, but the
-attributes which are available, and how they should be used, depends on the
-relationship type.
+of all attributes</a>, but the attributes which are available, and how they should
+be used, depends on the relationship type.
     </td>
   </tr>
   <tr>
@@ -3470,8 +3438,7 @@ The type of relationship.
     <td colspan="2" valign="top"><strong>typeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>type</code>
-field.
+The MBID associated with the value of the <code>type</code> field.
     </td>
   </tr>
 </tbody></table>
@@ -3506,8 +3473,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -3542,8 +3508,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -3580,8 +3546,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -3623,8 +3588,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -3666,8 +3630,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -3709,8 +3672,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -3752,8 +3714,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -3795,8 +3756,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -3838,8 +3798,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -3881,8 +3840,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -3924,8 +3882,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -3967,8 +3924,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -4010,8 +3966,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -4053,8 +4008,7 @@ A list of relationships between these two entity types.
   <tr>
     <td colspan="2" align="right" valign="top">typeID</td>
     <td valign="top"><a href="#mbid">MBID</a></td>
-    <td>The MBID associated with the value of the <code>type</code>
-field.</td>
+    <td>The MBID associated with the value of the <code>type</code> field.</td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">after</td>
@@ -4126,8 +4080,8 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>aliases</strong></td>
     <td valign="top">[<a href="#alias">Alias</a>]</td>
     <td>
-<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store
-alternate names or misspellings.
+<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store alternate
+names or misspellings.
     </td>
   </tr>
   <tr>
@@ -4138,8 +4092,8 @@ The main credited artist(s).
       <br/><br/><p>⚠️ <strong>DEPRECATED</strong></p>
       <blockquote>The <code>artistCredit</code> field has been renamed to
 <code>artistCredits</code>, since it is a list of credits and is referred to in the
-plural form throughout the MusicBrainz documentation. This field is deprecated
-and will be removed in a major release in the future. Use the equivalent
+plural form throughout the MusicBrainz documentation. This field is deprecated and
+will be removed in a major release in the future. Use the equivalent
 <code>artistCredits</code> field.</blockquote>
     </td>
   </tr>
@@ -4161,9 +4115,8 @@ The release events for this release.
     <td colspan="2" valign="top"><strong>date</strong></td>
     <td valign="top"><a href="#date">Date</a></td>
     <td>
-The <a href="https://musicbrainz.org/doc/Release/Date">release date</a>
-is the date in which a release was made available through some sort of
-distribution mechanism.
+The <a href="https://musicbrainz.org/doc/Release/Date">release date</a> is the
+date in which a release was made available through some sort of distribution mechanism.
     </td>
   </tr>
   <tr>
@@ -4177,16 +4130,16 @@ The country in which the release was issued.
     <td colspan="2" valign="top"><strong>asin</strong></td>
     <td valign="top"><a href="#asin">ASIN</a></td>
     <td>
-The <a href="https://musicbrainz.org/doc/ASIN">Amazon Standard Identification Number</a>
-of the release.
+The <a href="https://musicbrainz.org/doc/ASIN">Amazon Standard Identification
+Number</a> of the release.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>barcode</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The <a href="https://en.wikipedia.org/wiki/Barcode">barcode</a>, if the
-release has one. The most common types found on releases are 12-digit
+The <a href="https://en.wikipedia.org/wiki/Barcode">barcode</a>, if the release
+has one. The most common types found on releases are 12-digit
 <a href="https://en.wikipedia.org/wiki/Universal_Product_Code">UPCs</a> and 13-digit
 <a href="https://en.wikipedia.org/wiki/International_Article_Number">EANs</a>.
     </td>
@@ -4195,8 +4148,8 @@ release has one. The most common types found on releases are 12-digit
     <td colspan="2" valign="top"><strong>coverArt</strong></td>
     <td valign="top"><a href="#releasecoverart">ReleaseCoverArt</a>!</td>
     <td>
-A list and summary of the cover art images that are present
-for this release from the <a href="https://musicbrainz.org/doc/Cover_Art_Archive">Cover Art Archive</a>.
+A list and summary of the cover art images that are present for this release from
+the <a href="https://musicbrainz.org/doc/Cover_Art_Archive">Cover Art Archive</a>.
     </td>
   </tr>
   <tr>
@@ -4210,33 +4163,30 @@ The status describes how “official” a release is.
     <td colspan="2" valign="top"><strong>statusID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>status</code>
-field.
+The MBID associated with the value of the <code>status</code> field.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>packaging</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The physical packaging that accompanies the release. See
-the <a href="https://musicbrainz.org/doc/Release/Packaging">list of packaging</a> for more
-information.
+The physical packaging that accompanies the release. See the <a href="https://musicbrainz.org/doc/Release/Packaging">list
+of packaging</a> for more information.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>packagingID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>packaging</code>
-field.
+The MBID associated with the value of the <code>packaging</code> field.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>quality</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-Data quality indicates how good the data for a release is.
-It is not a mark of how good or bad the music itself is – for that, use
+Data quality indicates how good the data for a release is. It is not a mark of
+how good or bad the music itself is – for that, use
 <a href="https://musicbrainz.org/doc/Rating_System">ratings</a>.
     </td>
   </tr>
@@ -4393,8 +4343,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -4417,45 +4366,43 @@ as well as a summary of what artwork is available.
     <td colspan="2" valign="top"><strong>front</strong></td>
     <td valign="top"><a href="#urlstring">URLString</a></td>
     <td>
-The URL of an image depicting the album cover or “main
-front” of the release, i.e. the front of the packaging of the audio recording
-(or in the case of a digital release, the image associated with it in a digital
-media store).<br><br>In the MusicBrainz schema, this field is a Boolean value indicating the presence
-of a front image, whereas here the value is the URL for the image itself if one
-exists. You can check for null if you just want to determine the presence of an
-image.
+<p>The URL of an image depicting the album cover or “main front” of the release,
+i.e. the front of the packaging of the audio recording (or in the case of a digital
+release, the image associated with it in a digital media store).</p>
+<p>In the MusicBrainz schema, this field is a Boolean value indicating the presence
+of a front image, whereas here the value is the URL for the image itself if one exists.
+You can check for null if you just want to determine the presence of an image.</p>
     </td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">size</td>
     <td valign="top"><a href="#coverartimagesize">CoverArtImageSize</a></td>
-    <td>The size of the image to retrieve. By default, the returned
-image will have its full original dimensions, but certain thumbnail sizes may be
-retrieved as well.</td>
+    <td>The size of the image to retrieve. By default, the returned image will have its
+full original dimensions, but certain thumbnail sizes may be retrieved as well.</td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>back</strong></td>
     <td valign="top"><a href="#urlstring">URLString</a></td>
     <td>
-The URL of an image depicting the “main back” of the
-release, i.e. the back of the packaging of the audio recording.<br><br>In the MusicBrainz schema, this field is a Boolean value indicating the presence
+<p>The URL of an image depicting the “main back” of the release, i.e. the back of
+the packaging of the audio recording.</p>
+<p>In the MusicBrainz schema, this field is a Boolean value indicating the presence
 of a back image, whereas here the value is the URL for the image itself. You can
-check for null if you just want to determine the presence of an image.
+check for null if you just want to determine the presence of an image.</p>
     </td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">size</td>
     <td valign="top"><a href="#coverartimagesize">CoverArtImageSize</a></td>
-    <td>The size of the image to retrieve. By default, the returned
-image will have its full original dimensions, but certain thumbnail sizes may be
-retrieved as well.</td>
+    <td>The size of the image to retrieve. By default, the returned image will have its
+full original dimensions, but certain thumbnail sizes may be retrieved as well.</td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>images</strong></td>
     <td valign="top">[<a href="#coverartimage">CoverArtImage</a>]</td>
     <td>
-A list of images depicting the different sides and surfaces
-of a release’s media and packaging.
+A list of images depicting the different sides and surfaces of a release’s media
+and packaging.
     </td>
   </tr>
   <tr>
@@ -4469,8 +4416,8 @@ Whether there is artwork present for this release.
     <td colspan="2" valign="top"><strong>darkened</strong></td>
     <td valign="top"><a href="#boolean">Boolean</a>!</td>
     <td>
-Whether the Cover Art Archive has received a take-down
-request for this release’s artwork, disallowing new uploads.
+Whether the Cover Art Archive has received a take-down request for this release’s
+artwork, disallowing new uploads.
     </td>
   </tr>
   <tr>
@@ -4519,8 +4466,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -4603,8 +4550,8 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>aliases</strong></td>
     <td valign="top">[<a href="#alias">Alias</a>]</td>
     <td>
-<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store
-alternate names or misspellings.
+<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store alternate
+names or misspellings.
     </td>
   </tr>
   <tr>
@@ -4615,8 +4562,8 @@ The main credited artist(s).
       <br/><br/><p>⚠️ <strong>DEPRECATED</strong></p>
       <blockquote>The <code>artistCredit</code> field has been renamed to
 <code>artistCredits</code>, since it is a list of credits and is referred to in the
-plural form throughout the MusicBrainz documentation. This field is deprecated
-and will be removed in a major release in the future. Use the equivalent
+plural form throughout the MusicBrainz documentation. This field is deprecated and
+will be removed in a major release in the future. Use the equivalent
 <code>artistCredits</code> field.</blockquote>
     </td>
   </tr>
@@ -4638,18 +4585,17 @@ The date of the earliest release in the group.
     <td colspan="2" valign="top"><strong>primaryType</strong></td>
     <td valign="top"><a href="#releasegrouptype">ReleaseGroupType</a></td>
     <td>
-The <a href="https://musicbrainz.org/doc/Release_Group/Type">type</a>
-of a release group describes what kind of releases the release group represents,
-e.g. album, single, soundtrack, compilation, etc. A release group can have a
-“main” type and an unspecified number of additional types.
+The <a href="https://musicbrainz.org/doc/Release_Group/Type">type</a> of a release
+group describes what kind of releases the release group represents, e.g. album, single,
+soundtrack, compilation, etc. A release group can have a “main” type and an unspecified
+number of additional types.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>primaryTypeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>primaryType</code>
-field.
+The MBID associated with the value of the <code>primaryType</code> field.
     </td>
   </tr>
   <tr>
@@ -4664,8 +4610,7 @@ that apply to this release group.
     <td colspan="2" valign="top"><strong>secondaryTypeIDs</strong></td>
     <td valign="top">[<a href="#mbid">MBID</a>]</td>
     <td>
-The MBIDs associated with the values of the <code>secondaryTypes</code>
-field.
+The MBIDs associated with the values of the <code>secondaryTypes</code> field.
     </td>
   </tr>
   <tr>
@@ -4800,8 +4745,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -4824,27 +4768,24 @@ release groups, just the front cover of a particular release will be selected.
     <td colspan="2" valign="top"><strong>front</strong></td>
     <td valign="top"><a href="#urlstring">URLString</a></td>
     <td>
-The URL of an image depicting the album cover or “main
-front” of a release in the release group, i.e. the front of the packaging of the
-audio recording (or in the case of a digital release, the image associated with
-it in a digital media store).
+The URL of an image depicting the album cover or “main front” of a release in
+the release group, i.e. the front of the packaging of the audio recording (or in
+the case of a digital release, the image associated with it in a digital media store).
     </td>
   </tr>
   <tr>
     <td colspan="2" align="right" valign="top">size</td>
     <td valign="top"><a href="#coverartimagesize">CoverArtImageSize</a></td>
-    <td>The size of the image to retrieve. By default, the returned
-image will have its full original dimensions, but certain thumbnail sizes may be
-retrieved as well.</td>
+    <td>The size of the image to retrieve. By default, the returned image will have its
+full original dimensions, but certain thumbnail sizes may be retrieved as well.</td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>images</strong></td>
     <td valign="top">[<a href="#coverartimage">CoverArtImage</a>]</td>
     <td>
-A list of images returned by the <a href="https://musicbrainz.org/doc/Cover_Art_Archive">Cover Art
-Archive</a> for a release group. A
-particular release’s front image will be included in the list, and likely no
-others, even if other images are available.
+A list of images returned by the <a href="https://musicbrainz.org/doc/Cover_Art_Archive">Cover
+Art Archive</a> for a release group. A particular release’s front image will be included
+in the list, and likely no others, even if other images are available.
     </td>
   </tr>
   <tr>
@@ -4893,8 +4834,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -5212,16 +5153,14 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>type</strong></td>
     <td valign="top"><a href="#string">String</a></td>
     <td>
-The type primarily describes what type of entity the series
-contains.
+The type primarily describes what type of entity the series contains.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>typeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>type</code>
-field.
+The MBID associated with the value of the <code>type</code> field.
     </td>
   </tr>
   <tr>
@@ -5297,8 +5236,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -5333,8 +5271,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -5399,8 +5337,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -5435,8 +5372,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -5531,16 +5468,16 @@ A comment used to help distinguish identically named entitites.
     <td colspan="2" valign="top"><strong>aliases</strong></td>
     <td valign="top">[<a href="#alias">Alias</a>]</td>
     <td>
-<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store
-alternate names or misspellings.
+<a href="https://musicbrainz.org/doc/Aliases">Aliases</a> are used to store alternate
+names or misspellings.
     </td>
   </tr>
   <tr>
     <td colspan="2" valign="top"><strong>iswcs</strong></td>
     <td valign="top">[<a href="#string">String</a>]</td>
     <td>
-A list of <a href="https://musicbrainz.org/doc/ISWC">ISWCs</a> assigned
-to the work by copyright collecting agencies.
+A list of <a href="https://musicbrainz.org/doc/ISWC">ISWCs</a> assigned to the
+work by copyright collecting agencies.
     </td>
   </tr>
   <tr>
@@ -5561,8 +5498,7 @@ The type of work.
     <td colspan="2" valign="top"><strong>typeID</strong></td>
     <td valign="top"><a href="#mbid">MBID</a></td>
     <td>
-The MBID associated with the value of the <code>type</code>
-field.
+The MBID associated with the value of the <code>type</code> field.
     </td>
   </tr>
   <tr>
@@ -5662,8 +5598,7 @@ A list of edges.
     <td colspan="2" valign="top"><strong>totalCount</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-A count of the total number of items in this connection,
-ignoring pagination.
+A count of the total number of items in this connection, ignoring pagination.
     </td>
   </tr>
 </tbody></table>
@@ -5698,8 +5633,8 @@ A cursor for use in pagination
     <td colspan="2" valign="top"><strong>score</strong></td>
     <td valign="top"><a href="#int">Int</a></td>
     <td>
-The relevancy score (0–100) assigned by the search engine, if
-these results were found through a search.
+The relevancy score (0–100) assigned by the search engine, if these results were
+found through a search.
     </td>
   </tr>
 </tbody></table>
@@ -5747,29 +5682,27 @@ etc.
   <tr>
     <td valign="top"><strong>ALBUM</strong></td>
     <td>
-An album, perhaps better defined as a “Long Play” (LP)
-release, generally consists of previously unreleased material (unless this type
-is combined with secondary types which change that, such as “Compilation”). This
-includes album re-issues, with or without bonus tracks.
+An album, perhaps better defined as a “Long Play” (LP) release, generally consists
+of previously unreleased material (unless this type is combined with secondary types
+which change that, such as “Compilation”). This includes album re-issues, with or
+without bonus tracks.
     </td>
   </tr>
   <tr>
     <td valign="top"><strong>SINGLE</strong></td>
     <td>
-A single typically has one main song and possibly a handful
-of additional tracks or remixes of the main track. A single is usually named
-after its main song.
+A single typically has one main song and possibly a handful of additional tracks
+or remixes of the main track. A single is usually named after its main song.
     </td>
   </tr>
   <tr>
     <td valign="top"><strong>EP</strong></td>
     <td>
-An EP is a so-called “Extended Play” release and often
-contains the letters EP in the title. Generally an EP will be shorter than a
-full length release (an LP or “Long Play”) and the tracks are usually exclusive
-to the EP, in other words the tracks don’t come from a previously issued
-release. EP is fairly difficult to define; usually it should only be assumed
-that a release is an EP if the artist defines it as such.
+An EP is a so-called “Extended Play” release and often contains the letters EP
+in the title. Generally an EP will be shorter than a full length release (an LP or
+“Long Play”) and the tracks are usually exclusive to the EP, in other words the tracks
+don’t come from a previously issued release. EP is fairly difficult to define; usually
+it should only be assumed that a release is an EP if the artist defines it as such.
     </td>
   </tr>
   <tr>
@@ -5781,22 +5714,21 @@ Any release that does not fit any of the other categories.
   <tr>
     <td valign="top"><strong>BROADCAST</strong></td>
     <td>
-An episodic release that was originally broadcast via radio,
-television, or the Internet, including podcasts.
+An episodic release that was originally broadcast via radio, television, or the
+Internet, including podcasts.
     </td>
   </tr>
   <tr>
     <td valign="top"><strong>COMPILATION</strong></td>
     <td>
-A compilation is a collection of previously released tracks
-by one or more artists.
+A compilation is a collection of previously released tracks by one or more artists.
     </td>
   </tr>
   <tr>
     <td valign="top"><strong>SOUNDTRACK</strong></td>
     <td>
-A soundtrack is the musical score to a movie, TV series,
-stage show, computer game, etc.
+A soundtrack is the musical score to a movie, TV series, stage show, computer
+game, etc.
     </td>
   </tr>
   <tr>
@@ -5808,8 +5740,7 @@ A non-music spoken word release.
   <tr>
     <td valign="top"><strong>INTERVIEW</strong></td>
     <td>
-An interview release contains an interview, generally with
-an artist.
+An interview release contains an interview, generally with an artist.
     </td>
   </tr>
   <tr>
@@ -5827,33 +5758,31 @@ A release that was recorded live.
   <tr>
     <td valign="top"><strong>REMIX</strong></td>
     <td>
-A release that was (re)mixed from previously released
-material.
+A release that was (re)mixed from previously released material.
     </td>
   </tr>
   <tr>
     <td valign="top"><strong>DJMIX</strong></td>
     <td>
-A DJ-mix is a sequence of several recordings played one
-after the other, each one modified so that they blend together into a continuous
-flow of music. A DJ mix release requires that the recordings be modified in some
-manner, and the DJ who does this modification is usually (although not always)
-credited in a fairly prominent way.
+A DJ-mix is a sequence of several recordings played one after the other, each
+one modified so that they blend together into a continuous flow of music. A DJ mix
+release requires that the recordings be modified in some manner, and the DJ who does
+this modification is usually (although not always) credited in a fairly prominent
+way.
     </td>
   </tr>
   <tr>
     <td valign="top"><strong>MIXTAPE</strong></td>
     <td>
-Promotional in nature (but not necessarily free), mixtapes
-and street albums are often released by artists to promote new artists, or
-upcoming studio albums by prominent artists. They are also sometimes used to
-keep fans’ attention between studio releases and are most common in rap &amp; hip
-hop genres. They are often not sanctioned by the artist’s label, may lack proper
-sample or song clearances and vary widely in production and recording quality.
-While mixtapes are generally DJ-mixed, they are distinct from commercial DJ
-mixes (which are usually deemed compilations) and are defined by having a
-significant proportion of new material, including original production or
-original vocals over top of other artists’ instrumentals. They are distinct from
+Promotional in nature (but not necessarily free), mixtapes and street albums are
+often released by artists to promote new artists, or upcoming studio albums by prominent
+artists. They are also sometimes used to keep fans’ attention between studio releases
+and are most common in rap &amp; hip hop genres. They are often not sanctioned by
+the artist’s label, may lack proper sample or song clearances and vary widely in
+production and recording quality. While mixtapes are generally DJ-mixed, they are
+distinct from commercial DJ mixes (which are usually deemed compilations) and are
+defined by having a significant proportion of new material, including original production
+or original vocals over top of other artists’ instrumentals. They are distinct from
 demos in that they are designed for release directly to the public and fans, not
 to labels.
     </td>
@@ -5861,8 +5790,8 @@ to labels.
   <tr>
     <td valign="top"><strong>DEMO</strong></td>
     <td>
-A release that was recorded for limited circulation or
-reference use rather than for general public release.
+A release that was recorded for limited circulation or reference use rather than
+for general public release.
     </td>
   </tr>
   <tr>
@@ -5885,30 +5814,28 @@ bootleg, etc.
   <tr>
     <td valign="top"><strong>OFFICIAL</strong></td>
     <td>
-Any release officially sanctioned by the artist and/or their
-record company. (Most releases will fit into this category.)
+Any release officially sanctioned by the artist and/or their record company. (Most
+releases will fit into this category.)
     </td>
   </tr>
   <tr>
     <td valign="top"><strong>PROMOTION</strong></td>
     <td>
-A giveaway release or a release intended to promote an
-upcoming official release, e.g. prerelease albums or releases included with a
-magazine.
+A giveaway release or a release intended to promote an upcoming official release,
+e.g. prerelease albums or releases included with a magazine.
     </td>
   </tr>
   <tr>
     <td valign="top"><strong>BOOTLEG</strong></td>
     <td>
-An unofficial/underground release that was not sanctioned by
-the artist and/or the record company.
+An unofficial/underground release that was not sanctioned by the artist and/or
+the record company.
     </td>
   </tr>
   <tr>
     <td valign="top"><strong>PSEUDORELEASE</strong></td>
     <td>
-A pseudo-release is a duplicate release for
-translation/transliteration purposes.
+A pseudo-release is a duplicate release for translation/transliteration purposes.
     </td>
   </tr>
 </tbody></table>
