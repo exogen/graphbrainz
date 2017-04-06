@@ -60,7 +60,7 @@ test('shouldRetry() retries only transient local connection issues', t => {
 
 test('rejects non-MusicBrainz errors', t => {
   const client = new MusicBrainz({ baseURL: '$!@#$' })
-  t.throws(client.get('artist/5b11f4ce-a62d-471e-81fc-a69a8278c7da'), Error)
+  return t.throws(client.get('artist/5b11f4ce-a62d-471e-81fc-a69a8278c7da'), Error)
 })
 
 test('uses the default error impementation if there is no JSON error', t => {

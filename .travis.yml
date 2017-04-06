@@ -12,6 +12,7 @@ sudo: false
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
 
 script:
   - yarn test
