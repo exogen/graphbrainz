@@ -1,9 +1,8 @@
 # GraphBrainz
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/exogen/graphbrainz.svg)](https://greenkeeper.io/)
-
-[![build status](https://img.shields.io/travis/exogen/graphbrainz.svg)](https://travis-ci.org/exogen/graphbrainz)
+[![build status](https://img.shields.io/travis/exogen/graphbrainz/master.svg)](https://travis-ci.org/exogen/graphbrainz)
 [![coverage](https://img.shields.io/codecov/c/github/exogen/graphbrainz.svg)](https://codecov.io/gh/exogen/graphbrainz)
+[![Greenkeeper badge](https://badges.greenkeeper.io/exogen/graphbrainz.svg)](https://greenkeeper.io/)
 [![npm version](https://img.shields.io/npm/v/graphbrainz.svg)](https://www.npmjs.com/package/graphbrainz)
 [![license](https://img.shields.io/npm/l/graphbrainz.svg)](https://github.com/exogen/graphbrainz/blob/master/LICENSE)
 
