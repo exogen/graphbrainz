@@ -1,5 +1,7 @@
 # GraphBrainz
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/exogen/graphbrainz.svg)](https://greenkeeper.io/)
+
 [![build status](https://img.shields.io/travis/exogen/graphbrainz.svg)](https://travis-ci.org/exogen/graphbrainz)
 [![coverage](https://img.shields.io/codecov/c/github/exogen/graphbrainz.svg)](https://codecov.io/gh/exogen/graphbrainz)
 [![npm version](https://img.shields.io/npm/v/graphbrainz.svg)](https://www.npmjs.com/package/graphbrainz)
