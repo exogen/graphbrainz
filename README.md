@@ -86,8 +86,8 @@ app.listen(3000);
 The `graphbrainz` middleware function accepts the following options:
 
 * **`client`**: A custom API client instance to use. See the
-  [client submodule](src/api.js) for help with creating a custom instance. You
-  probably only need to do this if you want to adjust the rate limit and retry
+  [client submodule](src/api/client.js) for help with creating a custom instance.
+  You probably only need to do this if you want to adjust the rate limit and retry
   behavior.
 * Any remaining options are passed along to the standard GraphQL middleware.
   See the [express-graphql][] documentation for more information.
