@@ -27,6 +27,7 @@
     "deploy": "./scripts/deploy.sh",
     "lint": "standard --verbose | snazzy",
     "lint:fix": "standard --verbose --fix",
+    "postinstall": "postinstall-build lib",
     "prepublish": "npm run clean:lib && npm run build:lib",
     "preversion": "npm run update-schema && npm run build:docs && git add schema.json docs",
     "print-schema": "babel-node scripts/print-schema.js",
@@ -75,6 +76,7 @@
     "graphql-relay": "^0.5.1",
     "lru-cache": "^4.0.1",
     "pascalcase": "^0.1.1",
+    "postinstall-build": "^5.0.0",
     "qs": "^6.4.0",
     "request": "^2.81.0",
     "retry": "^0.10.1"
