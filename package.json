@@ -7,6 +7,7 @@
   "files": [
     "lib",
     "scripts",
+    "src",
     "cli.js",
     "Procfile",
     "schema.json",
@@ -28,7 +29,6 @@
     "deploy": "./scripts/deploy.sh",
     "lint": "standard --verbose | snazzy",
     "lint:fix": "standard --verbose --fix",
-    "preinstall": "ls",
     "postinstall": "postinstall-build lib --script build:lib",
     "prepublish": "npm run clean:lib && npm run build:lib",
     "preversion": "npm run update-schema && npm run build:docs && git add schema.json docs",
