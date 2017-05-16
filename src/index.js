@@ -31,7 +31,7 @@ const middleware = ({
 
 export default middleware
 
-if (require.main === module) {
+export function start () {
   require('dotenv').config({ silent: true })
   const app = express()
   const port = process.env.PORT || 3000
@@ -40,4 +40,8 @@ if (require.main === module) {
   app.use(route, middleware())
   app.listen(port)
   console.log(`Listening on port ${port}.`)
+}
+
+if (require.main === module) {
+  start()
 }
