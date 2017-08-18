@@ -5,6 +5,9 @@ import context from './helpers/context'
 
 function testData (t, query, handler) {
   return graphql(schema, query, null, context).then(result => {
+    if (result.errors !== undefined) {
+      console.log(result.errors)
+    }
     t.is(result.errors, undefined)
     return handler(t, result.data)
   })
@@ -476,6 +479,7 @@ test('URLs may be looked up by resource', testData, `
   t.is(url.resource, 'http://www.nirvana.com/')
 })
 
+// FIXME: https://github.com/graphql/graphql-js/issues/910
 test('throws an error if given a malformed resource URL', testError, `
   {
     lookup {
