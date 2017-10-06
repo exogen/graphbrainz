@@ -1239,7 +1239,7 @@ type Rating {
   voteCount: Int!
 
   # The average rating value based on the aggregated votes.
-  value: Int
+  value: Float
 }
 
 # A [recording](https://musicbrainz.org/doc/Recording) is an

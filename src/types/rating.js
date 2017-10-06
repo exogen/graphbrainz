@@ -1,7 +1,8 @@
 import {
   GraphQLObjectType,
   GraphQLNonNull,
-  GraphQLInt
+  GraphQLInt,
+  GraphQLFloat
 } from 'graphql/type'
 
 export default new GraphQLObjectType({
@@ -17,7 +18,7 @@ for the entity.`,
       resolve: rating => rating['votes-count']
     },
     value: {
-      type: GraphQLInt,
+      type: GraphQLFloat,
       description: 'The average rating value based on the aggregated votes.'
     }
   })

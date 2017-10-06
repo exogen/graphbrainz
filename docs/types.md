@@ -78,6 +78,7 @@ You may also be interested in reading the [schema in GraphQL syntax](schema.md).
     * [Degrees](#degrees)
     * [DiscID](#discid)
     * [Duration](#duration)
+    * [Float](#float)
     * [ID](#id)
     * [IPI](#ipi)
     * [ISNI](#isni)
@@ -3957,7 +3958,7 @@ The number of votes that have contributed to the rating.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>value</strong></td>
-<td valign="top"><a href="#int">Int</a></td>
+<td valign="top"><a href="#float">Float</a></td>
 <td>
 
 The average rating value based on the aggregated votes.
@@ -7534,6 +7535,10 @@ offsets and hence the same disc ID.
 ### Duration
 
 A length of time, in milliseconds.
+
+### Float
+
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). 
 
 ### ID
 

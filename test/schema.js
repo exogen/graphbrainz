@@ -5,6 +5,9 @@ import context from './helpers/context'
 
 function testData (t, query, handler) {
   return graphql(schema, query, null, context).then(result => {
+    if (result.errors !== undefined) {
+      console.log(result.errors)
+    }
     t.is(result.errors, undefined)
     return handler(t, result.data)
   })
@@ -16,6 +19,11 @@ function testError (t, query, handler) {
     t.true(result.errors.length > 0)
     return handler(t, result.errors)
   })
+}
+
+function testThrows (t, query, handler) {
+  const error = t.throws(graphql(schema, query, null, context))
+  return handler(t, error)
 }
 
 test('schema has a node field', testData, `
@@ -182,7 +190,8 @@ test('supports deeply nested queries', testData, `
   t.is(labels.edges[0].node.releases.edges.length, 1)
 })
 
-test('throws an error if given a malformed MBID', testError, `
+// FIXME: https://github.com/graphql/graphql-js/issues/910
+test('throws an error if given a malformed MBID', testThrows, `
   {
     lookup {
       artist(mbid: "ABC123") {
@@ -190,8 +199,8 @@ test('throws an error if given a malformed MBID', testError, `
       }
     }
   }
-`, (t, errors) => {
-  const err = errors[0]
+`, async (t, promise) => {
+  const err = await promise
   t.true(err instanceof TypeError)
   t.is(err.message, 'Malformed MBID: ABC123')
 })
@@ -476,7 +485,8 @@ test('URLs may be looked up by resource', testData, `
   t.is(url.resource, 'http://www.nirvana.com/')
 })
 
-test('throws an error if given a malformed resource URL', testError, `
+// FIXME: https://github.com/graphql/graphql-js/issues/910
+test('throws an error if given a malformed resource URL', testThrows, `
   {
     lookup {
       url(resource: "http:foo") {
@@ -485,8 +495,8 @@ test('throws an error if given a malformed resource URL', testError, `
       }
     }
   }
-`, (t, errors) => {
-  const err = errors[0]
+`, async (t, promise) => {
+  const err = await promise
   t.true(err instanceof TypeError)
   t.is(err.message, 'Malformed URL: http:foo')
 })
