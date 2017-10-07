@@ -40,16 +40,7 @@ middleware supplying a GraphQL endpoint.
 
 ### As a standalone server
 
-Run the included `
-
-
-
-
-
-
-
-
-` executable to start the server. The server
+Run the included `graphbrainz` executable to start the server. The server
 is configured using [environment variables](#environment-variables).
 
 ```sh
