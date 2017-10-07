@@ -1,0 +1,29 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "date": "Sat, 07 Oct 2017 02:16:50 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "keep-alive": "timeout=15",
+    "vary": "Accept-Encoding",
+    "x-ratelimit-limit": "1200",
+    "x-ratelimit-remaining": "1052",
+    "x-ratelimit-reset": "1507342611",
+    "server": "Plack::Handler::Starlet",
+    "etag": "W/\"511ce70a5d7fc09685033f0a9cc9363f\"",
+    "access-control-allow-origin": "*",
+    "content-encoding": "gzip"
+  },
+  "url": "http://musicbrainz.org:80/ws/2/artist/b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d?inc=artist-rels&fmt=json",
+  "time": 402,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/6.0.0 ( https://github.com/exogen/graphbrainz )",
+      "host": "musicbrainz.org",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json"
+    }
+  }
+}

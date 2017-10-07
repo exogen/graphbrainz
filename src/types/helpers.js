@@ -263,10 +263,14 @@ export const releaseGroups = linkedQuery(ReleaseGroupConnection, {
 })
 export const series = linkedQuery(SeriesConnection)
 export const tags = linkedQuery(TagConnection, {
-  resolve: createSubqueryResolver({}, (value = [], args) => ({
-    totalCount: value.length,
-    ...connectionFromArray(value, args)
-  }))
+  resolve: createSubqueryResolver({}, (value = [], args) => {
+    const connection = connectionFromArray(value, args)
+    return {
+      nodes: connection.edges.map(edge => edge.node),
+      totalCount: value.length,
+      ...connection
+    }
+  })
 })
 export const works = linkedQuery(WorkConnection)
 
@@ -285,7 +289,14 @@ these results were found through a search.`
 export function connectionWithExtras (nodeType) {
   return connectionDefinitions({
     nodeType,
-    connectionFields: () => ({ totalCount }),
+    connectionFields: () => ({
+      nodes: {
+        type: new GraphQLList(nodeType),
+        description: `A list of nodes in the connection (without going through the
+\`edges\` field).`
+      },
+      totalCount
+    }),
     edgeFields: () => ({ score })
   }).connectionType
 }

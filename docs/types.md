@@ -517,6 +517,16 @@ A list of edges.
 </td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#area">Area</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>totalCount</strong></td>
 <td valign="top"><a href="#int">Int</a></td>
 <td>
@@ -949,6 +959,16 @@ Information to aid in pagination.
 <td>
 
 A list of edges.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#artist">Artist</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
 
 </td>
 </tr>
@@ -2056,6 +2076,16 @@ A list of edges.
 </td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#collection">Collection</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>totalCount</strong></td>
 <td valign="top"><a href="#int">Int</a></td>
 <td>
@@ -2579,6 +2609,16 @@ A list of edges.
 </td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#event">Event</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>totalCount</strong></td>
 <td valign="top"><a href="#int">Int</a></td>
 <td>
@@ -2808,6 +2848,16 @@ Information to aid in pagination.
 <td>
 
 A list of edges.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#instrument">Instrument</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
 
 </td>
 </tr>
@@ -3135,6 +3185,16 @@ Information to aid in pagination.
 <td>
 
 A list of edges.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#label">Label</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
 
 </td>
 </tr>
@@ -3873,6 +3933,16 @@ A list of edges.
 </td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#place">Place</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>totalCount</strong></td>
 <td valign="top"><a href="#int">Int</a></td>
 <td>
@@ -4244,6 +4314,16 @@ A list of edges.
 </td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#recording">Recording</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>totalCount</strong></td>
 <td valign="top"><a href="#int">Int</a></td>
 <td>
@@ -4454,6 +4534,16 @@ Information to aid in pagination.
 <td>
 
 A list of edges.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#relationship">Relationship</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
 
 </td>
 </tr>
@@ -5597,6 +5687,16 @@ A list of edges.
 </td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#release">Release</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>totalCount</strong></td>
 <td valign="top"><a href="#int">Int</a></td>
 <td>
@@ -6101,6 +6201,16 @@ Information to aid in pagination.
 <td>
 
 A list of edges.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#releasegroup">ReleaseGroup</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
 
 </td>
 </tr>
@@ -6725,6 +6835,16 @@ A list of edges.
 </td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#series">Series</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>totalCount</strong></td>
 <td valign="top"><a href="#int">Int</a></td>
 <td>
@@ -6848,6 +6968,16 @@ Information to aid in pagination.
 <td>
 
 A list of edges.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#tag">Tag</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
 
 </td>
 </tr>
@@ -7171,6 +7301,16 @@ Information to aid in pagination.
 <td>
 
 A list of edges.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>nodes</strong></td>
+<td valign="top">[<a href="#work">Work</a>]</td>
+<td>
+
+A list of nodes in the connection (without going through the
+`edges` field).
 
 </td>
 </tr>

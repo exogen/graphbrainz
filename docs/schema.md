@@ -99,6 +99,10 @@ type AreaConnection {
   # A list of edges.
   edges: [AreaEdge]
 
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Area]
+
   # A count of the total number of items in this connection,
   # ignoring pagination.
   totalCount: Int
@@ -232,6 +236,10 @@ type ArtistConnection {
 
   # A list of edges.
   edges: [ArtistEdge]
+
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Artist]
 
   # A count of the total number of items in this connection,
   # ignoring pagination.
@@ -557,6 +565,10 @@ type CollectionConnection {
   # A list of edges.
   edges: [CollectionEdge]
 
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Collection]
+
   # A count of the total number of items in this connection,
   # ignoring pagination.
   totalCount: Int
@@ -755,6 +767,10 @@ type EventConnection {
   # A list of edges.
   edges: [EventEdge]
 
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Event]
+
   # A count of the total number of items in this connection,
   # ignoring pagination.
   totalCount: Int
@@ -823,6 +839,10 @@ type InstrumentConnection {
 
   # A list of edges.
   edges: [InstrumentEdge]
+
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Instrument]
 
   # A count of the total number of items in this connection,
   # ignoring pagination.
@@ -951,6 +971,10 @@ type LabelConnection {
 
   # A list of edges.
   edges: [LabelEdge]
+
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Label]
 
   # A count of the total number of items in this connection,
   # ignoring pagination.
@@ -1193,6 +1217,10 @@ type PlaceConnection {
   # A list of edges.
   edges: [PlaceEdge]
 
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Place]
+
   # A count of the total number of items in this connection,
   # ignoring pagination.
   totalCount: Int
@@ -1323,6 +1351,10 @@ type RecordingConnection {
   # A list of edges.
   edges: [RecordingEdge]
 
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Recording]
+
   # A count of the total number of items in this connection,
   # ignoring pagination.
   totalCount: Int
@@ -1392,6 +1424,10 @@ type RelationshipConnection {
 
   # A list of edges.
   edges: [RelationshipEdge]
+
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Relationship]
 
   # A count of the total number of items in this connection,
   # ignoring pagination.
@@ -1730,6 +1766,10 @@ type ReleaseConnection {
   # A list of edges.
   edges: [ReleaseEdge]
 
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Release]
+
   # A count of the total number of items in this connection,
   # ignoring pagination.
   totalCount: Int
@@ -1896,6 +1936,10 @@ type ReleaseGroupConnection {
 
   # A list of edges.
   edges: [ReleaseGroupEdge]
+
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [ReleaseGroup]
 
   # A count of the total number of items in this connection,
   # ignoring pagination.
@@ -2191,6 +2235,10 @@ type SeriesConnection {
   # A list of edges.
   edges: [SeriesEdge]
 
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Series]
+
   # A count of the total number of items in this connection,
   # ignoring pagination.
   totalCount: Int
@@ -2227,6 +2275,10 @@ type TagConnection {
 
   # A list of edges.
   edges: [TagEdge]
+
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Tag]
 
   # A count of the total number of items in this connection,
   # ignoring pagination.
@@ -2326,6 +2378,10 @@ type WorkConnection {
 
   # A list of edges.
   edges: [WorkEdge]
+
+  # A list of nodes in the connection (without going through the
+  # `edges` field).
+  nodes: [Work]
 
   # A count of the total number of items in this connection,
   # ignoring pagination.
