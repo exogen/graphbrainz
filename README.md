@@ -40,7 +40,16 @@ middleware supplying a GraphQL endpoint.
 
 ### As a standalone server
 
-Run the included `graphbrainz` executable to start the server. The server
+Run the included `
+
+
+
+
+
+
+
+
+` executable to start the server. The server
 is configured using [environment variables](#environment-variables).
 
 ```sh
@@ -324,9 +333,13 @@ schema. The schema was originally designed to be more user-friendly, but in the
 end I decided that being compatible with Relay was a worthwhile feature. I
 agree, it’s ugly.
 
-Don’t forget, though, that you can use [GraphQL aliases][aliases] to rename
-fields to your liking. For example, the following query renames `edges`, `node`,
-and `mbid` to `results`, `releaseGroup`, and `id`, respectively:
+The GraphBrainz schema includes an extra `nodes` field on every connection type.
+If you only want the nodes and no other fields on `edges`, you can use `nodes`
+as a shortcut.
+
+Don’t forget that you can also use [GraphQL aliases][aliases] to rename fields
+to your liking. For example, the following query renames `edges`, `node`, and
+`mbid` to `results`, `releaseGroup`, and `id`, respectively:
 
 ```graphql
 query ChristmasAlbums {
