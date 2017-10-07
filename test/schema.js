@@ -190,6 +190,70 @@ test('supports deeply nested queries', testData, `
   t.is(labels.edges[0].node.releases.edges.length, 1)
 })
 
+test('connections have a nodes shortcut field', testData, `
+  query AppleRecordsMarriages {
+    search {
+      labels(query: "Apple Records", first: 1) {
+        nodes {
+          name
+          disambiguation
+          country
+          releases(first: 1) {
+            nodes {
+              title
+              date
+              artists {
+                nodes {
+                  name
+                  ...bandMembers
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  fragment bandMembers on Artist {
+    relationships {
+      artists(direction: "backward", type: "member of band") {
+        nodes {
+          type
+          target {
+            ... on Artist {
+              name
+              ...marriages
+            }
+          }
+        }
+      }
+    }
+  }
+
+  fragment marriages on Artist {
+    relationships {
+      artists(type: "married") {
+        nodes {
+          type
+          direction
+          begin
+          end
+          target {
+            ... on Artist {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  const { labels } = data.search
+  t.true(labels.nodes.length > 0)
+  t.is(labels.nodes[0].releases.nodes.length, 1)
+})
+
 // FIXME: https://github.com/graphql/graphql-js/issues/910
 test('throws an error if given a malformed MBID', testThrows, `
   {

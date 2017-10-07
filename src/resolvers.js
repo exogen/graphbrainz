@@ -127,9 +127,11 @@ export function resolveBrowse (root, {
       [`${singularName}-count`]: arrayLength = arraySlice.length
     } = list
     const meta = { sliceStart, arrayLength }
+    const connection = connectionFromArraySlice(arraySlice, { first, after }, meta)
     return {
+      nodes: connection.edges.map(edge => edge.node),
       totalCount: arrayLength,
-      ...connectionFromArraySlice(arraySlice, { first, after }, meta)
+      ...connection
     }
   })
 }
@@ -155,14 +157,17 @@ export function resolveSearch (root, {
       count: arrayLength
     } = list
     const meta = { sliceStart, arrayLength }
-    const connection = {
-      totalCount: arrayLength,
-      ...connectionFromArraySlice(arraySlice, { first, after }, meta)
-    }
+    const connection = connectionFromArraySlice(arraySlice, { first, after }, meta)
     // Move the `score` field up to the edge object and make sure it's a
     // number (MusicBrainz returns a string).
-    connection.edges.forEach(edge => { edge.score = +edge.node.score })
-    return connection
+    const edges = connection.edges.map(edge => ({ ...edge, score: +edge.node.score }))
+    const connectionWithExtras = {
+      nodes: edges.map(edge => edge.node),
+      totalCount: arrayLength,
+      ...connection,
+      edges
+    }
+    return connectionWithExtras
   })
 }
 
@@ -179,9 +184,11 @@ export function resolveRelationship (rels, args, context, info) {
   if (args.typeID != null) {
     matches = matches.filter(rel => rel['type-id'] === args.typeID)
   }
+  const connection = connectionFromArray(matches, args)
   return {
+    nodes: connection.edges.map(edge => edge.node),
     totalCount: matches.length,
-    ...connectionFromArray(matches, args)
+    ...connection
   }
 }
 
@@ -214,9 +221,11 @@ export function createSubqueryResolver ({ inc, key } = {}, handler = value => va
 export function resolveDiscReleases (disc, args, context, info) {
   const { releases } = disc
   if (releases != null) {
+    const connection = connectionFromArray(releases, args)
     return {
+      nodes: connection.edges.map(edge => edge.node),
       totalCount: releases.length,
-      ...connectionFromArray(releases, args)
+      ...connection
     }
   }
   args = { ...args, discID: disc.id }

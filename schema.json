@@ -1240,6 +1240,22 @@
             "deprecationReason": null
           },
           {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Artist",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "totalCount",
             "description": "A count of the total number of items in this connection,\nignoring pagination.",
             "args": [],
@@ -2000,6 +2016,22 @@
             "deprecationReason": null
           },
           {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Recording",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "totalCount",
             "description": "A count of the total number of items in this connection,\nignoring pagination.",
             "args": [],
@@ -2658,6 +2690,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "ReleaseEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Release",
                 "ofType": null
               }
             },
@@ -3892,6 +3940,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "LabelEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Label",
                 "ofType": null
               }
             },
@@ -5357,6 +5421,22 @@
             "deprecationReason": null
           },
           {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Relationship",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "totalCount",
             "description": "A count of the total number of items in this connection,\nignoring pagination.",
             "args": [],
@@ -5615,6 +5695,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "CollectionEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Collection",
                 "ofType": null
               }
             },
@@ -6255,6 +6351,22 @@
             "deprecationReason": null
           },
           {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Area",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "totalCount",
             "description": "A count of the total number of items in this connection,\nignoring pagination.",
             "args": [],
@@ -6354,6 +6466,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "EventEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Event",
                 "ofType": null
               }
             },
@@ -6782,6 +6910,22 @@
             "deprecationReason": null
           },
           {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Tag",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "totalCount",
             "description": "A count of the total number of items in this connection,\nignoring pagination.",
             "args": [],
@@ -6920,6 +7064,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "InstrumentEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Instrument",
                 "ofType": null
               }
             },
@@ -7234,6 +7394,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "PlaceEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Place",
                 "ofType": null
               }
             },
@@ -7662,6 +7838,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "ReleaseGroupEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ReleaseGroup",
                 "ofType": null
               }
             },
@@ -8247,6 +8439,22 @@
             "deprecationReason": null
           },
           {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Series",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "totalCount",
             "description": "A count of the total number of items in this connection,\nignoring pagination.",
             "args": [],
@@ -8526,6 +8734,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "WorkEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": "A list of nodes in the connection (without going through the\n`edges` field).",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Work",
                 "ofType": null
               }
             },
