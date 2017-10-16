@@ -5,8 +5,8 @@ third-party services that provide more information about MusicBrainz entities.
 Several extensions are included by default, and you can install any number of
 additional extensions from a package manager or [your own modules](#extension-api).
 
-Extensions can define new types, or use the [`extend type`]()
-any existing GraphBrainz type.
+Extensions can define new types and use the `extend type` syntax to add new
+fields to the root query or any existing GraphBrainz type.
 
 ## Specifying extensions
 
