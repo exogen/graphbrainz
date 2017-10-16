@@ -10,7 +10,7 @@ fields to the root query or any existing GraphBrainz type.
 
 ## Specifying extensions
 
-Extensions are specified using the `extensions` options to the exported
+Extensions are specified using the `extensions` option to the exported
 `graphbrainz()` middleware function. Each extension must be an object conforming
 to the [Extension API](#extension-api), or a module path to load via `require()`
 that exports such an object.
