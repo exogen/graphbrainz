@@ -17,7 +17,7 @@ that exports such an object.
 
 If you are running GraphBrainz as a standalone server, you may specify
 extensions via the `GRAPHBRAINZ_EXTENSIONS` environment variable, which will be
-parsed as a JSON array, for example:
+parsed as a JSON array. For example:
 
 ```console
 $ export GRAPHBRAINZ_EXTENSIONS='["graphbrainz/extensions/fanart-tv"]'

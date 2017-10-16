@@ -102,13 +102,11 @@ GraphBrainz resolvers expect, like so:
 ```js
 import { graphql } from 'graphql';
 import { MusicBrainz, CoverArtArchive } from 'graphbrainz/lib/api';
-import createLoaders from 'graphbrainz/lib/loaders';
+import createContext from 'graphbrainz/lib/context';
 import schema from 'graphbrainz/lib/schema';
 
 const client = new MusicBrainz();
-const coverArtClient = new CoverArtArchive();
-const loaders = createLoaders(client, coverArtClient);
-const context = { client, coverArtClient, loaders };
+const context = createContext({ client })
 
 graphql(schema, `
   {
@@ -142,6 +140,8 @@ graphql(schema, `
   day).
 * **`GRAPHBRAINZ_GRAPHIQL`**: Set this to `true` if you want to force the
   [GraphiQL][] interface to be available even in production mode.
+* **`GRAPHBRAINZ_EXTENSIONS`**: A JSON array of module paths to load as
+  [extensions](./docs/extensions.md).
 * **`PORT`**: Port number to use, if running the standalone server.
 
 When running the standalone server, [dotenv][] is used to load these variables
