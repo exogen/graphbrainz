@@ -84,11 +84,11 @@ An optional object or function to extend the GraphBrainz schema.
 
 If it is an object, then it should be the same shape as the argument to
 [mergeSchemas][]. It will be passed to [mergeSchemas][] with the current
-GraphBrainz schema prepended to the `schemas` property for you.
+GraphBrainz schema prepended to the `schemas` property automatically.
 
-If is a function, it should accept `schema` and `options` arguments and return
-a new schema. Use this if you’d like to perform custom schema extension logic.
-In most cases, you should use an object instead.
+If it is a function, it should accept `schema` and `options` arguments and
+return a new schema. Use this if you’d like to perform custom schema extension
+logic. In most cases, you should use an object instead.
 
 ### Example
 
