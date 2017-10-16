@@ -30,35 +30,16 @@ or environment variables. Check the documentation for each extension you use.
 ## Built-in extensions
 
 The following extensions are included with GraphBrainz and loaded by default.
+See their respective documentation pages for schema info and config options.
 
-### Cover Art Archive
-
-Retrieve cover art images for releases from the Cover Art Archive API. See the
-[documentation](./cover-art-archive.md) for details.
-
-Use the path `graphbrainz/extensions/cover-art-archive` to specify this
-extension.
-
-### fanart.tv
-
-Retrieve high quality artwork for artists, releases, and labels from the
-fanart.tv API. See the [documentation](./fanart-tv.md) for details.
-
-Use the path `graphbrainz/extensions/fanart-tv` to specify this extension.
-
-### TheAudioDB
-
-Retrieve images and information about artists, releases, and recordings from the
-TheAudioDB.com API. See the [documentation](./the-audio-db.md) for details.
-
-Use the path `graphbrainz/extensions/the-audio-db` to specify this extension.
-
-### Wikimedia
-
-Retrieve information from Wikimedia image pages, like the actual image file URL
-and EXIF metadata. See the [documentation](./wikimedia.md) for details.
-
-Use the path `graphbrainz/extensions/wikimedia` to specify this extension.
+* [Cover Art Archive](./cover-art-archive.md): Retrieve cover art images for
+  releases from the Cover Art Archive API.
+* [fanart.tv](./fanart-tv.md): Retrieve high quality artwork for artists,
+  releases, and labels from the fanart.tv API.
+* [TheAudioDB](./the-audio-db): Retrieve images and information about artists,
+  releases, and recordings from the TheAudioDB.com API.
+* [Wikimedia](./wikimedia.md): Retrieve information from Wikimedia image pages,
+  like the actual image file URL and EXIF metadata.
 
 ## Extension API
 
