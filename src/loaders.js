@@ -5,7 +5,7 @@ import { toPlural } from './types/helpers'
 const debug = require('debug')('graphbrainz:loaders')
 const ONE_DAY = 24 * 60 * 60 * 1000
 
-export default function createLoaders (client, coverArtClient) {
+export default function createLoaders (client) {
   // All loaders share a single LRU cache that will remember 8192 responses,
   // each cached for 1 day.
   const cache = LRUCache({
@@ -70,36 +70,5 @@ export default function createLoaders (client, coverArtClient) {
     cacheMap: cache
   })
 
-  const coverArt = new DataLoader(keys => {
-    return Promise.all(keys.map(key => {
-      const [ entityType, id ] = key
-      return coverArtClient.images(...key).catch(err => {
-        if (err.statusCode === 404) {
-          return { images: [] }
-        }
-        throw err
-      }).then(coverArt => {
-        coverArt._parentType = entityType
-        coverArt._parentID = id
-        if (entityType === 'release') {
-          coverArt._release = id
-        } else {
-          coverArt._release = coverArt.release && coverArt.release.split('/').pop()
-        }
-        return coverArt
-      })
-    }))
-  }, {
-    cacheKeyFn: key => `cover-art/${coverArtClient.getImagesURL(...key)}`,
-    cacheMap: cache
-  })
-
-  const coverArtURL = new DataLoader(keys => {
-    return Promise.all(keys.map(key => coverArtClient.imageURL(...key)))
-  }, {
-    cacheKeyFn: key => `cover-art/url/${coverArtClient.getImageURL(...key)}`,
-    cacheMap: cache
-  })
-
-  return { lookup, browse, search, coverArt, coverArtURL }
+  return { lookup, browse, search }
 }

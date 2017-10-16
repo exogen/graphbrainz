@@ -1,9 +1,11 @@
 import express from 'express'
 import graphqlHTTP from 'express-graphql'
 import compression from 'compression'
-import MusicBrainz, { CoverArtArchive } from './api'
-import schema from './schema'
-import createLoaders from './loaders'
+import MusicBrainz from './api'
+import schema, { createSchema } from './schema'
+import { createContext } from './context'
+
+const debug = require('debug')('graphbrainz')
 
 const formatError = (err) => ({
   message: err.message,
@@ -13,19 +15,34 @@ const formatError = (err) => ({
 
 const middleware = ({
   client = new MusicBrainz(),
-  coverArtClient = new CoverArtArchive(),
-  ...options
+  extensions = process.env.GRAPHBRAINZ_EXTENSIONS
+    ? JSON.parse(process.env.GRAPHBRAINZ_EXTENSIONS)
+    : [
+      './extensions/cover-art-archive',
+      './extensions/fanart-tv',
+      './extensions/the-audio-db',
+      './extensions/wikimedia'
+    ],
+  ...middlewareOptions
 } = {}) => {
+  debug(`Loading ${extensions.length} extension(s).`)
+  const options = {
+    client,
+    extensions: extensions.map(extensionModule => {
+      const extension = require(extensionModule)
+      return extension.default ? extension.default : extension
+    }),
+    ...middlewareOptions
+  }
   const DEV = process.env.NODE_ENV !== 'production'
   const graphiql = DEV || process.env.GRAPHBRAINZ_GRAPHIQL === 'true'
-  const loaders = createLoaders(client, coverArtClient)
   return graphqlHTTP({
-    schema,
-    context: { client, coverArtClient, loaders },
+    schema: createSchema(schema, options),
+    context: createContext(options),
     pretty: DEV,
     graphiql,
     formatError: DEV ? formatError : undefined,
-    ...options
+    ...middlewareOptions
   })
 }
 

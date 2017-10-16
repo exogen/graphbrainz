@@ -1,6 +1,5 @@
 import {
   GraphQLObjectType,
-  GraphQLNonNull,
   GraphQLString,
   GraphQLList
 } from 'graphql/type'
@@ -8,7 +7,6 @@ import Node from './node'
 import Entity from './entity'
 import { ASIN, DateType } from './scalars'
 import Media from './media'
-import { ReleaseCoverArt } from './cover-art'
 import { ReleaseStatus } from './enums'
 import ReleaseEvent from './release-event'
 import {
@@ -73,19 +71,6 @@ of the release.`
 release has one. The most common types found on releases are 12-digit
 [UPCs](https://en.wikipedia.org/wiki/Universal_Product_Code) and 13-digit
 [EANs](https://en.wikipedia.org/wiki/International_Article_Number).`
-    },
-    coverArt: {
-      type: new GraphQLNonNull(ReleaseCoverArt),
-      description: `A list and summary of the cover art images that are present
-for this release from the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive).`,
-      resolve: (release, args, { loaders }) => {
-        const coverArt = release['cover-art-archive']
-        if (coverArt) {
-          coverArt._release = release.id
-          return coverArt
-        }
-        return loaders.coverArt.load(['release', release.id])
-      }
     },
     ...fieldWithID('status', {
       type: ReleaseStatus,

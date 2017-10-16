@@ -101,9 +101,9 @@ GraphBrainz resolvers expect, like so:
 
 ```js
 import { graphql } from 'graphql';
-import { MusicBrainz, CoverArtArchive } from 'graphbrainz/api';
-import createLoaders from 'graphbrainz/loaders';
-import schema from 'graphbrainz/schema';
+import { MusicBrainz, CoverArtArchive } from 'graphbrainz/lib/api';
+import createLoaders from 'graphbrainz/lib/loaders';
+import schema from 'graphbrainz/lib/schema';
 
 const client = new MusicBrainz();
 const coverArtClient = new CoverArtArchive();
