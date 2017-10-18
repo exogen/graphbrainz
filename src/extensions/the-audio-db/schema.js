@@ -213,7 +213,7 @@ extend type Artist {
 }
 
 extend type ReleaseGroup {
-  # Data about the release group from [TheAudioDB](http://www.theaudiodb.com/)
+  # Data about the release group from [TheAudioDB](http://www.theaudiodb.com/),
   # a good source of descriptive information, reviews, and images. This field
   # is provided by the TheAudioDB extension.
   theAudioDB: TheAudioDBAlbum

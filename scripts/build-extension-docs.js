@@ -7,8 +7,8 @@ import baseSchema, { createSchema } from '../src/schema'
 const extensionModules = [
   'cover-art-archive',
   'fanart-tv',
-  'the-audio-db',
-  'wikimedia'
+  'mediawiki',
+  'the-audio-db'
 ]
 
 function getSchemaJSON (schema) {

@@ -97,7 +97,7 @@ for a description and additional fields.*
 <td valign="top"><a href="#theaudiodbalbum">TheAudioDBAlbum</a></td>
 <td>
 
-Data about the release group from [TheAudioDB](http://www.theaudiodb.com/)
+Data about the release group from [TheAudioDB](http://www.theaudiodb.com/),
 a good source of descriptive information, reviews, and images. This field
 is provided by the TheAudioDB extension.
 

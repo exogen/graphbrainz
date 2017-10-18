@@ -3,16 +3,16 @@ import resolvers from './resolvers'
 import createLoader from './loader'
 
 export default {
-  name: 'Wikimedia',
+  name: 'MediaWiki',
   description:
-    'Retrieve information from Wikimedia image pages, like the actual image ' +
+    'Retrieve information from MediaWiki image pages, like the actual image ' +
     'file URL and EXIF metadata.',
   extendContext (context, options) {
     return {
       ...context,
       loaders: {
         ...context.loaders,
-        wikimedia: createLoader(options)
+        mediaWiki: createLoader(options)
       }
     }
   },

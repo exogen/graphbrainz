@@ -20,8 +20,8 @@ const middleware = ({
     : [
       './extensions/cover-art-archive',
       './extensions/fanart-tv',
-      './extensions/the-audio-db',
-      './extensions/wikimedia'
+      './extensions/mediawiki',
+      './extensions/the-audio-db'
     ],
   ...middlewareOptions
 } = {}) => {

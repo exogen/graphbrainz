@@ -13,6 +13,8 @@ export function getFields (info, fragments = info.fragments) {
         throw new Error(`Fragment '${name}' was not passed to getFields()`)
       }
       fragment.selectionSet.selections.reduce(reducer, fields)
+    } else if (selection.kind === 'InlineFragment') {
+      selection.selectionSet.selections.reduce(reducer, fields)
     } else {
       fields[selection.name.value] = selection
     }

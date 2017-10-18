@@ -1,4 +1,4 @@
-import { GraphQLSchema, GraphQLObjectType, parse } from 'graphql'
+import { GraphQLSchema, GraphQLObjectType } from 'graphql'
 import { mergeSchemas } from '@exogen/graphql-tools'
 import { lookup, browse, search } from './queries'
 import { nodeField } from './types/node'

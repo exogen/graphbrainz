@@ -51,8 +51,8 @@ The default value of the `extensions` option looks like this:
 [
   'graphbrainz/extensions/cover-art-archive',
   'graphbrainz/extensions/fanart-tv',
-  'graphbrainz/extensions/the-audio-db',
-  'graphbrainz/extensions/wikimedia'
+  'graphbrainz/extensions/mediawiki',
+  'graphbrainz/extensions/the-audio-db'
 ]
 ```
 
@@ -65,10 +65,10 @@ See their respective documentation pages for schema info and config options.
   releases from the Cover Art Archive.
 * [fanart.tv](./fanart-tv.md): Retrieve high quality artwork for artists,
   releases, and labels from fanart.tv.
+* [MediaWiki](./mediawiki.md): Retrieve information from MediaWiki image pages,
+  like the actual image file URL and EXIF metadata.
 * [TheAudioDB](./the-audio-db): Retrieve images and information about artists,
   releases, and recordings from TheAudioDB.com.
-* [Wikimedia](./wikimedia.md): Retrieve information from Wikimedia image pages,
-  like the actual image file URL and EXIF metadata.
 
 ## Extension API
 

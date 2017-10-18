@@ -1,0 +1,372 @@
+# Extension: MediaWiki
+
+Retrieve information from MediaWiki image pages, like the actual image file URL and EXIF metadata.
+
+<details>
+  <summary><strong>Table of Contents</strong></summary>
+
+  * [Objects](#objects)
+    * [Artist](#artist)
+    * [Instrument](#instrument)
+    * [Label](#label)
+    * [MediaWikiImage](#mediawikiimage)
+    * [MediaWikiImageMetadata](#mediawikiimagemetadata)
+    * [Place](#place)
+
+</details>
+
+## Objects
+
+### Artist
+
+:small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
+for a description and additional fields.*
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong>mediaWikiImages</strong></td>
+<td valign="top">[<a href="#mediawikiimage">MediaWikiImage</a>]!</td>
+<td>
+
+Artist images found at MediaWiki URLs in the artist’s URL relationships.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">type</td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The type of URL relationship to filter by to find images. See the possible
+[Artist-URL relationship types](https://musicbrainz.org/relationships/artist-url).
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Instrument
+
+:small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
+for a description and additional fields.*
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong>mediaWikiImages</strong></td>
+<td valign="top">[<a href="#mediawikiimage">MediaWikiImage</a>]!</td>
+<td>
+
+Instrument images found at MediaWiki URLs in the instrument’s URL
+relationships.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">type</td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The type of URL relationship to filter by to find images. See the possible
+[Instrument-URL relationship types](https://musicbrainz.org/relationships/instrument-url).
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Label
+
+:small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
+for a description and additional fields.*
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong>mediaWikiImages</strong></td>
+<td valign="top">[<a href="#mediawikiimage">MediaWikiImage</a>]!</td>
+<td>
+
+Label images found at MediaWiki URLs in the label’s URL relationships.
+Defaults to URL relationships with the type “logo”.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">type</td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The type of URL relationship to filter by to find images. See the possible
+[Label-URL relationship types](https://musicbrainz.org/relationships/label-url).
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### MediaWikiImage
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong>url</strong></td>
+<td valign="top"><a href="../types.md#urlstring">URLString</a>!</td>
+<td>
+
+The URL of the actual image file.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>descriptionURL</strong></td>
+<td valign="top"><a href="../types.md#urlstring">URLString</a></td>
+<td>
+
+The URL of the wiki page describing the image.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>user</strong></td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The user who uploaded the file.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>size</strong></td>
+<td valign="top"><a href="../types.md#int">Int</a></td>
+<td>
+
+The size of the file in bytes.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>width</strong></td>
+<td valign="top"><a href="../types.md#int">Int</a></td>
+<td>
+
+The pixel width of the image.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>height</strong></td>
+<td valign="top"><a href="../types.md#int">Int</a></td>
+<td>
+
+The pixel height of the image.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>canonicalTitle</strong></td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The canonical title of the file.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>objectName</strong></td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The image title, brief description, or file name.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>descriptionHTML</strong></td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+A description of the image, potentially containing HTML.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>originalDateTimeHTML</strong></td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The original date of creation of the image. May be a description rather than
+a parseable timestamp, and may contain HTML.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>categories</strong></td>
+<td valign="top">[<a href="../types.md#string">String</a>]!</td>
+<td>
+
+A list of the categories of the image.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>artistHTML</strong></td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The name of the image author, potentially containing HTML.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>creditHTML</strong></td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The source of the image, potentially containing HTML.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>licenseShortName</strong></td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+A short human-readable license name.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>licenseURL</strong></td>
+<td valign="top"><a href="../types.md#urlstring">URLString</a></td>
+<td>
+
+A web address where the license is described.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>metadata</strong></td>
+<td valign="top">[<a href="#mediawikiimagemetadata">MediaWikiImageMetadata</a>]!</td>
+<td>
+
+The full list of values in the `extmetadata` field.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### MediaWikiImageMetadata
+
+An entry in the `extmetadata` field of a MediaWiki image file.
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong>name</strong></td>
+<td valign="top"><a href="../types.md#string">String</a>!</td>
+<td>
+
+The name of the metadata field.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>value</strong></td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The value of the metadata field. All values will be converted to strings.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>source</strong></td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The source of the value.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Place
+
+:small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
+for a description and additional fields.*
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong>mediaWikiImages</strong></td>
+<td valign="top">[<a href="#mediawikiimage">MediaWikiImage</a>]!</td>
+<td>
+
+Place images found at MediaWiki URLs in the place’s URL relationships.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">type</td>
+<td valign="top"><a href="../types.md#string">String</a></td>
+<td>
+
+The type of URL relationship to filter by to find images. See the possible
+[Place-URL relationship types](https://musicbrainz.org/relationships/place-url).
+
+</td>
+</tr>
+</tbody>
+</table>
