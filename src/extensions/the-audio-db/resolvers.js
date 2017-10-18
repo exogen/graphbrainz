@@ -87,7 +87,7 @@ export default mergeInfo => ({
     viewCount: track => track.intMusicVidViews,
     likeCount: track => track.intMusicVidLikes,
     dislikeCount: track => track.intMusicVidDislikes,
-    commentCount: track => track.intMusicVidComments,
+    commentCount: track => track.intMusicVidComments
   },
   Artist: {
     theAudioDB: {
