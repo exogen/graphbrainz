@@ -63,21 +63,22 @@ type MediaWikiImageMetadata {
 
 extend type Artist {
   # Artist images found at MediaWiki URLs in the artist’s URL relationships.
+  # Defaults to URL relationships with the type “image”.
   # This field is provided by the MediaWiki extension.
   mediaWikiImages(
-    # The type of URL relationship to filter by to find images. See the possible
-    # [Artist-URL relationship types](https://musicbrainz.org/relationships/artist-url).
+    # The type of URL relationship that will be selected to find images. See
+    # the possible [Artist-URL relationship types](https://musicbrainz.org/relationships/artist-url).
     type: String = "image"
   ): [MediaWikiImage]!
 }
 
 extend type Instrument {
   # Instrument images found at MediaWiki URLs in the instrument’s URL
-  # relationships.
+  # relationships. Defaults to URL relationships with the type “image”.
   # This field is provided by the MediaWiki extension.
   mediaWikiImages(
-    # The type of URL relationship to filter by to find images. See the possible
-    # [Instrument-URL relationship types](https://musicbrainz.org/relationships/instrument-url).
+    # The type of URL relationship that will be selected to find images. See the
+    # possible [Instrument-URL relationship types](https://musicbrainz.org/relationships/instrument-url).
     type: String = "image"
   ): [MediaWikiImage]!
 }
@@ -87,18 +88,19 @@ extend type Label {
   # Defaults to URL relationships with the type “logo”.
   # This field is provided by the MediaWiki extension.
   mediaWikiImages(
-    # The type of URL relationship to filter by to find images. See the possible
-    # [Label-URL relationship types](https://musicbrainz.org/relationships/label-url).
+    # The type of URL relationship that will be selected to find images. See the
+    # possible [Label-URL relationship types](https://musicbrainz.org/relationships/label-url).
     type: String = "logo"
   ): [MediaWikiImage]!
 }
 
 extend type Place {
   # Place images found at MediaWiki URLs in the place’s URL relationships.
+  # Defaults to URL relationships with the type “image”.
   # This field is provided by the MediaWiki extension.
   mediaWikiImages(
-    # The type of URL relationship to filter by to find images. See the possible
-    # [Place-URL relationship types](https://musicbrainz.org/relationships/place-url).
+    # The type of URL relationship that will be selected to find images. See the
+    # possible [Place-URL relationship types](https://musicbrainz.org/relationships/place-url).
     type: String = "image"
   ): [MediaWikiImage]!
 }
