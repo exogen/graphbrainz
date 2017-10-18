@@ -1,12 +1,28 @@
+function createFragment (type) {
+  return `fragment EntityFragment on ${type} { mbid }`
+}
+
+const imageResolvers = {
+  imageID: image => image.id,
+  url: (image, args) => {
+    return args.size === 'PREVIEW'
+      ? image.url.replace('/fanart/', '/preview/')
+      : image.url
+  },
+  likeCount: image => image.likes
+}
+
 export default mergeInfo => ({
   FanArtImage: {
-    imageID: image => image.id
+    ...imageResolvers
   },
   FanArtDiscImage: {
-    imageID: image => image.id
+    ...imageResolvers,
+    discNumber: image => image.disc
   },
   FanArtLabelImage: {
-    imageID: image => image.id
+    ...imageResolvers,
+    color: image => image.colour
   },
   FanArtArtist: {
     backgrounds: artist => {
@@ -29,18 +45,12 @@ export default mergeInfo => ({
     logos: label => label.musiclabel
   },
   FanArtAlbum: {
-    albumCovers: artist => {
-      const releaseGroup = artist.albums[artist._releaseGroup]
-      return releaseGroup ? releaseGroup.albumcover : []
-    },
-    discImages: artist => {
-      const releaseGroup = artist.albums[artist._releaseGroup]
-      return releaseGroup ? releaseGroup.cdart : []
-    }
+    albumCovers: album => album.albumcover || [],
+    discImages: album => album.cdart || []
   },
   Artist: {
     fanArt: {
-      fragment: `fragment EntityFragment on Entity { mbid }`,
+      fragment: createFragment('Artist'),
       resolve (artist, args, context) {
         return context.loaders.fanArt.load(['artist', artist.mbid])
       }
@@ -48,7 +58,7 @@ export default mergeInfo => ({
   },
   Label: {
     fanArt: {
-      fragment: `fragment EntityFragment on Entity { mbid }`,
+      fragment: createFragment('Label'),
       resolve (label, args, context) {
         return context.loaders.fanArt.load(['label', label.mbid])
       }
@@ -56,9 +66,10 @@ export default mergeInfo => ({
   },
   ReleaseGroup: {
     fanArt: {
-      fragment: `fragment EntityFragment on Entity { mbid }`,
+      fragment: createFragment('ReleaseGroup'),
       resolve (releaseGroup, args, context) {
-        return context.loaders.fanArt.load(['releaseGroup', releaseGroup.mbid])
+        return context.loaders.fanArt.load(['release-group', releaseGroup.mbid])
+          .then(artist => artist.albums[releaseGroup.mbid])
       }
     }
   }

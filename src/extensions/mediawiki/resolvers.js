@@ -13,7 +13,7 @@ function resolveMediaWikiImages (source, args, context) {
   return context.loaders.mediaWiki.loadMany(pages)
 }
 
-function createMediaWikiFragment (type) {
+function createFragment (type) {
   return `
     fragment MediaWikiURLs on ${type} {
       relationships {
@@ -78,25 +78,25 @@ export default mergeInfo => ({
   },
   Artist: {
     mediaWikiImages: {
-      fragment: createMediaWikiFragment('Artist'),
+      fragment: createFragment('Artist'),
       resolve: resolveMediaWikiImages
     }
   },
   Instrument: {
     mediaWikiImages: {
-      fragment: createMediaWikiFragment('Instrument'),
+      fragment: createFragment('Instrument'),
       resolve: resolveMediaWikiImages
     }
   },
   Label: {
     mediaWikiImages: {
-      fragment: createMediaWikiFragment('Label'),
+      fragment: createFragment('Label'),
       resolve: resolveMediaWikiImages
     }
   },
   Place: {
     mediaWikiImages: {
-      fragment: createMediaWikiFragment('Place'),
+      fragment: createFragment('Place'),
       resolve: resolveMediaWikiImages
     }
   }

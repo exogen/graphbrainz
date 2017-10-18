@@ -63,6 +63,7 @@ type MediaWikiImageMetadata {
 
 extend type Artist {
   # Artist images found at MediaWiki URLs in the artist’s URL relationships.
+  # This field is provided by the MediaWiki extension.
   mediaWikiImages(
     # The type of URL relationship to filter by to find images. See the possible
     # [Artist-URL relationship types](https://musicbrainz.org/relationships/artist-url).
@@ -73,6 +74,7 @@ extend type Artist {
 extend type Instrument {
   # Instrument images found at MediaWiki URLs in the instrument’s URL
   # relationships.
+  # This field is provided by the MediaWiki extension.
   mediaWikiImages(
     # The type of URL relationship to filter by to find images. See the possible
     # [Instrument-URL relationship types](https://musicbrainz.org/relationships/instrument-url).
@@ -83,6 +85,7 @@ extend type Instrument {
 extend type Label {
   # Label images found at MediaWiki URLs in the label’s URL relationships.
   # Defaults to URL relationships with the type “logo”.
+  # This field is provided by the MediaWiki extension.
   mediaWikiImages(
     # The type of URL relationship to filter by to find images. See the possible
     # [Label-URL relationship types](https://musicbrainz.org/relationships/label-url).
@@ -92,6 +95,7 @@ extend type Label {
 
 extend type Place {
   # Place images found at MediaWiki URLs in the place’s URL relationships.
+  # This field is provided by the MediaWiki extension.
   mediaWikiImages(
     # The type of URL relationship to filter by to find images. See the possible
     # [Place-URL relationship types](https://musicbrainz.org/relationships/place-url).

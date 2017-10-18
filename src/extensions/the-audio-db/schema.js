@@ -81,7 +81,7 @@ type TheAudioDBAlbum {
   salesCount: Int
 
   # The album’s rating as determined by user votes, out of 10.
-  score: Int
+  score: Float
 
   # The number of users who voted to determine the album’s score.
   scoreVotes: Int
@@ -150,7 +150,7 @@ type TheAudioDBTrack {
   ): URLString
 
   # The track’s rating as determined by user votes, out of 10.
-  score: Int
+  score: Float
 
   # The number of users who voted to determine the album’s score.
   scoreVotes: Int
@@ -186,7 +186,10 @@ type TheAudioDBMusicVideo {
   directorName: String
 
   # A list of still images from the music video.
-  screenshots: [URLString]!
+  screenshots(
+    # The size of the images to retrieve.
+    size: TheAudioDBImageSize = FULL
+  ): [URLString]!
 
   # The number of views the video has received at the given URL. This will rarely
   # be up to date, so use cautiously.
@@ -207,22 +210,22 @@ type TheAudioDBMusicVideo {
 
 extend type Artist {
   # Data about the artist from [TheAudioDB](http://www.theaudiodb.com/), a good
-  # source of biographical information and images. This field is provided by the
-  # TheAudioDB extension.
+  # source of biographical information and images.
+  # This field is provided by TheAudioDB extension.
   theAudioDB: TheAudioDBArtist
+}
+
+extend type Recording {
+  # Data about the recording from [TheAudioDB](http://www.theaudiodb.com/).
+  # This field is provided by TheAudioDB extension.
+  theAudioDB: TheAudioDBTrack
 }
 
 extend type ReleaseGroup {
   # Data about the release group from [TheAudioDB](http://www.theaudiodb.com/),
-  # a good source of descriptive information, reviews, and images. This field
-  # is provided by the TheAudioDB extension.
+  # a good source of descriptive information, reviews, and images.
+  # This field is provided by TheAudioDB extension.
   theAudioDB: TheAudioDBAlbum
-}
-
-extend type Recording {
-  # Data about the recording from [TheAudioDB](http://www.theaudiodb.com/). This
-  # field is provided by the TheAudioDB extension.
-  theAudioDB: TheAudioDBTrack
 }
 
 `

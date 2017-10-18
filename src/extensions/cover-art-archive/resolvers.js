@@ -1,3 +1,7 @@
+function createFragment (type) {
+  return `fragment EntityFragment on ${type} { mbid }`
+}
+
 function resolveImage (coverArt, { size }, { loaders }, info) {
   if (size === 'FULL') {
     size = null
@@ -33,7 +37,7 @@ export default mergeInfo => ({
   },
   Release: {
     coverArt: {
-      fragment: `fragment EntityFragment on Entity { mbid }`,
+      fragment: createFragment('Release'),
       resolve (release, args, { loaders }) {
         return loaders.coverArt.load(['release', release.mbid])
       }
@@ -41,7 +45,7 @@ export default mergeInfo => ({
   },
   ReleaseGroup: {
     coverArt: {
-      fragment: `fragment EntityFragment on Entity { mbid }`,
+      fragment: createFragment('ReleaseGroup'),
       resolve (releaseGroup, args, { loaders }) {
         return loaders.coverArt.load(['release-group', releaseGroup.mbid])
       }

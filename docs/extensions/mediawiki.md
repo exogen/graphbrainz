@@ -38,6 +38,7 @@ for a description and additional fields.*
 <td>
 
 Artist images found at MediaWiki URLs in the artist’s URL relationships.
+This field is provided by the MediaWiki extension.
 
 </td>
 </tr>
@@ -76,6 +77,7 @@ for a description and additional fields.*
 
 Instrument images found at MediaWiki URLs in the instrument’s URL
 relationships.
+This field is provided by the MediaWiki extension.
 
 </td>
 </tr>
@@ -114,6 +116,7 @@ for a description and additional fields.*
 
 Label images found at MediaWiki URLs in the label’s URL relationships.
 Defaults to URL relationships with the type “logo”.
+This field is provided by the MediaWiki extension.
 
 </td>
 </tr>
@@ -355,6 +358,7 @@ for a description and additional fields.*
 <td>
 
 Place images found at MediaWiki URLs in the place’s URL relationships.
+This field is provided by the MediaWiki extension.
 
 </td>
 </tr>

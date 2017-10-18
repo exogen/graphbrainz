@@ -15,7 +15,7 @@ type FanArtImage {
   imageID: ID
 
   # The URL of the image.
-  image(
+  url(
     # The size of the image to retrieve.
     size: FanArtImageSize = FULL
   ): URLString
@@ -30,7 +30,7 @@ type FanArtDiscImage {
   imageID: ID
 
   # The URL of the image.
-  image(
+  url(
     # The size of the image to retrieve.
     size: FanArtImageSize = FULL
   ): URLString
@@ -51,7 +51,7 @@ type FanArtLabelImage {
   imageID: ID
 
   # The URL of the image.
-  image(
+  url(
     # The size of the image to retrieve.
     size: FanArtImageSize = FULL
   ): URLString
@@ -107,20 +107,20 @@ type FanArtAlbum {
 }
 
 extend type Artist {
-  # Images of the artist from [fanart.tv](https://fanart.tv/). This field is
-  # provided by the fanart.tv extension.
+  # Images of the artist from [fanart.tv](https://fanart.tv/).
+  # This field is provided by the fanart.tv extension.
   fanArt: FanArtArtist
 }
 
 extend type Label {
-  # Images of the label from [fanart.tv](https://fanart.tv/). This field is
-  # provided by the fanart.tv extension.
+  # Images of the label from [fanart.tv](https://fanart.tv/).
+  # This field is provided by the fanart.tv extension.
   fanArt: FanArtLabel
 }
 
 extend type ReleaseGroup {
-  # Images of the release group from [fanart.tv](https://fanart.tv/). This field
-  # is provided by the fanart.tv extension.
+  # Images of the release group from [fanart.tv](https://fanart.tv/).
+  # This field is provided by the fanart.tv extension.
   fanArt: FanArtAlbum
 }
 

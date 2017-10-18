@@ -42,8 +42,8 @@ for a description and additional fields.*
 <td valign="top"><a href="#fanartartist">FanArtArtist</a></td>
 <td>
 
-Images of the artist from [fanart.tv](https://fanart.tv/). This field is
-provided by the fanart.tv extension.
+Images of the artist from [fanart.tv](https://fanart.tv/).
+This field is provided by the fanart.tv extension.
 
 </td>
 </tr>
@@ -389,8 +389,8 @@ for a description and additional fields.*
 <td valign="top"><a href="#fanartlabel">FanArtLabel</a></td>
 <td>
 
-Images of the label from [fanart.tv](https://fanart.tv/). This field is
-provided by the fanart.tv extension.
+Images of the label from [fanart.tv](https://fanart.tv/).
+This field is provided by the fanart.tv extension.
 
 </td>
 </tr>
@@ -417,8 +417,8 @@ for a description and additional fields.*
 <td valign="top"><a href="#fanartalbum">FanArtAlbum</a></td>
 <td>
 
-Images of the release group from [fanart.tv](https://fanart.tv/). This field
-is provided by the fanart.tv extension.
+Images of the release group from [fanart.tv](https://fanart.tv/).
+This field is provided by the fanart.tv extension.
 
 </td>
 </tr>

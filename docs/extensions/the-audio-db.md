@@ -41,8 +41,8 @@ for a description and additional fields.*
 <td>
 
 Data about the artist from [TheAudioDB](http://www.theaudiodb.com/), a good
-source of biographical information and images. This field is provided by the
-TheAudioDB extension.
+source of biographical information and images.
+This field is provided by TheAudioDB extension.
 
 </td>
 </tr>
@@ -69,8 +69,8 @@ for a description and additional fields.*
 <td valign="top"><a href="#theaudiodbtrack">TheAudioDBTrack</a></td>
 <td>
 
-Data about the recording from [TheAudioDB](http://www.theaudiodb.com/). This
-field is provided by the TheAudioDB extension.
+ Data about the recording from [TheAudioDB](http://www.theaudiodb.com/).
+This field is provided by TheAudioDB extension.
 
 </td>
 </tr>
@@ -98,8 +98,8 @@ for a description and additional fields.*
 <td>
 
 Data about the release group from [TheAudioDB](http://www.theaudiodb.com/),
-a good source of descriptive information, reviews, and images. This field
-is provided by the TheAudioDB extension.
+a good source of descriptive information, reviews, and images.
+This field is provided by TheAudioDB extension.
 
 </td>
 </tr>
