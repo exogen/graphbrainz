@@ -1,11 +1,12 @@
 export default `
 
+# The image sizes that may be requested at [fanart.tv](https://fanart.tv/).
 enum FanArtImageSize {
-  # A maximum dimension of 200px.
-  PREVIEW
-
   # The image’s full original dimensions.
   FULL
+
+  # A maximum dimension of 200px.
+  PREVIEW
 }
 
 # A single image from [fanart.tv](https://fanart.tv/).
@@ -106,17 +107,20 @@ type FanArtAlbum {
 }
 
 extend type Artist {
-  # Images of the artist from [fanart.tv](https://fanart.tv/).
+  # Images of the artist from [fanart.tv](https://fanart.tv/). This field is
+  # provided by the fanart.tv extension.
   fanArt: FanArtArtist
 }
 
 extend type Label {
-  # Images of the label from [fanart.tv](https://fanart.tv/).
+  # Images of the label from [fanart.tv](https://fanart.tv/). This field is
+  # provided by the fanart.tv extension.
   fanArt: FanArtLabel
 }
 
 extend type ReleaseGroup {
-  # Images of the release group from [fanart.tv](https://fanart.tv/).
+  # Images of the release group from [fanart.tv](https://fanart.tv/). This field
+  # is provided by the fanart.tv extension.
   fanArt: FanArtAlbum
 }
 

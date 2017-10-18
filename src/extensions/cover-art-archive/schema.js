@@ -71,7 +71,7 @@ type ReleaseCoverArt {
     # The size of the image to retrieve. By default, the returned image will
     # have its full original dimensions, but certain thumbnail sizes may be
     # retrieved as well.
-    size: CoverArtImageSize = null
+    size: CoverArtImageSize = FULL
   ): URLString
 
   # The URL of an image depicting the “main back” of the release, i.e. the back
@@ -85,7 +85,7 @@ type ReleaseCoverArt {
     # The size of the image to retrieve. By default, the returned image will
     # have its full original dimensions, but certain thumbnail sizes may be
     # retrieved as well.
-    size: CoverArtImageSize = null
+    size: CoverArtImageSize = FULL
   ): URLString
 
   # A list of images depicting the different sides and surfaces of a release’s
@@ -118,7 +118,7 @@ type ReleaseGroupCoverArt {
     # The size of the image to retrieve. By default, the returned image will
     # have its full original dimensions, but certain thumbnail sizes may be
     # retrieved as well.
-    size: CoverArtImageSize = null
+    size: CoverArtImageSize = FULL
   ): URLString
 
   # A list of images returned by the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive)
@@ -134,13 +134,15 @@ type ReleaseGroupCoverArt {
 }
 
 extend type Release {
-  # A list and summary of the cover art images that are present for this release
-  # from the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive).
+  # An object containing a list and summary of the cover art images that are
+  # present for this release from the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive).
+  # This field is provided by the Cover Art Archive extension.
   coverArt: ReleaseCoverArt!
 }
 
 extend type ReleaseGroup {
   # The cover art for a release group, obtained from the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive).
+  # This field is provided by the Cover Art Archive extension.
   coverArt: ReleaseGroupCoverArt
 }
 

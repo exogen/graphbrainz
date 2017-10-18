@@ -1,13 +1,15 @@
 export default `
 
+# The image sizes that may be requested at [TheAudioDB](http://www.theaudiodb.com/).
 enum TheAudioDBImageSize {
-  # A maximum dimension of 200px.
-  PREVIEW
-
   # The image’s full original dimensions.
   FULL
+
+  # A maximum dimension of 200px.
+  PREVIEW
 }
 
+# An artist on [TheAudioDB](http://www.theaudiodb.com/).
 type TheAudioDBArtist {
   # TheAudioDB ID of the artist.
   artistID: ID
@@ -57,6 +59,8 @@ type TheAudioDBArtist {
   style: String
 }
 
+# An album on [TheAudioDB](http://www.theaudiodb.com/) corresponding with a
+# MusicBrainz Release Group.
 type TheAudioDBAlbum {
   # TheAudioDB ID of the album.
   albumID: ID
@@ -122,6 +126,8 @@ type TheAudioDBAlbum {
   theme: String
 }
 
+# A track on [TheAudioDB](http://www.theaudiodb.com/) corresponding with a
+# MusicBrainz Recording.
 type TheAudioDBTrack {
   # TheAudioDB ID of the track.
   trackID: ID
@@ -168,6 +174,7 @@ type TheAudioDBTrack {
   theme: String
 }
 
+# Details of a music video associated with a track on [TheAudioDB](http://www.theaudiodb.com/).
 type TheAudioDBMusicVideo {
   # The URL where the music video can be found.
   url: URLString
@@ -200,18 +207,21 @@ type TheAudioDBMusicVideo {
 
 extend type Artist {
   # Data about the artist from [TheAudioDB](http://www.theaudiodb.com/), a good
-  # source of biographical information and images.
+  # source of biographical information and images. This field is provided by the
+  # TheAudioDB extension.
   theAudioDB: TheAudioDBArtist
 }
 
 extend type ReleaseGroup {
-  # Data about the release group from
-  # a good source of descriptive information, reviews, and images.
-  theAudioDB: TheAudioDBArtist
+  # Data about the release group from [TheAudioDB](http://www.theaudiodb.com/)
+  # a good source of descriptive information, reviews, and images. This field
+  # is provided by the TheAudioDB extension.
+  theAudioDB: TheAudioDBAlbum
 }
 
 extend type Recording {
-  # Data about the recording from [TheAudioDB](http://www.theaudiodb.com/).
+  # Data about the recording from [TheAudioDB](http://www.theaudiodb.com/). This
+  # field is provided by the TheAudioDB extension.
   theAudioDB: TheAudioDBTrack
 }
 

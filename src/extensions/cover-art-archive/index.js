@@ -5,7 +5,7 @@ import createLoader from './loader'
 export default {
   name: 'Cover Art Archive',
   description:
-    'Retrieve cover art images for releases from the Cover Art Archive API.',
+    'Retrieve cover art images for releases from the [Cover Art Archive](https://coverartarchive.org/).',
   extendContext (context, options) {
     return {
       ...context,

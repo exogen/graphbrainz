@@ -6,13 +6,14 @@ export default {
   name: 'TheAudioDB',
   description:
     'Retrieve images and information about artists, releases, and recordings ' +
-    'from the TheAudioDB.com API.',
-  extendContext (context, options) {
+    'from [TheAudioDB.com](http://www.theaudiodb.com/).',
+  extendContext (context, { theAudioDB = {} } = {}) {
+    const { apiKey = process.env.THEAUDIODB_API_KEY } = theAudioDB
     return {
       ...context,
       loaders: {
         ...context.loaders,
-        theAudioDB: createLoader(options)
+        theAudioDB: createLoader({ apiKey })
       }
     }
   },

@@ -12,7 +12,7 @@ export default {
       ...context,
       loaders: {
         ...context.loaders,
-        mediaWiki: createLoader(options)
+        wikimedia: createLoader(options)
       }
     }
   },

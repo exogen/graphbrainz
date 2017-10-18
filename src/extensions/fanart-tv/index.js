@@ -6,12 +6,9 @@ export default {
   name: 'fanart.tv',
   description:
     'Retrieve high quality artwork for artists, releases, and labels from ' +
-    'the fanart.tv API.',
-  extendContext (context, options) {
-    let apiKey = process.env.FANART_API_KEY
-    if (options.fanArt && options.fanArt.apiKey) {
-      apiKey = options.fanArt.apiKey
-    }
+    '[fanart.tv](https://fanart.tv/).',
+  extendContext (context, { fanArt = {} } = {}) {
+    const { apiKey = process.env.FANART_API_KEY } = fanArt
     return {
       ...context,
       loaders: {

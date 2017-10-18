@@ -29,6 +29,9 @@ const middleware = ({
   const options = {
     client,
     extensions: extensions.map(extensionModule => {
+      if (typeof extensionModule === 'object') {
+        return extensionModule
+      }
       const extension = require(extensionModule)
       return extension.default ? extension.default : extension
     }),
