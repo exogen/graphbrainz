@@ -150,7 +150,10 @@ This will allow the following query to be made:
 }
 ```
 
+See the code for the [built-in extensions][] for more examples.
+
 [graphql-tools]: http://dev.apollodata.com/tools/graphql-tools/index.html
 [schema stitching]: http://dev.apollodata.com/tools/graphql-tools/schema-stitching.html
 [mergeSchemas]: http://dev.apollodata.com/tools/graphql-tools/schema-stitching.html#mergeSchemas
 [dataloader]: https://github.com/facebook/dataloader
+[built-in extensions]: ../../src/extensions
