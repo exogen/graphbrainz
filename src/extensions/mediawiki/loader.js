@@ -1,4 +1,4 @@
-import { URL } from 'url'
+import URL from 'url'
 import DataLoader from 'dataloader'
 import request from 'request'
 
@@ -7,24 +7,31 @@ const debug = require('debug')('graphbrainz:extensions:mediawiki')
 export default function createLoader (options) {
   return new DataLoader(keys => {
     return Promise.all(keys.map(key => {
-      const pageURL = new URL(key)
+      const pageURL = URL.parse(key, true)
+
       if (!pageURL.pathname.startsWith('/wiki/')) {
         return Promise.reject(new Error(
           `MediaWiki page URL does not have the expected /wiki/ prefix: ${key}`
         ))
       }
-      const title = pageURL.pathname.slice(6)
-      const apiURL = new URL(key)
-      apiURL.pathname = '/w/api.php'
-      apiURL.searchParams.set('action', 'query')
-      apiURL.searchParams.set('titles', title)
-      apiURL.searchParams.set('prop', 'imageinfo')
-      apiURL.searchParams.set('iiprop', 'url|size|canonicaltitle|user|extmetadata')
-      apiURL.searchParams.set('format', 'json')
+
+      const apiURL = URL.format({
+        protocol: pageURL.protocol,
+        auth: pageURL.auth,
+        host: pageURL.host,
+        pathname: '/w/api.php',
+        query: {
+          action: 'query',
+          titles: pageURL.pathname.slice(6),
+          prop: 'imageinfo',
+          iiprop: 'url|size|canonicaltitle|user|extmetadata',
+          format: 'json'
+        }
+      })
 
       return new Promise((resolve, reject) => {
         debug(`Querying MediaWiki API. url=${apiURL}`)
-        request(apiURL.toString(), { json: true }, (err, response, body) => {
+        request(apiURL, { json: true }, (err, response, body) => {
           if (err) {
             reject(err)
           } else if (response.statusCode >= 400) {
