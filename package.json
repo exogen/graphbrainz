@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "bin": "cli.js",
   "files": [
+    "extensions",
     "lib",
     "scripts",
     "src",
