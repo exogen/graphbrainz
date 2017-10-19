@@ -1,5 +1,7 @@
 import util from 'util'
 
+export const ONE_DAY = 24 * 60 * 60 * 1000
+
 export function getFields (info, fragments = info.fragments) {
   if (info.kind !== 'Field') {
     info = info.fieldNodes[0]

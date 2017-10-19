@@ -1,41 +1,29 @@
 import DataLoader from 'dataloader'
-import request from 'request'
+import LRUCache from 'lru-cache'
 
-const debug = require('debug')('graphbrainz:extensions:fanart-tv')
+const debug = require('debug')('graphbrainz:extensions/fanart-tv')
 
 export default function createLoader (options) {
+  const { client } = options
+  const cache = LRUCache({
+    max: options.cacheSize,
+    maxAge: options.cacheTTL,
+    dispose (key) {
+      debug(`Removed from cache. key=${key}`)
+    }
+  })
+  // Make the cache Map-like.
+  cache.delete = cache.del
+  cache.clear = cache.reset
+
   const loader = new DataLoader(keys => {
     return Promise.all(keys.map(key => {
-      if (!options.apiKey) {
-        return Promise.reject(new Error(
-          'No API key was configured for the fanart.tv extension.'
-        ))
-      }
-      const requestOptions = {
-        qs: { api_key: options.apiKey },
-        json: true
-      }
       const [ entityType, id ] = key
-      let url = 'http://webservice.fanart.tv/v3/music/'
-      switch (entityType) {
-        case 'artist':
-          url += id
-          break
-        case 'label':
-          url += `labels/${id}`
-          break
-        case 'release-group':
-          url += `albums/${id}`
-          break
-        default:
-          return Promise.reject(new Error(`Entity type unsupported: ${entityType}`))
-      }
-      return new Promise((resolve, reject) => {
-        request(url, requestOptions, (err, response, body) => {
-          if (err) {
-            reject(err)
-          } else if (response.statusCode === 404) {
-            resolve({
+      return client.musicEntity(entityType, id)
+        .catch(err => {
+          if (err.statusCode === 404) {
+            // 404s are OK, just return empty data.
+            return {
               artistbackground: [],
               artistthumb: [],
               musiclogo: [],
@@ -43,22 +31,21 @@ export default function createLoader (options) {
               musicbanner: [],
               musiclabel: [],
               albums: {}
-            })
-          } else if (response.statusCode >= 400) {
-            reject(new Error(`Status: ${response.statusCode}`))
-          } else {
-            if (entityType === 'artist') {
-              const releaseGroupIDs = Object.keys(body.albums)
-              debug(`Priming album cache with ${releaseGroupIDs.length} album(s).`)
-              releaseGroupIDs.forEach(key => loader.prime(['release-group', key], body))
             }
-            resolve(body)
           }
+          throw err
+        }).then(body => {
+          if (entityType === 'artist') {
+            const releaseGroupIDs = Object.keys(body.albums)
+            debug(`Priming album cache with ${releaseGroupIDs.length} album(s).`)
+            releaseGroupIDs.forEach(key => loader.prime(['release-group', key], body))
+          }
+          return body
         })
-      })
     }))
   }, {
-    cacheKeyFn: ([ entityType, id ]) => `${entityType}/${id}`
+    cacheKeyFn: ([ entityType, id ]) => `${entityType}/${id}`,
+    cacheMap: cache
   })
   return loader
 }

@@ -1,11 +1,20 @@
-function createFragment (type) {
-  return `fragment EntityFragment on ${type} { mbid }`
-}
+import { resolveLookup } from '../../resolvers'
 
-function resolveImage (coverArt, { size }, { loaders }, info) {
-  if (size === 'FULL') {
-    size = null
-  }
+const SIZES = new Map([
+  [null, null],
+  [250, 250],
+  [500, 500],
+  ['FULL', null],
+  ['SMALL', 250],
+  ['LARGE', 500]
+])
+
+function resolveImage (coverArt, args, { loaders }, info) {
+  // Since migrating the schema to an extension, we lost custom enum values
+  // for the time being. Translate any incoming `size` arg to the old enum
+  // values.
+  const size = SIZES.get(args.size)
+  // Field should be `front` or `back`.
   const field = info.fieldName
   if (coverArt.images) {
     const matches = coverArt.images.filter(image => image[field])
@@ -22,33 +31,45 @@ function resolveImage (coverArt, { size }, { loaders }, info) {
       }
     }
   }
-  if (coverArt[field] !== false) {
-    const {
-      _parentType: entityType = 'release',
-      _parentID: id = coverArt._release
-    } = coverArt
-    return loaders.coverArtURL.load([entityType, id, field, size])
+  const entityType = coverArt._entityType
+  const id = coverArt._id
+  const releaseID = coverArt._releaseID
+  if (entityType === 'release-group' && field === 'front') {
+    // Release groups only have an endpoint to retrieve the front image.
+    // If someone requests the back of a release group, return the back of the
+    // release that the release group's cover art response points to.
+    return loaders.coverArtArchiveURL.load(['release-group', id, field, size])
+  } else {
+    return loaders.coverArtArchiveURL.load(['release', releaseID, field, size])
   }
 }
 
-export default mergeInfo => ({
-  CoverArtImage: {
+export default {
+  CoverArtArchiveImage: {
     fileID: image => image.id
   },
-  Release: {
-    coverArt: {
-      fragment: createFragment('Release'),
-      resolve (release, args, { loaders }) {
-        return loaders.coverArt.load(['release', release.mbid])
+  CoverArtArchiveRelease: {
+    front: resolveImage,
+    back: resolveImage,
+    images: coverArt => coverArt.images,
+    artwork: coverArt => coverArt.images.length > 0,
+    count: coverArt => coverArt.images.length,
+    release: (coverArt, args, context, info) => {
+      const mbid = coverArt._releaseID
+      if (mbid) {
+        return resolveLookup(coverArt, { mbid }, context, info)
       }
+      return null
+    }
+  },
+  Release: {
+    coverArtArchive: (release, args, { loaders }) => {
+      return loaders.coverArtArchive.load(['release', release.id])
     }
   },
   ReleaseGroup: {
-    coverArt: {
-      fragment: createFragment('ReleaseGroup'),
-      resolve (releaseGroup, args, { loaders }) {
-        return loaders.coverArt.load(['release-group', releaseGroup.mbid])
-      }
+    coverArtArchive: (releaseGroup, args, { loaders }) => {
+      return loaders.coverArtArchive.load(['release-group', releaseGroup.id])
     }
   }
-})
+}

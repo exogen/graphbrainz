@@ -12,7 +12,7 @@ function handleImageSize (resolver) {
   }
 }
 
-export default mergeInfo => ({
+export default {
   TheAudioDBArtist: {
     artistID: artist => artist.idArtist,
     biography: (artist, args) => {
@@ -90,27 +90,18 @@ export default mergeInfo => ({
     commentCount: track => track.intMusicVidComments
   },
   Artist: {
-    theAudioDB: {
-      fragment: 'fragment EntityFragment on Entity { mbid }',
-      resolve (artist, args, context) {
-        return context.loaders.theAudioDB.load(['artist', artist.mbid])
-      }
+    theAudioDB: (artist, args, context) => {
+      return context.loaders.theAudioDB.load(['artist', artist.id])
     }
   },
   Recording: {
-    theAudioDB: {
-      fragment: 'fragment EntityFragment on Entity { mbid }',
-      resolve (recording, args, context) {
-        return context.loaders.theAudioDB.load(['recording', recording.mbid])
-      }
+    theAudioDB: (recording, args, context) => {
+      return context.loaders.theAudioDB.load(['recording', recording.id])
     }
   },
   ReleaseGroup: {
-    theAudioDB: {
-      fragment: 'fragment EntityFragment on Entity { mbid }',
-      resolve (releaseGroup, args, context) {
-        return context.loaders.theAudioDB.load(['release-group', releaseGroup.mbid])
-      }
+    theAudioDB: (releaseGroup, args, context) => {
+      return context.loaders.theAudioDB.load(['release-group', releaseGroup.id])
     }
   }
-})
+}

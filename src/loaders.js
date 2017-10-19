@@ -1,9 +1,9 @@
 import DataLoader from 'dataloader'
 import LRUCache from 'lru-cache'
 import { toPlural } from './types/helpers'
+import { ONE_DAY } from './util'
 
 const debug = require('debug')('graphbrainz:loaders')
-const ONE_DAY = 24 * 60 * 60 * 1000
 
 export default function createLoaders (client) {
   // All loaders share a single LRU cache that will remember 8192 responses,

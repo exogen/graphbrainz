@@ -1,19 +1,25 @@
-import { GraphQLSchema, GraphQLObjectType } from 'graphql'
-import { mergeSchemas } from '@exogen/graphql-tools'
+import { GraphQLSchema, GraphQLObjectType, extendSchema, parse } from 'graphql'
+import { addResolveFunctionsToSchema } from 'graphql-tools'
 import { lookup, browse, search } from './queries'
 import { nodeField } from './types/node'
 
 const debug = require('debug')('graphbrainz:schema')
 
-export function extendSchema (extension, schema, options = {}) {
+export function applyExtension (extension, schema, options = {}) {
   let outputSchema = schema
   if (extension.extendSchema) {
     if (typeof extension.extendSchema === 'object') {
       debug(`Extending schema via an object from the “${extension.name}” extension.`)
-      outputSchema = mergeSchemas({
-        ...extension.extendSchema,
-        schemas: [schema, ...extension.extendSchema.schemas]
-      })
+      const { schemas = [], resolvers } = extension.extendSchema
+      outputSchema = schemas.reduce((updatedSchema, extensionSchema) => {
+        if (typeof extensionSchema === 'string') {
+          extensionSchema = parse(extensionSchema)
+        }
+        return extendSchema(updatedSchema, extensionSchema)
+      }, outputSchema)
+      if (resolvers) {
+        addResolveFunctionsToSchema(outputSchema, resolvers)
+      }
     } else if (typeof extension.extendSchema === 'function') {
       debug(`Extending schema via a function from the “${extension.name}” extension.`)
       outputSchema = extension.extendSchema(schema, options)
@@ -34,8 +40,8 @@ export function extendSchema (extension, schema, options = {}) {
 
 export function createSchema (schema, options = {}) {
   const extensions = options.extensions || []
-  return extensions.reduce((schema, extension) => {
-    return extendSchema(extension, schema, options)
+  return extensions.reduce((updatedSchema, extension) => {
+    return applyExtension(extension, updatedSchema, options)
   }, schema)
 }
 

@@ -2,6 +2,32 @@
 
 Retrieve information from MediaWiki image pages, like the actual image file URL and EXIF metadata.
 
+On entities with [URL relationship types][relationships] that represent images,
+this extension will find those URLs that appear to be MediaWiki image pages, and
+use the [MediaWiki API][] to fetch information about the image. This information
+will include the actual file URL, so you can use it as the `src` in an `<img>`
+tag (for example).
+
+MediaWiki image URLs are assumed to be those with a path that starts with
+`/wiki/Image:` or `/wiki/File:`.
+
+This extension uses its own cache, separate from the MusicBrainz loader cache.
+
+## Configuration
+
+This extension can be configured using environment variables:
+
+* **`COVER_ART_ARCHIVE_BASE_URL`**: The base URL at which to access to Cover Art
+  Archive API. Defaults to `http://coverartarchive.org/`.
+* **`COVER_ART_ARCHIVE_CACHE_SIZE`**: The number of items to keep in the cache.
+  Defaults to `GRAPHBRAINZ_CACHE_SIZE` if defined, or `8192`.
+* **`COVER_ART_ARCHIVE_CACHE_TTL`**: The number of seconds to keep items in the
+  cache. Defaults to `GRAPHBRAINZ_CACHE_TTL` if defined, or `86400000` (one day).
+
+[relationships]: https://musicbrainz.org/relationships
+[MediaWiki API]: https://www.mediawiki.org/wiki/API:Main_page
+
+
 <details>
   <summary><strong>Table of Contents</strong></summary>
 
@@ -38,6 +64,7 @@ for a description and additional fields.*
 <td>
 
 Artist images found at MediaWiki URLs in the artist’s URL relationships.
+Defaults to URL relationships with the type “image”.
 This field is provided by the MediaWiki extension.
 
 </td>
@@ -47,8 +74,8 @@ This field is provided by the MediaWiki extension.
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
-The type of URL relationship to filter by to find images. See the possible
-[Artist-URL relationship types](https://musicbrainz.org/relationships/artist-url).
+The type of URL relationship that will be selected to find images. See
+the possible [Artist-URL relationship types](https://musicbrainz.org/relationships/artist-url).
 
 </td>
 </tr>
@@ -76,7 +103,7 @@ for a description and additional fields.*
 <td>
 
 Instrument images found at MediaWiki URLs in the instrument’s URL
-relationships.
+relationships. Defaults to URL relationships with the type “image”.
 This field is provided by the MediaWiki extension.
 
 </td>
@@ -86,8 +113,8 @@ This field is provided by the MediaWiki extension.
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
-The type of URL relationship to filter by to find images. See the possible
-[Instrument-URL relationship types](https://musicbrainz.org/relationships/instrument-url).
+The type of URL relationship that will be selected to find images. See the
+possible [Instrument-URL relationship types](https://musicbrainz.org/relationships/instrument-url).
 
 </td>
 </tr>
@@ -125,8 +152,8 @@ This field is provided by the MediaWiki extension.
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
-The type of URL relationship to filter by to find images. See the possible
-[Label-URL relationship types](https://musicbrainz.org/relationships/label-url).
+The type of URL relationship that will be selected to find images. See the
+possible [Label-URL relationship types](https://musicbrainz.org/relationships/label-url).
 
 </td>
 </tr>
@@ -358,6 +385,7 @@ for a description and additional fields.*
 <td>
 
 Place images found at MediaWiki URLs in the place’s URL relationships.
+Defaults to URL relationships with the type “image”.
 This field is provided by the MediaWiki extension.
 
 </td>
@@ -367,8 +395,8 @@ This field is provided by the MediaWiki extension.
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
-The type of URL relationship to filter by to find images. See the possible
-[Place-URL relationship types](https://musicbrainz.org/relationships/place-url).
+The type of URL relationship that will be selected to find images. See the
+possible [Place-URL relationship types](https://musicbrainz.org/relationships/place-url).
 
 </td>
 </tr>

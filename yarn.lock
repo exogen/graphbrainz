@@ -44,14 +44,6 @@
   dependencies:
     arrify "^1.0.1"
 
-"@exogen/graphql-tools@^2.6.0-0":
-  version "2.6.0-0"
-  resolved "https://registry.yarnpkg.com/@exogen/graphql-tools/-/graphql-tools-2.6.0-0.tgz#b0d605f286dd335c34987bbd63db87f243973a6f"
-  dependencies:
-    apollo-link "^0.8.0"
-    deprecated-decorator "^0.1.6"
-    uuid "^3.1.0"
-
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -2642,6 +2634,14 @@ graphql-markdown@^3.1.0-0:
 graphql-relay@^0.5.2:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/graphql-relay/-/graphql-relay-0.5.3.tgz#56a78ac07c87d89795a34db6b8e9681b827be5b5"
+
+graphql-tools@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-2.5.1.tgz#542c48d4f9a532e09280ae216084813ea7ba4b18"
+  dependencies:
+    apollo-link "^0.8.0"
+    deprecated-decorator "^0.1.6"
+    uuid "^3.1.0"
 
 graphql@^0.11.7:
   version "0.11.7"

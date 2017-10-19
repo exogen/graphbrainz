@@ -40,9 +40,16 @@ Promise.all(extensionModules.map(extensionModule => {
     )
     const stream = fs.createWriteStream(outputPath)
     const printer = (line) => stream.write(`${line}\n`)
+    const prologuePath = path.resolve(
+      __dirname,
+      `../src/extensions/${extensionModule}/prologue.md`
+    )
+    const prologue = fs.readFileSync(prologuePath, 'utf8')
     renderSchema(outputSchema, {
       title: `Extension: ${extension.name}`,
-      prologue: extension.description,
+      prologue: prologue.trim()
+        ? `${extension.description}\n\n${prologue}`
+        : extension.description,
       printer,
       unknownTypeURL: '../types.md'
     })

@@ -1,7 +1,3 @@
-function createFragment (type) {
-  return `fragment EntityFragment on ${type} { mbid }`
-}
-
 const imageResolvers = {
   imageID: image => image.id,
   url: (image, args) => {
@@ -12,7 +8,7 @@ const imageResolvers = {
   likeCount: image => image.likes
 }
 
-export default mergeInfo => ({
+export default {
   FanArtImage: {
     ...imageResolvers
   },
@@ -49,28 +45,19 @@ export default mergeInfo => ({
     discImages: album => album.cdart || []
   },
   Artist: {
-    fanArt: {
-      fragment: createFragment('Artist'),
-      resolve (artist, args, context) {
-        return context.loaders.fanArt.load(['artist', artist.mbid])
-      }
+    fanArt: (artist, args, context) => {
+      return context.loaders.fanArt.load(['artist', artist.id])
     }
   },
   Label: {
-    fanArt: {
-      fragment: createFragment('Label'),
-      resolve (label, args, context) {
-        return context.loaders.fanArt.load(['label', label.mbid])
-      }
+    fanArt: (label, args, context) => {
+      return context.loaders.fanArt.load(['label', label.id])
     }
   },
   ReleaseGroup: {
-    fanArt: {
-      fragment: createFragment('ReleaseGroup'),
-      resolve (releaseGroup, args, context) {
-        return context.loaders.fanArt.load(['release-group', releaseGroup.mbid])
-          .then(artist => artist.albums[releaseGroup.mbid])
-      }
+    fanArt: (releaseGroup, args, context) => {
+      return context.loaders.fanArt.load(['release-group', releaseGroup.id])
+        .then(artist => artist.albums[releaseGroup.id])
     }
   }
-})
+}

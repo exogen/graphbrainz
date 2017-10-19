@@ -1,38 +1,27 @@
 import { URL } from 'url'
 
-function resolveMediaWikiImages (source, args, context) {
-  const pages = source.relationships.urls.nodes.filter(node => {
-    if (node.type === args.type) {
-      const url = new URL(node.target.resource)
-      if (url.pathname.match(/^\/wiki\/(File|Image):/)) {
-        return true
-      }
-    }
-    return false
-  }).map(node => node.target.resource)
-  return context.loaders.mediaWiki.loadMany(pages)
-}
-
-function createFragment (type) {
-  return `
-    fragment MediaWikiURLs on ${type} {
-      relationships {
-        urls {
-          nodes {
-            type
-            target {
-              ... on URL {
-                resource
-              }
-            }
-          }
+function resolveMediaWikiImages (source, args, { loaders }) {
+  const isURL = (relation) => relation['target-type'] === 'url'
+  let rels = source.relations ? source.relations.filter(isURL) : []
+  if (!rels.length) {
+    rels = loaders.lookup.load([source._type, source.id, { inc: 'url-rels' }])
+      .then(source => source.relations.filter(isURL))
+  }
+  return Promise.resolve(rels).then(rels => {
+    const pages = rels.filter(rel => {
+      if (rel.type === args.type) {
+        const url = new URL(rel.url.resource)
+        if (url.pathname.match(/^\/wiki\/(File|Image):/)) {
+          return true
         }
       }
-    }
-  `
+      return false
+    }).map(rel => rel.url.resource)
+    return loaders.mediaWiki.loadMany(pages)
+  })
 }
 
-export default mergeInfo => ({
+export default {
   MediaWikiImage: {
     descriptionURL: imageInfo => imageInfo.descriptionurl,
     canonicalTitle: imageInfo => imageInfo.canonicaltitle,
@@ -77,27 +66,15 @@ export default mergeInfo => ({
     value: obj => obj.value == null ? obj.value : `${obj.value}`
   },
   Artist: {
-    mediaWikiImages: {
-      fragment: createFragment('Artist'),
-      resolve: resolveMediaWikiImages
-    }
+    mediaWikiImages: resolveMediaWikiImages
   },
   Instrument: {
-    mediaWikiImages: {
-      fragment: createFragment('Instrument'),
-      resolve: resolveMediaWikiImages
-    }
+    mediaWikiImages: resolveMediaWikiImages
   },
   Label: {
-    mediaWikiImages: {
-      fragment: createFragment('Label'),
-      resolve: resolveMediaWikiImages
-    }
+    mediaWikiImages: resolveMediaWikiImages
   },
   Place: {
-    mediaWikiImages: {
-      fragment: createFragment('Place'),
-      resolve: resolveMediaWikiImages
-    }
+    mediaWikiImages: resolveMediaWikiImages
   }
-})
+}

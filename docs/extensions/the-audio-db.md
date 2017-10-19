@@ -2,6 +2,22 @@
 
 Retrieve images and information about artists, releases, and recordings from [TheAudioDB.com](http://www.theaudiodb.com/).
 
+This extension uses its own cache, separate from the MusicBrainz loader cache.
+
+## Configuration
+
+This extension can be configured using environment variables:
+
+* **`THEAUDIODB_API_KEY`**: TheAudioDB API key to use. This is required for any
+  fields added by the extension to successfully resolve.
+* **`THEAUDIODB_BASE_URL`**: The base URL at which to access TheAudioDB API.
+  Defaults to `http://www.theaudiodb.com/api/v1/json/`.
+* **`THEAUDIODB_CACHE_SIZE`**: The number of items to keep in the cache.
+  Defaults to `GRAPHBRAINZ_CACHE_SIZE` if defined, or `8192`.
+* **`THEAUDIODB_CACHE_TTL`**: The number of seconds to keep items in the
+  cache. Defaults to `GRAPHBRAINZ_CACHE_TTL` if defined, or `86400000` (one day).
+
+
 <details>
   <summary><strong>Table of Contents</strong></summary>
 
@@ -69,7 +85,7 @@ for a description and additional fields.*
 <td valign="top"><a href="#theaudiodbtrack">TheAudioDBTrack</a></td>
 <td>
 
- Data about the recording from [TheAudioDB](http://www.theaudiodb.com/).
+Data about the recording from [TheAudioDB](http://www.theaudiodb.com/).
 This field is provided by TheAudioDB extension.
 
 </td>
@@ -177,7 +193,7 @@ The worldwide sales figure.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>score</strong></td>
-<td valign="top"><a href="../types.md#int">Int</a></td>
+<td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
 The album’s rating as determined by user votes, out of 10.
@@ -518,6 +534,15 @@ A list of still images from the music video.
 </td>
 </tr>
 <tr>
+<td colspan="2" align="right" valign="top">size</td>
+<td valign="top"><a href="#theaudiodbimagesize">TheAudioDBImageSize</a></td>
+<td>
+
+The size of the images to retrieve.
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>viewCount</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
@@ -636,7 +661,7 @@ The size of the image to retrieve.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>score</strong></td>
-<td valign="top"><a href="../types.md#int">Int</a></td>
+<td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
 The track’s rating as determined by user votes, out of 10.

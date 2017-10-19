@@ -29,18 +29,12 @@ export class ClientError extends ExtendableError {
 
 export default class Client {
   constructor ({
-    baseURL = process.env.MUSICBRAINZ_BASE_URL || 'http://musicbrainz.org/ws/2/',
+    baseURL,
     userAgent = `${pkg.name}/${pkg.version} ` +
       `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
     extraHeaders = {},
     errorClass = ClientError,
     timeout = 60000,
-    // MusicBrainz API requests are limited to an *average* of 1 req/sec.
-    // That means if, for example, we only need to make a few API requests to
-    // fulfill a query, we might as well make them all at once - as long as
-    // we then wait a few seconds before making more. In practice this can
-    // seemingly be set to about 5 requests every 5 seconds before we're
-    // considered to exceed the rate limit.
     limit = 1,
     period = 1000,
     concurrency = 10,
