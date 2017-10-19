@@ -1,4 +1,4 @@
-import { URL } from 'url'
+import URL from 'url'
 
 function resolveMediaWikiImages (source, args, { loaders }) {
   const isURL = (relation) => relation['target-type'] === 'url'
@@ -10,7 +10,7 @@ function resolveMediaWikiImages (source, args, { loaders }) {
   return Promise.resolve(rels).then(rels => {
     const pages = rels.filter(rel => {
       if (rel.type === args.type) {
-        const url = new URL(rel.url.resource)
+        const url = URL.parse(rel.url.resource)
         if (url.pathname.match(/^\/wiki\/(File|Image):/)) {
           return true
         }
