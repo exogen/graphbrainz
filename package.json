@@ -113,6 +113,7 @@
   },
   "ava": {
     "require": [
+      "dotenv/config",
       "babel-register"
     ]
   },
