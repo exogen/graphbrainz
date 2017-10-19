@@ -68,7 +68,7 @@ See their respective documentation pages for schema info and config options.
   releases, and labels from fanart.tv.
 * [MediaWiki](./mediawiki.md): Retrieve information from MediaWiki image pages,
   like the actual image file URL and EXIF metadata.
-* [TheAudioDB](./the-audio-db): Retrieve images and information about artists,
+* [TheAudioDB](./the-audio-db.md): Retrieve images and information about artists,
   releases, and recordings from TheAudioDB.com.
 
 ## Extension API
