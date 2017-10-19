@@ -162,6 +162,9 @@ possible [Label-URL relationship types](https://musicbrainz.org/relationships/la
 
 ### MediaWikiImage
 
+An object describing various properties of an image stored on a MediaWiki
+server. The information comes the [MediaWiki imageinfo API](https://www.mediawiki.org/wiki/API:Imageinfo).
+
 <table>
 <thead>
 <tr>
