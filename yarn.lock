@@ -2621,9 +2621,9 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.4:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-graphql-markdown@^3.1.0-0:
-  version "3.1.0-0"
-  resolved "https://registry.yarnpkg.com/graphql-markdown/-/graphql-markdown-3.1.0-0.tgz#1fedb5f819bcd1428a8437ba07be35f4301f705d"
+graphql-markdown@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/graphql-markdown/-/graphql-markdown-3.1.0.tgz#ff8fb91864388b359622f92637c8f1edbee70618"
   dependencies:
     deep-diff "^0.3.8"
     graphql "^0.11.7"
