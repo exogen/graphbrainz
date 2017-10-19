@@ -9,8 +9,9 @@ node_js:
 sudo: false
 
 env:
-  - FANART_API_KEY=d9e25d5beda1027a1674c1585882309e
-  - THEAUDIODB_API_KEY=1
+  global:
+    - FANART_API_KEY=d9e25d5beda1027a1674c1585882309e
+    - THEAUDIODB_API_KEY=1
 
 branches:
   only:
