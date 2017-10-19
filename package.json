@@ -1,6 +1,6 @@
 {
   "name": "graphbrainz",
-  "version": "7.0.0-0",
+  "version": "7.0.0-1",
   "description": "An Express server and middleware for querying the MusicBrainz API using GraphQL.",
   "main": "lib/index.js",
   "bin": "cli.js",
