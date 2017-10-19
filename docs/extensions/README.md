@@ -179,7 +179,7 @@ for writing a good extension:
   indefinitely by accident. The `cacheMap` option to DataLoader is a good place
   to put it.
 * Get as much configuration from environment variables as possible, so that
-  people can just run the standalone server instead of writing server code. If
+  people can just run the standalone server instead of writing any code. If
   you need more complex configuration, use a single object on the `options`
   object as a namespace for your extension’s options.
 * Don’t be afraid to rename fields returned by third-party APIs when translating
