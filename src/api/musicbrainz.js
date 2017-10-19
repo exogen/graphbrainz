@@ -7,6 +7,12 @@ export default class MusicBrainz extends Client {
   constructor ({
     baseURL = process.env.MUSICBRAINZ_BASE_URL || 'http://musicbrainz.org/ws/2/',
     errorClass = MusicBrainzError,
+    // MusicBrainz API requests are limited to an *average* of 1 req/sec.
+    // That means if, for example, we only need to make a few API requests to
+    // fulfill a query, we might as well make them all at once - as long as
+    // we then wait a few seconds before making more. In practice this can
+    // seemingly be set to about 5 requests every 5 seconds before we're
+    // considered to exceed the rate limit.
     limit = 5,
     period = 5500,
     ...options

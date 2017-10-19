@@ -1,0 +1,43 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "date": "Thu, 19 Oct 2017 06:35:52 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "844",
+    "connection": "keep-alive",
+    "server": "mw1314.eqiad.wmnet",
+    "x-powered-by": "HHVM/3.18.6-dev",
+    "x-content-type-options": "nosniff",
+    "cache-control": "private, must-revalidate, max-age=0",
+    "p3p": "CP=\"This is not a P3P policy! See https://commons.wikimedia.org/wiki/Special:CentralAutoLogin/P3P for more info.\"",
+    "content-encoding": "gzip",
+    "x-frame-options": "DENY",
+    "content-disposition": "inline; filename=\"api-result.json\"",
+    "vary": "Accept-Encoding,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization",
+    "backend-timing": "D=180917 t=1508394951803664",
+    "x-varnish": "558013596, 239477161, 538442496, 692692485",
+    "via": "1.1 varnish-v4, 1.1 varnish-v4, 1.1 varnish-v4, 1.1 varnish-v4",
+    "accept-ranges": "bytes",
+    "age": "0",
+    "x-cache": "cp1055 pass, cp2016 pass, cp4027 pass, cp4018 pass",
+    "x-cache-status": "pass",
+    "strict-transport-security": "max-age=106384710; includeSubDomains; preload",
+    "set-cookie": [
+      "WMF-Last-Access=19-Oct-2017;Path=/;HttpOnly;secure;Expires=Mon, 20 Nov 2017 00:00:00 GMT",
+      "GeoIP=US:WA:Seattle:47.61:-122.30:v4; Path=/; secure; Domain=.wikimedia.org"
+    ],
+    "x-analytics": "ns=-1;special=Badtitle;https=1;nocookies=1",
+    "x-client-ip": "66.235.47.149"
+  },
+  "url": "https://commons.wikimedia.org:443/w/api.php?action=query&titles=File%3AParamount_Theater_in_Seattle_showing_Wicked.jpg&prop=imageinfo&iiprop=url%7Csize%7Ccanonicaltitle%7Cuser%7Cextmetadata&format=json",
+  "time": 482,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/6.1.0 ( https://github.com/exogen/graphbrainz )",
+      "host": "commons.wikimedia.org",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json"
+    }
+  }
+}

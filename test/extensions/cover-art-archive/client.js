@@ -1,6 +1,5 @@
 import test from 'ava'
-import { CoverArtArchiveError } from '../../src/api'
-import client from '../helpers/client/cover-art-archive'
+import client from '../../helpers/client/cover-art-archive'
 
 test('can retrieve a front image URL', t => {
   return client.imageURL('release', '76df3287-6cda-33eb-8e9a-044b5e15ffdd', 'front')
@@ -37,7 +36,7 @@ test('can retrieve a list of release images', t => {
 })
 
 test('throws an error if given an invalid MBID', t => {
-  return t.throws(client.images('release', 'xyz'), CoverArtArchiveError)
+  return t.throws(client.images('release', 'xyz'), client.errorClass)
 })
 
 test('uses the default error impementation if there is no HTML error', t => {

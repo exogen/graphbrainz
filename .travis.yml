@@ -1,13 +1,17 @@
 language: node_js
 
 node_js:
-  - "4"
-  - "5"
   - "6"
   - "7"
+  - "8"
 
 # Use container-based Travis infrastructure.
 sudo: false
+
+env:
+  global:
+    - FANART_API_KEY=d9e25d5beda1027a1674c1585882309e
+    - THEAUDIODB_API_KEY=1
 
 branches:
   only:

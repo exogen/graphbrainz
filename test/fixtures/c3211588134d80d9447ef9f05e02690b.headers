@@ -1,0 +1,24 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "server": "nginx/1.10.1 (Ubuntu)",
+    "date": "Thu, 19 Oct 2017 05:19:05 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "vary": "Accept-Encoding",
+    "access-control-allow-origin": "*",
+    "content-encoding": "gzip"
+  },
+  "url": "http://webservice.fanart.tv:80/v3/music/5b11f4ce-a62d-471e-81fc-a69a8278c7da?api_key=d9e25d5beda1027a1674c1585882309e",
+  "time": 342,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/6.1.0 ( https://github.com/exogen/graphbrainz )",
+      "host": "webservice.fanart.tv",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json"
+    }
+  }
+}

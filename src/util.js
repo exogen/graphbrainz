@@ -1,5 +1,7 @@
 import util from 'util'
 
+export const ONE_DAY = 24 * 60 * 60 * 1000
+
 export function getFields (info, fragments = info.fragments) {
   if (info.kind !== 'Field') {
     info = info.fieldNodes[0]
@@ -13,6 +15,8 @@ export function getFields (info, fragments = info.fragments) {
         throw new Error(`Fragment '${name}' was not passed to getFields()`)
       }
       fragment.selectionSet.selections.reduce(reducer, fields)
+    } else if (selection.kind === 'InlineFragment') {
+      selection.selectionSet.selections.reduce(reducer, fields)
     } else {
       fields[selection.name.value] = selection
     }

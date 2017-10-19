@@ -16,9 +16,11 @@ npm install graphbrainz --save
 **[Try out the live demo!][demo]** :bulb: Use the “Docs” sidebar, the
 [schema][], or the [types][] docs to help construct your query.
 
+## Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-## Contents
+
 
 - [Usage](#usage)
   - [As a standalone server](#as-a-standalone-server)
@@ -30,6 +32,7 @@ npm install graphbrainz --save
   - [Pagination](#pagination)
 - [Questions](#questions)
 - [Schema](#schema)
+  - [Extending the schema](#extending-the-schema)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -101,14 +104,12 @@ GraphBrainz resolvers expect, like so:
 
 ```js
 import { graphql } from 'graphql';
-import { MusicBrainz, CoverArtArchive } from 'graphbrainz/api';
-import createLoaders from 'graphbrainz/loaders';
-import schema from 'graphbrainz/schema';
+import { MusicBrainz, CoverArtArchive } from 'graphbrainz/lib/api';
+import createContext from 'graphbrainz/lib/context';
+import schema from 'graphbrainz/lib/schema';
 
 const client = new MusicBrainz();
-const coverArtClient = new CoverArtArchive();
-const loaders = createLoaders(client, coverArtClient);
-const context = { client, coverArtClient, loaders };
+const context = createContext({ client })
 
 graphql(schema, `
   {
@@ -142,6 +143,8 @@ graphql(schema, `
   day).
 * **`GRAPHBRAINZ_GRAPHIQL`**: Set this to `true` if you want to force the
   [GraphiQL][] interface to be available even in production mode.
+* **`GRAPHBRAINZ_EXTENSIONS`**: A JSON array of module paths to load as
+  [extensions](./docs/extensions).
 * **`PORT`**: Port number to use, if running the standalone server.
 
 When running the standalone server, [dotenv][] is used to load these variables
@@ -361,7 +364,14 @@ GraphBrainz to use that with no rate limiting.
 
 ## Schema
 
-See the [GraphQL schema][schema] or the [types][] documentation.
+The [types][] document is the easiest to browse representation of the schema, or
+you can read the [schema in GraphQL syntax][schema].
+
+### Extending the schema
+
+The GraphBrainz schema can easily be extended to add integrations with
+third-party services. See the [Extensions](./docs/extensions) docs for more
+info.
 
 [demo]: https://graphbrainz.herokuapp.com/
 [Express]: http://expressjs.com/
