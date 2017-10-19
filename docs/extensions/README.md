@@ -160,9 +160,11 @@ See the code for the [built-in extensions][] for more examples.
 
 ## Extension Guidelines
 
-Extensions can load and resolve data in any manner they please. However, you
-should try to remain consistent with the behavior of GraphBrainz and its
-built-in extensions. Here are some recommendations for writing a good extension:
+Extensions can load and resolve data in any manner they please, and you can
+write them in any way that conforms to the API. But if you want an extra feather
+in your cap, there are a few guidelines you should follow in order to maintain
+consistency with GraphBrainz and the built-in extensions. Here are some tips
+for writing a good extension:
 
 * If you need to make HTTP requests, using a [Client][] subclass will get you
   rate limiting, error handling, and a Promise-based API for free.
@@ -173,13 +175,13 @@ built-in extensions. Here are some recommendations for writing a good extension:
   the data source doesn’t support batching, it will dedupe in-flight requests
   for the same key, preventing extra requests before the response has been
   cached.
-* Use a configurable cache (the `cacheMap` option to DataLoader is a good place
-  to put it) and make sure you aren’t caching everything indefinitely by
-  accident.
+* Use a configurable cache and make sure you aren’t caching everything
+  indefinitely by accident. The `cacheMap` option to DataLoader is a good place
+  to put it.
 * Get as much configuration from environment variables as possible, so that
-  people can just run the standalone server instead of writing code. If you need
-  more complex configuration, use a single object on the `options` object as
-  a namespace for your extension’s options.
+  people can just run the standalone server instead of writing server code. If
+  you need more complex configuration, use a single object on the `options`
+  object as a namespace for your extension’s options.
 * Don’t be afraid to rename fields returned by third-party APIs when translating
   them to the GraphQL schema. Consistency with GraphQL conventions and the
   GraphBrainz schema is more desirable than consistency with the original API
