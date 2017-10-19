@@ -96,7 +96,7 @@
     "coveralls": "^3.0.0",
     "cross-env": "^5.0.5",
     "doctoc": "^1.3.0",
-    "graphql-markdown": "^2.2.0",
+    "graphql-markdown": "^3.1.0",
     "nodemon": "^1.11.0",
     "nyc": "^11.1.0",
     "rimraf": "^2.6.1",
