@@ -315,6 +315,34 @@ fragment marriages on Artist {
 }
 ```
 
+Images of Tom Petty provided by various extensions ([try it](https://graphbrainz.herokuapp.com/?query=query%20TomPettyImages%20%7B%0A%20%20lookup%20%7B%0A%20%20%20%20artist(mbid%3A%20%225ca3f318-d028-4151-ac73-78e2b2d6cdcc%22)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20mediaWikiImages%20%7B%0A%20%20%20%20%20%20%20%20url%0A%20%20%20%20%20%20%20%20objectName%0A%20%20%20%20%20%20%20%20descriptionHTML%0A%20%20%20%20%20%20%20%20licenseShortName%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20fanArt%20%7B%0A%20%20%20%20%20%20%20%20thumbnails%20%7B%0A%20%20%20%20%20%20%20%20%20%20url%0A%20%20%20%20%20%20%20%20%20%20likeCount%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20theAudioDB%20%7B%0A%20%20%20%20%20%20%20%20logo%0A%20%20%20%20%20%20%20%20biography%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=TomPettyImages)):
+
+```graphql
+query TomPettyImages {
+  lookup {
+    artist(mbid: "5ca3f318-d028-4151-ac73-78e2b2d6cdcc") {
+      name
+      mediaWikiImages {
+        url
+        objectName
+        descriptionHTML
+        licenseShortName
+      }
+      fanArt {
+        thumbnails {
+          url
+          likeCount
+        }
+      }
+      theAudioDB {
+        logo
+        biography
+      }
+    }
+  }
+}
+```
+
 You can find more example queries in the [schema tests][].
 
 ## Questions
