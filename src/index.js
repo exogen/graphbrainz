@@ -1,6 +1,7 @@
 import express from 'express'
 import graphqlHTTP from 'express-graphql'
 import compression from 'compression'
+import cors from 'cors'
 import MusicBrainz from './api'
 import schema, { createSchema } from './schema'
 import { createContext } from './context'
@@ -56,8 +57,22 @@ export function start () {
   const app = express()
   const port = process.env.PORT || 3000
   const route = process.env.GRAPHBRAINZ_PATH || '/'
+  const corsOptions = {
+    origin: process.env.GRAPHBRAINZ_CORS_ORIGIN || false,
+    methods: 'HEAD,GET,POST'
+  }
+  switch (corsOptions.origin) {
+    case 'true':
+      corsOptions.origin = true
+      break
+    case 'false':
+      corsOptions.origin = false
+      break
+    default:
+      break
+  }
   app.use(compression())
-  app.use(route, middleware())
+  app.use(route, cors(corsOptions), middleware())
   app.listen(port)
   console.log(`Listening on port ${port}.`)
 }

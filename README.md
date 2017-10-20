@@ -133,6 +133,10 @@ graphql(schema, `
   if you are running your own MusicBrainz mirror. Defaults to `http://musicbrainz.org/ws/2/`.
 * **`GRAPHBRAINZ_PATH`**: The URL route at which to expose the GraphQL endpoint,
   if running the standalone server. Defaults to `/`.
+* **`GRAPHBRAINZ_CORS_ORIGIN`**: The value of the `origin` option to pass to the
+  [CORS][cors] middleware. Valid values are `true` to reflect the request
+  origin, a specific origin string to allow, `*` to allow all origins, and
+  `false` to disable CORS (the default).
 * **`GRAPHBRAINZ_CACHE_SIZE`**: The maximum number of REST API responses to
   cache. Increasing the cache size and TTL will greatly lower query execution
   time for complex queries involving frequently accessed entities. Defaults to
@@ -417,3 +421,4 @@ info.
 [mirror]: https://musicbrainz.org/doc/MusicBrainz_Server/Setup
 [aliases]: http://graphql.org/learn/queries/#aliases
 [schema tests]: test/schema.js
+[cors]: https://github.com/expressjs/cors
