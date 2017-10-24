@@ -90,7 +90,7 @@
     "retry": "^0.10.1"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
+    "ava": "^0.23.0",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^8.0.1",
     "babel-plugin-istanbul": "^4.1.4",
