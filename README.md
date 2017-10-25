@@ -104,7 +104,7 @@ GraphBrainz resolvers expect, like so:
 
 ```js
 import { graphql } from 'graphql';
-import { MusicBrainz, CoverArtArchive } from 'graphbrainz/lib/api';
+import { MusicBrainz } from 'graphbrainz/lib/api';
 import createContext from 'graphbrainz/lib/context';
 import schema from 'graphbrainz/lib/schema';
 

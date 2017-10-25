@@ -46,15 +46,17 @@ $ graphbrainz
 Note that some extensions may require additional configuration via extra options
 or environment variables. Check the documentation for each extension you use.
 
-The default value of the `extensions` option looks like this:
+The default extensions configuration looks like this:
 
 ```js
-[
-  'graphbrainz/extensions/cover-art-archive',
-  'graphbrainz/extensions/fanart-tv',
-  'graphbrainz/extensions/mediawiki',
-  'graphbrainz/extensions/the-audio-db'
-]
+graphbrainz({
+  extensions: [
+    'graphbrainz/extensions/cover-art-archive',
+    'graphbrainz/extensions/fanart-tv',
+    'graphbrainz/extensions/mediawiki',
+    'graphbrainz/extensions/the-audio-db'
+  ]
+})
 ```
 
 ## Built-in Extensions
