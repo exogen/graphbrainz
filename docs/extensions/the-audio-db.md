@@ -20,6 +20,8 @@ This extension can be configured using environment variables:
 
 <!-- START graphql-markdown -->
 
+## Schema Types
+
 <details>
   <summary><strong>Table of Contents</strong></summary>
 
@@ -36,9 +38,9 @@ This extension can be configured using environment variables:
 
 </details>
 
-## Objects
+### Objects
 
-### Artist
+#### Artist
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -67,7 +69,7 @@ This field is provided by TheAudioDB extension.
 </tbody>
 </table>
 
-### Recording
+#### Recording
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -95,7 +97,7 @@ This field is provided by TheAudioDB extension.
 </tbody>
 </table>
 
-### ReleaseGroup
+#### ReleaseGroup
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -124,7 +126,7 @@ This field is provided by TheAudioDB extension.
 </tbody>
 </table>
 
-### TheAudioDBAlbum
+#### TheAudioDBAlbum
 
 An album on [TheAudioDB](http://www.theaudiodb.com/) corresponding with a
 MusicBrainz Release Group.
@@ -331,7 +333,7 @@ The primary musical theme of the album (e.g. “In Love”).
 </tbody>
 </table>
 
-### TheAudioDBArtist
+#### TheAudioDBArtist
 
 An artist on [TheAudioDB](http://www.theaudiodb.com/).
 
@@ -485,7 +487,7 @@ The primary musical style of the artist (e.g. “Rock/Pop”).
 </tbody>
 </table>
 
-### TheAudioDBMusicVideo
+#### TheAudioDBMusicVideo
 
 Details of a music video associated with a track on [TheAudioDB](http://www.theaudiodb.com/).
 
@@ -587,7 +589,7 @@ rarely be up to date, so use cautiously.
 </tbody>
 </table>
 
-### TheAudioDBTrack
+#### TheAudioDBTrack
 
 A track on [TheAudioDB](http://www.theaudiodb.com/) corresponding with a
 MusicBrainz Recording.
@@ -736,9 +738,9 @@ The primary musical theme of the track (e.g. “In Love”).
 </tbody>
 </table>
 
-## Enums
+### Enums
 
-### TheAudioDBImageSize
+#### TheAudioDBImageSize
 
 The image sizes that may be requested at [TheAudioDB](http://www.theaudiodb.com/).
 

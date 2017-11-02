@@ -28,6 +28,8 @@ This extension can be configured using environment variables:
 
 <!-- START graphql-markdown -->
 
+## Schema Types
+
 <details>
   <summary><strong>Table of Contents</strong></summary>
 
@@ -41,9 +43,9 @@ This extension can be configured using environment variables:
 
 </details>
 
-## Objects
+### Objects
 
-### Artist
+#### Artist
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -82,7 +84,7 @@ the possible [Artist-URL relationship types](https://musicbrainz.org/relationshi
 </tbody>
 </table>
 
-### Instrument
+#### Instrument
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -121,7 +123,7 @@ possible [Instrument-URL relationship types](https://musicbrainz.org/relationshi
 </tbody>
 </table>
 
-### Label
+#### Label
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -160,7 +162,7 @@ possible [Label-URL relationship types](https://musicbrainz.org/relationships/la
 </tbody>
 </table>
 
-### MediaWikiImage
+#### MediaWikiImage
 
 An object describing various properties of an image stored on a MediaWiki
 server. The information comes the [MediaWiki imageinfo API](https://www.mediawiki.org/wiki/API:Imageinfo).
@@ -323,7 +325,7 @@ The full list of values in the `extmetadata` field.
 </tbody>
 </table>
 
-### MediaWikiImageMetadata
+#### MediaWikiImageMetadata
 
 An entry in the `extmetadata` field of a MediaWiki image file.
 
@@ -367,7 +369,7 @@ The source of the value.
 </tbody>
 </table>
 
-### Place
+#### Place
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*

@@ -38,8 +38,8 @@ Promise.all(extensionModules.map(extensionModule => {
       `../docs/extensions/${extensionModule}.md`
     )
     return updateSchema(outputPath, outputSchema, {
-      skipTitle: true,
-      unknownTypeURL: '../types.md'
+      unknownTypeURL: '../types.md',
+      headingLevel: 2
     })
   })
 })).then((extensions) => {

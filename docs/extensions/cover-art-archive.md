@@ -17,6 +17,8 @@ This extension can be configured using environment variables:
 
 <!-- START graphql-markdown -->
 
+## Schema Types
+
 <details>
   <summary><strong>Table of Contents</strong></summary>
 
@@ -31,9 +33,9 @@ This extension can be configured using environment variables:
 
 </details>
 
-## Objects
+### Objects
 
-### CoverArtArchiveImage
+#### CoverArtArchiveImage
 
 An individual piece of album artwork from the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive).
 
@@ -132,7 +134,7 @@ A free-text comment left for the image.
 </tbody>
 </table>
 
-### CoverArtArchiveImageThumbnails
+#### CoverArtArchiveImageThumbnails
 
 URLs for thumbnails of different sizes for a particular piece of
 cover art.
@@ -170,7 +172,7 @@ The URL of a large version of the cover art, where the maximum dimension is
 </tbody>
 </table>
 
-### CoverArtArchiveRelease
+#### CoverArtArchiveRelease
 
 An object containing a list of the cover art images for a release obtained
 from the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive),
@@ -279,7 +281,7 @@ The particular release shown in the returned cover art.
 </tbody>
 </table>
 
-### Release
+#### Release
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -308,7 +310,7 @@ This field is provided by the Cover Art Archive extension.
 </tbody>
 </table>
 
-### ReleaseGroup
+#### ReleaseGroup
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -339,9 +341,9 @@ This field is provided by the Cover Art Archive extension.
 </tbody>
 </table>
 
-## Enums
+### Enums
 
-### CoverArtArchiveImageSize
+#### CoverArtArchiveImageSize
 
 The image sizes that may be requested at the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive).
 

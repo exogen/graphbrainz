@@ -20,6 +20,8 @@ This extension can be configured using environment variables:
 
 <!-- START graphql-markdown -->
 
+## Schema Types
+
 <details>
   <summary><strong>Table of Contents</strong></summary>
 
@@ -38,9 +40,9 @@ This extension can be configured using environment variables:
 
 </details>
 
-## Objects
+### Objects
 
-### Artist
+#### Artist
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -68,7 +70,7 @@ This field is provided by the fanart.tv extension.
 </tbody>
 </table>
 
-### FanArtAlbum
+#### FanArtAlbum
 
 An object containing lists of the different types of release group images from
 [fanart.tv](https://fanart.tv/).
@@ -105,7 +107,7 @@ group, with transparent backgrounds.
 </tbody>
 </table>
 
-### FanArtArtist
+#### FanArtArtist
 
 An object containing lists of the different types of artist images from
 [fanart.tv](https://fanart.tv/).
@@ -172,7 +174,7 @@ containing every member of a band).
 </tbody>
 </table>
 
-### FanArtDiscImage
+#### FanArtDiscImage
 
 A disc image from [fanart.tv](https://fanart.tv/).
 
@@ -243,7 +245,7 @@ The width and height of the (square) disc image.
 </tbody>
 </table>
 
-### FanArtImage
+#### FanArtImage
 
 A single image from [fanart.tv](https://fanart.tv/).
 
@@ -296,7 +298,7 @@ The number of likes the image has received by fanart.tv users.
 </tbody>
 </table>
 
-### FanArtLabel
+#### FanArtLabel
 
 An object containing lists of the different types of label images from
 [fanart.tv](https://fanart.tv/).
@@ -325,7 +327,7 @@ transparent backgrounds.
 </tbody>
 </table>
 
-### FanArtLabelImage
+#### FanArtLabelImage
 
 A music label image from [fanart.tv](https://fanart.tv/).
 
@@ -387,7 +389,7 @@ The type of color content in the image (usually “white” or “colour”).
 </tbody>
 </table>
 
-### Label
+#### Label
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -415,7 +417,7 @@ This field is provided by the fanart.tv extension.
 </tbody>
 </table>
 
-### ReleaseGroup
+#### ReleaseGroup
 
 :small_blue_diamond: *This type has been extended. See the [base schema](../types.md)
 for a description and additional fields.*
@@ -443,9 +445,9 @@ This field is provided by the fanart.tv extension.
 </tbody>
 </table>
 
-## Enums
+### Enums
 
-### FanArtImageSize
+#### FanArtImageSize
 
 The image sizes that may be requested at [fanart.tv](https://fanart.tv/).
 
