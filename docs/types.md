@@ -1,6 +1,9 @@
 # Schema Types
 
-You may also be interested in reading the [schema in GraphQL syntax](schema.md).
+You may also be interested in reading the [schema in GraphQL syntax](schema.md)
+or the schemas provided by the [built-in extensions](extensions).
+
+<!-- START graphql-markdown -->
 
 <details>
   <summary><strong>Table of Contents</strong></summary>
@@ -7404,3 +7407,5 @@ The id of the object.
 </tr>
 </tbody>
 </table>
+
+<!-- END graphql-markdown -->

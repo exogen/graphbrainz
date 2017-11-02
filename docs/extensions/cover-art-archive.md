@@ -15,6 +15,7 @@ This extension can be configured using environment variables:
 * **`COVER_ART_ARCHIVE_CACHE_TTL`**: The number of seconds to keep items in the
   cache. Defaults to `GRAPHBRAINZ_CACHE_TTL` if defined, or `86400000` (one day).
 
+<!-- START graphql-markdown -->
 
 <details>
   <summary><strong>Table of Contents</strong></summary>
@@ -376,3 +377,5 @@ The image’s original dimensions, with no maximum.
 </tr>
 </tbody>
 </table>
+
+<!-- END graphql-markdown -->

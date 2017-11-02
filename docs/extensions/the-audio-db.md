@@ -1,6 +1,7 @@
 # Extension: TheAudioDB
 
-Retrieve images and information about artists, releases, and recordings from [TheAudioDB.com](http://www.theaudiodb.com/).
+Retrieve images and information about artists, releases, and recordings from
+[TheAudioDB.com](http://www.theaudiodb.com/).
 
 This extension uses its own cache, separate from the MusicBrainz loader cache.
 
@@ -17,6 +18,7 @@ This extension can be configured using environment variables:
 * **`THEAUDIODB_CACHE_TTL`**: The number of seconds to keep items in the
   cache. Defaults to `GRAPHBRAINZ_CACHE_TTL` if defined, or `86400000` (one day).
 
+<!-- START graphql-markdown -->
 
 <details>
   <summary><strong>Table of Contents</strong></summary>
@@ -764,3 +766,5 @@ A maximum dimension of 200px.
 </tr>
 </tbody>
 </table>
+
+<!-- END graphql-markdown -->

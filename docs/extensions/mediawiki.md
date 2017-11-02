@@ -1,6 +1,7 @@
 # Extension: MediaWiki
 
-Retrieve information from MediaWiki image pages, like the actual image file URL and EXIF metadata.
+Retrieve information from MediaWiki image pages, like the actual image file URL
+and EXIF metadata.
 
 On entities with [URL relationship types][relationships] that represent images,
 this extension will find those URLs that appear to be MediaWiki image pages, and
@@ -25,6 +26,7 @@ This extension can be configured using environment variables:
 [relationships]: https://musicbrainz.org/relationships
 [MediaWiki API]: https://www.mediawiki.org/wiki/API:Main_page
 
+<!-- START graphql-markdown -->
 
 <details>
   <summary><strong>Table of Contents</strong></summary>
@@ -403,3 +405,5 @@ possible [Place-URL relationship types](https://musicbrainz.org/relationships/pl
 </tr>
 </tbody>
 </table>
+
+<!-- END graphql-markdown -->
