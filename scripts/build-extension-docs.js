@@ -1,4 +1,3 @@
-import fs from 'fs'
 import path from 'path'
 import { graphql, introspectionQuery } from 'graphql'
 import { updateSchema, diffSchema } from 'graphql-markdown'
