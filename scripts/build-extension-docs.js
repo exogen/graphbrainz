@@ -1,7 +1,6 @@
-import fs from 'fs'
 import path from 'path'
 import { graphql, introspectionQuery } from 'graphql'
-import { renderSchema, diffSchema } from 'graphql-markdown'
+import { updateSchema, diffSchema } from 'graphql-markdown'
 import baseSchema, { createSchema } from '../src/schema'
 
 const extensionModules = [
@@ -38,25 +37,9 @@ Promise.all(extensionModules.map(extensionModule => {
       __dirname,
       `../docs/extensions/${extensionModule}.md`
     )
-    const stream = fs.createWriteStream(outputPath)
-    const printer = (line) => stream.write(`${line}\n`)
-    const prologuePath = path.resolve(
-      __dirname,
-      `../src/extensions/${extensionModule}/prologue.md`
-    )
-    const prologue = fs.readFileSync(prologuePath, 'utf8')
-    renderSchema(outputSchema, {
-      title: `Extension: ${extension.name}`,
-      prologue: prologue.trim()
-        ? `${extension.description}\n\n${prologue}`
-        : extension.description,
-      printer,
-      unknownTypeURL: '../types.md'
-    })
-    stream.end()
-    return new Promise((resolve, reject) => {
-      stream.on('error', reject)
-      stream.on('finish', () => resolve(extension))
+    return updateSchema(outputPath, outputSchema, {
+      unknownTypeURL: '../types.md',
+      headingLevel: 2
     })
   })
 })).then((extensions) => {
