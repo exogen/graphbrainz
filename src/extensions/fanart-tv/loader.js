@@ -47,5 +47,6 @@ export default function createLoader (options) {
     cacheKeyFn: ([ entityType, id ]) => `${entityType}/${id}`,
     cacheMap: cache
   })
+
   return loader
 }

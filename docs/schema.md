@@ -58,6 +58,14 @@ type Area implements Node, Entity {
   # the codes assigned by ISO to countries and subdivisions.
   isoCodes: [String]
 
+  # The type of area (country, city, etc. – see the [possible
+  # values](https://musicbrainz.org/doc/Area)).
+  type: String
+
+  # The MBID associated with the value of the `type`
+  # field.
+  typeID: MBID
+
   # A list of artists linked to this entity.
   artists(after: String, first: Int): ArtistConnection
 

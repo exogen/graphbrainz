@@ -16,6 +16,7 @@ import {
   relationships,
   collections,
   tags,
+  fieldWithID,
   connectionWithExtras
 } from './helpers'
 
@@ -37,6 +38,10 @@ or settlements (countries, cities, or the like).`,
 the codes assigned by ISO to countries and subdivisions.`,
       resolve: data => data['iso-3166-1-codes']
     },
+    ...fieldWithID('type', {
+      description: `The type of area (country, city, etc. – see the [possible
+values](https://musicbrainz.org/doc/Area)).`
+    }),
     artists,
     events,
     labels,

@@ -592,6 +592,30 @@
               "deprecationReason": null
             },
             {
+              "name": "type",
+              "description": "The type of area (country, city, etc. – see the [possible\nvalues](https://musicbrainz.org/doc/Area)).",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "typeID",
+              "description": "The MBID associated with the value of the `type`\nfield.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "MBID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "artists",
               "description": "A list of artists linked to this entity.",
               "args": [

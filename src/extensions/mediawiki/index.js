@@ -6,9 +6,8 @@ import { ONE_DAY } from '../../util'
 
 export default {
   name: 'MediaWiki',
-  description:
-    'Retrieve information from MediaWiki image pages, like the actual image ' +
-    'file URL and EXIF metadata.',
+  description: `Retrieve information from MediaWiki image pages, like the actual
+image file URL and EXIF metadata.`,
   extendContext (context, { mediaWiki = {} } = {}) {
     const client = new MediaWikiClient(mediaWiki)
     const cacheSize = parseInt(

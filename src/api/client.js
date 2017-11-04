@@ -97,15 +97,17 @@ export default class Client {
         }
       }
 
-      debug(`Sending request. url=${this.baseURL}${path} attempt=${info.currentAttempt}`)
+      const url = `${options.baseUrl}${options.url}`
+
+      debug(`Sending request. url=${url} attempt=${info.currentAttempt}`)
 
       request(options, (err, response, body) => {
         if (err) {
-          debug(`Error: “${err}” url=${this.baseURL}${path}`)
+          debug(`Error: “${err}” url=${url}`)
           reject(err)
         } else if (response.statusCode >= 400) {
           const message = this.parseErrorMessage(response, body)
-          debug(`Error: “${message}” url=${this.baseURL}${path}`)
+          debug(`Error: “${message}” url=${url}`)
           const ClientError = this.errorClass
           reject(new ClientError(message, response.statusCode))
         } else if (options.method === 'HEAD') {
