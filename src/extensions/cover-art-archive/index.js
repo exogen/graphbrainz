@@ -6,8 +6,8 @@ import { ONE_DAY } from '../../util'
 
 export default {
   name: 'Cover Art Archive',
-  description:
-    'Retrieve cover art images for releases from the [Cover Art Archive](https://coverartarchive.org/).',
+  description: `Retrieve cover art images for releases from the [Cover Art
+Archive](https://coverartarchive.org/).`,
   extendContext (context, { coverArtClient, coverArtArchive = {} } = {}) {
     const client = coverArtClient || new CoverArtArchiveClient(coverArtArchive)
     const cacheSize = parseInt(

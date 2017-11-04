@@ -6,9 +6,8 @@ import { ONE_DAY } from '../../util'
 
 export default {
   name: 'fanart.tv',
-  description:
-    'Retrieve high quality artwork for artists, releases, and labels from ' +
-    '[fanart.tv](https://fanart.tv/).',
+  description: `Retrieve high quality artwork for artists, releases, and labels
+from [fanart.tv](https://fanart.tv/).`,
   extendContext (context, { fanArt = {} } = {}) {
     const client = new FanArtClient(fanArt)
     const cacheSize = parseInt(

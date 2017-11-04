@@ -52,7 +52,7 @@ const middleware = ({
 
 export default middleware
 
-export function start () {
+export function start (options) {
   require('dotenv').config({ silent: true })
   const app = express()
   const port = process.env.PORT || 3000
@@ -72,7 +72,7 @@ export function start () {
       break
   }
   app.use(compression())
-  app.use(route, cors(corsOptions), middleware())
+  app.use(route, cors(corsOptions), middleware(options))
   app.listen(port)
   console.log(`Listening on port ${port}.`)
 }

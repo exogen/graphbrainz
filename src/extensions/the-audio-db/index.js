@@ -6,9 +6,8 @@ import { ONE_DAY } from '../../util'
 
 export default {
   name: 'TheAudioDB',
-  description:
-    'Retrieve images and information about artists, releases, and recordings ' +
-    'from [TheAudioDB.com](http://www.theaudiodb.com/).',
+  description: `Retrieve images and information about artists, releases, and
+recordings from [TheAudioDB.com](http://www.theaudiodb.com/).`,
   extendContext (context, { theAudioDB = {} } = {}) {
     const client = new TheAudioDBClient(theAudioDB)
     const cacheSize = parseInt(

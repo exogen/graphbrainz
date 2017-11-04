@@ -502,6 +502,22 @@ test('area maps iso-3166-1-codes to isoCodes', testData, `
   t.deepEqual(data.lookup.area.isoCodes, ['US'])
 })
 
+test('areas have a type and typeID', testData, `
+  {
+    search {
+      areas(query: "Germany", first: 5) {
+        nodes {
+          name
+          type
+          typeID
+        }
+      }
+    }
+  }
+`, (t, data) => {
+  t.snapshot(data)
+})
+
 test('alias locales use the locale scalar', testData, `
   {
     lookup {

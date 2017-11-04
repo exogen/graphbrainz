@@ -90,7 +90,14 @@ export function fieldWithID (name, config = {}) {
     type: isPlural ? new GraphQLList(MBID) : MBID,
     description: `The MBID${s} associated with the value${s} of the \`${name}\`
 field.`,
-    resolve: resolveHyphenated
+    resolve: (entity, args, { loaders }) => {
+      const fieldName = toDashed(idName)
+      if (fieldName in entity) {
+        return entity[fieldName]
+      }
+      return loaders.lookup.load([entity._type, entity.id])
+        .then(data => data[fieldName])
+    }
   }
   return {
     [name]: config,
