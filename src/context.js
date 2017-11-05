@@ -17,11 +17,12 @@ export function extendContext (extension, context, options) {
   return context
 }
 
-export function createContext (options) {
+export function createContext (options = {}) {
   const { client } = options
   const loaders = createLoaders(client)
   const context = { client, loaders }
-  return options.extensions.reduce((context, extension) => {
+  const { extensions = [] } = options
+  return extensions.reduce((context, extension) => {
     return extendContext(extension, context, options)
   }, context)
 }
