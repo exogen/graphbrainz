@@ -21,7 +21,7 @@ import {
   Work
 } from '../types'
 
-function createLookupField (entity, args) {
+function createLookupField(entity, args) {
   const typeName = toWords(entity.name)
   return {
     type: entity,

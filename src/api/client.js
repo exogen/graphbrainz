@@ -21,33 +21,35 @@ const RETRY_CODES = {
 }
 
 export class ClientError extends ExtendableError {
-  constructor (message, statusCode) {
+  constructor(message, statusCode) {
     super(message)
     this.statusCode = statusCode
   }
 }
 
 export default class Client {
-  constructor ({
-    baseURL,
-    userAgent = `${pkg.name}/${pkg.version} ` +
-      `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
-    extraHeaders = {},
-    errorClass = ClientError,
-    timeout = 60000,
-    limit = 1,
-    period = 1000,
-    concurrency = 10,
-    retries = 10,
-    // It's OK for `retryDelayMin` to be less than one second, even 0, because
-    // `RateLimit` will already make sure we don't exceed the API rate limit.
-    // We're not doing exponential backoff because it will help with being
-    // rate limited, but rather to be chill in case MusicBrainz is returning
-    // some other error or our network is failing.
-    retryDelayMin = 100,
-    retryDelayMax = 60000,
-    randomizeRetry = true
-  } = {}) {
+  constructor(
+    {
+      baseURL,
+      userAgent = `${pkg.name}/${pkg.version} ` +
+        `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
+      extraHeaders = {},
+      errorClass = ClientError,
+      timeout = 60000,
+      limit = 1,
+      period = 1000,
+      concurrency = 10,
+      retries = 10,
+      // It's OK for `retryDelayMin` to be less than one second, even 0, because
+      // `RateLimit` will already make sure we don't exceed the API rate limit.
+      // We're not doing exponential backoff because it will help with being
+      // rate limited, but rather to be chill in case MusicBrainz is returning
+      // some other error or our network is failing.
+      retryDelayMin = 100,
+      retryDelayMax = 60000,
+      randomizeRetry = true
+    } = {}
+  ) {
     this.baseURL = baseURL
     this.userAgent = userAgent
     this.extraHeaders = extraHeaders
@@ -67,14 +69,14 @@ export default class Client {
    * Retry any 5XX response from MusicBrainz, as well as any error in
    * `RETRY_CODES`.
    */
-  shouldRetry (err) {
+  shouldRetry(err) {
     if (err instanceof this.errorClass) {
       return err.statusCode >= 500 && err.statusCode < 600
     }
     return RETRY_CODES[err.code] || false
   }
 
-  parseErrorMessage (response, body) {
+  parseErrorMessage(response, body) {
     return typeof body === 'string' && body ? body : `${response.statusCode}`
   }
 
@@ -82,7 +84,7 @@ export default class Client {
    * Send a request without any retrying or rate limiting.
    * Use `get` instead.
    */
-  _get (path, options = {}, info = {}) {
+  _get(path, options = {}, info = {}) {
     return new Promise((resolve, reject) => {
       options = {
         baseUrl: this.baseURL,
@@ -122,7 +124,7 @@ export default class Client {
   /**
    * Send a request with retrying and rate limiting.
    */
-  get (path, options = {}) {
+  get(path, options = {}) {
     return new Promise((resolve, reject) => {
       const fn = this._get.bind(this)
       const operation = retry.operation(this.retryOptions)
@@ -130,7 +132,8 @@ export default class Client {
         // This will increase the priority in our `RateLimit` queue for each
         // retry, so that newer requests don't delay this one further.
         const priority = currentAttempt
-        this.limiter.enqueue(fn, [path, options, { currentAttempt }], priority)
+        this.limiter
+          .enqueue(fn, [path, options, { currentAttempt }], priority)
           .then(resolve)
           .catch(err => {
             if (!this.shouldRetry(err) || !operation.retry(err)) {

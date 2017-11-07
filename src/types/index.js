@@ -12,7 +12,10 @@ export { default as Label, LabelConnection } from './label'
 export { default as Place, PlaceConnection } from './place'
 export { default as Recording, RecordingConnection } from './recording'
 export { default as Release, ReleaseConnection } from './release'
-export { default as ReleaseGroup, ReleaseGroupConnection } from './release-group'
+export {
+  default as ReleaseGroup,
+  ReleaseGroupConnection
+} from './release-group'
 export { default as Series, SeriesConnection } from './series'
 export { default as Tag, TagConnection } from './tag'
 export { default as URL, URLConnection } from './url'

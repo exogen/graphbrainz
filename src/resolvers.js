@@ -6,7 +6,7 @@ import {
 } from 'graphql-relay'
 import { getFields, extendIncludes } from './util'
 
-export function includeRelationships (params, info, fragments = info.fragments) {
+export function includeRelationships(params, info, fragments = info.fragments) {
   let fields = getFields(info, fragments)
   if (info.fieldName !== 'relationships') {
     if (fields.relationships) {
@@ -36,7 +36,7 @@ export function includeRelationships (params, info, fragments = info.fragments) 
   return params
 }
 
-export function includeSubqueries (params, info, fragments = info.fragments) {
+export function includeSubqueries(params, info, fragments = info.fragments) {
   const subqueryIncludes = {
     aliases: ['aliases'],
     artistCredit: ['artist-credits'],
@@ -67,7 +67,7 @@ export function includeSubqueries (params, info, fragments = info.fragments) {
   return params
 }
 
-export function resolveLookup (root, { mbid, ...params }, { loaders }, info) {
+export function resolveLookup(root, { mbid, ...params }, { loaders }, info) {
   if (!mbid && !params.resource) {
     throw new Error('Lookups by a field other than MBID must provide: resource')
   }
@@ -77,16 +77,12 @@ export function resolveLookup (root, { mbid, ...params }, { loaders }, info) {
   return loaders.lookup.load([entityType, mbid, params])
 }
 
-export function resolveBrowse (root, {
-  first,
-  after,
-  type = [],
-  status = [],
-  discID,
-  isrc,
-  iswc,
-  ...args
-}, { loaders }, info) {
+export function resolveBrowse(
+  root,
+  { first, after, type = [], status = [], discID, isrc, iswc, ...args },
+  { loaders },
+  info
+) {
   const pluralName = toDashed(info.fieldName)
   const singularName = toSingular(pluralName)
   let params = {
@@ -127,7 +123,11 @@ export function resolveBrowse (root, {
       [`${singularName}-count`]: arrayLength = arraySlice.length
     } = list
     const meta = { sliceStart, arrayLength }
-    const connection = connectionFromArraySlice(arraySlice, { first, after }, meta)
+    const connection = connectionFromArraySlice(
+      arraySlice,
+      { first, after },
+      meta
+    )
     return {
       nodes: connection.edges.map(edge => edge.node),
       totalCount: arrayLength,
@@ -136,12 +136,12 @@ export function resolveBrowse (root, {
   })
 }
 
-export function resolveSearch (root, {
-  after,
-  first,
-  query,
-  ...args
-}, { loaders }, info) {
+export function resolveSearch(
+  root,
+  { after, first, query, ...args },
+  { loaders },
+  info
+) {
   const pluralName = toDashed(info.fieldName)
   const singularName = toSingular(pluralName)
   let params = {
@@ -157,10 +157,17 @@ export function resolveSearch (root, {
       count: arrayLength
     } = list
     const meta = { sliceStart, arrayLength }
-    const connection = connectionFromArraySlice(arraySlice, { first, after }, meta)
+    const connection = connectionFromArraySlice(
+      arraySlice,
+      { first, after },
+      meta
+    )
     // Move the `score` field up to the edge object and make sure it's a
     // number (MusicBrainz returns a string).
-    const edges = connection.edges.map(edge => ({ ...edge, score: +edge.node.score }))
+    const edges = connection.edges.map(edge => ({
+      ...edge,
+      score: +edge.node.score
+    }))
     const connectionWithExtras = {
       nodes: edges.map(edge => edge.node),
       totalCount: arrayLength,
@@ -171,7 +178,7 @@ export function resolveSearch (root, {
   })
 }
 
-export function resolveRelationship (rels, args, context, info) {
+export function resolveRelationship(rels, args, context, info) {
   const targetType = toDashed(toSingular(info.fieldName)).replace('-', '_')
   let matches = rels.filter(rel => rel['target-type'] === targetType)
   // There's no way to filter these at the API level, so do it here.
@@ -192,7 +199,7 @@ export function resolveRelationship (rels, args, context, info) {
   }
 }
 
-export function resolveLinked (entity, args, context, info) {
+export function resolveLinked(entity, args, context, info) {
   const parentEntity = toDashed(info.parentType.name)
   args = { ...args, [parentEntity]: entity.id }
   return resolveBrowse(entity, args, context, info)
@@ -203,7 +210,10 @@ export function resolveLinked (entity, args, context, info) {
  * for a particular field that's being requested, make another request to grab
  * it (after making sure it isn't already available).
  */
-export function createSubqueryResolver ({ inc, key } = {}, handler = value => value) {
+export function createSubqueryResolver(
+  { inc, key } = {},
+  handler = value => value
+) {
   return (entity, args, { loaders }, info) => {
     key = key || toDashed(info.fieldName)
     let promise
@@ -218,7 +228,7 @@ export function createSubqueryResolver ({ inc, key } = {}, handler = value => va
   }
 }
 
-export function resolveDiscReleases (disc, args, context, info) {
+export function resolveDiscReleases(disc, args, context, info) {
   const { releases } = disc
   if (releases != null) {
     const connection = connectionFromArray(releases, args)

@@ -60,7 +60,7 @@ const work = {
   description: 'The MBID of a work to which the entity is linked.'
 }
 
-function createBrowseField (connectionType, args) {
+function createBrowseField(connectionType, args) {
   const typeName = toWords(connectionType.name.slice(0, -10))
   return {
     type: connectionType,
@@ -173,7 +173,8 @@ release, but is not included in the credits for the release itself.`
 
 export const browse = {
   type: BrowseQuery,
-  description: 'Browse all MusicBrainz entities directly linked to another entity.',
+  description:
+    'Browse all MusicBrainz entities directly linked to another entity.',
   // We only have work to do once we know what entity types are being requested,
   // so this can just resolve to an empty object.
   resolve: () => ({})

@@ -7,11 +7,7 @@ import {
 } from 'graphql/type'
 import { DateType } from './scalars'
 import Entity from './entity'
-import {
-  resolveHyphenated,
-  fieldWithID,
-  connectionWithExtras
-} from './helpers'
+import { resolveHyphenated, fieldWithID, connectionWithExtras } from './helpers'
 
 const Relationship = new GraphQLObjectType({
   name: 'Relationship',
@@ -35,7 +31,8 @@ other and to URLs outside MusicBrainz.`,
     },
     targetType: {
       type: new GraphQLNonNull(GraphQLString),
-      description: 'The type of entity on the receiving end of the relationship.',
+      description:
+        'The type of entity on the receiving end of the relationship.',
       resolve: resolveHyphenated
     },
     sourceCredit: {
@@ -56,7 +53,8 @@ from its main (performance) name.`,
     },
     end: {
       type: DateType,
-      description: 'The date on which the relationship became no longer applicable.'
+      description:
+        'The date on which the relationship became no longer applicable.'
     },
     ended: {
       type: GraphQLBoolean,

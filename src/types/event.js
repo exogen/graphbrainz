@@ -45,7 +45,8 @@ artists and works. See the [setlist documentation](https://musicbrainz.org/doc/E
 for syntax and examples.`
     },
     ...fieldWithID('type', {
-      description: 'What kind of event the event is, e.g. concert, festival, etc.'
+      description:
+        'What kind of event the event is, e.g. concert, festival, etc.'
     }),
     relationships,
     collections,

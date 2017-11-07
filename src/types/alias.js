@@ -1,7 +1,4 @@
-import {
-  GraphQLObjectType,
-  GraphQLBoolean
-} from 'graphql/type'
+import { GraphQLObjectType, GraphQLBoolean } from 'graphql/type'
 import { Locale } from './scalars'
 import { name, sortName, fieldWithID } from './helpers'
 

@@ -1,11 +1,11 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 
-function createScalar (config) {
+function createScalar(config) {
   return new GraphQLScalarType({
     serialize: value => value,
     parseValue: value => value,
-    parseLiteral (ast) {
+    parseLiteral(ast) {
       if (ast.kind === Kind.STRING) {
         return ast.value
       }
@@ -20,28 +20,28 @@ const locale = /^([a-z]{2})(_[A-Z]{2})?(\.[a-zA-Z0-9-]+)?$/
 // Be extremely lenient; just prevent major input errors.
 const url = /^\w+:\/\/[\w-]+\.\w+/
 
-function validateMBID (value) {
+function validateMBID(value) {
   if (typeof value === 'string' && uuid.test(value)) {
     return value
   }
   throw new TypeError(`Malformed MBID: ${value}`)
 }
 
-function validatePositive (value) {
+function validatePositive(value) {
   if (value >= 0) {
     return value
   }
   throw new TypeError(`Expected positive value: ${value}`)
 }
 
-function validateLocale (value) {
+function validateLocale(value) {
   if (typeof value === 'string' && locale.test(value)) {
     return value
   }
   throw new TypeError(`Malformed locale: ${value}`)
 }
 
-function validateURL (value) {
+function validateURL(value) {
   if (typeof value === 'string' && url.test(value)) {
     return value
   }
@@ -57,7 +57,8 @@ and its partners for product identification within the Amazon organization.`
 
 export const DateType = createScalar({
   name: 'Date',
-  description: 'Year, month (optional), and day (optional) in YYYY-MM-DD format.'
+  description:
+    'Year, month (optional), and day (optional) in YYYY-MM-DD format.'
 })
 
 export const Degrees = createScalar({
@@ -87,7 +88,7 @@ export const Duration = createScalar({
   description: 'A length of time, in milliseconds.',
   serialize: validatePositive,
   parseValue: validatePositive,
-  parseLiteral (ast) {
+  parseLiteral(ast) {
     if (ast.kind === Kind.INT) {
       return validatePositive(parseInt(ast.value, 10))
     }
@@ -135,7 +136,7 @@ export const Locale = createScalar({
   description: 'Language code, optionally with country and encoding.',
   serialize: validateLocale,
   parseValue: validateLocale,
-  parseLiteral (ast) {
+  parseLiteral(ast) {
     if (ast.kind === Kind.STRING) {
       return validateLocale(ast.value)
     }
@@ -149,7 +150,7 @@ export const MBID = createScalar({
 36-character UUIDs.`,
   serialize: validateMBID,
   parseValue: validateMBID,
-  parseLiteral (ast) {
+  parseLiteral(ast) {
     if (ast.kind === Kind.STRING) {
       return validateMBID(ast.value)
     }
@@ -167,7 +168,7 @@ export const URLString = createScalar({
   description: 'A web address.',
   serialize: validateURL,
   parseValue: validateURL,
-  parseLiteral (ast) {
+  parseLiteral(ast) {
     if (ast.kind === Kind.STRING) {
       return validateURL(ast.value)
     }

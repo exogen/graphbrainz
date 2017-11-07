@@ -8,24 +8,26 @@ import { createContext } from './context'
 
 const debug = require('debug')('graphbrainz')
 
-const formatError = (err) => ({
+const formatError = err => ({
   message: err.message,
   locations: err.locations,
   stack: err.stack
 })
 
-const middleware = ({
-  client = new MusicBrainz(),
-  extensions = process.env.GRAPHBRAINZ_EXTENSIONS
-    ? JSON.parse(process.env.GRAPHBRAINZ_EXTENSIONS)
-    : [
-      './extensions/cover-art-archive',
-      './extensions/fanart-tv',
-      './extensions/mediawiki',
-      './extensions/the-audio-db'
-    ],
-  ...middlewareOptions
-} = {}) => {
+const middleware = (
+  {
+    client = new MusicBrainz(),
+    extensions = process.env.GRAPHBRAINZ_EXTENSIONS
+      ? JSON.parse(process.env.GRAPHBRAINZ_EXTENSIONS)
+      : [
+          './extensions/cover-art-archive',
+          './extensions/fanart-tv',
+          './extensions/mediawiki',
+          './extensions/the-audio-db'
+        ],
+    ...middlewareOptions
+  } = {}
+) => {
   debug(`Loading ${extensions.length} extension(s).`)
   const options = {
     client,
@@ -52,7 +54,7 @@ const middleware = ({
 
 export default middleware
 
-export function start (options) {
+export function start(options) {
   require('dotenv').config({ silent: true })
   const app = express()
   const port = process.env.PORT || 3000

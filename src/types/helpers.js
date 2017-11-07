@@ -44,15 +44,15 @@ import {
 export const toPascal = pascalCase
 export const toDashed = dashify
 
-export function toPlural (name) {
+export function toPlural(name) {
   return name.endsWith('s') ? name : name + 's'
 }
 
-export function toSingular (name) {
+export function toSingular(name) {
   return name.endsWith('s') && !/series/i.test(name) ? name.slice(0, -1) : name
 }
 
-export function toWords (name) {
+export function toWords(name) {
   return toPascal(name).replace(/([^A-Z])?([A-Z]+)/g, (match, tail, head) => {
     tail = tail ? tail + ' ' : ''
     head = head.length > 1 ? head : head.toLowerCase()
@@ -60,13 +60,13 @@ export function toWords (name) {
   })
 }
 
-export function resolveHyphenated (obj, args, context, info) {
+export function resolveHyphenated(obj, args, context, info) {
   const name = toDashed(info.fieldName)
   return obj[name]
 }
 
-export function resolveWithFallback (keys) {
-  return (obj) => {
+export function resolveWithFallback(keys) {
+  return obj => {
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i]
       if (key in obj) {
@@ -76,7 +76,7 @@ export function resolveWithFallback (keys) {
   }
 }
 
-export function fieldWithID (name, config = {}) {
+export function fieldWithID(name, config = {}) {
   config = {
     type: GraphQLString,
     resolve: resolveHyphenated,
@@ -95,7 +95,8 @@ field.`,
       if (fieldName in entity) {
         return entity[fieldName]
       }
-      return loaders.lookup.load([entity._type, entity.id])
+      return loaders.lookup
+        .load([entity._type, entity.id])
         .then(data => data[fieldName])
     }
   }
@@ -105,7 +106,7 @@ field.`,
   }
 }
 
-export function createCollectionField (config) {
+export function createCollectionField(config) {
   const typeName = toPlural(toWords(config.type.name.slice(0, -10)))
   return {
     ...config,
@@ -145,7 +146,7 @@ meaning depends on the type of entity.`,
   resolve: resolveHyphenated
 }
 
-function linkedQuery (connectionType, { args, ...config } = {}) {
+function linkedQuery(connectionType, { args, ...config } = {}) {
   const typeName = toPlural(toWords(connectionType.name.slice(0, -10)))
   return {
     type: connectionType,
@@ -293,7 +294,7 @@ export const score = {
 these results were found through a search.`
 }
 
-export function connectionWithExtras (nodeType) {
+export function connectionWithExtras(nodeType) {
   return connectionDefinitions({
     nodeType,
     connectionFields: () => ({

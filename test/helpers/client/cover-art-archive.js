@@ -4,8 +4,7 @@ import CoverArtArchiveClient from '../../../src/extensions/cover-art-archive/cli
 
 sepia.fixtureDir(path.join(__dirname, '..', '..', 'fixtures'))
 
-const options = process.env.VCR_MODE === 'playback'
-  ? { limit: Infinity, period: 0 }
-  : {}
+const options =
+  process.env.VCR_MODE === 'playback' ? { limit: Infinity, period: 0 } : {}
 
 export default new CoverArtArchiveClient(options)

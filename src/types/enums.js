@@ -18,7 +18,8 @@ distinctive name.`,
     },
     ORCHESTRA: {
       name: 'Orchestra',
-      description: 'This indicates an orchestra (a large instrumental ensemble).',
+      description:
+        'This indicates an orchestra (a large instrumental ensemble).',
       value: 'Orchestra'
     },
     CHOIR: {

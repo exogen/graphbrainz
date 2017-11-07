@@ -9,7 +9,7 @@ const SIZES = new Map([
   ['LARGE', 500]
 ])
 
-function resolveImage (coverArt, args, { loaders }, info) {
+function resolveImage(coverArt, args, { loaders }, info) {
   // Since migrating the schema to an extension, we lost custom enum values
   // for the time being. Translate any incoming `size` arg to the old enum
   // values.

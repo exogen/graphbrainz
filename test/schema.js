@@ -3,7 +3,7 @@ import { graphql } from 'graphql'
 import schema from '../src/schema'
 import context from './helpers/context'
 
-function testData (t, query, handler) {
+function testData(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {
     if (result.errors !== undefined) {
       console.log(result.errors)
@@ -13,7 +13,7 @@ function testData (t, query, handler) {
   })
 }
 
-function testError (t, query, handler) {
+function testError(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {
     t.truthy(result.errors)
     t.true(result.errors.length > 0)
@@ -21,12 +21,15 @@ function testError (t, query, handler) {
   })
 }
 
-function testThrows (t, query, handler) {
+function testThrows(t, query, handler) {
   const error = t.throws(graphql(schema, query, null, context))
   return handler(t, error)
 }
 
-test('schema has a node field', testData, `
+test(
+  'schema has a node field',
+  testData,
+  `
   {
     node(id: "UmVsZWFzZUdyb3VwOmUzN2QyNzQwLTQ1MDMtNGUzZi1hYjZkLWU2MjJhMjVlOTY0ZA==") {
       __typename
@@ -35,16 +38,21 @@ test('schema has a node field', testData, `
       }
     }
   }
-`, (t, data) => {
-  t.deepEqual(data, {
-    node: {
-      __typename: 'ReleaseGroup',
-      mbid: 'e37d2740-4503-4e3f-ab6d-e622a25e964d'
-    }
-  })
-})
+`,
+  (t, data) => {
+    t.deepEqual(data, {
+      node: {
+        __typename: 'ReleaseGroup',
+        mbid: 'e37d2740-4503-4e3f-ab6d-e622a25e964d'
+      }
+    })
+  }
+)
 
-test('schema has a lookup query', testData, `
+test(
+  'schema has a lookup query',
+  testData,
+  `
   {
     lookup {
       artist (mbid: "c8da2e40-bd28-4d4e-813a-bd2f51958ba8") {
@@ -54,19 +62,24 @@ test('schema has a lookup query', testData, `
       }
     }
   }
-`, (t, data) => {
-  t.deepEqual(data, {
-    lookup: {
-      artist: {
-        mbid: 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8',
-        name: 'Lures',
-        type: 'Group'
+`,
+  (t, data) => {
+    t.deepEqual(data, {
+      lookup: {
+        artist: {
+          mbid: 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8',
+          name: 'Lures',
+          type: 'Group'
+        }
       }
-    }
-  })
-})
+    })
+  }
+)
 
-test('schema has a search query', testData, `
+test(
+  'schema has a search query',
+  testData,
+  `
   {
     search {
       recordings (query: "Burn the Witch") {
@@ -81,14 +94,19 @@ test('schema has a search query', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { recordings } = data.search
-  t.true(recordings.totalCount > 0)
-  t.true(recordings.edges.length === 25)
-  recordings.edges.forEach(edge => t.true(edge.score > 0))
-})
+`,
+  (t, data) => {
+    const { recordings } = data.search
+    t.true(recordings.totalCount > 0)
+    t.true(recordings.edges.length === 25)
+    recordings.edges.forEach(edge => t.true(edge.score > 0))
+  }
+)
 
-test('schema has a browse query', testData, `
+test(
+  'schema has a browse query',
+  testData,
+  `
   {
     browse {
       releaseGroups(artist: "c8da2e40-bd28-4d4e-813a-bd2f51958ba8") {
@@ -109,14 +127,19 @@ test('schema has a browse query', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { releaseGroups } = data.browse
-  t.true(releaseGroups.totalCount > 0)
-  t.true(releaseGroups.edges.length > 0)
-  releaseGroups.edges.forEach(edge => t.truthy(edge.node.title))
-})
+`,
+  (t, data) => {
+    const { releaseGroups } = data.browse
+    t.true(releaseGroups.totalCount > 0)
+    t.true(releaseGroups.edges.length > 0)
+    releaseGroups.edges.forEach(edge => t.truthy(edge.node.title))
+  }
+)
 
-test('supports deeply nested queries', testData, `
+test(
+  'supports deeply nested queries',
+  testData,
+  `
   query AppleRecordsMarriages {
     search {
       labels(query: "Apple Records", first: 1) {
@@ -184,13 +207,18 @@ test('supports deeply nested queries', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { labels } = data.search
-  t.true(labels.edges.length > 0)
-  t.is(labels.edges[0].node.releases.edges.length, 1)
-})
+`,
+  (t, data) => {
+    const { labels } = data.search
+    t.true(labels.edges.length > 0)
+    t.is(labels.edges[0].node.releases.edges.length, 1)
+  }
+)
 
-test('connections have a nodes shortcut field', testData, `
+test(
+  'connections have a nodes shortcut field',
+  testData,
+  `
   query AppleRecordsMarriages {
     search {
       labels(query: "Apple Records", first: 1) {
@@ -248,14 +276,19 @@ test('connections have a nodes shortcut field', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { labels } = data.search
-  t.true(labels.nodes.length > 0)
-  t.is(labels.nodes[0].releases.nodes.length, 1)
-})
+`,
+  (t, data) => {
+    const { labels } = data.search
+    t.true(labels.nodes.length > 0)
+    t.is(labels.nodes[0].releases.nodes.length, 1)
+  }
+)
 
 // FIXME: https://github.com/graphql/graphql-js/issues/910
-test('throws an error if given a malformed MBID', testThrows, `
+test(
+  'throws an error if given a malformed MBID',
+  testThrows,
+  `
   {
     lookup {
       artist(mbid: "ABC123") {
@@ -263,13 +296,18 @@ test('throws an error if given a malformed MBID', testThrows, `
       }
     }
   }
-`, async (t, promise) => {
-  const err = await promise
-  t.true(err instanceof TypeError)
-  t.is(err.message, 'Malformed MBID: ABC123')
-})
+`,
+  async (t, promise) => {
+    const err = await promise
+    t.true(err instanceof TypeError)
+    t.is(err.message, 'Malformed MBID: ABC123')
+  }
+)
 
-test('artist areas access begin_area/end_area for lookup queries', testData, `
+test(
+  'artist areas access begin_area/end_area for lookup queries',
+  testData,
+  `
   {
     lookup {
       artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
@@ -282,13 +320,18 @@ test('artist areas access begin_area/end_area for lookup queries', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { artist } = data.lookup
-  t.is(artist.beginArea.name, 'Westmount')
-  t.is(artist.endArea.name, 'Los Angeles')
-})
+`,
+  (t, data) => {
+    const { artist } = data.lookup
+    t.is(artist.beginArea.name, 'Westmount')
+    t.is(artist.endArea.name, 'Los Angeles')
+  }
+)
 
-test('artist areas access begin_area/end_area for browse queries', testData, `
+test(
+  'artist areas access begin_area/end_area for browse queries',
+  testData,
+  `
   {
     browse {
       artists(area: "3f504d54-c40c-487d-bc16-c1990eac887f") {
@@ -305,14 +348,19 @@ test('artist areas access begin_area/end_area for browse queries', testData, `
       }
     }
   }
-`, (t, data) => {
-  const artists = data.browse.artists.edges.map(edge => edge.node)
-  t.true(artists.length > 1)
-  t.true(artists.some(artist => artist.beginArea))
-  t.true(artists.some(artist => artist.endArea))
-})
+`,
+  (t, data) => {
+    const artists = data.browse.artists.edges.map(edge => edge.node)
+    t.true(artists.length > 1)
+    t.true(artists.some(artist => artist.beginArea))
+    t.true(artists.some(artist => artist.endArea))
+  }
+)
 
-test('artist areas access begin-area/end-area for search queries', testData, `
+test(
+  'artist areas access begin-area/end-area for search queries',
+  testData,
+  `
   {
     search {
       artists(query: "Leonard Cohen", first: 1) {
@@ -329,14 +377,19 @@ test('artist areas access begin-area/end-area for search queries', testData, `
       }
     }
   }
-`, (t, data) => {
-  const artists = data.search.artists.edges.map(edge => edge.node)
-  t.true(artists.length === 1)
-  t.is(artists[0].beginArea.name, 'Westmount')
-  t.is(artists[0].endArea.name, 'Los Angeles')
-})
+`,
+  (t, data) => {
+    const artists = data.search.artists.edges.map(edge => edge.node)
+    t.true(artists.length === 1)
+    t.is(artists[0].beginArea.name, 'Westmount')
+    t.is(artists[0].endArea.name, 'Los Angeles')
+  }
+)
 
-test('relationships are grouped by target type', testData, `
+test(
+  'relationships are grouped by target type',
+  testData,
+  `
   {
     lookup {
       artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
@@ -375,26 +428,31 @@ test('relationships are grouped by target type', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { relationships } = data.lookup.artist
-  t.is(relationships.artists.edges.length, 5)
-  relationships.artists.edges.forEach(edge => {
-    t.is(edge.node.targetType, 'artist')
-    t.is(edge.node.target.__typename, 'Artist')
-  })
-  t.is(relationships.recordings.edges.length, 5)
-  relationships.recordings.edges.forEach(edge => {
-    t.is(edge.node.targetType, 'recording')
-    t.is(edge.node.target.__typename, 'Recording')
-  })
-  t.is(relationships.releases.edges.length, 5)
-  relationships.releases.edges.forEach(edge => {
-    t.is(edge.node.targetType, 'release')
-    t.is(edge.node.target.__typename, 'Release')
-  })
-})
+`,
+  (t, data) => {
+    const { relationships } = data.lookup.artist
+    t.is(relationships.artists.edges.length, 5)
+    relationships.artists.edges.forEach(edge => {
+      t.is(edge.node.targetType, 'artist')
+      t.is(edge.node.target.__typename, 'Artist')
+    })
+    t.is(relationships.recordings.edges.length, 5)
+    relationships.recordings.edges.forEach(edge => {
+      t.is(edge.node.targetType, 'recording')
+      t.is(edge.node.target.__typename, 'Recording')
+    })
+    t.is(relationships.releases.edges.length, 5)
+    relationships.releases.edges.forEach(edge => {
+      t.is(edge.node.targetType, 'release')
+      t.is(edge.node.target.__typename, 'Release')
+    })
+  }
+)
 
-test('relationships can be filtered by type', testData, `
+test(
+  'relationships can be filtered by type',
+  testData,
+  `
   {
     lookup {
       artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
@@ -411,17 +469,22 @@ test('relationships can be filtered by type', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { artist } = data.lookup
-  const rels = artist.relationships.artists.edges.map(edge => edge.node)
-  t.is(rels.length, 2)
-  rels.forEach(rel => {
-    t.is(rel.targetType, 'artist')
-    t.is(rel.type, 'parent')
-  })
-})
+`,
+  (t, data) => {
+    const { artist } = data.lookup
+    const rels = artist.relationships.artists.edges.map(edge => edge.node)
+    t.is(rels.length, 2)
+    rels.forEach(rel => {
+      t.is(rel.targetType, 'artist')
+      t.is(rel.type, 'parent')
+    })
+  }
+)
 
-test('relationships can be filtered by type ID', testData, `
+test(
+  'relationships can be filtered by type ID',
+  testData,
+  `
   {
     lookup {
       artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
@@ -438,17 +501,22 @@ test('relationships can be filtered by type ID', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { artist } = data.lookup
-  const rels = artist.relationships.artists.edges.map(edge => edge.node)
-  t.is(rels.length, 1)
-  rels.forEach(rel => {
-    t.is(rel.targetType, 'artist')
-    t.is(rel.type, 'involved with')
-  })
-})
+`,
+  (t, data) => {
+    const { artist } = data.lookup
+    const rels = artist.relationships.artists.edges.map(edge => edge.node)
+    t.is(rels.length, 1)
+    rels.forEach(rel => {
+      t.is(rel.targetType, 'artist')
+      t.is(rel.type, 'involved with')
+    })
+  }
+)
 
-test('relationships can be filtered by direction', testData, `
+test(
+  'relationships can be filtered by direction',
+  testData,
+  `
   {
     lookup {
       area(mbid: "10cb2ebd-1bc7-4c11-b10d-54f60c421d20") {
@@ -473,23 +541,28 @@ test('relationships can be filtered by direction', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { area } = data.lookup
-  const isPartOf = area.relationships.isPartOf.edges.map(edge => edge.node)
-  const hasParts = area.relationships.hasParts.edges.map(edge => edge.node)
-  t.true(isPartOf.length > 0)
-  t.true(hasParts.length > 0)
-  isPartOf.forEach(rel => {
-    t.is(rel.type, 'part of')
-    t.is(rel.direction, 'backward')
-  })
-  hasParts.forEach(rel => {
-    t.is(rel.type, 'part of')
-    t.is(rel.direction, 'forward')
-  })
-})
+`,
+  (t, data) => {
+    const { area } = data.lookup
+    const isPartOf = area.relationships.isPartOf.edges.map(edge => edge.node)
+    const hasParts = area.relationships.hasParts.edges.map(edge => edge.node)
+    t.true(isPartOf.length > 0)
+    t.true(hasParts.length > 0)
+    isPartOf.forEach(rel => {
+      t.is(rel.type, 'part of')
+      t.is(rel.direction, 'backward')
+    })
+    hasParts.forEach(rel => {
+      t.is(rel.type, 'part of')
+      t.is(rel.direction, 'forward')
+    })
+  }
+)
 
-test('area maps iso-3166-1-codes to isoCodes', testData, `
+test(
+  'area maps iso-3166-1-codes to isoCodes',
+  testData,
+  `
   {
     lookup {
       area(mbid: "489ce91b-6658-3307-9877-795b68554c98") {
@@ -498,11 +571,16 @@ test('area maps iso-3166-1-codes to isoCodes', testData, `
       }
     }
   }
-`, (t, data) => {
-  t.deepEqual(data.lookup.area.isoCodes, ['US'])
-})
+`,
+  (t, data) => {
+    t.deepEqual(data.lookup.area.isoCodes, ['US'])
+  }
+)
 
-test('areas have a type and typeID', testData, `
+test(
+  'areas have a type and typeID',
+  testData,
+  `
   {
     search {
       areas(query: "Germany", first: 5) {
@@ -514,11 +592,16 @@ test('areas have a type and typeID', testData, `
       }
     }
   }
-`, (t, data) => {
-  t.snapshot(data)
-})
+`,
+  (t, data) => {
+    t.snapshot(data)
+  }
+)
 
-test('alias locales use the locale scalar', testData, `
+test(
+  'alias locales use the locale scalar',
+  testData,
+  `
   {
     lookup {
       artist(mbid: "f99b7d67-4e63-4678-aa66-4c6ac0f7d24a") {
@@ -529,13 +612,18 @@ test('alias locales use the locale scalar', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { aliases } = data.lookup.artist
-  t.is(aliases.find(alias => alias.locale === 'en').name, 'PSY')
-  t.is(aliases.find(alias => alias.locale === 'ko').name, '싸이')
-})
+`,
+  (t, data) => {
+    const { aliases } = data.lookup.artist
+    t.is(aliases.find(alias => alias.locale === 'en').name, 'PSY')
+    t.is(aliases.find(alias => alias.locale === 'ko').name, '싸이')
+  }
+)
 
-test('work ISWCs use the ISWC scalar', testData, `
+test(
+  'work ISWCs use the ISWC scalar',
+  testData,
+  `
   {
     lookup {
       work(mbid: "ef7d0814-da6a-32f5-a600-ff81cffd1aed") {
@@ -544,13 +632,18 @@ test('work ISWCs use the ISWC scalar', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { work } = data.lookup
-  t.is(work.title, 'Song of the French Partisan')
-  t.deepEqual(work.iswcs, ['T-900.755.682-3'])
-})
+`,
+  (t, data) => {
+    const { work } = data.lookup
+    t.is(work.title, 'Song of the French Partisan')
+    t.deepEqual(work.iswcs, ['T-900.755.682-3'])
+  }
+)
 
-test('URLs may be looked up by resource', testData, `
+test(
+  'URLs may be looked up by resource',
+  testData,
+  `
   {
     lookup {
       url(resource: "http://www.nirvana.com/") {
@@ -559,14 +652,19 @@ test('URLs may be looked up by resource', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { url } = data.lookup
-  t.is(url.mbid, '4347ffe2-82ec-4059-9520-6a1a3f73a304')
-  t.is(url.resource, 'http://www.nirvana.com/')
-})
+`,
+  (t, data) => {
+    const { url } = data.lookup
+    t.is(url.mbid, '4347ffe2-82ec-4059-9520-6a1a3f73a304')
+    t.is(url.resource, 'http://www.nirvana.com/')
+  }
+)
 
 // FIXME: https://github.com/graphql/graphql-js/issues/910
-test('throws an error if given a malformed resource URL', testThrows, `
+test(
+  'throws an error if given a malformed resource URL',
+  testThrows,
+  `
   {
     lookup {
       url(resource: "http:foo") {
@@ -575,13 +673,18 @@ test('throws an error if given a malformed resource URL', testThrows, `
       }
     }
   }
-`, async (t, promise) => {
-  const err = await promise
-  t.true(err instanceof TypeError)
-  t.is(err.message, 'Malformed URL: http:foo')
-})
+`,
+  async (t, promise) => {
+    const err = await promise
+    t.true(err instanceof TypeError)
+    t.is(err.message, 'Malformed URL: http:foo')
+  }
+)
 
-test('release groups can be browsed by type', testData, `
+test(
+  'release groups can be browsed by type',
+  testData,
+  `
   {
     browse {
       releaseGroups(artist: "5b11f4ce-a62d-471e-81fc-a69a8278c7da", type: EP) {
@@ -593,13 +696,18 @@ test('release groups can be browsed by type', testData, `
       }
     }
   }
-`, (t, data) => {
-  const releaseGroups = data.browse.releaseGroups.edges.map(edge => edge.node)
-  t.is(releaseGroups.length, 8)
-  releaseGroups.forEach(releaseGroup => t.is(releaseGroup.primaryType, 'EP'))
-})
+`,
+  (t, data) => {
+    const releaseGroups = data.browse.releaseGroups.edges.map(edge => edge.node)
+    t.is(releaseGroups.length, 8)
+    releaseGroups.forEach(releaseGroup => t.is(releaseGroup.primaryType, 'EP'))
+  }
+)
 
-test('releases can be browsed by type and status', testData, `
+test(
+  'releases can be browsed by type and status',
+  testData,
+  `
   {
     browse {
       releases(artist: "5b11f4ce-a62d-471e-81fc-a69a8278c7da", type: EP, status: BOOTLEG) {
@@ -611,13 +719,18 @@ test('releases can be browsed by type and status', testData, `
       }
     }
   }
-`, (t, data) => {
-  const releases = data.browse.releases.edges.map(edge => edge.node)
-  t.is(releases.length, 6)
-  releases.forEach(release => t.is(release.status, 'BOOTLEG'))
-})
+`,
+  (t, data) => {
+    const releases = data.browse.releases.edges.map(edge => edge.node)
+    t.is(releases.length, 6)
+    releases.forEach(release => t.is(release.status, 'BOOTLEG'))
+  }
+)
 
-test('releases have an ASIN field', testData, `
+test(
+  'releases have an ASIN field',
+  testData,
+  `
   {
     lookup {
       release(mbid: "d5cdb7fd-c7e9-460a-9549-8a369655cc52") {
@@ -625,12 +738,17 @@ test('releases have an ASIN field', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { release } = data.lookup
-  t.is(release.asin, 'B01KN6XDS6')
-})
+`,
+  (t, data) => {
+    const { release } = data.lookup
+    t.is(release.asin, 'B01KN6XDS6')
+  }
+)
 
-test('artists have a list of ISNIs and IPIs', testData, `
+test(
+  'artists have a list of ISNIs and IPIs',
+  testData,
+  `
   {
     lookup {
       artist(mbid: "65314b12-0e08-43fa-ba33-baaa7b874c15") {
@@ -639,13 +757,18 @@ test('artists have a list of ISNIs and IPIs', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { artist } = data.lookup
-  t.deepEqual(artist.ipis, ['00006457004'])
-  t.deepEqual(artist.isnis, ['0000000110273481'])
-})
+`,
+  (t, data) => {
+    const { artist } = data.lookup
+    t.deepEqual(artist.ipis, ['00006457004'])
+    t.deepEqual(artist.isnis, ['0000000110273481'])
+  }
+)
 
-test('artistCredits is an alias for artistCredit', testData, `
+test(
+  'artistCredits is an alias for artistCredit',
+  testData,
+  `
   {
     lookup {
       recording(mbid: "07649758-09c8-4d70-bc6f-5c37ab36334d") {
@@ -680,27 +803,32 @@ test('artistCredits is an alias for artistCredit', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { recording, release, releaseGroup } = data.lookup
-  t.deepEqual(recording.artistCredit, [
-    { name: 'Holly Golightly', joinPhrase: ' & ' },
-    { name: 'The Brokeoffs', joinPhrase: '' }
-  ])
-  t.deepEqual(recording.artistCredits, recording.artistCredit)
+`,
+  (t, data) => {
+    const { recording, release, releaseGroup } = data.lookup
+    t.deepEqual(recording.artistCredit, [
+      { name: 'Holly Golightly', joinPhrase: ' & ' },
+      { name: 'The Brokeoffs', joinPhrase: '' }
+    ])
+    t.deepEqual(recording.artistCredits, recording.artistCredit)
 
-  t.deepEqual(release.artistCredit, [
-    { name: 'Leonard Cohen', joinPhrase: '' }
-  ])
-  t.deepEqual(release.artistCredits, release.artistCredit)
+    t.deepEqual(release.artistCredit, [
+      { name: 'Leonard Cohen', joinPhrase: '' }
+    ])
+    t.deepEqual(release.artistCredits, release.artistCredit)
 
-  t.deepEqual(releaseGroup.artistCredit, [
-    { name: 'DJ Muggs', joinPhrase: ' vs. ' },
-    { name: 'Ill Bill', joinPhrase: '' }
-  ])
-  t.deepEqual(releaseGroup.artistCredits, releaseGroup.artistCredit)
-})
+    t.deepEqual(releaseGroup.artistCredit, [
+      { name: 'DJ Muggs', joinPhrase: ' vs. ' },
+      { name: 'Ill Bill', joinPhrase: '' }
+    ])
+    t.deepEqual(releaseGroup.artistCredits, releaseGroup.artistCredit)
+  }
+)
 
-test('recordings can be browsed by ISRC', testData, `
+test(
+  'recordings can be browsed by ISRC',
+  testData,
+  `
   {
     browse {
       recordings(isrc: "USSUB0200002") {
@@ -714,15 +842,20 @@ test('recordings can be browsed by ISRC', testData, `
       }
     }
   }
-`, (t, data) => {
-  const recordings = data.browse.recordings.edges.map(edge => edge.node)
-  t.is(data.browse.recordings.totalCount, 1)
-  t.deepEqual(recordings, [
-    { title: 'About a Girl', isrcs: ['USSUB0200002', 'USUG10200084'] }
-  ])
-})
+`,
+  (t, data) => {
+    const recordings = data.browse.recordings.edges.map(edge => edge.node)
+    t.is(data.browse.recordings.totalCount, 1)
+    t.deepEqual(recordings, [
+      { title: 'About a Girl', isrcs: ['USSUB0200002', 'USUG10200084'] }
+    ])
+  }
+)
 
-test('releases can be browsed by Disc ID', testData, `
+test(
+  'releases can be browsed by Disc ID',
+  testData,
+  `
   {
     browse {
       releases(discID: "XzPS7vW.HPHsYemQh0HBUGr8vuU-") {
@@ -736,14 +869,27 @@ test('releases can be browsed by Disc ID', testData, `
       }
     }
   }
-`, (t, data) => {
-  const releases = data.browse.releases.edges.map(edge => edge.node)
-  t.true(data.browse.releases.totalCount >= 2)
-  t.true(releases.some(release => release.mbid === '5a6e5ad7-c2bd-3484-a20e-121bf981c883'))
-  t.true(releases.some(release => release.mbid === '96f6f90e-d831-4f37-bf72-ce2982e459fb'))
-})
+`,
+  (t, data) => {
+    const releases = data.browse.releases.edges.map(edge => edge.node)
+    t.true(data.browse.releases.totalCount >= 2)
+    t.true(
+      releases.some(
+        release => release.mbid === '5a6e5ad7-c2bd-3484-a20e-121bf981c883'
+      )
+    )
+    t.true(
+      releases.some(
+        release => release.mbid === '96f6f90e-d831-4f37-bf72-ce2982e459fb'
+      )
+    )
+  }
+)
 
-test('works can be browsed by ISWC', testData, `
+test(
+  'works can be browsed by ISWC',
+  testData,
+  `
   {
     browse {
       works(iswc: "T-900.755.682-3") {
@@ -757,15 +903,20 @@ test('works can be browsed by ISWC', testData, `
       }
     }
   }
-`, (t, data) => {
-  const works = data.browse.works.edges.map(edge => edge.node)
-  t.is(data.browse.works.totalCount, 1)
-  t.deepEqual(works, [
-    { title: 'Song of the French Partisan', iswcs: ['T-900.755.682-3'] }
-  ])
-})
+`,
+  (t, data) => {
+    const works = data.browse.works.edges.map(edge => edge.node)
+    t.is(data.browse.works.totalCount, 1)
+    t.deepEqual(works, [
+      { title: 'Song of the French Partisan', iswcs: ['T-900.755.682-3'] }
+    ])
+  }
+)
 
-test('recordings have a length in milliseconds', testData, `
+test(
+  'recordings have a length in milliseconds',
+  testData,
+  `
   {
     lookup {
       recording(mbid: "9f9cf187-d6f9-437f-9d98-d59cdbd52757") {
@@ -773,12 +924,17 @@ test('recordings have a length in milliseconds', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { recording } = data.lookup
-  t.is(recording.length, 383493)
-})
+`,
+  (t, data) => {
+    const { recording } = data.lookup
+    t.is(recording.length, 383493)
+  }
+)
 
-test('collections can be browsed by the entities they contain', testData, `
+test(
+  'collections can be browsed by the entities they contain',
+  testData,
+  `
   {
     browse {
       collections(artist: "24f1766e-9635-4d58-a4d4-9413f9f98a4c") {
@@ -803,20 +959,27 @@ test('collections can be browsed by the entities they contain', testData, `
       }
     }
   }
-`, (t, data) => {
-  const collections = data.browse.collections.edges.map(edge => edge.node)
-  t.true(collections.length >= 2)
-  t.true(collections.some(collection => collection.editor === 'arist.on'))
-  t.true(collections.some(collection => collection.editor === 'ListMyCDs.com'))
-  collections.forEach(collection => {
-    t.is(collection.entityType, 'artist')
-    t.is(collection.type, 'Artist')
-    t.true(collection.artists.totalCount > 0)
-    t.true(collection.artists.edges.length > 0)
-  })
-})
+`,
+  (t, data) => {
+    const collections = data.browse.collections.edges.map(edge => edge.node)
+    t.true(collections.length >= 2)
+    t.true(collections.some(collection => collection.editor === 'arist.on'))
+    t.true(
+      collections.some(collection => collection.editor === 'ListMyCDs.com')
+    )
+    collections.forEach(collection => {
+      t.is(collection.entityType, 'artist')
+      t.is(collection.type, 'Artist')
+      t.true(collection.artists.totalCount > 0)
+      t.true(collection.artists.edges.length > 0)
+    })
+  }
+)
 
-test('collections can be looked up by MBID', testData, `
+test(
+  'collections can be looked up by MBID',
+  testData,
+  `
   {
     lookup {
       collection(mbid: "85da782d-2ec0-41ec-a97f-9be464bba309") {
@@ -831,13 +994,18 @@ test('collections can be looked up by MBID', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { collection } = data.lookup
-  t.is(collection.name, 'Beets Music Collection')
-  t.is(collection.releases.edges.length, 25)
-})
+`,
+  (t, data) => {
+    const { collection } = data.lookup
+    t.is(collection.name, 'Beets Music Collection')
+    t.is(collection.releases.edges.length, 25)
+  }
+)
 
-test('entities have a collections field', testData, `
+test(
+  'entities have a collections field',
+  testData,
+  `
   {
     lookup {
       release(mbid: "0702057c-cb90-43d3-b7b4-6d0cc37e8644") {
@@ -864,14 +1032,19 @@ test('entities have a collections field', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { release, artist } = data.lookup
-  t.true(release.collections.totalCount > 0)
-  t.true(release.collections.edges.length > 0)
-  t.true(artist.collections.edges.length > 0)
-})
+`,
+  (t, data) => {
+    const { release, artist } = data.lookup
+    t.true(release.collections.totalCount > 0)
+    t.true(release.collections.edges.length > 0)
+    t.true(artist.collections.edges.length > 0)
+  }
+)
 
-test('releases support a list of media', testData, `
+test(
+  'releases support a list of media',
+  testData,
+  `
   {
     lookup {
       release(mbid: "a4864e94-6d75-4ade-bc93-0dabf3521453") {
@@ -885,27 +1058,32 @@ test('releases support a list of media', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { release } = data.lookup
-  t.deepEqual(release.media, [
-    {
-      title: 'Left',
-      format: 'CD',
-      formatID: '9712d52a-4509-3d4b-a1a2-67c88c643e31',
-      position: 1,
-      trackCount: 12
-    },
-    {
-      title: 'Right',
-      format: 'CD',
-      formatID: '9712d52a-4509-3d4b-a1a2-67c88c643e31',
-      position: 2,
-      trackCount: 11
-    }
-  ])
-})
+`,
+  (t, data) => {
+    const { release } = data.lookup
+    t.deepEqual(release.media, [
+      {
+        title: 'Left',
+        format: 'CD',
+        formatID: '9712d52a-4509-3d4b-a1a2-67c88c643e31',
+        position: 1,
+        trackCount: 12
+      },
+      {
+        title: 'Right',
+        format: 'CD',
+        formatID: '9712d52a-4509-3d4b-a1a2-67c88c643e31',
+        position: 2,
+        trackCount: 11
+      }
+    ])
+  }
+)
 
-test('throws an error if looking up a URL without an argument', testError, `
+test(
+  'throws an error if looking up a URL without an argument',
+  testError,
+  `
   {
     lookup {
       url {
@@ -913,11 +1091,19 @@ test('throws an error if looking up a URL without an argument', testError, `
       }
     }
   }
-`, (t, errors) => {
-  t.is(errors[0].message, 'Lookups by a field other than MBID must provide: resource')
-})
+`,
+  (t, errors) => {
+    t.is(
+      errors[0].message,
+      'Lookups by a field other than MBID must provide: resource'
+    )
+  }
+)
 
-test('some entities support ratings', testData, `
+test(
+  'some entities support ratings',
+  testData,
+  `
   {
     lookup {
       event(mbid: "eec75a81-8864-4cea-b8b4-e99cd08b29f1") {
@@ -978,27 +1164,34 @@ test('some entities support ratings', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { event, work } = data.lookup
-  const artists = data.browse.artists.edges.map(edge => edge.node)
-  const recordings = data.browse.recordings.edges.map(edge => edge.node)
-  const labels = data.search.labels.edges.map(edge => edge.node)
-  const releaseGroups = data.search.releaseGroups.edges.map(edge => edge.node)
-  t.is(event.rating.voteCount, 0)
-  t.is(event.rating.value, null)
-  t.true(work.rating.voteCount > 0)
-  t.true(work.rating.value >= 4)
-  t.true(artists.some(artist => artist.rating.voteCount > 0))
-  t.true(artists.some(artist => artist.rating.value > 3))
-  t.true(recordings.some(recording => recording.rating.voteCount > 0))
-  t.true(recordings.some(recording => recording.rating.value > 3))
-  t.true(labels.some(label => label.rating.voteCount > 0))
-  t.true(labels.some(label => label.rating.value > 3))
-  t.true(releaseGroups.some(releaseGroup => releaseGroup.rating.voteCount > 0))
-  t.true(releaseGroups.some(releaseGroup => releaseGroup.rating.value > 3))
-})
+`,
+  (t, data) => {
+    const { event, work } = data.lookup
+    const artists = data.browse.artists.edges.map(edge => edge.node)
+    const recordings = data.browse.recordings.edges.map(edge => edge.node)
+    const labels = data.search.labels.edges.map(edge => edge.node)
+    const releaseGroups = data.search.releaseGroups.edges.map(edge => edge.node)
+    t.is(event.rating.voteCount, 0)
+    t.is(event.rating.value, null)
+    t.true(work.rating.voteCount > 0)
+    t.true(work.rating.value >= 4)
+    t.true(artists.some(artist => artist.rating.voteCount > 0))
+    t.true(artists.some(artist => artist.rating.value > 3))
+    t.true(recordings.some(recording => recording.rating.voteCount > 0))
+    t.true(recordings.some(recording => recording.rating.value > 3))
+    t.true(labels.some(label => label.rating.voteCount > 0))
+    t.true(labels.some(label => label.rating.value > 3))
+    t.true(
+      releaseGroups.some(releaseGroup => releaseGroup.rating.voteCount > 0)
+    )
+    t.true(releaseGroups.some(releaseGroup => releaseGroup.rating.value > 3))
+  }
+)
 
-test('discs can be looked up by disc ID', testData, `
+test(
+  'discs can be looked up by disc ID',
+  testData,
+  `
   {
     lookup {
       disc(discID: "TMXdzZkTcc9Jq24PD0w5J9_AXms-") {
@@ -1018,20 +1211,36 @@ test('discs can be looked up by disc ID', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { disc } = data.lookup
-  t.is(disc.discID, 'TMXdzZkTcc9Jq24PD0w5J9_AXms-')
-  t.is(disc.offsetCount, 9)
-  t.is(disc.sectors, 193443)
-  t.deepEqual(disc.offsets, [
-    150, 18190, 34163, 66150, 87453, 116853, 151413, 166833, 184123
-  ])
-  t.is(disc.releases.totalCount, 1)
-  t.is(disc.releases.edges.length, 1)
-  t.is(disc.releases.edges[0].node.mbid, '7f6d3088-837d-495e-905f-be5c70ac2d82')
-})
+`,
+  (t, data) => {
+    const { disc } = data.lookup
+    t.is(disc.discID, 'TMXdzZkTcc9Jq24PD0w5J9_AXms-')
+    t.is(disc.offsetCount, 9)
+    t.is(disc.sectors, 193443)
+    t.deepEqual(disc.offsets, [
+      150,
+      18190,
+      34163,
+      66150,
+      87453,
+      116853,
+      151413,
+      166833,
+      184123
+    ])
+    t.is(disc.releases.totalCount, 1)
+    t.is(disc.releases.edges.length, 1)
+    t.is(
+      disc.releases.edges[0].node.mbid,
+      '7f6d3088-837d-495e-905f-be5c70ac2d82'
+    )
+  }
+)
 
-test('release media has a list of discs', testData, `
+test(
+  'release media has a list of discs',
+  testData,
+  `
   {
     lookup {
       release(mbid: "7f6d3088-837d-495e-905f-be5c70ac2d82") {
@@ -1051,13 +1260,18 @@ test('release media has a list of discs', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { release } = data.lookup
-  t.is(release.media.length, 1)
-  t.is(release.media[0].discs.length, 2)
-})
+`,
+  (t, data) => {
+    const { release } = data.lookup
+    t.is(release.media.length, 1)
+    t.is(release.media[0].discs.length, 2)
+  }
+)
 
-test('disc queries can be deeply nested', testData, `
+test(
+  'disc queries can be deeply nested',
+  testData,
+  `
   {
     lookup {
       disc(discID: "TMXdzZkTcc9Jq24PD0w5J9_AXms-") {
@@ -1102,27 +1316,32 @@ test('disc queries can be deeply nested', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { disc } = data.lookup
-  t.true(disc.releases.edges.length > 0)
-  disc.releases.edges.forEach(release => {
-    t.true(release.node.media.length > 0)
-    release.node.media.forEach(medium => {
-      t.true(medium.discs.length > 0)
-      medium.discs.forEach(disc => {
-        t.true(disc.releases.edges.length > 0)
-        disc.releases.edges.forEach(release => {
-          t.true(release.node.media.length > 0)
-          release.node.media.forEach(medium => {
-            t.true(medium.discs.length > 0)
+`,
+  (t, data) => {
+    const { disc } = data.lookup
+    t.true(disc.releases.edges.length > 0)
+    disc.releases.edges.forEach(release => {
+      t.true(release.node.media.length > 0)
+      release.node.media.forEach(medium => {
+        t.true(medium.discs.length > 0)
+        medium.discs.forEach(disc => {
+          t.true(disc.releases.edges.length > 0)
+          disc.releases.edges.forEach(release => {
+            t.true(release.node.media.length > 0)
+            release.node.media.forEach(medium => {
+              t.true(medium.discs.length > 0)
+            })
           })
         })
       })
     })
-  })
-})
+  }
+)
 
-test('entities support tags', testData, `
+test(
+  'entities support tags',
+  testData,
+  `
   {
     lookup {
       label(mbid: "38dc88de-7720-4100-9d5b-3cdc41b0c474") {
@@ -1153,11 +1372,13 @@ test('entities support tags', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { label } = data.lookup
-  const artists = data.search.artists.edges.map(edge => edge.node)
-  t.true(label.tags.edges.some(edge => edge.node.name === 'indie folk'))
-  t.true(label.tags.edges.some(edge => edge.node.count > 0))
-  t.true(artists[0].tags.edges.some(edge => edge.node.name === 'blues rock'))
-  t.true(artists[0].tags.edges.some(edge => edge.node.count > 0))
-})
+`,
+  (t, data) => {
+    const { label } = data.lookup
+    const artists = data.search.artists.edges.map(edge => edge.node)
+    t.true(label.tags.edges.some(edge => edge.node.name === 'indie folk'))
+    t.true(label.tags.edges.some(edge => edge.node.count > 0))
+    t.true(artists[0].tags.edges.some(edge => edge.node.name === 'blues rock'))
+    t.true(artists[0].tags.edges.some(edge => edge.node.count > 0))
+  }
+)
