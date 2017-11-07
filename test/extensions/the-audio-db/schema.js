@@ -7,7 +7,7 @@ import baseContext from '../../helpers/context'
 const schema = applyExtension(extension, baseSchema)
 const context = extension.extendContext(baseContext)
 
-function testData (t, query, handler) {
+function testData(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {
     if (result.errors !== undefined) {
       console.log(result.errors)
@@ -17,7 +17,10 @@ function testData (t, query, handler) {
   })
 }
 
-test('artists have a theAudioDB field', testData, `
+test(
+  'artists have a theAudioDB field',
+  testData,
+  `
   {
     lookup {
       artist(mbid: "5b11f4ce-a62d-471e-81fc-a69a8278c7da") {
@@ -41,11 +44,16 @@ test('artists have a theAudioDB field', testData, `
       }
     }
   }
-`, (t, data) => {
-  t.snapshot(data)
-})
+`,
+  (t, data) => {
+    t.snapshot(data)
+  }
+)
 
-test('release groups have a theAudioDB field', testData, `
+test(
+  'release groups have a theAudioDB field',
+  testData,
+  `
 {
   lookup {
     releaseGroup(mbid: "aa997ea0-2936-40bd-884d-3af8a0e064dc") {
@@ -75,11 +83,16 @@ test('release groups have a theAudioDB field', testData, `
     }
   }
 }
-`, (t, data) => {
-  t.snapshot(data)
-})
+`,
+  (t, data) => {
+    t.snapshot(data)
+  }
+)
 
-test('recordings have a theAudioDB field', testData, `
+test(
+  'recordings have a theAudioDB field',
+  testData,
+  `
   {
     lookup {
       recording(mbid: "1109d8da-ce4a-4739-9414-242dc3e9b81c") {
@@ -113,6 +126,8 @@ test('recordings have a theAudioDB field', testData, `
       }
     }
   }
-`, (t, data) => {
-  t.snapshot(data)
-})
+`,
+  (t, data) => {
+    t.snapshot(data)
+  }
+)

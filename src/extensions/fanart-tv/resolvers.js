@@ -56,7 +56,8 @@ export default {
   },
   ReleaseGroup: {
     fanArt: (releaseGroup, args, context) => {
-      return context.loaders.fanArt.load(['release-group', releaseGroup.id])
+      return context.loaders.fanArt
+        .load(['release-group', releaseGroup.id])
         .then(artist => artist.albums[releaseGroup.id])
     }
   }

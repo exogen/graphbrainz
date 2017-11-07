@@ -3,28 +3,39 @@ import MusicBrainz, { MusicBrainzError } from '../../src/api'
 import client from '../helpers/client/musicbrainz'
 
 test('getLookupURL() generates a lookup URL', t => {
-  t.is(client.getLookupURL('artist', 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8', {
-    inc: ['recordings', 'release-groups']
-  }), 'artist/c8da2e40-bd28-4d4e-813a-bd2f51958ba8?inc=recordings%2Brelease-groups')
+  t.is(
+    client.getLookupURL('artist', 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8', {
+      inc: ['recordings', 'release-groups']
+    }),
+    'artist/c8da2e40-bd28-4d4e-813a-bd2f51958ba8?inc=recordings%2Brelease-groups'
+  )
 })
 
 test('getBrowseURL() generates a browse URL', t => {
-  t.is(client.getBrowseURL('recording', {
-    artist: 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8',
-    limit: null,
-    offset: 0
-  }), 'recording?artist=c8da2e40-bd28-4d4e-813a-bd2f51958ba8&offset=0')
+  t.is(
+    client.getBrowseURL('recording', {
+      artist: 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8',
+      limit: null,
+      offset: 0
+    }),
+    'recording?artist=c8da2e40-bd28-4d4e-813a-bd2f51958ba8&offset=0'
+  )
 })
 
 test('getSearchURL() generates a search URL', t => {
-  t.is(client.getSearchURL('artist', 'Lures', { inc: null }), 'artist?query=Lures')
+  t.is(
+    client.getSearchURL('artist', 'Lures', { inc: null }),
+    'artist?query=Lures'
+  )
 })
 
 test('lookup() sends a lookup query', t => {
-  return client.lookup('artist', 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8').then(response => {
-    t.is(response.id, 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8')
-    t.is(response.type, 'Group')
-  })
+  return client
+    .lookup('artist', 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8')
+    .then(response => {
+      t.is(response.id, 'c8da2e40-bd28-4d4e-813a-bd2f51958ba8')
+      t.is(response.type, 'Group')
+    })
 })
 
 test('rejects the promise when the API returns an error', t => {
@@ -60,7 +71,10 @@ test('shouldRetry() retries only transient local connection issues', t => {
 
 test('rejects non-MusicBrainz errors', t => {
   const client = new MusicBrainz({ baseURL: '$!@#$' })
-  return t.throws(client.get('artist/5b11f4ce-a62d-471e-81fc-a69a8278c7da'), Error)
+  return t.throws(
+    client.get('artist/5b11f4ce-a62d-471e-81fc-a69a8278c7da'),
+    Error
+  )
 })
 
 test('uses the default error impementation if there is no JSON error', t => {

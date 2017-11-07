@@ -2,7 +2,7 @@ import util from 'util'
 
 export const ONE_DAY = 24 * 60 * 60 * 1000
 
-export function getFields (info, fragments = info.fragments) {
+export function getFields(info, fragments = info.fragments) {
   if (info.kind !== 'Field') {
     info = info.fieldNodes[0]
   }
@@ -25,17 +25,18 @@ export function getFields (info, fragments = info.fragments) {
   return selections.reduce(reducer, {})
 }
 
-export function prettyPrint (obj, { depth = 5,
-                                    colors = true,
-                                    breakLength = 120 } = {}) {
+export function prettyPrint(
+  obj,
+  { depth = 5, colors = true, breakLength = 120 } = {}
+) {
   console.log(util.inspect(obj, { depth, colors, breakLength }))
 }
 
-export function toFilteredArray (obj) {
+export function toFilteredArray(obj) {
   return (Array.isArray(obj) ? obj : [obj]).filter(x => x)
 }
 
-export function extendIncludes (includes, moreIncludes) {
+export function extendIncludes(includes, moreIncludes) {
   includes = toFilteredArray(includes)
   moreIncludes = toFilteredArray(moreIncludes)
   const seen = {}

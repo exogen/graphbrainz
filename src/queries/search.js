@@ -16,7 +16,7 @@ import {
 } from '../types'
 import { toWords } from '../types/helpers'
 
-function createSearchField (connectionType) {
+function createSearchField(connectionType) {
   const typeName = toWords(connectionType.name.slice(0, -10))
   return {
     type: connectionType,

@@ -2,23 +2,35 @@ import test from 'ava'
 import client from '../../helpers/client/cover-art-archive'
 
 test('can retrieve a front image URL', t => {
-  return client.imageURL('release', '76df3287-6cda-33eb-8e9a-044b5e15ffdd', 'front')
+  return client
+    .imageURL('release', '76df3287-6cda-33eb-8e9a-044b5e15ffdd', 'front')
     .then(url => {
-      t.is(url, 'http://archive.org/download/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd-829521842.jpg')
+      t.is(
+        url,
+        'http://archive.org/download/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd-829521842.jpg'
+      )
     })
 })
 
 test('can retrieve a back image URL', t => {
-  return client.imageURL('release', '76df3287-6cda-33eb-8e9a-044b5e15ffdd', 'back')
+  return client
+    .imageURL('release', '76df3287-6cda-33eb-8e9a-044b5e15ffdd', 'back')
     .then(url => {
-      t.is(url, 'http://archive.org/download/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd-5769317885.jpg')
+      t.is(
+        url,
+        'http://archive.org/download/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd-5769317885.jpg'
+      )
     })
 })
 
 test('can retrieve a list of release images', t => {
-  return client.images('release', '76df3287-6cda-33eb-8e9a-044b5e15ffdd')
+  return client
+    .images('release', '76df3287-6cda-33eb-8e9a-044b5e15ffdd')
     .then(data => {
-      t.is(data.release, 'http://musicbrainz.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd')
+      t.is(
+        data.release,
+        'http://musicbrainz.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd'
+      )
       t.true(data.images.length >= 3)
       data.images.forEach(image => {
         t.true(image.approved)

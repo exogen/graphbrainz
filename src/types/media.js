@@ -35,7 +35,8 @@ multi-disc release).`
     },
     discs: {
       type: new GraphQLList(Disc),
-      description: 'A list of physical discs and their disc IDs for this medium.'
+      description:
+        'A list of physical discs and their disc IDs for this medium.'
     }
   })
 })

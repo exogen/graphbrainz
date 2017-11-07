@@ -8,14 +8,18 @@ export default {
   name: 'MediaWiki',
   description: `Retrieve information from MediaWiki image pages, like the actual
 image file URL and EXIF metadata.`,
-  extendContext (context, { mediaWiki = {} } = {}) {
+  extendContext(context, { mediaWiki = {} } = {}) {
     const client = new MediaWikiClient(mediaWiki)
     const cacheSize = parseInt(
-      process.env.MEDIAWIKI_CACHE_SIZE || process.env.GRAPHBRAINZ_CACHE_SIZE || 8192,
+      process.env.MEDIAWIKI_CACHE_SIZE ||
+        process.env.GRAPHBRAINZ_CACHE_SIZE ||
+        8192,
       10
     )
     const cacheTTL = parseInt(
-      process.env.MEDIAWIKI_CACHE_TTL || process.env.GRAPHBRAINZ_CACHE_TTL || ONE_DAY,
+      process.env.MEDIAWIKI_CACHE_TTL ||
+        process.env.GRAPHBRAINZ_CACHE_TTL ||
+        ONE_DAY,
       10
     )
     return {

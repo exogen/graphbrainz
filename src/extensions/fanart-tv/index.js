@@ -8,14 +8,18 @@ export default {
   name: 'fanart.tv',
   description: `Retrieve high quality artwork for artists, releases, and labels
 from [fanart.tv](https://fanart.tv/).`,
-  extendContext (context, { fanArt = {} } = {}) {
+  extendContext(context, { fanArt = {} } = {}) {
     const client = new FanArtClient(fanArt)
     const cacheSize = parseInt(
-      process.env.FANART_CACHE_SIZE || process.env.GRAPHBRAINZ_CACHE_SIZE || 8192,
+      process.env.FANART_CACHE_SIZE ||
+        process.env.GRAPHBRAINZ_CACHE_SIZE ||
+        8192,
       10
     )
     const cacheTTL = parseInt(
-      process.env.FANART_CACHE_TTL || process.env.GRAPHBRAINZ_CACHE_TTL || ONE_DAY,
+      process.env.FANART_CACHE_TTL ||
+        process.env.GRAPHBRAINZ_CACHE_TTL ||
+        ONE_DAY,
       10
     )
     return {

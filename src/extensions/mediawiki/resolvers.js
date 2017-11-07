@@ -1,22 +1,25 @@
 import URL from 'url'
 
-function resolveMediaWikiImages (source, args, { loaders }) {
-  const isURL = (relation) => relation['target-type'] === 'url'
+function resolveMediaWikiImages(source, args, { loaders }) {
+  const isURL = relation => relation['target-type'] === 'url'
   let rels = source.relations ? source.relations.filter(isURL) : []
   if (!rels.length) {
-    rels = loaders.lookup.load([source._type, source.id, { inc: 'url-rels' }])
+    rels = loaders.lookup
+      .load([source._type, source.id, { inc: 'url-rels' }])
       .then(source => source.relations.filter(isURL))
   }
   return Promise.resolve(rels).then(rels => {
-    const pages = rels.filter(rel => {
-      if (rel.type === args.type) {
-        const url = URL.parse(rel.url.resource)
-        if (url.pathname.match(/^\/wiki\/(File|Image):/)) {
-          return true
+    const pages = rels
+      .filter(rel => {
+        if (rel.type === args.type) {
+          const url = URL.parse(rel.url.resource)
+          if (url.pathname.match(/^\/wiki\/(File|Image):/)) {
+            return true
+          }
         }
-      }
-      return false
-    }).map(rel => rel.url.resource)
+        return false
+      })
+      .map(rel => rel.url.resource)
     return loaders.mediaWiki.loadMany(pages)
   })
 }
@@ -57,13 +60,14 @@ export default {
       const data = imageInfo.extmetadata.LicenseUrl
       return data ? data.value : null
     },
-    metadata: imageInfo => Object.keys(imageInfo.extmetadata).map(key => {
-      const data = imageInfo.extmetadata[key]
-      return { ...data, name: key }
-    })
+    metadata: imageInfo =>
+      Object.keys(imageInfo.extmetadata).map(key => {
+        const data = imageInfo.extmetadata[key]
+        return { ...data, name: key }
+      })
   },
   MediaWikiImageMetadata: {
-    value: obj => obj.value == null ? obj.value : `${obj.value}`
+    value: obj => (obj.value == null ? obj.value : `${obj.value}`)
   },
   Artist: {
     mediaWikiImages: resolveMediaWikiImages

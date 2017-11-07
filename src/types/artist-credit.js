@@ -13,7 +13,7 @@ track, etc., and join phrases between them.`,
       type: Artist,
       description: `The entity representing the artist referenced in the
 credits.`,
-      resolve: (source) => {
+      resolve: source => {
         const { artist } = source
         if (artist) {
           artist._type = 'artist'

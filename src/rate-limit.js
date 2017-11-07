@@ -1,12 +1,14 @@
 const debug = require('debug')('graphbrainz:rate-limit')
 
 export default class RateLimit {
-  constructor ({
-    limit = 1,
-    period = 1000,
-    concurrency = limit || 1,
-    defaultPriority = 1
-  } = {}) {
+  constructor(
+    {
+      limit = 1,
+      period = 1000,
+      concurrency = limit || 1,
+      defaultPriority = 1
+    } = {}
+  ) {
     this.limit = limit
     this.period = period
     this.defaultPriority = defaultPriority
@@ -20,16 +22,16 @@ export default class RateLimit {
     this.prevTaskID = null
   }
 
-  nextTaskID (prevTaskID = this.prevTaskID) {
+  nextTaskID(prevTaskID = this.prevTaskID) {
     const id = (prevTaskID || 0) + 1
     this.prevTaskID = id
     return id
   }
 
-  enqueue (fn, args, priority = this.defaultPriority) {
+  enqueue(fn, args, priority = this.defaultPriority) {
     priority = Math.max(0, priority)
     return new Promise((resolve, reject) => {
-      const queue = this.queues[priority] = this.queues[priority] || []
+      const queue = (this.queues[priority] = this.queues[priority] || [])
       const id = this.nextTaskID()
       debug(`Enqueuing task. id=${id} priority=${priority}`)
       queue.push({ fn, args, resolve, reject, id })
@@ -43,7 +45,7 @@ export default class RateLimit {
     })
   }
 
-  dequeue () {
+  dequeue() {
     let task
     for (let i = this.queues.length - 1; i >= 0; i--) {
       const queue = this.queues[i]
@@ -60,7 +62,7 @@ export default class RateLimit {
     return task
   }
 
-  flush () {
+  flush() {
     if (this.numPending < this.concurrency && this.periodCapacity > 0) {
       const task = this.dequeue()
       if (task) {
@@ -83,12 +85,12 @@ export default class RateLimit {
         }
         this.numPending += 1
         this.periodCapacity -= 1
-        const onResolve = (value) => {
+        const onResolve = value => {
           this.numPending -= 1
           resolve(value)
           this.flush()
         }
-        const onReject = (err) => {
+        const onReject = err => {
           this.numPending -= 1
           reject(err)
           this.flush()

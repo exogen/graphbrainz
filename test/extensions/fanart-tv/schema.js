@@ -7,7 +7,7 @@ import baseContext from '../../helpers/context'
 const schema = applyExtension(extension, baseSchema)
 const context = extension.extendContext(baseContext)
 
-function testData (t, query, handler) {
+function testData(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {
     if (result.errors !== undefined) {
       console.log(result.errors)
@@ -17,7 +17,10 @@ function testData (t, query, handler) {
   })
 }
 
-test('artists have a fanArt field and preview images', testData, `
+test(
+  'artists have a fanArt field and preview images',
+  testData,
+  `
   {
     lookup {
       artist(mbid: "5b11f4ce-a62d-471e-81fc-a69a8278c7da") {
@@ -56,21 +59,26 @@ test('artists have a fanArt field and preview images', testData, `
       }
     }
   }
-`, (t, data) => {
-  t.snapshot(data)
-  const { fanArt } = data.lookup.artist
-  const allImages = []
-    .concat(fanArt.backgrounds)
-    .concat(fanArt.banners)
-    .concat(fanArt.logos)
-    .concat(fanArt.logosHD)
-    .concat(fanArt.thumbnails)
-  allImages.forEach(image => {
-    t.not(image.url, image.fullSizeURL)
-  })
-})
+`,
+  (t, data) => {
+    t.snapshot(data)
+    const { fanArt } = data.lookup.artist
+    const allImages = []
+      .concat(fanArt.backgrounds)
+      .concat(fanArt.banners)
+      .concat(fanArt.logos)
+      .concat(fanArt.logosHD)
+      .concat(fanArt.thumbnails)
+    allImages.forEach(image => {
+      t.not(image.url, image.fullSizeURL)
+    })
+  }
+)
 
-test('release groups have a fanArt field and preview images', testData, `
+test(
+  'release groups have a fanArt field and preview images',
+  testData,
+  `
   {
     lookup {
       releaseGroup(mbid: "f5093c06-23e3-404f-aeaa-40f72885ee3a") {
@@ -92,18 +100,21 @@ test('release groups have a fanArt field and preview images', testData, `
       }
     }
   }
-`, (t, data) => {
-  t.snapshot(data)
-  const { fanArt } = data.lookup.releaseGroup
-  const allImages = []
-    .concat(fanArt.albumCovers)
-    .concat(fanArt.discImages)
-  allImages.forEach(image => {
-    t.not(image.url, image.fullSizeURL)
-  })
-})
+`,
+  (t, data) => {
+    t.snapshot(data)
+    const { fanArt } = data.lookup.releaseGroup
+    const allImages = [].concat(fanArt.albumCovers).concat(fanArt.discImages)
+    allImages.forEach(image => {
+      t.not(image.url, image.fullSizeURL)
+    })
+  }
+)
 
-test('labels have a fanArt field and preview images', testData, `
+test(
+  'labels have a fanArt field and preview images',
+  testData,
+  `
   {
     lookup {
       label(mbid: "0cf56645-50ec-4411-aeb6-c9f4ce0f8edb") {
@@ -119,10 +130,12 @@ test('labels have a fanArt field and preview images', testData, `
       }
     }
   }
-`, (t, data) => {
-  t.snapshot(data)
-  const { fanArt } = data.lookup.label
-  fanArt.logos.forEach(image => {
-    t.not(image.url, image.fullSizeURL)
-  })
-})
+`,
+  (t, data) => {
+    t.snapshot(data)
+    const { fanArt } = data.lookup.label
+    fanArt.logos.forEach(image => {
+      t.not(image.url, image.fullSizeURL)
+    })
+  }
+)

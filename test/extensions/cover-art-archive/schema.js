@@ -7,7 +7,7 @@ import baseContext from '../../helpers/context'
 const schema = applyExtension(extension, baseSchema)
 const context = extension.extendContext(baseContext)
 
-function testData (t, query, handler) {
+function testData(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {
     if (result.errors !== undefined) {
       console.log(result.errors)
@@ -17,7 +17,10 @@ function testData (t, query, handler) {
   })
 }
 
-test('releases have a cover art summary', testData, `
+test(
+  'releases have a cover art summary',
+  testData,
+  `
   {
     lookup {
       release(mbid: "b84ee12a-09ef-421b-82de-0441a926375b") {
@@ -28,13 +31,18 @@ test('releases have a cover art summary', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { coverArtArchive } = data.lookup.release
-  t.true(coverArtArchive.artwork)
-  t.true(coverArtArchive.count >= 10)
-})
+`,
+  (t, data) => {
+    const { coverArtArchive } = data.lookup.release
+    t.true(coverArtArchive.artwork)
+    t.true(coverArtArchive.count >= 10)
+  }
+)
 
-test('releases have a set of cover art images', testData, `
+test(
+  'releases have a set of cover art images',
+  testData,
+  `
   {
     lookup {
       release(mbid: "b84ee12a-09ef-421b-82de-0441a926375b") {
@@ -59,28 +67,55 @@ test('releases have a set of cover art images', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { coverArtArchive } = data.lookup.release
-  t.is(coverArtArchive.front, 'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/1611507818.jpg')
-  t.is(coverArtArchive.back, 'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/13536418798.jpg')
-  t.true(coverArtArchive.images.length >= 10)
-  t.true(coverArtArchive.images.some(image => image.front === true))
-  t.true(coverArtArchive.images.some(image => image.back === true))
-  t.true(coverArtArchive.images.some(image => image.types.indexOf('Front') >= 0))
-  t.true(coverArtArchive.images.some(image => image.types.indexOf('Back') >= 0))
-  t.true(coverArtArchive.images.some(image => image.types.indexOf('Liner') >= 0))
-  t.true(coverArtArchive.images.some(image => image.types.indexOf('Poster') >= 0))
-  t.true(coverArtArchive.images.some(image => image.types.indexOf('Medium') >= 0))
-  t.true(coverArtArchive.images.some(image => image.edit === 18544122))
-  t.true(coverArtArchive.images.some(image => image.comment === ''))
-  t.true(coverArtArchive.images.some(image => image.fileID === '1611507818'))
-  t.true(coverArtArchive.images.some(image => image.image === 'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/13536422691.jpg'))
-  t.true(coverArtArchive.images.every(image => image.approved === true))
-  t.true(coverArtArchive.images.every(image => image.thumbnails.small))
-  t.true(coverArtArchive.images.every(image => image.thumbnails.large))
-})
+`,
+  (t, data) => {
+    const { coverArtArchive } = data.lookup.release
+    t.is(
+      coverArtArchive.front,
+      'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/1611507818.jpg'
+    )
+    t.is(
+      coverArtArchive.back,
+      'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/13536418798.jpg'
+    )
+    t.true(coverArtArchive.images.length >= 10)
+    t.true(coverArtArchive.images.some(image => image.front === true))
+    t.true(coverArtArchive.images.some(image => image.back === true))
+    t.true(
+      coverArtArchive.images.some(image => image.types.indexOf('Front') >= 0)
+    )
+    t.true(
+      coverArtArchive.images.some(image => image.types.indexOf('Back') >= 0)
+    )
+    t.true(
+      coverArtArchive.images.some(image => image.types.indexOf('Liner') >= 0)
+    )
+    t.true(
+      coverArtArchive.images.some(image => image.types.indexOf('Poster') >= 0)
+    )
+    t.true(
+      coverArtArchive.images.some(image => image.types.indexOf('Medium') >= 0)
+    )
+    t.true(coverArtArchive.images.some(image => image.edit === 18544122))
+    t.true(coverArtArchive.images.some(image => image.comment === ''))
+    t.true(coverArtArchive.images.some(image => image.fileID === '1611507818'))
+    t.true(
+      coverArtArchive.images.some(
+        image =>
+          image.image ===
+          'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/13536422691.jpg'
+      )
+    )
+    t.true(coverArtArchive.images.every(image => image.approved === true))
+    t.true(coverArtArchive.images.every(image => image.thumbnails.small))
+    t.true(coverArtArchive.images.every(image => image.thumbnails.large))
+  }
+)
 
-test('can request a size for front and back cover art', testData, `
+test(
+  'can request a size for front and back cover art',
+  testData,
+  `
   {
     lookup {
       release(mbid: "b84ee12a-09ef-421b-82de-0441a926375b") {
@@ -92,14 +127,28 @@ test('can request a size for front and back cover art', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { coverArtArchive } = data.lookup.release
-  t.is(coverArtArchive.front, 'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/1611507818-500.jpg')
-  t.is(coverArtArchive.back, 'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/13536418798-250.jpg')
-  t.is(coverArtArchive.fullFront, 'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/1611507818.jpg')
-})
+`,
+  (t, data) => {
+    const { coverArtArchive } = data.lookup.release
+    t.is(
+      coverArtArchive.front,
+      'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/1611507818-500.jpg'
+    )
+    t.is(
+      coverArtArchive.back,
+      'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/13536418798-250.jpg'
+    )
+    t.is(
+      coverArtArchive.fullFront,
+      'http://coverartarchive.org/release/b84ee12a-09ef-421b-82de-0441a926375b/1611507818.jpg'
+    )
+  }
+)
 
-test('release groups have a front cover art image', testData, `
+test(
+  'release groups have a front cover art image',
+  testData,
+  `
   {
     lookup {
       releaseGroup(mbid: "f5093c06-23e3-404f-aeaa-40f72885ee3a") {
@@ -118,17 +167,25 @@ test('release groups have a front cover art image', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { coverArtArchive } = data.lookup.releaseGroup
-  t.true(coverArtArchive.artwork)
-  t.is(coverArtArchive.front, 'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275.jpg')
-  t.is(coverArtArchive.release.mbid, '25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27')
-  t.is(coverArtArchive.release.title, 'The Dark Side of the Moon')
-  t.is(coverArtArchive.images.length, 1)
-  t.true(coverArtArchive.images[0].front)
-})
+`,
+  (t, data) => {
+    const { coverArtArchive } = data.lookup.releaseGroup
+    t.true(coverArtArchive.artwork)
+    t.is(
+      coverArtArchive.front,
+      'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275.jpg'
+    )
+    t.is(coverArtArchive.release.mbid, '25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27')
+    t.is(coverArtArchive.release.title, 'The Dark Side of the Moon')
+    t.is(coverArtArchive.images.length, 1)
+    t.true(coverArtArchive.images[0].front)
+  }
+)
 
-test('release groups have different cover art sizes available', testData, `
+test(
+  'release groups have different cover art sizes available',
+  testData,
+  `
   {
     lookup {
       releaseGroup(mbid: "f5093c06-23e3-404f-aeaa-40f72885ee3a") {
@@ -139,13 +196,24 @@ test('release groups have different cover art sizes available', testData, `
       }
     }
   }
-`, (t, data) => {
-  const { coverArtArchive } = data.lookup.releaseGroup
-  t.is(coverArtArchive.small, 'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275-250.jpg')
-  t.is(coverArtArchive.large, 'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275-500.jpg')
-})
+`,
+  (t, data) => {
+    const { coverArtArchive } = data.lookup.releaseGroup
+    t.is(
+      coverArtArchive.small,
+      'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275-250.jpg'
+    )
+    t.is(
+      coverArtArchive.large,
+      'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275-500.jpg'
+    )
+  }
+)
 
-test('can retrieve cover art in searches', testData, `
+test(
+  'can retrieve cover art in searches',
+  testData,
+  `
   {
     search {
       releases(query: "You Want It Darker") {
@@ -164,11 +232,13 @@ test('can retrieve cover art in searches', testData, `
       }
     }
   }
-`, (t, data) => {
-  const releases = data.search.releases.edges.map(edge => edge.node)
-  t.is(releases.length, 25)
-  t.true(releases.some(release => release.coverArtArchive.artwork === true))
-  t.true(releases.some(release => release.coverArtArchive.images.length > 0))
-  t.true(releases.some(release => release.coverArtArchive.front === null))
-  t.true(releases.some(release => release.coverArtArchive.back === null))
-})
+`,
+  (t, data) => {
+    const releases = data.search.releases.edges.map(edge => edge.node)
+    t.is(releases.length, 25)
+    t.true(releases.some(release => release.coverArtArchive.artwork === true))
+    t.true(releases.some(release => release.coverArtArchive.images.length > 0))
+    t.true(releases.some(release => release.coverArtArchive.front === null))
+    t.true(releases.some(release => release.coverArtArchive.back === null))
+  }
+)

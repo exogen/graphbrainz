@@ -13,7 +13,7 @@ const { nodeInterface, nodeField } = nodeDefinitions(
     const entityType = toDashed(type)
     return loaders.lookup.load([entityType, id])
   },
-  (obj) => {
+  obj => {
     const type = TYPE_MODULES[obj._type] || obj._type
     try {
       return require(`./${type}`).default

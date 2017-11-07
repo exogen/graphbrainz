@@ -3,12 +3,12 @@ import LRUCache from 'lru-cache'
 
 const debug = require('debug')('graphbrainz:extensions/the-audio-db')
 
-export default function createLoader (options) {
+export default function createLoader(options) {
   const { client } = options
   const cache = LRUCache({
     max: options.cacheSize,
     maxAge: options.cacheTTL,
-    dispose (key) {
+    dispose(key) {
       debug(`Removed from cache. key=${key}`)
     }
   })
@@ -16,13 +16,18 @@ export default function createLoader (options) {
   cache.delete = cache.del
   cache.clear = cache.reset
 
-  return new DataLoader(keys => {
-    return Promise.all(keys.map(key => {
-      const [ entityType, id ] = key
-      return client.entity(entityType, id)
-    }))
-  }, {
-    cacheKeyFn: ([ entityType, id ]) => `${entityType}/${id}`,
-    cacheMap: cache
-  })
+  return new DataLoader(
+    keys => {
+      return Promise.all(
+        keys.map(key => {
+          const [entityType, id] = key
+          return client.entity(entityType, id)
+        })
+      )
+    },
+    {
+      cacheKeyFn: ([entityType, id]) => `${entityType}/${id}`,
+      cacheMap: cache
+    }
+  )
 }

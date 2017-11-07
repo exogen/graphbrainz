@@ -1,6 +1,6 @@
-function handleImageSize (resolver) {
+function handleImageSize(resolver) {
   return (source, args, context, info) => {
-    const getURL = (url) => args.size === 'PREVIEW' ? `${url}/preview` : url
+    const getURL = url => (args.size === 'PREVIEW' ? `${url}/preview` : url)
     const url = resolver(source, args, context, info)
     if (!url) {
       return null

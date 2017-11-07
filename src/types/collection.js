@@ -1,8 +1,4 @@
-import {
-  GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLString
-} from 'graphql/type'
+import { GraphQLObjectType, GraphQLNonNull, GraphQLString } from 'graphql/type'
 import Node from './node'
 import Entity from './entity'
 import {
