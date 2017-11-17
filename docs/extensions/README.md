@@ -73,6 +73,14 @@ See their respective documentation pages for schema info and config options.
 * [TheAudioDB](./the-audio-db.md): Retrieve images and information about artists,
   releases, and recordings from TheAudioDB.com.
 
+## More Extensions
+
+The following extensions are published separately, but can easily be added to
+GraphBrainz by installing them:
+
+* [Last.fm](https://github.com/exogen/graphbrainz-extension-lastfm): Retrieve
+  artist, release, and recording information from [Last.fm](https://www.last.fm/).
+
 ## Extension API
 
 The core idea behind extensions comes from the [schema stitching][] feature

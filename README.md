@@ -7,7 +7,8 @@
 [![license](https://img.shields.io/npm/l/graphbrainz.svg)](https://github.com/exogen/graphbrainz/blob/master/LICENSE)
 
 A [GraphQL][] schema, [Express][] server, and middleware for querying the
-[MusicBrainz][] API.
+[MusicBrainz][] API. It features an [extensible](./docs/extensions) schema to
+add integration with Last.fm, fanart.tv, and more!
 
 ```sh
 npm install graphbrainz --save
