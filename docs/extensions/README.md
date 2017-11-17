@@ -16,6 +16,7 @@ additional extensions from a package manager or [write your own](#extension-api)
 
 - [Loading Extensions](#loading-extensions)
 - [Built-in Extensions](#built-in-extensions)
+- [More Extensions](#more-extensions)
 - [Extension API](#extension-api)
   - [Properties](#properties)
     - [name](#name)
