@@ -113,7 +113,7 @@
     "graphql-markdown": "^3.2.0",
     "nodemon": "^1.11.0",
     "nyc": "^11.3.0",
-    "prettier": "^1.8.2",
+    "prettier": "prettier/prettier#4b070c3",
     "rimraf": "^2.6.1",
     "sepia": "^2.0.2",
     "sinon": "^4.1.2"
