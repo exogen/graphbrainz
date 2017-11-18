@@ -13,13 +13,21 @@ const { nodeInterface, nodeField } = nodeDefinitions(
     const entityType = toDashed(type)
     return loaders.lookup.load([entityType, id])
   },
-  obj => {
+  (obj, context, info) => {
     const type = TYPE_MODULES[obj._type] || obj._type
-    try {
-      return require(`./${type}`).default
-    } catch (err) {
-      debug(`Failed to load type: ${type}`)
-      return null
+    if (type) {
+      let originalType
+      try {
+        originalType = require(`./${type}`).default
+      } catch (err) {
+        debug(`Failed to load type: ${type}`)
+        return
+      }
+      // Don't use `originalType`! The schema may have been extended in which
+      // case the types have all been replaced. Instead, find the current type
+      // of the same name.
+      const typeMap = info.schema.getTypeMap()
+      return typeMap[originalType.name]
     }
   }
 )

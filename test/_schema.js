@@ -1,7 +1,10 @@
 import test from 'ava'
 import { graphql } from 'graphql'
-import schema from '../src/schema'
+import schemas from './helpers/schema'
 import context from './helpers/context'
+
+const TEST_SCHEMA = process.env.TEST_SCHEMA || 'baseSchema'
+const schema = schemas[TEST_SCHEMA]
 
 function testData(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {

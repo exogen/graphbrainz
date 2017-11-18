@@ -45,7 +45,24 @@ export function applyExtension(extension, schema, options = {}) {
 }
 
 export function createSchema(schema, options = {}) {
-  const extensions = options.extensions || []
+  const extensions = (options.extensions || []).map(extensionModule => {
+    let extension
+    if (typeof extensionModule === 'string') {
+      extension = require(extensionModule)
+    } else {
+      extension = extensionModule
+    }
+    if (extension == null || typeof extension !== 'object') {
+      throw new Error(
+        `Expected ${extensionModule} to export an extension but instead ` +
+          `found: ${extension}`
+      )
+    } else if (extension.default) {
+      // ECMAScript module interop.
+      extension = extension.default
+    }
+    return extension
+  })
   return extensions.reduce((updatedSchema, extension) => {
     return applyExtension(extension, updatedSchema, options)
   }, schema)

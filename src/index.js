@@ -14,30 +14,26 @@ const formatError = err => ({
   stack: err.stack
 })
 
+export const defaultExtensions = [
+  require.resolve('./extensions/cover-art-archive'),
+  require.resolve('./extensions/fanart-tv'),
+  require.resolve('./extensions/mediawiki'),
+  require.resolve('./extensions/the-audio-db')
+]
+
 const middleware = (
   {
     client = new MusicBrainz(),
     extensions = process.env.GRAPHBRAINZ_EXTENSIONS
       ? JSON.parse(process.env.GRAPHBRAINZ_EXTENSIONS)
-      : [
-          './extensions/cover-art-archive',
-          './extensions/fanart-tv',
-          './extensions/mediawiki',
-          './extensions/the-audio-db'
-        ],
+      : defaultExtensions,
     ...middlewareOptions
   } = {}
 ) => {
   debug(`Loading ${extensions.length} extension(s).`)
   const options = {
     client,
-    extensions: extensions.map(extensionModule => {
-      if (typeof extensionModule === 'object') {
-        return extensionModule
-      }
-      const extension = require(extensionModule)
-      return extension.default ? extension.default : extension
-    }),
+    extensions,
     ...middlewareOptions
   }
   const DEV = process.env.NODE_ENV !== 'production'
