@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+import gql from '../../tag'
 
 export default gql`
   # The image sizes that may be requested at [fanart.tv](https://fanart.tv/).

@@ -643,7 +643,11 @@ A description of the track.
 <tr>
 <td colspan="2" align="right" valign="top">lang</td>
 <td valign="top"><a href="../types.md#string">String</a></td>
-<td></td>
+<td>
+
+The two-letter code for the language in which to retrieve the description.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>thumbnail</strong></td>

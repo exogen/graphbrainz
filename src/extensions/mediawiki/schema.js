@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+import gql from '../../tag'
 
 export default gql`
   # An object describing various properties of an image stored on a MediaWiki

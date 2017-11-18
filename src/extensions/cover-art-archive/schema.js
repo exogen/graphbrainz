@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+import gql from '../../tag'
 
 export default gql`
   # An individual piece of album artwork from the [Cover Art Archive](https://musicbrainz.org/doc/Cover_Art_Archive).
