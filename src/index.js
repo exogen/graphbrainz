@@ -6,8 +6,6 @@ import MusicBrainz from './api'
 import schema, { createSchema } from './schema'
 import { createContext } from './context'
 
-const debug = require('debug')('graphbrainz')
-
 const formatError = err => ({
   message: err.message,
   locations: err.locations,
@@ -30,12 +28,7 @@ const middleware = (
     ...middlewareOptions
   } = {}
 ) => {
-  debug(`Loading ${extensions.length} extension(s).`)
-  const options = {
-    client,
-    extensions,
-    ...middlewareOptions
-  }
+  const options = { client, extensions, ...middlewareOptions }
   const DEV = process.env.NODE_ENV !== 'production'
   const graphiql = DEV || process.env.GRAPHBRAINZ_GRAPHIQL === 'true'
   return graphqlHTTP({

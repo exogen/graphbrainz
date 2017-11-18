@@ -1,4 +1,5 @@
 import createLoaders from './loaders'
+import { loadExtension } from './extensions'
 
 const debug = require('debug')('graphbrainz:context')
 
@@ -27,6 +28,6 @@ export function createContext(options = {}) {
   const context = { client, loaders }
   const { extensions = [] } = options
   return extensions.reduce((context, extension) => {
-    return extendContext(extension, context, options)
+    return extendContext(loadExtension(extension), context, options)
   }, context)
 }
