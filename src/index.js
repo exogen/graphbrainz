@@ -6,40 +6,29 @@ import MusicBrainz from './api'
 import schema, { createSchema } from './schema'
 import { createContext } from './context'
 
-const debug = require('debug')('graphbrainz')
-
 const formatError = err => ({
   message: err.message,
   locations: err.locations,
   stack: err.stack
 })
 
+export const defaultExtensions = [
+  require.resolve('./extensions/cover-art-archive'),
+  require.resolve('./extensions/fanart-tv'),
+  require.resolve('./extensions/mediawiki'),
+  require.resolve('./extensions/the-audio-db')
+]
+
 const middleware = (
   {
     client = new MusicBrainz(),
     extensions = process.env.GRAPHBRAINZ_EXTENSIONS
       ? JSON.parse(process.env.GRAPHBRAINZ_EXTENSIONS)
-      : [
-          './extensions/cover-art-archive',
-          './extensions/fanart-tv',
-          './extensions/mediawiki',
-          './extensions/the-audio-db'
-        ],
+      : defaultExtensions,
     ...middlewareOptions
   } = {}
 ) => {
-  debug(`Loading ${extensions.length} extension(s).`)
-  const options = {
-    client,
-    extensions: extensions.map(extensionModule => {
-      if (typeof extensionModule === 'object') {
-        return extensionModule
-      }
-      const extension = require(extensionModule)
-      return extension.default ? extension.default : extension
-    }),
-    ...middlewareOptions
-  }
+  const options = { client, extensions, ...middlewareOptions }
   const DEV = process.env.NODE_ENV !== 'production'
   const graphiql = DEV || process.env.GRAPHBRAINZ_GRAPHIQL === 'true'
   return graphqlHTTP({

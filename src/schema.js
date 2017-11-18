@@ -2,6 +2,7 @@ import { GraphQLSchema, GraphQLObjectType, extendSchema, parse } from 'graphql'
 import { addResolveFunctionsToSchema } from 'graphql-tools'
 import { lookup, browse, search } from './queries'
 import { nodeField } from './types/node'
+import { loadExtension } from './extensions'
 
 const debug = require('debug')('graphbrainz:schema')
 
@@ -45,9 +46,9 @@ export function applyExtension(extension, schema, options = {}) {
 }
 
 export function createSchema(schema, options = {}) {
-  const extensions = options.extensions || []
+  const { extensions = [] } = options
   return extensions.reduce((updatedSchema, extension) => {
-    return applyExtension(extension, updatedSchema, options)
+    return applyExtension(loadExtension(extension), updatedSchema, options)
   }, schema)
 }
 

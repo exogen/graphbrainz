@@ -1,7 +1,4 @@
-import createLoaders from '../../src/loaders'
+import { createContext } from '../../src/context'
 import client from './client/musicbrainz'
 
-export default {
-  client,
-  loaders: createLoaders(client)
-}
+export default createContext({ client })
