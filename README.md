@@ -421,5 +421,5 @@ info.
 [rate limiting]: https://musicbrainz.org/doc/XML_Web_Service/Rate_Limiting
 [mirror]: https://musicbrainz.org/doc/MusicBrainz_Server/Setup
 [aliases]: http://graphql.org/learn/queries/#aliases
-[schema tests]: test/schema.js
+[schema tests]: test/_schema.js
 [cors]: https://github.com/expressjs/cors
