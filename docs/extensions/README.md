@@ -178,29 +178,28 @@ consistency with GraphBrainz and the built-in extensions. Here are some tips
 for writing a good extension:
 
 * If you need to make HTTP requests, using a [Client][] subclass will get you
-  rate limiting, error handling, and a Promise-based API for free.
-* Default to following the rate limiting rules of any APIs you wrap. If there
+  rate limiting, error handling, retrying, and a Promise-based API for free.
+* Default to following the rate limiting rules of any APIs you use. If there
   are no guidelines on rate limiting, consider playing nice anyway and limiting
   your client to around 1 to 10 requests per second.
 * Use a [DataLoader][dataloader] instance to batch and cache requests. Even if
-  the data source doesn’t support batching, it will dedupe in-flight requests
-  for the same key, preventing extra requests before the response has been
-  cached.
+  the data source doesn’t support batching, DataLoader will help by deduping
+  in-flight requests for the same key, preventing unnecessary requests.
 * Use a configurable cache and make sure you aren’t caching everything
   indefinitely by accident. The `cacheMap` option to DataLoader is a good place
   to put it.
-* Get as much configuration from environment variables as possible, so that
-  people can just run the standalone server instead of writing any code. If
-  you need more complex configuration, use a single object on the `options`
-  object as a namespace for your extension’s options.
-* Don’t be afraid to rename fields returned by third-party APIs when translating
+* Get as much configuration from environment variables as possible so that
+  users can just run the standalone server instead of writing any code. If you
+  need more complex configuration, use a single field on the `options` object
+  as a namespace for your extension’s options.
+* Don’t hesitate to rename fields returned by third-party APIs when translating
   them to the GraphQL schema. Consistency with GraphQL conventions and the
   GraphBrainz schema is more desirable than consistency with the original API
-  being wrapped. Some general rules:
-  * Match type names to the service they’re coming from (e.g. some services use
-    the words “album” and “track”), but match scalar field names to their
-    MusicBrainz equivalents when possible (e.g. `name` for artists but `title`
-    for releases and recordings).
+  being used. Some general rules:
+  * Match type names to the service they’re coming from (e.g. many services use
+    the words “album” and “track” and the type names should reflect that), but
+    match scalar field names to their MusicBrainz equivalents when possible
+    (e.g. `name` for artists but `title` for releases and recordings).
   * Use camel case naming and capitalize acronyms (unless they are the only
     word), e.g. `id`, `url`, `artistID`, `pageURL`.
   * If it’s ambiguous whether a field refers to an object/list vs. a scalar
