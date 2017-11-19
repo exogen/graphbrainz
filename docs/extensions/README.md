@@ -197,12 +197,17 @@ for writing a good extension:
   them to the GraphQL schema. Consistency with GraphQL conventions and the
   GraphBrainz schema is more desirable than consistency with the original API
   being wrapped. Some general rules:
+  * Match type names to the service they’re coming from (e.g. some services use
+    the words “album” and “track”), but match scalar field names to their
+    MusicBrainz equivalents when possible (e.g. `name` for artists but `title`
+    for releases and recordings).
   * Use camel case naming and capitalize acronyms (unless they are the only
     word), e.g. `id`, `url`, `artistID`, `pageURL`.
   * If it’s ambiguous whether a field refers to an object/list vs. a scalar
     summary of an object/list, consider clarifying the field name, e.g. `user` →
     `userID`, `members` → `memberCount`.
-  * Don’t include fields that are already available in MusicBrainz, only include
+  * Don’t include fields that are already available in MusicBrainz (unless it’s
+    possible to retrieve an entity that isn’t in MusicBrainz). Only include
     what’s relevant and useful.
 * Add descriptions for everything: types, fields, arguments, enum values, etc.
   – with Markdown links wherever they’d be helpful.
