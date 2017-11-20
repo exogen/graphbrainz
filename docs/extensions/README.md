@@ -81,6 +81,8 @@ GraphBrainz by installing them:
 
 * [Last.fm](https://github.com/exogen/graphbrainz-extension-lastfm): Retrieve
   artist, release, and recording information from [Last.fm](https://www.last.fm/).
+* [Discogs](https://github.com/exogen/graphbrainz-extension-discogs): Retrieve
+  artist, label, release, and release group from [Discogs](https://www.discogs.com/).
 
 ## Extension API
 
