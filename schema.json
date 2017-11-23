@@ -578,7 +578,18 @@
             {
               "name": "isoCodes",
               "description": "[ISO 3166 codes](https://en.wikipedia.org/wiki/ISO_3166) are\nthe codes assigned by ISO to countries and subdivisions.",
-              "args": [],
+              "args": [
+                {
+                  "name": "standard",
+                  "description": "Specify the particular ISO standard codes to retrieve.\nAvailable ISO standards are 3166-1, 3166-2, and 3166-3.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": "\"3166-1\""
+                }
+              ],
               "type": {
                 "kind": "LIST",
                 "name": null,
