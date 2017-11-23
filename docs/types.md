@@ -320,6 +320,16 @@ the codes assigned by ISO to countries and subdivisions.
 </td>
 </tr>
 <tr>
+<td colspan="2" align="right" valign="top">standard</td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+Specify the particular ISO standard codes to retrieve.
+Available ISO standards are 3166-1, 3166-2, and 3166-3.
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>type</strong></td>
 <td valign="top"><a href="#string">String</a></td>
 <td>

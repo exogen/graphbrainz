@@ -581,6 +581,42 @@ test(
 )
 
 test(
+  'area isoCodes accepts an argument to retrieve 3166-1, 3166-2, or 3166-3 codes',
+  testData,
+  `
+  {
+    lookup {
+      eastGermany: area(mbid: "d907b0ac-2956-386f-a246-62d55779aae1") {
+        name
+        isoDefault: isoCodes
+        iso3166_1: isoCodes(standard: "3166-1")
+        iso3166_2: isoCodes(standard: "3166-2")
+        iso3166_3: isoCodes(standard: "3166-3")
+      }
+      newYork: area(mbid: "75e398a3-5f3f-4224-9cd8-0fe44715bc95") {
+        name
+        isoDefault: isoCodes
+        iso3166_1: isoCodes(standard: "3166-1")
+        iso3166_2: isoCodes(standard: "3166-2")
+        iso3166_3: isoCodes(standard: "3166-3")
+      }
+    }
+  }
+`,
+  (t, data) => {
+    t.deepEqual(data.lookup.eastGermany.isoDefault, ['XG'])
+    t.deepEqual(data.lookup.eastGermany.iso3166_1, ['XG'])
+    t.is(data.lookup.eastGermany.iso3166_2, null)
+    t.deepEqual(data.lookup.eastGermany.iso3166_3, ['DDDE'])
+
+    t.is(data.lookup.newYork.isoDefault, null)
+    t.is(data.lookup.newYork.iso3166_1, null)
+    t.deepEqual(data.lookup.newYork.iso3166_2, ['US-NY'])
+    t.is(data.lookup.newYork.iso3166_3, null)
+  }
+)
+
+test(
   'areas have a type and typeID',
   testData,
   `

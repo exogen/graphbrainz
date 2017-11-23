@@ -56,7 +56,11 @@ type Area implements Node, Entity {
 
   # [ISO 3166 codes](https://en.wikipedia.org/wiki/ISO_3166) are
   # the codes assigned by ISO to countries and subdivisions.
-  isoCodes: [String]
+  isoCodes(
+    # Specify the particular ISO standard codes to retrieve.
+    # Available ISO standards are 3166-1, 3166-2, and 3166-3.
+    standard: String = "3166-1"
+  ): [String]
 
   # The type of area (country, city, etc. – see the [possible
   # values](https://musicbrainz.org/doc/Area)).
