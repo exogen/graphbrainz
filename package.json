@@ -79,7 +79,7 @@
     "es6-error": "^4.0.2",
     "express": "^4.16.2",
     "express-graphql": "^0.6.7",
-    "graphql": "^0.11.7",
+    "graphql": "^0.12.0",
     "graphql-relay": "^0.5.4",
     "graphql-tools": "^2.12.0",
     "lru-cache": "^4.1.1",
