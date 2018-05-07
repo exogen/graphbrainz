@@ -81,7 +81,7 @@
     "express-graphql": "^0.6.7",
     "graphql": "^0.11.7",
     "graphql-relay": "^0.5.4",
-    "graphql-tools": "^2.12.0",
+    "graphql-tools": "^3.0.1",
     "lru-cache": "^4.1.1",
     "pascalcase": "^0.1.1",
     "postinstall-build": "^5.0.1",
