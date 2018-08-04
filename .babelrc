@@ -1,6 +1,15 @@
 {
-  "presets": ["es2015", "stage-2"],
-  "plugins": ["transform-runtime"],
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "node": "8.10"
+        }
+      }
+    ]
+  ],
+  "plugins": ["transform-runtime", "syntax-object-rest-spread"],
   "only": ["scripts/**", "src/**", "test/helpers/**"],
   "env": {
     "test": {

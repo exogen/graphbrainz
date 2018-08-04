@@ -21,7 +21,7 @@ export function applyExtension(extension, schema, options = {}) {
         return extendSchema(updatedSchema, extensionSchema)
       }, outputSchema)
       if (resolvers) {
-        addResolveFunctionsToSchema(outputSchema, resolvers)
+        addResolveFunctionsToSchema({ schema: outputSchema, resolvers })
       }
     } else if (typeof extension.extendSchema === 'function') {
       debug(

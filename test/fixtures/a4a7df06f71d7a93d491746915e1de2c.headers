@@ -1,0 +1,23 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "content-type": "application/json",
+    "server": "Microsoft-IIS/7.0",
+    "x-powered-by": "PHP/5.6.0, ASP.NET",
+    "access-control-allow-origin": "*",
+    "date": "Sat, 04 Aug 2018 09:19:29 GMT",
+    "connection": "close",
+    "content-length": "57403"
+  },
+  "url": "https://www.theaudiodb.com:443/api/v1/json/195003/artist-mb.php?i=5b11f4ce-a62d-471e-81fc-a69a8278c7da",
+  "time": 1420,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "host": "www.theaudiodb.com",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json"
+    }
+  }
+}

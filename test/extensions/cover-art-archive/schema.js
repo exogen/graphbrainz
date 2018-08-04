@@ -10,7 +10,7 @@ const context = extension.extendContext(baseContext)
 function testData(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {
     if (result.errors !== undefined) {
-      console.log(result.errors)
+      result.errors.forEach(error => t.log(error))
     }
     t.is(result.errors, undefined)
     return handler(t, result.data)
@@ -170,11 +170,9 @@ test(
 `,
   (t, data) => {
     const { coverArtArchive } = data.lookup.releaseGroup
+    const { front } = coverArtArchive
     t.true(coverArtArchive.artwork)
-    t.is(
-      coverArtArchive.front,
-      'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275.jpg'
-    )
+    t.snapshot({ front })
     t.is(coverArtArchive.release.mbid, '25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27')
     t.is(coverArtArchive.release.title, 'The Dark Side of the Moon')
     t.is(coverArtArchive.images.length, 1)
@@ -199,14 +197,8 @@ test(
 `,
   (t, data) => {
     const { coverArtArchive } = data.lookup.releaseGroup
-    t.is(
-      coverArtArchive.small,
-      'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275-250.jpg'
-    )
-    t.is(
-      coverArtArchive.large,
-      'http://coverartarchive.org/release/25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/1675312275-500.jpg'
-    )
+    const { small, large } = coverArtArchive
+    t.snapshot({ small, large })
   }
 )
 

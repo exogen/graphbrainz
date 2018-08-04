@@ -20,6 +20,6 @@ export default function createLoader(options) {
     keys => {
       return Promise.all(keys.map(key => client.imageInfo(key)))
     },
-    { cacheMap: cache }
+    { batch: false, cacheMap: cache }
   )
 }

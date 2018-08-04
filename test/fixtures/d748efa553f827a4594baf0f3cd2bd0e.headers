@@ -1,26 +1,25 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Thu, 15 Dec 2016 00:55:17 GMT",
+    "date": "Sat, 04 Aug 2018 09:24:51 GMT",
     "content-type": "application/json; charset=utf-8",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "vary": "Accept-Encoding",
-    "x-ratelimit-limit": "700",
-    "x-ratelimit-remaining": "428",
-    "x-ratelimit-reset": "1481763318",
+    "x-ratelimit-limit": "1200",
+    "x-ratelimit-remaining": "1180",
+    "x-ratelimit-reset": "1533374692",
     "server": "Plack::Handler::Starlet",
-    "etag": "W/\"a5b699db72926f6eb5e9b9a0a981804b\"",
-    "access-control-allow-origin": "*",
-    "content-encoding": "gzip"
+    "etag": "W/\"94a57cf7f64e61c026b61b2a1eb78842\"",
+    "access-control-allow-origin": "*"
   },
   "url": "http://musicbrainz.org:80/ws/2/release-group/f86eb0a9-fd04-48c9-810b-1ba0b006e7b4?inc=ratings&fmt=json",
-  "time": 577,
+  "time": 371,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/4.5.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
       "host": "musicbrainz.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"

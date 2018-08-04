@@ -1,8 +1,8 @@
 import path from 'path'
-import sepia from 'sepia'
+import replayer from 'replayer'
 import CoverArtArchiveClient from '../../../src/extensions/cover-art-archive/client'
 
-sepia.fixtureDir(path.join(__dirname, '..', '..', 'fixtures'))
+replayer.fixtureDir(path.join(__dirname, '..', '..', 'fixtures'))
 
 const options =
   process.env.VCR_MODE === 'playback' ? { limit: Infinity, period: 0 } : {}

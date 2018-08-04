@@ -1,0 +1,11 @@
+{
+  "url": "http://musicbrainz.org:80/ws/2/discid/TMXdzZkTcc9Jq24PD0w5J9_AXms-?inc=media%2Bdiscids&fmt=json",
+  "method": "GET",
+  "headers": {
+    "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+    "host": "musicbrainz.org",
+    "accept-encoding": "gzip, deflate",
+    "accept": "application/json"
+  },
+  "body": ""
+}

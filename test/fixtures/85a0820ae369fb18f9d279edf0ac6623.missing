@@ -1,0 +1,11 @@
+{
+  "url": "https://commons.wikimedia.org:443/w/api.php?action=query&titles=File%3AM2676_-_gitarr_-_Matteo_Seelos_-_f%C3%B6re_1653_-_foto_Olav_Nyhus_(clip).jpg&prop=imageinfo&iiprop=url%7Csize%7Ccanonicaltitle%7Cuser%7Cextmetadata&format=json",
+  "method": "GET",
+  "headers": {
+    "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+    "host": "commons.wikimedia.org",
+    "accept-encoding": "gzip, deflate",
+    "accept": "application/json"
+  },
+  "body": ""
+}

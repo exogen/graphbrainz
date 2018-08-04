@@ -1,16 +1,14 @@
 import Client from '../../api/client'
 
 export default class TheAudioDBClient extends Client {
-  constructor(
-    {
-      apiKey = process.env.THEAUDIODB_API_KEY,
-      baseURL = process.env.THEAUDIODB_BASE_URL ||
-        'http://www.theaudiodb.com/api/v1/json/',
-      limit = 10,
-      period = 1000,
-      ...options
-    } = {}
-  ) {
+  constructor({
+    apiKey = process.env.THEAUDIODB_API_KEY,
+    baseURL = process.env.THEAUDIODB_BASE_URL ||
+      'https://www.theaudiodb.com/api/v1/json/',
+    limit = 10,
+    period = 1000,
+    ...options
+  } = {}) {
     super({ baseURL, limit, period, ...options })
     this.apiKey = apiKey
   }
@@ -22,7 +20,13 @@ export default class TheAudioDBClient extends Client {
         new ClientError('No API key was configured for TheAudioDB client.')
       )
     }
-    return super.get(`${this.apiKey}/${path}`, { json: true, ...options })
+    return super.get(`${this.apiKey}/${path}`, {
+      json: true,
+      // FIXME: TheAudioDB's SSL terminator seems to be broken and only works
+      // by forcing TLS 1.0.
+      agentOptions: { secureProtocol: 'TLSv1_method' },
+      ...options
+    })
   }
 
   entity(entityType, mbid) {

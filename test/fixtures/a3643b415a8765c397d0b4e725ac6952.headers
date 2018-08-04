@@ -1,22 +1,21 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Thu, 23 Nov 2017 20:24:51 GMT",
+    "date": "Sat, 04 Aug 2018 09:23:45 GMT",
     "content-type": "application/json; charset=utf-8",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "vary": "Accept-Encoding",
     "x-ratelimit-limit": "1200",
-    "x-ratelimit-remaining": "886",
-    "x-ratelimit-reset": "1511468692",
+    "x-ratelimit-remaining": "985",
+    "x-ratelimit-reset": "1533374626",
     "server": "Plack::Handler::Starlet",
-    "etag": "W/\"2bdd0bab5c20e84a04fec14ac72f29c2\"",
-    "access-control-allow-origin": "*",
-    "content-encoding": "gzip"
+    "etag": "W/\"7e54c0e2b3e8a3df0979b9dff7381c0c\"",
+    "access-control-allow-origin": "*"
   },
   "url": "http://musicbrainz.org:80/ws/2/area/75e398a3-5f3f-4224-9cd8-0fe44715bc95?fmt=json",
-  "time": 373,
+  "time": 362,
   "request": {
     "method": "GET",
     "headers": {

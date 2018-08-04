@@ -1,16 +1,13 @@
 import Client from '../../api/client'
 
 export default class FanArtClient extends Client {
-  constructor(
-    {
-      apiKey = process.env.FANART_API_KEY,
-      baseURL = process.env.FANART_BASE_URL ||
-        'http://webservice.fanart.tv/v3/',
-      limit = 10,
-      period = 1000,
-      ...options
-    } = {}
-  ) {
+  constructor({
+    apiKey = process.env.FANART_API_KEY,
+    baseURL = process.env.FANART_BASE_URL || 'http://webservice.fanart.tv/v3/',
+    limit = 10,
+    period = 1000,
+    ...options
+  } = {}) {
     super({ baseURL, limit, period, ...options })
     this.apiKey = apiKey
   }
