@@ -36,6 +36,7 @@ export default function createLoaders(client) {
       )
     },
     {
+      batch: false,
       cacheKeyFn: key => client.getLookupURL(...key),
       cacheMap: cache
     }
@@ -58,6 +59,7 @@ export default function createLoaders(client) {
       )
     },
     {
+      batch: false,
       cacheKeyFn: key => client.getBrowseURL(...key),
       cacheMap: cache
     }
@@ -80,6 +82,7 @@ export default function createLoaders(client) {
       )
     },
     {
+      batch: false,
       cacheKeyFn: key => client.getSearchURL(...key),
       cacheMap: cache
     }

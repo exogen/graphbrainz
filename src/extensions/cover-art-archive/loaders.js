@@ -55,6 +55,7 @@ export default function createLoaders(options) {
         )
       },
       {
+        batch: false,
         cacheKeyFn: ([entityType, id, type, size]) => {
           const key = `${entityType}/${id}/${type}`
           return size ? `${key}-${size}` : key

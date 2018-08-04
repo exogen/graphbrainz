@@ -9,7 +9,7 @@ function createScalar(config) {
       if (ast.kind === Kind.STRING) {
         return ast.value
       }
-      return null
+      return undefined
     },
     ...config
   })
@@ -92,7 +92,7 @@ export const Duration = createScalar({
     if (ast.kind === Kind.INT) {
       return validatePositive(parseInt(ast.value, 10))
     }
-    return null
+    return undefined
   }
 })
 
@@ -140,7 +140,7 @@ export const Locale = createScalar({
     if (ast.kind === Kind.STRING) {
       return validateLocale(ast.value)
     }
-    return null
+    return undefined
   }
 })
 
@@ -154,7 +154,7 @@ export const MBID = createScalar({
     if (ast.kind === Kind.STRING) {
       return validateMBID(ast.value)
     }
-    return null
+    return undefined
   }
 })
 
@@ -172,6 +172,6 @@ export const URLString = createScalar({
     if (ast.kind === Kind.STRING) {
       return validateURL(ast.value)
     }
-    return null
+    return undefined
   }
 })

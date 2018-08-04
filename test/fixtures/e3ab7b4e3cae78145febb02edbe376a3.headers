@@ -1,0 +1,26 @@
+{
+  "statusCode": 302,
+  "headers": {
+    "server": "nginx/1.4.6 (Ubuntu)",
+    "date": "Sat, 04 Aug 2018 09:21:09 GMT",
+    "content-type": "text/html; charset=UTF-8",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "access-control-allow-origin": "*",
+    "accept-ranges": "bytes",
+    "location": "http://ia800601.us.archive.org/20/items/mbid-35847092-d9f1-430a-aed7-f4ee93fb21a6/index.json",
+    "strict-transport-security": "max-age=604800"
+  },
+  "url": "http://archive.org:80/download/mbid-35847092-d9f1-430a-aed7-f4ee93fb21a6/index.json",
+  "time": 260,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json",
+      "referer": "http://coverartarchive.org/release/35847092-d9f1-430a-aed7-f4ee93fb21a6",
+      "host": "archive.org"
+    }
+  }
+}

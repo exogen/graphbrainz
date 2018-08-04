@@ -136,8 +136,7 @@ A free-text comment left for the image.
 
 #### CoverArtArchiveImageThumbnails
 
-URLs for thumbnails of different sizes for a particular piece of
-cover art.
+URLs for thumbnails of different sizes for a particular piece of cover art.
 
 <table>
 <thead>
@@ -193,14 +192,14 @@ as well as a summary of what artwork is available.
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
- The URL of an image depicting the album cover or “main front” of the release,
- i.e. the front of the packaging of the audio recording (or in the case of a
- digital release, the image associated with it in a digital media store).
+The URL of an image depicting the album cover or “main front” of the release,
+i.e. the front of the packaging of the audio recording (or in the case of a
+digital release, the image associated with it in a digital media store).
 
- In the MusicBrainz schema, this field is a Boolean value indicating the
- presence of a front image, whereas here the value is the URL for the image
- itself if one exists. You can check for null if you just want to determine
- the presence of an image.
+In the MusicBrainz schema, this field is a Boolean value indicating the
+presence of a front image, whereas here the value is the URL for the image
+itself if one exists. You can check for null if you just want to determine
+the presence of an image.
 
 </td>
 </tr>
@@ -220,13 +219,13 @@ retrieved as well.
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
- The URL of an image depicting the “main back” of the release, i.e. the back
- of the packaging of the audio recording.
+The URL of an image depicting the “main back” of the release, i.e. the back
+of the packaging of the audio recording.
 
- In the MusicBrainz schema, this field is a Boolean value indicating the
- presence of a back image, whereas here the value is the URL for the image
- itself. You can check for null if you just want to determine the presence of
- an image.
+In the MusicBrainz schema, this field is a Boolean value indicating the
+presence of a back image, whereas here the value is the URL for the image
+itself. You can check for null if you just want to determine the presence of
+an image.
 
 </td>
 </tr>

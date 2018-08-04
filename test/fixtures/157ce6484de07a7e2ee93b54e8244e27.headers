@@ -1,26 +1,24 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Thu, 15 Dec 2016 00:53:51 GMT",
-    "content-type": "application/json; charset=UTF-8",
+    "date": "Sat, 04 Aug 2018 09:23:26 GMT",
+    "content-type": "application/json",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
-    "vary": "Accept-Encoding",
-    "x-ratelimit-limit": "700",
-    "x-ratelimit-remaining": "298",
-    "x-ratelimit-reset": "1481763232",
-    "last-modified": "Thu, 15 Dec 2016 00:15:59 GMT",
-    "server": "Jetty(9.3.10.v20160621)",
-    "access-control-allow-origin": "*",
-    "content-encoding": "gzip"
+    "x-ratelimit-limit": "1200",
+    "x-ratelimit-remaining": "1174",
+    "x-ratelimit-reset": "1533374608",
+    "last-modified": "Sat, 04 Aug 2018 09:22:21 GMT",
+    "etag": "\"OWMwMDAwMDAwMDAwMDBTb2xy\"",
+    "access-control-allow-origin": "*"
   },
   "url": "http://musicbrainz.org:80/ws/2/label?limit=1&query=Apple%20Records&fmt=json",
-  "time": 729,
+  "time": 350,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/4.5.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
       "host": "musicbrainz.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"

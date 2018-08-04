@@ -36,8 +36,8 @@ test('Locale scalar allows language, country, and encoding', t => {
 })
 
 test('Locale scalar only accepts strings', t => {
-  t.is(Locale.parseLiteral({ kind: Kind.INT, value: 5 }), null)
-  t.is(Locale.parseLiteral({ kind: Kind.ENUM, value: 'xx' }), null)
+  t.is(Locale.parseLiteral({ kind: Kind.INT, value: 5 }), undefined)
+  t.is(Locale.parseLiteral({ kind: Kind.ENUM, value: 'xx' }), undefined)
 })
 
 test('Locale scalar rejects malformed locales', t => {
@@ -87,7 +87,7 @@ test('Duration scalar must be a positive integer', t => {
   t.is(Duration.parseLiteral({ kind: Kind.INT, value: 0 }), 0)
   t.is(Duration.parseLiteral({ kind: Kind.INT, value: 1 }), 1)
   t.is(Duration.parseLiteral({ kind: Kind.INT, value: 3000 }), 3000)
-  t.is(Duration.parseLiteral({ kind: Kind.STRING, value: '1000' }), null)
+  t.is(Duration.parseLiteral({ kind: Kind.STRING, value: '1000' }), undefined)
   t.throws(
     () => Duration.parseLiteral({ kind: Kind.INT, value: -1 }),
     TypeError
@@ -104,7 +104,7 @@ test('Duration scalar must be a positive integer', t => {
 })
 
 test('URLString scalar must be a valid URL', t => {
-  t.is(URLString.parseLiteral({ kind: Kind.INT, value: 1000 }), null)
+  t.is(URLString.parseLiteral({ kind: Kind.INT, value: 1000 }), undefined)
   t.is(
     URLString.parseLiteral({
       kind: Kind.STRING,
@@ -132,8 +132,8 @@ test('URLString scalar must be a valid URL', t => {
 
 test('ISWC scalar only accepts strings', t => {
   t.is(ISWC.parseLiteral({ kind: Kind.STRING, value: 'foo' }), 'foo')
-  t.is(ISWC.parseLiteral({ kind: Kind.INT, value: 5 }), null)
-  t.is(ISWC.parseLiteral({ kind: Kind.ENUM, value: 'xx' }), null)
+  t.is(ISWC.parseLiteral({ kind: Kind.INT, value: 5 }), undefined)
+  t.is(ISWC.parseLiteral({ kind: Kind.ENUM, value: 'xx' }), undefined)
 })
 
 test('ISWC scalar can be any string', t => {
@@ -143,8 +143,8 @@ test('ISWC scalar can be any string', t => {
 })
 
 test('MBID scalar only accepts strings', t => {
-  t.is(MBID.parseLiteral({ kind: Kind.INT, value: 12345 }), null)
-  t.is(MBID.parseLiteral({ kind: Kind.ENUM, value: 'xx' }), null)
+  t.is(MBID.parseLiteral({ kind: Kind.INT, value: 12345 }), undefined)
+  t.is(MBID.parseLiteral({ kind: Kind.ENUM, value: 'xx' }), undefined)
 })
 
 test('MBID scalar must be a valid UUID', t => {

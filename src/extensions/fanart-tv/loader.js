@@ -54,6 +54,7 @@ export default function createLoader(options) {
       )
     },
     {
+      batch: false,
       cacheKeyFn: ([entityType, id]) => `${entityType}/${id}`,
       cacheMap: cache
     }

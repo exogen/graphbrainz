@@ -1,15 +1,13 @@
 import Client from '../../api/client'
 
 export default class CoverArtArchiveClient extends Client {
-  constructor(
-    {
-      baseURL = process.env.COVER_ART_ARCHIVE_BASE_URL ||
-        'http://coverartarchive.org/',
-      limit = 10,
-      period = 1000,
-      ...options
-    } = {}
-  ) {
+  constructor({
+    baseURL = process.env.COVER_ART_ARCHIVE_BASE_URL ||
+      'http://coverartarchive.org/',
+    limit = 10,
+    period = 1000,
+    ...options
+  } = {}) {
     super({ baseURL, limit, period, ...options })
   }
 

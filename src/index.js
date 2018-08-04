@@ -19,15 +19,13 @@ export const defaultExtensions = [
   require.resolve('./extensions/the-audio-db')
 ]
 
-const middleware = (
-  {
-    client = new MusicBrainz(),
-    extensions = process.env.GRAPHBRAINZ_EXTENSIONS
-      ? JSON.parse(process.env.GRAPHBRAINZ_EXTENSIONS)
-      : defaultExtensions,
-    ...middlewareOptions
-  } = {}
-) => {
+const middleware = ({
+  client = new MusicBrainz(),
+  extensions = process.env.GRAPHBRAINZ_EXTENSIONS
+    ? JSON.parse(process.env.GRAPHBRAINZ_EXTENSIONS)
+    : defaultExtensions,
+  ...middlewareOptions
+} = {}) => {
   const options = { client, extensions, ...middlewareOptions }
   const DEV = process.env.NODE_ENV !== 'production'
   const graphiql = DEV || process.env.GRAPHBRAINZ_GRAPHIQL === 'true'

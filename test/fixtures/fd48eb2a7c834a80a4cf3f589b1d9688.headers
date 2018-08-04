@@ -2,20 +2,21 @@
   "statusCode": 302,
   "headers": {
     "server": "nginx/1.4.6 (Ubuntu)",
-    "date": "Tue, 20 Dec 2016 01:39:54 GMT",
+    "date": "Sat, 04 Aug 2018 09:21:05 GMT",
     "content-type": "text/html; charset=UTF-8",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
-    "x-powered-by": "PHP/5.5.9-1ubuntu4.20",
+    "access-control-allow-origin": "*",
     "accept-ranges": "bytes",
-    "location": "http://ia800808.us.archive.org/32/items/mbid-25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/index.json"
+    "location": "http://ia800604.us.archive.org/7/items/mbid-25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/index.json",
+    "strict-transport-security": "max-age=604800"
   },
   "url": "http://archive.org:80/download/mbid-25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27/index.json",
-  "time": 141,
+  "time": 132,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/4.5.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json",
       "referer": "http://coverartarchive.org/release-group/f5093c06-23e3-404f-aeaa-40f72885ee3a",

@@ -10,7 +10,7 @@ const context = extension.extendContext(baseContext)
 function testData(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {
     if (result.errors !== undefined) {
-      console.log(result.errors)
+      result.errors.forEach(error => t.log(error))
     }
     t.is(result.errors, undefined)
     return handler(t, result.data)

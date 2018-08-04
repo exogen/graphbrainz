@@ -1,0 +1,27 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "date": "Sat, 04 Aug 2018 10:00:28 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "237",
+    "connection": "keep-alive",
+    "keep-alive": "timeout=15",
+    "x-ratelimit-limit": "1200",
+    "x-ratelimit-remaining": "825",
+    "x-ratelimit-reset": "1533376828",
+    "server": "Plack::Handler::Starlet",
+    "etag": "\"aacc40e18c388ba0521ace866dc3d050\"",
+    "access-control-allow-origin": "*"
+  },
+  "url": "http://musicbrainz.org:80/ws/2/instrument/5888d65d-9d65-4d13-8454-3d68be9b3e55?inc=url-rels&fmt=json",
+  "time": 362,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "host": "musicbrainz.org",
+      "accept-encoding": "gzip, deflate",
+      "accept": "application/json"
+    }
+  }
+}

@@ -1,14 +1,12 @@
 const debug = require('debug')('graphbrainz:rate-limit')
 
 export default class RateLimit {
-  constructor(
-    {
-      limit = 1,
-      period = 1000,
-      concurrency = limit || 1,
-      defaultPriority = 1
-    } = {}
-  ) {
+  constructor({
+    limit = 1,
+    period = 1000,
+    concurrency = limit || 1,
+    defaultPriority = 1
+  } = {}) {
     this.limit = limit
     this.period = period
     this.defaultPriority = defaultPriority

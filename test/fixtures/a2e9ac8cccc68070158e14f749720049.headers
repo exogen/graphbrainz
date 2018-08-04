@@ -1,21 +1,20 @@
 {
   "statusCode": 307,
   "headers": {
-    "date": "Tue, 20 Dec 2016 01:39:55 GMT",
+    "date": "Sat, 04 Aug 2018 09:21:07 GMT",
     "content-type": "text/plain; charset=utf-8",
     "content-length": "86",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "location": "http://archive.org/download/mbid-d5cdb7fd-c7e9-460a-9549-8a369655cc52/index.json",
-    "access-control-allow-origin": "*",
-    "server": "4b4c084fb141"
+    "access-control-allow-origin": "*"
   },
   "url": "http://coverartarchive.org:80/release/d5cdb7fd-c7e9-460a-9549-8a369655cc52",
-  "time": 414,
+  "time": 373,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/4.5.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
       "host": "coverartarchive.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"

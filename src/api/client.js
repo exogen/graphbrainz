@@ -28,28 +28,26 @@ export class ClientError extends ExtendableError {
 }
 
 export default class Client {
-  constructor(
-    {
-      baseURL,
-      userAgent = `${pkg.name}/${pkg.version} ` +
-        `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
-      extraHeaders = {},
-      errorClass = ClientError,
-      timeout = 60000,
-      limit = 1,
-      period = 1000,
-      concurrency = 10,
-      retries = 10,
-      // It's OK for `retryDelayMin` to be less than one second, even 0, because
-      // `RateLimit` will already make sure we don't exceed the API rate limit.
-      // We're not doing exponential backoff because it will help with being
-      // rate limited, but rather to be chill in case MusicBrainz is returning
-      // some other error or our network is failing.
-      retryDelayMin = 100,
-      retryDelayMax = 60000,
-      randomizeRetry = true
-    } = {}
-  ) {
+  constructor({
+    baseURL,
+    userAgent = `${pkg.name}/${pkg.version} ` +
+      `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
+    extraHeaders = {},
+    errorClass = ClientError,
+    timeout = 60000,
+    limit = 1,
+    period = 1000,
+    concurrency = 10,
+    retries = 10,
+    // It's OK for `retryDelayMin` to be less than one second, even 0, because
+    // `RateLimit` will already make sure we don't exceed the API rate limit.
+    // We're not doing exponential backoff because it will help with being
+    // rate limited, but rather to be chill in case MusicBrainz is returning
+    // some other error or our network is failing.
+    retryDelayMin = 100,
+    retryDelayMax = 60000,
+    randomizeRetry = true
+  } = {}) {
     this.baseURL = baseURL
     this.userAgent = userAgent
     this.extraHeaders = extraHeaders

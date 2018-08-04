@@ -25,7 +25,7 @@ export default class MediaWikiClient extends Client {
       pathname: '/w/api.php',
       query: {
         action: 'query',
-        titles: pageURL.pathname.slice(6),
+        titles: decodeURI(pageURL.pathname.slice(6)),
         prop: 'imageinfo',
         iiprop: 'url|size|canonicaltitle|user|extmetadata',
         format: 'json'
@@ -37,6 +37,11 @@ export default class MediaWikiClient extends Client {
       if (pageIDs.length !== 1) {
         throw new ClientError(
           `Query returned multiple pages: [${pageIDs.join(', ')}]`
+        )
+      }
+      if (pageIDs[0] === '-1') {
+        throw new ClientError(
+          body.query.pages['-1'].invalidreason || 'Unknown error'
         )
       }
       const imageInfo = body.query.pages[pageIDs[0]].imageinfo

@@ -188,7 +188,7 @@ A review of the album.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>salesCount</strong></td>
-<td valign="top"><a href="../types.md#int">Int</a></td>
+<td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
 The worldwide sales figure.
@@ -206,7 +206,7 @@ The album’s rating as determined by user votes, out of 10.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>scoreVotes</strong></td>
-<td valign="top"><a href="../types.md#int">Int</a></td>
+<td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
 The number of users who voted to determine the album’s score.
@@ -548,7 +548,7 @@ The size of the images to retrieve.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>viewCount</strong></td>
-<td valign="top"><a href="../types.md#int">Int</a></td>
+<td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
 The number of views the video has received at the given URL. This will rarely
@@ -558,7 +558,7 @@ be up to date, so use cautiously.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>likeCount</strong></td>
-<td valign="top"><a href="../types.md#int">Int</a></td>
+<td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
 The number of likes the video has received at the given URL. This will rarely
@@ -568,7 +568,7 @@ be up to date, so use cautiously.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>dislikeCount</strong></td>
-<td valign="top"><a href="../types.md#int">Int</a></td>
+<td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
 The number of dislikes the video has received at the given URL. This will
@@ -578,7 +578,7 @@ rarely be up to date, so use cautiously.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>commentCount</strong></td>
-<td valign="top"><a href="../types.md#int">Int</a></td>
+<td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
 The number of comments the video has received at the given URL. This will
@@ -678,7 +678,7 @@ The track’s rating as determined by user votes, out of 10.
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>scoreVotes</strong></td>
-<td valign="top"><a href="../types.md#int">Int</a></td>
+<td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
 The number of users who voted to determine the album’s score.
