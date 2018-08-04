@@ -22,3 +22,4 @@ if [[ $STASH_OUTPUT != "No local changes"* ]]; then
 fi
 
 echo -e "\n${GREEN}✔︎ Successfully deployed.${RESET}"
+heroku open || true
