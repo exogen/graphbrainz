@@ -110,7 +110,7 @@
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
-    "graphql-markdown": "^4.0.0-0",
+    "graphql-markdown": "^4.0.0",
     "nodemon": "^1.18.3",
     "nyc": "^12.0.2",
     "prettier": "^1.14.0",
