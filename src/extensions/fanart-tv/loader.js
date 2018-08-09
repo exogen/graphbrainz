@@ -40,7 +40,7 @@ export default function createLoader(options) {
             })
             .then(body => {
               if (entityType === 'artist') {
-                const releaseGroupIDs = Object.keys(body.albums)
+                const releaseGroupIDs = Object.keys(body.albums || {})
                 debug(
                   `Priming album cache with ${releaseGroupIDs.length} album(s).`
                 )
