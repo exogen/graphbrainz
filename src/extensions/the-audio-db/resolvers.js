@@ -74,7 +74,15 @@ export default {
     theme: track => track.strTheme || null
   },
   TheAudioDBMusicVideo: {
-    url: track => track.strMusicVid || null,
+    url: track => {
+      let url = track.strMusicVid || null
+      // Many of these are missing the protocol and start with www, so add it
+      // in that case.
+      if (url && url.startsWith('www.')) {
+        url = `https://${url}`
+      }
+      return url
+    },
     companyName: track => track.strMusicVidCompany || null,
     directorName: track => track.strMusicVidDirector || null,
     screenshots: handleImageSize(track => {
