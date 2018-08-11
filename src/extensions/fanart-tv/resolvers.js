@@ -22,23 +22,23 @@ export default {
   },
   FanArtArtist: {
     backgrounds: artist => {
-      return artist.artistbackground
+      return artist.artistbackground || []
     },
     thumbnails: artist => {
-      return artist.artistthumb
+      return artist.artistthumb || []
     },
     logos: artist => {
-      return artist.musiclogo
+      return artist.musiclogo || []
     },
     logosHD: artist => {
-      return artist.hdmusiclogo
+      return artist.hdmusiclogo || []
     },
     banners: artist => {
-      return artist.musicbanner
+      return artist.musicbanner || []
     }
   },
   FanArtLabel: {
-    logos: label => label.musiclabel
+    logos: label => label.musiclabel || []
   },
   FanArtAlbum: {
     albumCovers: album => album.albumcover || [],
