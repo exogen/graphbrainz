@@ -65,13 +65,13 @@ graphbrainz({
 The following extensions are included with GraphBrainz and loaded by default.
 See their respective documentation pages for schema info and config options.
 
-* [Cover Art Archive](./cover-art-archive.md): Retrieve cover art images for
+- [Cover Art Archive](./cover-art-archive.md): Retrieve cover art images for
   releases from the Cover Art Archive.
-* [fanart.tv](./fanart-tv.md): Retrieve high quality artwork for artists,
+- [fanart.tv](./fanart-tv.md): Retrieve high quality artwork for artists,
   releases, and labels from fanart.tv.
-* [MediaWiki](./mediawiki.md): Retrieve information from MediaWiki image pages,
+- [MediaWiki](./mediawiki.md): Retrieve information from MediaWiki image pages,
   like the actual image file URL and EXIF metadata.
-* [TheAudioDB](./the-audio-db.md): Retrieve images and information about artists,
+- [TheAudioDB](./the-audio-db.md): Retrieve images and information about artists,
   releases, and recordings from TheAudioDB.com.
 
 ## More Extensions
@@ -79,11 +79,13 @@ See their respective documentation pages for schema info and config options.
 The following extensions are published separately, but can easily be added to
 GraphBrainz by installing them:
 
-* [Last.fm](https://github.com/exogen/graphbrainz-extension-lastfm): Retrieve
+- [Last.fm](https://github.com/exogen/graphbrainz-extension-lastfm): Retrieve
   artist, release, and recording information from [Last.fm](https://www.last.fm/).
-* [Discogs](https://github.com/exogen/graphbrainz-extension-discogs): Retrieve
+- [Discogs](https://github.com/exogen/graphbrainz-extension-discogs): Retrieve
   artist, label, release, and release group information from
   [Discogs](https://www.discogs.com/).
+- [Spotify](https://github.com/exogen/graphbrainz-extension-spotify): Retrieve
+  artist, release, and recording information from [Spotify](https://www.spotify.com/).
 
 ## Extension API
 
@@ -100,8 +102,8 @@ type Extension = {
   description?: string,
   extendContext?: (context: Context, options: Options) => Context,
   extendSchema?:
-    { schemas: Array<string | DocumentNode>, resolvers: ResolverMap } |
-    (schema: GraphQLSchema, options: Options) => GraphQLSchema
+    | { schemas: Array<string | DocumentNode>, resolvers: ResolverMap }
+    | ((schema: GraphQLSchema, options: Options) => GraphQLSchema)
 }
 ```
 
@@ -146,11 +148,13 @@ module.exports = {
   name: 'Hello World',
   description: 'A simple example extension.',
   extendSchema: {
-    schemas: [`
+    schemas: [
+      `
       extend type Query {
         helloWorld: String!
       }
-    `],
+    `
+    ],
     resolvers: {
       Query: {
         helloWorld: {
@@ -180,52 +184,52 @@ in your cap, there are a few guidelines you should follow in order to maintain
 consistency with GraphBrainz and the built-in extensions. Here are some tips
 for writing a good extension:
 
-* If you need to make HTTP requests, using a [Client][] subclass will get you
+- If you need to make HTTP requests, using a [Client][] subclass will get you
   rate limiting, error handling, retrying, and a Promise-based API for free.
-* Default to following the rate limiting rules of any APIs you use. If there
+- Default to following the rate limiting rules of any APIs you use. If there
   are no guidelines on rate limiting, consider playing nice anyway and limiting
   your client to around 1 to 10 requests per second.
-* Use a [DataLoader][dataloader] instance to batch and cache requests. Even if
+- Use a [DataLoader][dataloader] instance to batch and cache requests. Even if
   the data source doesn’t support batching, DataLoader will help by deduping
   in-flight requests for the same key, preventing unnecessary requests.
-* Use a configurable cache and make sure you aren’t caching everything
+- Use a configurable cache and make sure you aren’t caching everything
   indefinitely by accident. The `cacheMap` option to DataLoader is a good place
   to put it.
-* Get as much configuration from environment variables as possible so that
+- Get as much configuration from environment variables as possible so that
   users can just run the standalone server instead of writing any code. If you
   need more complex configuration, use a single field on the `options` object
   as a namespace for your extension’s options.
-* Don’t hesitate to rename fields returned by third-party APIs when translating
+- Don’t hesitate to rename fields returned by third-party APIs when translating
   them to the GraphQL schema. Consistency with GraphQL conventions and the
   GraphBrainz schema is more desirable than consistency with the original API
   being used. Some general rules:
-  * Match type names to the service they’re coming from (e.g. many services use
+  - Match type names to the service they’re coming from (e.g. many services use
     the words “album” and “track” and the type names should reflect that), but
     match scalar field names to their MusicBrainz equivalents when possible
     (e.g. `name` for artists but `title` for releases and recordings).
-  * Use camel case naming and capitalize acronyms (unless they are the only
+  - Use camel case naming and capitalize acronyms (unless they are the only
     word), e.g. `id`, `url`, `artistID`, `pageURL`.
-  * If it’s ambiguous whether a field refers to an object/list vs. a scalar
+  - If it’s ambiguous whether a field refers to an object/list vs. a scalar
     summary of an object/list, consider clarifying the field name, e.g. `user` →
     `userID`, `members` → `memberCount`.
-  * Don’t include fields that are already available in MusicBrainz (unless it’s
+  - Don’t include fields that are already available in MusicBrainz (unless it’s
     possible to retrieve an entity that isn’t in MusicBrainz). Only include
     what’s relevant and useful.
-* Add descriptions for everything: types, fields, arguments, enum values, etc.
+- Add descriptions for everything: types, fields, arguments, enum values, etc.
   – with Markdown links wherever they’d be helpful.
-* When extending the built-in types, prefer adding a single object field that
+- When extending the built-in types, prefer adding a single object field that
   serves as a namespace rather than adding many fields. That way it’s more
   obvious that the data source isn’t MusicBrainz itself, and you’re less likely
   to conflict with new MusicBrainz fields in the future.
-* Prefer using a [Relay][]-compliant schema for lists of objects that (1) have
+- Prefer using a [Relay][]-compliant schema for lists of objects that (1) have
   their own IDs and (2) are likely to be paginated. Feel free to add a `nodes`
   shortcut field to the Connection type (for users who want to skip over
   `edges`).
-* If you publish your extension, consider prefixing the package name with
+- If you publish your extension, consider prefixing the package name with
   `graphbrainz-extension-` and having the default export of its `main` entry
   point be the extension object. That way, using it is as simple as adding the
   package name to the list of extensions.
-* Consider using [graphql-markdown][] to document the schema created by your
+- Consider using [graphql-markdown][] to document the schema created by your
   extension; this will match how GraphBrainz itself is documented. You can use
   the [diffSchema][] function to document only the schema updates, see
   [scripts/build-extension-docs.js][build-extension-docs] for how this is done
@@ -233,13 +237,13 @@ for writing a good extension:
 
 [graphql-tools]: http://dev.apollodata.com/tools/graphql-tools/index.html
 [schema stitching]: http://dev.apollodata.com/tools/graphql-tools/schema-stitching.html
-[mergeSchemas]: http://dev.apollodata.com/tools/graphql-tools/schema-stitching.html#mergeSchemas
+[mergeschemas]: http://dev.apollodata.com/tools/graphql-tools/schema-stitching.html#mergeSchemas
 [dataloader]: https://github.com/facebook/dataloader
 [built-in extensions]: ../../src/extensions
-[Client]: ../../src/api/client.js
+[client]: ../../src/api/client.js
 [graphql-markdown]: https://github.com/exogen/graphql-markdown
-[diffSchema]: https://github.com/exogen/graphql-markdown#diffschemaoldschema-object-newschema-object-options-object
+[diffschema]: https://github.com/exogen/graphql-markdown#diffschemaoldschema-object-newschema-object-options-object
 [build-extension-docs]: ../../scripts/build-extension-docs.js
-[Relay]: https://facebook.github.io/relay/
-[GraphQL.js]: http://graphql.org/graphql-js/
-[addResolveFunctionsToSchema]: http://dev.apollodata.com/tools/graphql-tools/resolvers.html#addResolveFunctionsToSchema
+[relay]: https://facebook.github.io/relay/
+[graphql.js]: http://graphql.org/graphql-js/
+[addresolvefunctionstoschema]: http://dev.apollodata.com/tools/graphql-tools/resolvers.html#addResolveFunctionsToSchema
