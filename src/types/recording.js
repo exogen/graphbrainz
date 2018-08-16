@@ -45,7 +45,18 @@ or mixing.`,
     isrcs: {
       type: new GraphQLList(ISRC),
       description: `A list of [International Standard Recording Codes](https://musicbrainz.org/doc/ISRC)
-(ISRCs) for this recording.`
+(ISRCs) for this recording.`,
+      resolve: (source, args, context) => {
+        if (source.isrcs) {
+          return source.isrcs
+        }
+        // TODO: Add support for parent entities knowing to include this `inc`
+        // parameter in their own calls by inspecting what fields are requested
+        // or batching things at the loader level.
+        return context.loaders.lookup
+          .load(['recording', source.id, { inc: 'isrcs' }])
+          .then(recording => recording.isrcs)
+      }
     },
     length: {
       type: Duration,
