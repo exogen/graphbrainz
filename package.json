@@ -108,7 +108,7 @@
     "eslint-plugin-markdown": "^1.0.0-beta.6",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-standard": "^3.1.0",
     "graphql-markdown": "^4.0.0",
     "nodemon": "^1.18.3",
