@@ -74,7 +74,7 @@
     "cors": "^2.8.4",
     "dashify": "^1.0.0",
     "dataloader": "^1.4.0",
-    "debug": "^3.0.0",
+    "debug": "^4.0.1",
     "dotenv": "^6.0.0",
     "es6-error": "^4.1.1",
     "express": "^4.16.3",
