@@ -99,9 +99,7 @@ export default class Client {
 
       const url = `${options.baseUrl}${options.url}`
 
-      debug(`Sending request. url=${url} attempt=${info.currentAttempt}`)
-
-      request(options, (err, response, body) => {
+      const req = request(options, (err, response, body) => {
         if (err) {
           debug(`Error: “${err}” url=${url}`)
           reject(err)
@@ -116,6 +114,10 @@ export default class Client {
           resolve(body)
         }
       })
+
+      debug(
+        `Sending request. url=${req.url.href} attempt=${info.currentAttempt}`
+      )
     })
   }
 
