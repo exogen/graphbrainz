@@ -2,23 +2,23 @@
   "statusCode": 200,
   "headers": {
     "server": "nginx/1.4.6 (Ubuntu)",
-    "date": "Sat, 04 Aug 2018 09:14:00 GMT",
+    "date": "Sun, 16 Sep 2018 22:59:21 GMT",
     "content-type": "application/json",
     "content-length": "1380",
     "last-modified": "Sun, 26 Oct 2014 03:00:42 GMT",
     "connection": "keep-alive",
     "etag": "\"544c63da-564\"",
-    "expires": "Sat, 04 Aug 2018 15:14:00 GMT",
+    "expires": "Mon, 17 Sep 2018 04:59:21 GMT",
     "cache-control": "max-age=21600",
     "access-control-allow-origin": "*",
     "accept-ranges": "bytes"
   },
   "url": "http://ia902605.us.archive.org:80/15/items/mbid-90a00dba-addb-4fdc-af2c-6fbb5d733c39/index.json",
-  "time": 127,
+  "time": 129,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/8.0.3 ( https://github.com/exogen/graphbrainz )",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json",
       "referer": "http://archive.org/download/mbid-90a00dba-addb-4fdc-af2c-6fbb5d733c39/index.json",

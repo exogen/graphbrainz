@@ -1,24 +1,24 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Sat, 04 Aug 2018 09:21:06 GMT",
+    "date": "Sun, 16 Sep 2018 22:59:18 GMT",
     "content-type": "application/json",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "x-ratelimit-limit": "1200",
-    "x-ratelimit-remaining": "1092",
-    "x-ratelimit-reset": "1533374468",
-    "last-modified": "Sat, 04 Aug 2018 09:19:49 GMT",
-    "etag": "\"MTdmMDIwMDAwMDAwMDAwMFNvbHI=\"",
+    "x-ratelimit-remaining": "1141",
+    "x-ratelimit-reset": "1537138760",
+    "last-modified": "Sun, 16 Sep 2018 22:58:36 GMT",
+    "etag": "\"MTIxZmUwMDAwMDAwMDAwMFNvbHI=\"",
     "access-control-allow-origin": "*"
   },
   "url": "http://musicbrainz.org:80/ws/2/release?query=You%20Want%20It%20Darker&fmt=json",
-  "time": 456,
+  "time": 453,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/8.0.3 ( https://github.com/exogen/graphbrainz )",
       "host": "musicbrainz.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"

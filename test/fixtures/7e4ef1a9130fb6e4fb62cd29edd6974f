@@ -1,1 +1,1 @@
-{"type":"String instrument","disambiguation":"nylon-stringed acoustic guitar","description":"Hollow-body acoustic guitar strung with nylon-strings.","name":"nylon guitar","relations":[],"type-id":"cc00f97f-cf3d-3ae2-9163-041cb1a0d726","id":"87d5bd6a-8d14-4ed0-befa-b90379536634"}
+{"name":"nylon guitar","type-id":"cc00f97f-cf3d-3ae2-9163-041cb1a0d726","description":"Hollow-body acoustic guitar strung with nylon-strings.","relations":[],"type":"String instrument","disambiguation":"nylon-stringed acoustic guitar","id":"87d5bd6a-8d14-4ed0-befa-b90379536634"}

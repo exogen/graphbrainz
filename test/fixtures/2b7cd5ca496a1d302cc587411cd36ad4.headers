@@ -1,25 +1,25 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Sat, 04 Aug 2018 10:00:01 GMT",
+    "date": "Sun, 16 Sep 2018 22:56:55 GMT",
     "content-type": "application/json",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "vary": "Accept-Encoding",
     "x-ratelimit-limit": "1200",
-    "x-ratelimit-remaining": "1118",
-    "x-ratelimit-reset": "1533376802",
-    "last-modified": "Sat, 04 Aug 2018 09:54:52 GMT",
-    "etag": "W/\"N2M5YzAwMDAwMDAwMDAwMFNvbHI=\"",
+    "x-ratelimit-remaining": "908",
+    "x-ratelimit-reset": "1537138615",
+    "last-modified": "Sun, 16 Sep 2018 22:36:14 GMT",
+    "etag": "W/\"NmNkNjAwMDAwMDAwMDAwMFNvbHI=\"",
     "access-control-allow-origin": "*"
   },
   "url": "http://musicbrainz.org:80/ws/2/label?limit=50&query=Sony&fmt=json",
-  "time": 413,
+  "time": 383,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/8.0.3 ( https://github.com/exogen/graphbrainz )",
       "host": "musicbrainz.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"

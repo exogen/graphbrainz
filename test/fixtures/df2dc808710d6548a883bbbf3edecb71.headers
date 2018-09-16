@@ -1,11 +1,11 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Sat, 04 Aug 2018 10:00:07 GMT",
+    "date": "Sun, 16 Sep 2018 22:56:56 GMT",
     "content-type": "application/json; charset=utf-8",
     "content-length": "1024",
     "connection": "keep-alive",
-    "server": "mw1344.eqiad.wmnet",
+    "server": "mw2218.codfw.wmnet",
     "x-powered-by": "HHVM/3.18.6-dev",
     "p3p": "CP=\"This is not a P3P policy! See https://commons.wikimedia.org/wiki/Special:CentralAutoLogin/P3P for more info.\"",
     "cache-control": "private, must-revalidate, max-age=0",
@@ -13,27 +13,27 @@
     "content-disposition": "inline; filename=api-result.json",
     "x-content-type-options": "nosniff",
     "x-frame-options": "DENY",
-    "backend-timing": "D=37508 t=1533376807151438",
-    "x-varnish": "643097231, 882260316, 438379997, 529942733",
-    "via": "1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)",
+    "backend-timing": "D=31694 t=1537138616013115",
+    "x-varnish": "490975212, 238173071, 912661146",
+    "via": "1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1), 1.1 varnish (Varnish/5.1)",
     "accept-ranges": "bytes",
     "age": "0",
-    "x-cache": "cp1054 pass, cp2019 pass, cp4032 pass, cp4031 pass",
+    "x-cache": "cp2013 pass, cp4032 pass, cp4030 pass",
     "x-cache-status": "pass",
     "strict-transport-security": "max-age=106384710; includeSubDomains; preload",
     "set-cookie": [
-      "WMF-Last-Access=04-Aug-2018;Path=/;HttpOnly;secure;Expires=Wed, 05 Sep 2018 00:00:00 GMT",
+      "WMF-Last-Access=16-Sep-2018;Path=/;HttpOnly;secure;Expires=Thu, 18 Oct 2018 12:00:00 GMT",
       "GeoIP=US:WA:Seattle:47.61:-122.30:v4; Path=/; secure; Domain=.wikimedia.org"
     ],
     "x-analytics": "ns=-1;special=Badtitle;https=1;nocookies=1",
     "x-client-ip": "24.56.225.155"
   },
   "url": "https://commons.wikimedia.org:443/w/api.php?action=query&titles=File%3ANirvana_around_1992.jpg&prop=imageinfo&iiprop=url%7Csize%7Ccanonicaltitle%7Cuser%7Cextmetadata&format=json",
-  "time": 310,
+  "time": 217,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/8.0.3 ( https://github.com/exogen/graphbrainz )",
       "host": "commons.wikimedia.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"

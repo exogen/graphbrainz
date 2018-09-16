@@ -44,7 +44,7 @@
     "test": "npm run lint && npm run test:coverage",
     "test:coverage": "cross-env NODE_ENV=test nyc npm run test:only",
     "test:only": "cross-env VCR_MODE=playback ava",
-    "test:record": "cross-env VCR_MODE=record ava",
+    "test:record": "cross-env VCR_MODE=record ava --concurrency 1",
     "test:record-new": "cross-env VCR_MODE=cache ava --concurrency 1",
     "test:watch": "npm run test:only -- --watch",
     "update-schema": "npm run -s print-schema:json > schema.json"

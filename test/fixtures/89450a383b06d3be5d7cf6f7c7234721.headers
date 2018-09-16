@@ -1,24 +1,24 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Sat, 04 Aug 2018 09:23:46 GMT",
+    "date": "Sun, 16 Sep 2018 22:57:07 GMT",
     "content-type": "application/json",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "x-ratelimit-limit": "1200",
-    "x-ratelimit-remaining": "919",
-    "x-ratelimit-reset": "1533374626",
-    "last-modified": "Sat, 04 Aug 2018 09:20:57 GMT",
-    "etag": "\"ZmE0MDAwMDAwMDAwMDAwMFNvbHI=\"",
+    "x-ratelimit-remaining": "807",
+    "x-ratelimit-reset": "1537138627",
+    "last-modified": "Sun, 16 Sep 2018 15:51:05 GMT",
+    "etag": "\"OWNhMDAwMDAwMDAwMDAwMFNvbHI=\"",
     "access-control-allow-origin": "*"
   },
   "url": "http://musicbrainz.org:80/ws/2/area?limit=5&query=Germany&fmt=json",
-  "time": 356,
+  "time": 354,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/8.0.3 ( https://github.com/exogen/graphbrainz )",
       "host": "musicbrainz.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"

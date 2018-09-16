@@ -1,25 +1,25 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Sat, 04 Aug 2018 10:00:12 GMT",
+    "date": "Sun, 16 Sep 2018 22:57:17 GMT",
     "content-type": "application/json; charset=utf-8",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "keep-alive": "timeout=15",
     "vary": "Accept-Encoding",
     "x-ratelimit-limit": "1200",
-    "x-ratelimit-remaining": "922",
-    "x-ratelimit-reset": "1533376812",
+    "x-ratelimit-remaining": "929",
+    "x-ratelimit-reset": "1537138637",
     "server": "Plack::Handler::Starlet",
-    "etag": "W/\"e2affb068adc450611c9ffd957653928\"",
+    "etag": "W/\"061cfbeacd00c29134a254b9fe197ded\"",
     "access-control-allow-origin": "*"
   },
   "url": "http://musicbrainz.org:80/ws/2/instrument/a1baa57d-6ab4-461e-89df-448d6fd2c597?inc=url-rels&fmt=json",
-  "time": 384,
+  "time": 374,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/8.0.3 ( https://github.com/exogen/graphbrainz )",
       "host": "musicbrainz.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"
