@@ -1,7 +1,7 @@
 {
   "statusCode": 307,
   "headers": {
-    "date": "Sat, 04 Aug 2018 09:21:07 GMT",
+    "date": "Sun, 16 Sep 2018 22:59:18 GMT",
     "content-type": "text/plain; charset=utf-8",
     "content-length": "86",
     "connection": "keep-alive",
@@ -10,11 +10,11 @@
     "access-control-allow-origin": "*"
   },
   "url": "http://coverartarchive.org:80/release/3d354599-d9d4-44a8-9584-37e3b0238871",
-  "time": 380,
+  "time": 389,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/8.0.3 ( https://github.com/exogen/graphbrainz )",
       "host": "coverartarchive.org",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json"

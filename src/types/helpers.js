@@ -220,7 +220,10 @@ alternate names or misspellings.`,
 export const artistCredits = {
   type: new GraphQLList(ArtistCredit),
   description: 'The main credited artist(s).',
-  resolve: createSubqueryResolver({ key: 'artist-credit' })
+  resolve: createSubqueryResolver({
+    inc: 'artist-credits',
+    key: 'artist-credit'
+  })
 }
 
 export const artistCredit = {

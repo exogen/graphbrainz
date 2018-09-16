@@ -1,1 +1,1 @@
-{"iso-3166-1-codes":["XG"],"type-id":"06dd0ae4-8c74-30bb-b43d-95dcedf961de","name":"East Germany","id":"d907b0ac-2956-386f-a246-62d55779aae1","sort-name":"East Germany","iso-3166-3-codes":["DDDE"],"life-span":{"ended":true,"end":"1990","begin":"1949"},"type":"Country","disambiguation":""}
+{"name":"East Germany","life-span":{"ended":true,"begin":"1949","end":"1990"},"id":"d907b0ac-2956-386f-a246-62d55779aae1","type-id":"06dd0ae4-8c74-30bb-b43d-95dcedf961de","type":"Country","disambiguation":"","sort-name":"East Germany","iso-3166-3-codes":["DDDE"],"iso-3166-1-codes":["XG"]}

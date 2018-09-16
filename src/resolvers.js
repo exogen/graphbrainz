@@ -108,7 +108,12 @@ export function resolveBrowse(
       })
     }
   } else if (isrc) {
-    request = loaders.lookup.load(['isrc', isrc, params])
+    request = loaders.lookup.load(['isrc', isrc, params]).then(result => {
+      result[pluralName].forEach(entity => {
+        entity._type = singularName
+      })
+      return result
+    })
   } else if (iswc) {
     request = loaders.lookup.load(['iswc', iswc, params])
   } else {

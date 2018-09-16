@@ -2,21 +2,21 @@
   "statusCode": 302,
   "headers": {
     "server": "nginx/1.4.6 (Ubuntu)",
-    "date": "Sat, 04 Aug 2018 09:21:07 GMT",
+    "date": "Sun, 16 Sep 2018 22:59:19 GMT",
     "content-type": "text/html; charset=UTF-8",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "access-control-allow-origin": "*",
     "accept-ranges": "bytes",
     "location": "http://ia801204.us.archive.org/9/items/mbid-3d354599-d9d4-44a8-9584-37e3b0238871/index.json",
-    "strict-transport-security": "max-age=604800"
+    "strict-transport-security": "max-age=2592000"
   },
   "url": "http://archive.org:80/download/mbid-3d354599-d9d4-44a8-9584-37e3b0238871/index.json",
-  "time": 188,
+  "time": 95,
   "request": {
     "method": "GET",
     "headers": {
-      "User-Agent": "graphbrainz/7.3.0 ( https://github.com/exogen/graphbrainz )",
+      "User-Agent": "graphbrainz/8.0.3 ( https://github.com/exogen/graphbrainz )",
       "accept-encoding": "gzip, deflate",
       "accept": "application/json",
       "referer": "http://coverartarchive.org/release/3d354599-d9d4-44a8-9584-37e3b0238871",

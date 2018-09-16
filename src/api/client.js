@@ -97,17 +97,13 @@ export default class Client {
         }
       }
 
-      const url = `${options.baseUrl}${options.url}`
-
-      debug(`Sending request. url=${url} attempt=${info.currentAttempt}`)
-
-      request(options, (err, response, body) => {
+      const req = request(options, (err, response, body) => {
         if (err) {
-          debug(`Error: “${err}” url=${url}`)
+          debug(`Error: “${err}” url=${req.uri.href}`)
           reject(err)
         } else if (response.statusCode >= 400) {
           const message = this.parseErrorMessage(response, body)
-          debug(`Error: “${message}” url=${url}`)
+          debug(`Error: “${message}” url=${req.uri.href}`)
           const ClientError = this.errorClass
           reject(new ClientError(message, response.statusCode))
         } else if (options.method === 'HEAD') {
@@ -116,6 +112,10 @@ export default class Client {
           resolve(body)
         }
       })
+
+      debug(
+        `Sending request. url=${req.uri.href} attempt=${info.currentAttempt}`
+      )
     })
   }
 
