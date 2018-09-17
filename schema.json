@@ -1070,6 +1070,11 @@
             },
             {
               "kind": "OBJECT",
+              "name": "Track",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
               "name": "Label",
               "ofType": null
             },
@@ -3432,6 +3437,22 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "tracks",
+              "description": "The list of tracks on the given media.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Track",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -3576,6 +3597,99 @@
           "fields": null,
           "inputFields": null,
           "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Track",
+          "description": "A track is the way a recording is represented on a particular\n  release (or, more exactly, on a particular medium). Every track has a title\n  (see the guidelines for titles) and is credited to one or more artists.",
+          "fields": [
+            {
+              "name": "mbid",
+              "description": "The MBID of the entity.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "MBID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "title",
+              "description": "The official title of the entity.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "position",
+              "description": "The track’s position on the overall release (including all\ntracks from all discs).",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "number",
+              "description": "The track number, which may include information about the\ndisc or side it appears on, e.g. “A1” or “B3”.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "length",
+              "description": "The length of the track.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Duration",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "recording",
+              "description": "The recording that appears on the track.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Recording",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Entity",
+              "ofType": null
+            }
+          ],
           "enumValues": null,
           "possibleTypes": null
         },

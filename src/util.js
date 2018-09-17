@@ -2,7 +2,12 @@ import util from 'util'
 
 export const ONE_DAY = 24 * 60 * 60 * 1000
 
-export function getFields(info, fragments = info.fragments) {
+export function getFields(
+  info,
+  fragments = info.fragments,
+  depth = 0,
+  prefix = ''
+) {
   if (info.kind !== 'Field') {
     info = info.fieldNodes[0]
   }
@@ -18,7 +23,17 @@ export function getFields(info, fragments = info.fragments) {
     } else if (selection.kind === 'InlineFragment') {
       selection.selectionSet.selections.reduce(reducer, fields)
     } else {
-      fields[selection.name.value] = selection
+      const prefixedName = prefix + selection.name.value
+      fields[prefixedName] = selection
+      if (depth > 0 && selection.selectionSet) {
+        const subFields = getFields(
+          selection,
+          fragments,
+          depth - 1,
+          `${prefixedName}.`
+        )
+        Object.assign(fields, subFields)
+      }
     }
     return fields
   }

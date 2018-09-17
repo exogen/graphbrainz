@@ -62,6 +62,7 @@ or the schemas provided by the [built-in extensions](extensions).
     * [Tag](#tag)
     * [TagConnection](#tagconnection)
     * [TagEdge](#tagedge)
+    * [Track](#track)
     * [URL](#url)
     * [Work](#work)
     * [WorkConnection](#workconnection)
@@ -3546,6 +3547,15 @@ A list of physical discs and their disc IDs for this medium.
 
 </td>
 </tr>
+<tr>
+<td colspan="2" valign="top"><strong>tracks</strong></td>
+<td valign="top">[<a href="#track">Track</a>]</td>
+<td>
+
+The list of tracks on the given media.
+
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -6713,6 +6723,81 @@ A cursor for use in pagination
 
 The relevancy score (0–100) assigned by the search engine, if
 these results were found through a search.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Track
+
+A track is the way a recording is represented on a particular
+  release (or, more exactly, on a particular medium). Every track has a title
+  (see the guidelines for titles) and is credited to one or more artists.
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong>mbid</strong></td>
+<td valign="top"><a href="#mbid">MBID</a>!</td>
+<td>
+
+The MBID of the entity.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>title</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The official title of the entity.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>position</strong></td>
+<td valign="top"><a href="#int">Int</a></td>
+<td>
+
+The track’s position on the overall release (including all
+tracks from all discs).
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>number</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+The track number, which may include information about the
+disc or side it appears on, e.g. “A1” or “B3”.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>length</strong></td>
+<td valign="top"><a href="#duration">Duration</a></td>
+<td>
+
+The length of the track.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>recording</strong></td>
+<td valign="top"><a href="#recording">Recording</a></td>
+<td>
+
+The recording that appears on the track.
 
 </td>
 </tr>

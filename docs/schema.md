@@ -1261,6 +1261,9 @@ type Medium {
 
   """A list of physical discs and their disc IDs for this medium."""
   discs: [Disc]
+
+  """The list of tracks on the given media."""
+  tracks: [Track]
 }
 
 """An object with an ID"""
@@ -2541,6 +2544,37 @@ type TagEdge {
 
 """A time of day, in 24-hour hh:mm notation."""
 scalar Time
+
+"""
+A track is the way a recording is represented on a particular
+  release (or, more exactly, on a particular medium). Every track has a title
+  (see the guidelines for titles) and is credited to one or more artists.
+"""
+type Track implements Entity {
+  """The MBID of the entity."""
+  mbid: MBID!
+
+  """The official title of the entity."""
+  title: String
+
+  """
+  The track’s position on the overall release (including all
+  tracks from all discs).
+  """
+  position: Int
+
+  """
+  The track number, which may include information about the
+  disc or side it appears on, e.g. “A1” or “B3”.
+  """
+  number: String
+
+  """The length of the track."""
+  length: Duration
+
+  """The recording that appears on the track."""
+  recording: Recording
+}
 
 """
 A [URL](https://musicbrainz.org/doc/URL) pointing to a resource
