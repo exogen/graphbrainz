@@ -5,7 +5,9 @@ import {
   GraphQLInt
 } from 'graphql/type'
 import Disc from './disc'
-import { resolveHyphenated, fieldWithID } from './helpers'
+import Track from './track'
+import { resolveHyphenated, fieldWithID, tracks } from './helpers'
+import { createSubqueryResolver } from '../resolvers'
 
 export default new GraphQLObjectType({
   name: 'Medium',
@@ -37,6 +39,14 @@ multi-disc release).`
       type: new GraphQLList(Disc),
       description:
         'A list of physical discs and their disc IDs for this medium.'
+    },
+    tracks: {
+      type: new GraphQLList(Track),
+      description: 'The list of tracks on the given media.',
+      resolve: createSubqueryResolver({
+        inc: 'recordings',
+        key: 'tracks'
+      })
     }
   })
 })

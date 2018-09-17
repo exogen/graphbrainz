@@ -2,9 +2,12 @@ import util from 'util'
 
 export const ONE_DAY = 24 * 60 * 60 * 1000
 
-export function getFields(info, fragments = info.fragments) {
+export function getFields(info, fragments = info.fragments, prefix = '') {
   if (info.kind !== 'Field') {
     info = info.fieldNodes[0]
+  }
+  if (!info.selectionSet) {
+    return {}
   }
   const selections = info.selectionSet.selections
   const reducer = (fields, selection) => {
@@ -18,7 +21,10 @@ export function getFields(info, fragments = info.fragments) {
     } else if (selection.kind === 'InlineFragment') {
       selection.selectionSet.selections.reduce(reducer, fields)
     } else {
-      fields[selection.name.value] = selection
+      const prefixedName = prefix + selection.name.value
+      fields[prefixedName] = selection
+      const subFields = getFields(selection, fragments, `${prefixedName}.`)
+      Object.assign(fields, subFields)
     }
     return fields
   }

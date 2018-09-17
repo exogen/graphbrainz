@@ -42,14 +42,17 @@ export function includeSubqueries(params, info, fragments = info.fragments) {
     artistCredit: ['artist-credits'],
     artistCredits: ['artist-credits'],
     isrcs: ['isrcs'],
-    media: ['media', 'discids'],
+    media: ['media'],
+    'media.discs': ['discids'],
+    'media.tracks': ['recordings'],
     rating: ['ratings'],
     tags: ['tags']
   }
   let fields = getFields(info, fragments)
   const include = []
   for (const key in subqueryIncludes) {
-    if (fields[key]) {
+    const field = fields[key]
+    if (field) {
       const value = subqueryIncludes[key]
       include.push(...value)
     }
