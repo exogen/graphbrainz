@@ -6,7 +6,7 @@ import {
 } from 'graphql/type'
 import Disc from './disc'
 import Track from './track'
-import { resolveHyphenated, fieldWithID, tracks } from './helpers'
+import { resolveHyphenated, fieldWithID } from './helpers'
 import { createSubqueryResolver } from '../resolvers'
 
 export default new GraphQLObjectType({
