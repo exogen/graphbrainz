@@ -48,7 +48,7 @@ export function includeSubqueries(params, info, fragments = info.fragments) {
     rating: ['ratings'],
     tags: ['tags']
   }
-  let fields = getFields(info, fragments)
+  let fields = getFields(info, fragments, 1)
   const include = []
   for (const key in subqueryIncludes) {
     const field = fields[key]
@@ -61,11 +61,8 @@ export function includeSubqueries(params, info, fragments = info.fragments) {
     ...params,
     inc: extendIncludes(params.inc, include)
   }
-  if (fields.edges) {
-    fields = getFields(fields.edges, fragments)
-    if (fields.node) {
-      params = includeSubqueries(params, fields.node, fragments)
-    }
+  if (fields['edges.node']) {
+    params = includeSubqueries(params, fields['edges.node'], fragments)
   }
   return params
 }

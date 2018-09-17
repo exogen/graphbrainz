@@ -2,12 +2,14 @@ import util from 'util'
 
 export const ONE_DAY = 24 * 60 * 60 * 1000
 
-export function getFields(info, fragments = info.fragments, prefix = '') {
+export function getFields(
+  info,
+  fragments = info.fragments,
+  depth = 0,
+  prefix = ''
+) {
   if (info.kind !== 'Field') {
     info = info.fieldNodes[0]
-  }
-  if (!info.selectionSet) {
-    return {}
   }
   const selections = info.selectionSet.selections
   const reducer = (fields, selection) => {
@@ -23,8 +25,15 @@ export function getFields(info, fragments = info.fragments, prefix = '') {
     } else {
       const prefixedName = prefix + selection.name.value
       fields[prefixedName] = selection
-      const subFields = getFields(selection, fragments, `${prefixedName}.`)
-      Object.assign(fields, subFields)
+      if (depth > 0 && selection.selectionSet) {
+        const subFields = getFields(
+          selection,
+          fragments,
+          depth - 1,
+          `${prefixedName}.`
+        )
+        Object.assign(fields, subFields)
+      }
     }
     return fields
   }

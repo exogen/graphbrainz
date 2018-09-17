@@ -1408,3 +1408,40 @@ test(
     t.true(artists[0].tags.edges.some(edge => edge.node.count > 0))
   }
 )
+
+test(
+  'releases can include tracks',
+  testData,
+  `
+  {
+    lookup {
+      release(mbid: "fba5f8fe-c6c8-4511-8562-c9febf482674") {
+        media {
+          trackCount
+          position
+          formatID
+          format
+          tracks {
+            mbid
+            title
+            position
+            number
+            length
+            recording {
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+`,
+  (t, data) => {
+    t.true(data.lookup.release.media.every(media => media.tracks.length > 0))
+    t.true(
+      data.lookup.release.media.every(media =>
+        media.tracks.every(track => track.recording)
+      )
+    )
+  }
+)
