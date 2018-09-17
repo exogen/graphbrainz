@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLInt } from 'graphql/type'
+import { GraphQLObjectType, GraphQLInt, GraphQLString } from 'graphql/type'
 import Entity from './entity'
 import { Duration } from './scalars'
 import Recording from './recording'
@@ -14,10 +14,14 @@ export default new GraphQLObjectType({
     mbid,
     title,
     position: {
-      type: GraphQLInt
+      type: GraphQLInt,
+      description: `The track’s position on the overall release (including all
+tracks from all discs).`
     },
     number: {
-      type: GraphQLInt
+      type: GraphQLString,
+      description: `The track number, which may include information about the
+disc or side it appears on, e.g. “A1” or “B3”.`
     },
     length: {
       type: Duration,
