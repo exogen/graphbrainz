@@ -1,3 +1,4 @@
+import { Agent } from 'http'
 import request from 'request'
 import retry from 'retry'
 import ExtendableError from 'es6-error'
@@ -19,6 +20,8 @@ const RETRY_CODES = {
   EPIPE: true,
   EAI_AGAIN: true
 }
+
+const agent = new Agent({ keepAlive: true })
 
 export class ClientError extends ExtendableError {
   constructor(message, statusCode) {
@@ -94,7 +97,8 @@ export default class Client {
           'User-Agent': this.userAgent,
           ...this.extraHeaders,
           ...options.headers
-        }
+        },
+        agent,
       }
 
       const req = request(options, (err, response, body) => {
