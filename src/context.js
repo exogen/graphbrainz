@@ -7,9 +7,7 @@ export function extendContext(extension, context, options) {
   if (extension.extendContext) {
     if (typeof extension.extendContext === 'function') {
       debug(
-        `Extending context via a function from the “${
-          extension.name
-        }” extension.`
+        `Extending context via a function from the “${extension.name}” extension.`
       )
       context = extension.extendContext(context, options)
     } else {

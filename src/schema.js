@@ -25,9 +25,7 @@ export function applyExtension(extension, schema, options = {}) {
       }
     } else if (typeof extension.extendSchema === 'function') {
       debug(
-        `Extending schema via a function from the “${
-          extension.name
-        }” extension.`
+        `Extending schema via a function from the “${extension.name}” extension.`
       )
       outputSchema = extension.extendSchema(schema, options)
     } else {
