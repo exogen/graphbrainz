@@ -1,7 +1,7 @@
-export function loadExtension(extensionModule) {
+export async function loadExtension(extensionModule) {
   let extension
   if (typeof extensionModule === 'string') {
-    extension = require(extensionModule)
+    extension = await import(extensionModule)
   } else {
     extension = extensionModule
   }

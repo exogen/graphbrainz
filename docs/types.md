@@ -95,7 +95,7 @@ or the schemas provided by the [built-in extensions](extensions).
 
 </details>
 
-## Query 
+## Query
 The query root, from which multiple types of MusicBrainz
 requests can be made.
 
@@ -7405,7 +7405,7 @@ A length of time, in milliseconds.
 
 ### Float
 
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). 
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
 
 ### ID
 
@@ -7444,7 +7444,7 @@ compositions.
 
 ### Int
 
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 
 ### Locale
 

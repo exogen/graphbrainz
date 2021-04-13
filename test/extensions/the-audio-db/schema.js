@@ -1,11 +1,18 @@
 import test from 'ava'
-import { graphql } from 'graphql'
-import extension from '../../../src/extensions/the-audio-db'
-import baseSchema, { applyExtension } from '../../../src/schema'
-import baseContext from '../../helpers/context'
+import GraphQL from 'graphql'
+import extension from '../../../src/extensions/the-audio-db/index.js'
+import { baseSchema, applyExtension } from '../../../src/schema.js'
+import baseContext from '../../helpers/context.js'
+
+const { graphql } = GraphQL
 
 const schema = applyExtension(extension, baseSchema)
-const context = extension.extendContext(baseContext)
+const context = extension.extendContext(baseContext, {
+  theAudioDB: {
+    limit: Infinity,
+    period: 0
+  }
+})
 
 function testData(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {

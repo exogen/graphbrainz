@@ -1,22 +1,25 @@
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
-import Node from './node'
-import Entity from './entity'
+import GraphQL from 'graphql'
+import { Node } from './node.js'
+import { Entity } from './entity.js'
 import {
   id,
   mbid,
   title,
   disambiguation,
-  aliases,
-  artists,
-  relationships,
-  collections,
-  rating,
-  tags,
   fieldWithID,
-  connectionWithExtras
-} from './helpers'
+  connectionWithExtras,
+  linkedQuery
+} from './helpers.js'
+import { aliases } from './alias.js'
+import { artists } from './artist.js'
+import { collections } from './collection.js'
+import { rating } from './rating.js'
+import { relationships } from './relationship.js'
+import { tags } from './tag.js'
 
-const Work = new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLString, GraphQLList } = GraphQL
+
+export const Work = new GraphQLObjectType({
   name: 'Work',
   description: `A [work](https://musicbrainz.org/doc/Work) is a distinct
 intellectual or artistic creation, which can be expressed in the form of one or
@@ -49,4 +52,5 @@ to the work by copyright collecting agencies.`
 })
 
 export const WorkConnection = connectionWithExtras(Work)
-export default Work
+
+export const works = linkedQuery(WorkConnection)

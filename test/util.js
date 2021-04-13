@@ -1,6 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
-import { prettyPrint } from '../src/util'
+import { prettyPrint } from '../src/util.js'
 
 test.beforeEach(t => {
   sinon.stub(console, 'log')

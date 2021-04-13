@@ -1,6 +1,6 @@
-import { GraphQLObjectType, GraphQLString } from 'graphql'
-import { forwardConnectionArgs } from 'graphql-relay'
-import { resolveBrowse } from '../resolvers'
+import GraphQL from 'graphql'
+import GraphQLRelay from 'graphql-relay'
+import { resolveBrowse } from '../resolvers.js'
 import {
   MBID,
   AreaConnection,
@@ -16,8 +16,12 @@ import {
   ReleaseConnection,
   ReleaseGroupConnection,
   WorkConnection
-} from '../types'
-import { toWords, releaseGroupType, releaseStatus } from '../types/helpers'
+} from '../types/index.js'
+import { releaseGroupType, releaseStatus } from '../types/helpers.js'
+import { toWords } from '../util.js'
+
+const { GraphQLObjectType, GraphQLString } = GraphQL
+const { forwardConnectionArgs } = GraphQLRelay
 
 const area = {
   type: MBID,

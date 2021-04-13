@@ -1,12 +1,14 @@
 import test from 'ava'
-import { Kind } from 'graphql/language'
+import GraphQL from 'graphql'
 import {
   Duration,
   Locale,
   MBID,
   ISWC,
   URLString
-} from '../../src/types/scalars'
+} from '../../src/types/scalars.js'
+
+const { Kind } = GraphQL
 
 test('Locale scalar allows language code', t => {
   t.is(Locale.parseLiteral({ kind: Kind.STRING, value: 'en' }), 'en')
@@ -41,45 +43,38 @@ test('Locale scalar only accepts strings', t => {
 })
 
 test('Locale scalar rejects malformed locales', t => {
-  t.throws(
-    () => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_' }),
-    TypeError
-  )
-  t.throws(
-    () => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_USA' }),
-    TypeError
-  )
-  t.throws(
-    () => Locale.parseLiteral({ kind: Kind.STRING, value: 'EN' }),
-    TypeError
-  )
-  t.throws(
-    () => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_us' }),
-    TypeError
-  )
-  t.throws(
-    () => Locale.parseLiteral({ kind: Kind.STRING, value: 'en-US' }),
-    TypeError
-  )
+  t.throws(() => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_' }), {
+    instanceOf: TypeError
+  })
+  t.throws(() => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_USA' }), {
+    instanceOf: TypeError
+  })
+  t.throws(() => Locale.parseLiteral({ kind: Kind.STRING, value: 'EN' }), {
+    instanceOf: TypeError
+  })
+  t.throws(() => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_us' }), {
+    instanceOf: TypeError
+  })
+  t.throws(() => Locale.parseLiteral({ kind: Kind.STRING, value: 'en-US' }), {
+    instanceOf: TypeError
+  })
   t.throws(
     () => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_US_foo' }),
-    TypeError
+    { instanceOf: TypeError }
   )
   t.throws(
     () => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_US-utf8' }),
-    TypeError
+    { instanceOf: TypeError }
   )
-  t.throws(
-    () => Locale.parseLiteral({ kind: Kind.STRING, value: '12_US' }),
-    TypeError
-  )
-  t.throws(
-    () => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_US.' }),
-    TypeError
-  )
+  t.throws(() => Locale.parseLiteral({ kind: Kind.STRING, value: '12_US' }), {
+    instanceOf: TypeError
+  })
+  t.throws(() => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_US.' }), {
+    instanceOf: TypeError
+  })
   t.throws(
     () => Locale.parseLiteral({ kind: Kind.STRING, value: 'en_US.utf!' }),
-    TypeError
+    { instanceOf: TypeError }
   )
 })
 
@@ -88,19 +83,17 @@ test('Duration scalar must be a positive integer', t => {
   t.is(Duration.parseLiteral({ kind: Kind.INT, value: 1 }), 1)
   t.is(Duration.parseLiteral({ kind: Kind.INT, value: 3000 }), 3000)
   t.is(Duration.parseLiteral({ kind: Kind.STRING, value: '1000' }), undefined)
-  t.throws(
-    () => Duration.parseLiteral({ kind: Kind.INT, value: -1 }),
-    TypeError
-  )
-  t.throws(
-    () => Duration.parseLiteral({ kind: Kind.INT, value: -1000 }),
-    TypeError
-  )
+  t.throws(() => Duration.parseLiteral({ kind: Kind.INT, value: -1 }), {
+    instanceOf: TypeError
+  })
+  t.throws(() => Duration.parseLiteral({ kind: Kind.INT, value: -1000 }), {
+    instanceOf: TypeError
+  })
   t.is(Duration.parseValue(0), 0)
   t.is(Duration.parseValue(1), 1)
   t.is(Duration.parseValue(3000), 3000)
-  t.throws(() => Duration.parseValue(-1), TypeError)
-  t.throws(() => Duration.parseValue(-1000), TypeError)
+  t.throws(() => Duration.parseValue(-1), { instanceOf: TypeError })
+  t.throws(() => Duration.parseValue(-1000), { instanceOf: TypeError })
 })
 
 test('URLString scalar must be a valid URL', t => {
@@ -114,19 +107,19 @@ test('URLString scalar must be a valid URL', t => {
   )
   t.throws(
     () => URLString.parseLiteral({ kind: Kind.STRING, value: 'foo:bar' }),
-    TypeError
+    { instanceOf: TypeError }
   )
   t.throws(
     () => URLString.parseLiteral({ kind: Kind.STRING, value: 'foo:/bar' }),
-    TypeError
+    { instanceOf: TypeError }
   )
   t.throws(
     () => URLString.parseLiteral({ kind: Kind.STRING, value: 'foo://bar' }),
-    TypeError
+    { instanceOf: TypeError }
   )
   t.throws(
     () => URLString.parseLiteral({ kind: Kind.STRING, value: 'foo://bar.' }),
-    TypeError
+    { instanceOf: TypeError }
   )
 })
 
@@ -161,6 +154,6 @@ test('MBID scalar must be a valid UUID', t => {
         kind: Kind.STRING,
         value: 'c8da2e40-bd28-4d4e-813a-bd2f51958bag'
       }),
-    TypeError
+    { instanceOf: TypeError }
   )
 })

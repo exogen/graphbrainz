@@ -1,8 +1,8 @@
-import schema from './schema'
-import resolvers from './resolvers'
-import createLoader from './loader'
-import MediaWikiClient from './client'
-import { ONE_DAY } from '../../util'
+import schema from './schema.js'
+import resolvers from './resolvers.js'
+import createLoader from './loader.js'
+import MediaWikiClient from './client.js'
+import { ONE_DAY } from '../../util.js'
 
 export default {
   name: 'MediaWiki',

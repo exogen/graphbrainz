@@ -1,8 +1,10 @@
-import { graphql, introspectionQuery, printSchema } from 'graphql'
-import schema from '../src/schema'
+import GraphQL from 'graphql'
+import { baseSchema as schema } from '../src/schema.js'
+
+const { graphql, getIntrospectionQuery, printSchema } = GraphQL
 
 if (process.argv[2] === '--json') {
-  graphql(schema, introspectionQuery)
+  graphql(schema, getIntrospectionQuery())
     .then(result => {
       console.log(JSON.stringify(result, null, 2))
     })

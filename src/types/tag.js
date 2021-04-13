@@ -1,12 +1,12 @@
-import {
-  GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLString,
-  GraphQLInt
-} from 'graphql/type'
-import { connectionWithExtras } from './helpers'
+import GraphQL from 'graphql'
+import GraphQLRelay from 'graphql-relay'
+import { connectionWithExtras, linkedQuery } from './helpers.js'
+import { createSubqueryResolver } from '../resolvers.js'
 
-const Tag = new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLNonNull, GraphQLString, GraphQLInt } = GraphQL
+const { connectionFromArray } = GraphQLRelay
+
+export const Tag = new GraphQLObjectType({
   name: 'Tag',
   description: `[Tags](https://musicbrainz.org/tags) are a way to mark entities
 with extra information – for example, the genres that apply to an artist,
@@ -24,4 +24,14 @@ release, or recording.`,
 })
 
 export const TagConnection = connectionWithExtras(Tag)
-export default Tag
+
+export const tags = linkedQuery(TagConnection, {
+  resolve: createSubqueryResolver({}, (value = [], args) => {
+    const connection = connectionFromArray(value, args)
+    return {
+      nodes: connection.edges.map(edge => edge.node),
+      totalCount: value.length,
+      ...connection
+    }
+  })
+})

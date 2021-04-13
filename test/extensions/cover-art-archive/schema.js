@@ -1,11 +1,18 @@
 import test from 'ava'
-import { graphql } from 'graphql'
-import extension from '../../../src/extensions/cover-art-archive'
-import baseSchema, { applyExtension } from '../../../src/schema'
-import baseContext from '../../helpers/context'
+import GraphQL from 'graphql'
+import extension from '../../../src/extensions/cover-art-archive/index.js'
+import { baseSchema, applyExtension } from '../../../src/schema.js'
+import baseContext from '../../helpers/context.js'
+
+const { graphql } = GraphQL
 
 const schema = applyExtension(extension, baseSchema)
-const context = extension.extendContext(baseContext)
+const context = extension.extendContext(baseContext, {
+  coverArtArchive: {
+    limit: Infinity,
+    period: 0
+  }
+})
 
 function testData(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {
@@ -173,7 +180,7 @@ test(
     const { front } = coverArtArchive
     t.true(coverArtArchive.artwork)
     t.snapshot({ front })
-    t.is(coverArtArchive.release.mbid, '25fbfbb4-b1ee-4448-aadf-ae3bc2e2dd27')
+    t.is(coverArtArchive.release.mbid, '6ef6e6cd-ad36-4c2f-816d-121bfb2f6774')
     t.is(coverArtArchive.release.title, 'The Dark Side of the Moon')
     t.is(coverArtArchive.images.length, 1)
     t.true(coverArtArchive.images[0].front)

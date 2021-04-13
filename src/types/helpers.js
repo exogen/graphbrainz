@@ -1,63 +1,26 @@
-import dashify from 'dashify'
-import pascalCase from 'pascalcase'
-import {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLInt,
-  GraphQLList,
-  GraphQLNonNull
-} from 'graphql'
-import {
+import GraphQL from 'graphql'
+import GraphQLRelay from 'graphql-relay'
+import { MBID } from './scalars.js'
+import { ReleaseGroupType, ReleaseStatus } from './enums.js'
+import { resolveLinked } from '../resolvers.js'
+import { toDashed, toPascal, toSingular, toPlural, toWords } from '../util.js'
+
+const { GraphQLString, GraphQLInt, GraphQLList, GraphQLNonNull } = GraphQL
+const {
   globalIdField,
-  connectionArgs,
   connectionDefinitions,
-  connectionFromArray,
   forwardConnectionArgs
-} from 'graphql-relay'
-import { MBID } from './scalars'
-import { ReleaseGroupType, ReleaseStatus } from './enums'
-import Alias from './alias'
-import ArtistCredit from './artist-credit'
-import { AreaConnection } from './area'
-import { ArtistConnection } from './artist'
-import { CollectionConnection } from './collection'
-import { EventConnection } from './event'
-import { InstrumentConnection } from './instrument'
-import { LabelConnection } from './label'
-import LifeSpan from './life-span'
-import { PlaceConnection } from './place'
-import Rating from './rating'
-import { RecordingConnection } from './recording'
-import { RelationshipConnection } from './relationship'
-import { ReleaseConnection } from './release'
-import { ReleaseGroupConnection } from './release-group'
-import { SeriesConnection } from './series'
-import { TagConnection } from './tag'
-import { WorkConnection } from './work'
-import {
-  resolveLinked,
-  resolveRelationship,
-  createSubqueryResolver,
-  includeRelationships
-} from '../resolvers'
+} = GraphQLRelay
 
-export const toPascal = pascalCase
-export const toDashed = dashify
-
-export function toPlural(name) {
-  return name.endsWith('s') ? name : name + 's'
+const TYPE_NAMES = {
+  discid: 'Disc',
+  url: 'URL'
 }
 
-export function toSingular(name) {
-  return name.endsWith('s') && !/series/i.test(name) ? name.slice(0, -1) : name
-}
-
-export function toWords(name) {
-  return toPascal(name).replace(/([^A-Z])?([A-Z]+)/g, (match, tail, head) => {
-    tail = tail ? tail + ' ' : ''
-    head = head.length > 1 ? head : head.toLowerCase()
-    return `${tail}${head}`
-  })
+export function resolveType(value, context, info) {
+  const typeName = TYPE_NAMES[value._type] || toPascal(value._type)
+  const typeMap = info.schema.getTypeMap()
+  return typeMap[typeName]
 }
 
 export function resolveHyphenated(obj, args, context, info) {
@@ -139,14 +102,8 @@ export const disambiguation = {
   type: GraphQLString,
   description: 'A comment used to help distinguish identically named entitites.'
 }
-export const lifeSpan = {
-  type: LifeSpan,
-  description: `The begin and end dates of the entity’s existence. Its exact
-meaning depends on the type of entity.`,
-  resolve: resolveHyphenated
-}
 
-function linkedQuery(connectionType, { args, ...config } = {}) {
+export function linkedQuery(connectionType, { args, ...config } = {}) {
   const typeName = toPlural(toWords(connectionType.name.slice(0, -10)))
   return {
     type: connectionType,
@@ -159,131 +116,6 @@ function linkedQuery(connectionType, { args, ...config } = {}) {
     ...config
   }
 }
-
-export const relationship = {
-  type: RelationshipConnection,
-  description: 'A list of relationships between these two entity types.',
-  args: {
-    direction: {
-      type: GraphQLString,
-      description: 'Filter by the relationship direction.'
-    },
-    ...fieldWithID('type', {
-      description: 'Filter by the relationship type.'
-    }),
-    ...connectionArgs
-  },
-  resolve: resolveRelationship
-}
-
-export const relationships = {
-  type: new GraphQLObjectType({
-    name: 'Relationships',
-    description: 'Lists of entity relationships for each entity type.',
-    fields: () => ({
-      areas: relationship,
-      artists: relationship,
-      events: relationship,
-      instruments: relationship,
-      labels: relationship,
-      places: relationship,
-      recordings: relationship,
-      releases: relationship,
-      releaseGroups: relationship,
-      series: relationship,
-      urls: relationship,
-      works: relationship
-    })
-  }),
-  description: 'Relationships between this entity and other entitites.',
-  resolve: (entity, args, { loaders }, info) => {
-    let promise
-    if (entity.relations != null) {
-      promise = Promise.resolve(entity)
-    } else {
-      const entityType = toDashed(info.parentType.name)
-      const id = entity.id
-      const params = includeRelationships({}, info)
-      promise = loaders.lookup.load([entityType, id, params])
-    }
-    return promise.then(entity => entity.relations)
-  }
-}
-
-export const aliases = {
-  type: new GraphQLList(Alias),
-  description: `[Aliases](https://musicbrainz.org/doc/Aliases) are used to store
-alternate names or misspellings.`,
-  resolve: createSubqueryResolver()
-}
-
-export const artistCredits = {
-  type: new GraphQLList(ArtistCredit),
-  description: 'The main credited artist(s).',
-  resolve: createSubqueryResolver({
-    inc: 'artist-credits',
-    key: 'artist-credit'
-  })
-}
-
-export const artistCredit = {
-  ...artistCredits,
-  deprecationReason: `The \`artistCredit\` field has been renamed to
-\`artistCredits\`, since it is a list of credits and is referred to in the
-plural form throughout the MusicBrainz documentation. This field is deprecated
-and will be removed in a major release in the future. Use the equivalent
-\`artistCredits\` field.`
-}
-
-export const rating = {
-  type: Rating,
-  description: 'The rating users have given to this entity.',
-  resolve: createSubqueryResolver({ inc: 'ratings' })
-}
-
-export const releaseGroupType = {
-  type: new GraphQLList(ReleaseGroupType),
-  description: 'Filter by one or more release group types.'
-}
-
-export const releaseStatus = {
-  type: new GraphQLList(ReleaseStatus),
-  description: 'Filter by one or more release statuses.'
-}
-
-export const areas = linkedQuery(AreaConnection)
-export const artists = linkedQuery(ArtistConnection)
-export const collections = linkedQuery(CollectionConnection, {
-  description: 'A list of collections containing this entity.'
-})
-export const events = linkedQuery(EventConnection)
-export const instruments = linkedQuery(InstrumentConnection)
-export const labels = linkedQuery(LabelConnection)
-export const places = linkedQuery(PlaceConnection)
-export const recordings = linkedQuery(RecordingConnection)
-export const releases = linkedQuery(ReleaseConnection, {
-  args: {
-    type: releaseGroupType,
-    status: releaseStatus
-  }
-})
-export const releaseGroups = linkedQuery(ReleaseGroupConnection, {
-  args: {
-    type: releaseGroupType
-  }
-})
-export const series = linkedQuery(SeriesConnection)
-export const tags = linkedQuery(TagConnection, {
-  resolve: createSubqueryResolver({}, (value = [], args) => {
-    const connection = connectionFromArray(value, args)
-    return {
-      nodes: connection.edges.map(edge => edge.node),
-      totalCount: value.length,
-      ...connection
-    }
-  })
-})
-export const works = linkedQuery(WorkConnection)
 
 export const totalCount = {
   type: GraphQLInt,
@@ -310,4 +142,14 @@ export function connectionWithExtras(nodeType) {
     }),
     edgeFields: () => ({ score })
   }).connectionType
+}
+
+export const releaseGroupType = {
+  type: new GraphQLList(ReleaseGroupType),
+  description: 'Filter by one or more release group types.'
+}
+
+export const releaseStatus = {
+  type: new GraphQLList(ReleaseStatus),
+  description: 'Filter by one or more release statuses.'
 }

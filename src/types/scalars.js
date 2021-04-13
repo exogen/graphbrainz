@@ -1,5 +1,6 @@
-import { Kind } from 'graphql/language'
-import { GraphQLScalarType } from 'graphql/type'
+import GraphQL from 'graphql'
+
+const { Kind, GraphQLScalarType } = GraphQL
 
 function createScalar(config) {
   return new GraphQLScalarType({

@@ -1,5 +1,5 @@
 import test from 'ava'
-import Client from '../../src/api/client'
+import Client from '../../src/api/client.js'
 
 test('parseErrorMessage() returns the body or status code', t => {
   const client = new Client()

@@ -1,4 +1,4 @@
-import Client from '../../api/client'
+import Client from '../../api/client.js'
 
 export default class CoverArtArchiveClient extends Client {
   constructor({
@@ -24,16 +24,18 @@ export default class CoverArtArchiveClient extends Client {
   }
 
   images(entityType, mbid) {
-    return this.get(`${entityType}/${mbid}`, { json: true })
+    return this.get(`${entityType}/${mbid}`)
   }
 
-  imageURL(entityType, mbid, typeOrID = 'front', size) {
+  async imageURL(entityType, mbid, typeOrID = 'front', size) {
     let url = `${entityType}/${mbid}/${typeOrID}`
     if (size != null) {
       url += `-${size}`
     }
-    return this.get(url, { method: 'HEAD', followRedirect: false }).then(
-      headers => headers.location
-    )
+    const headers = await this.get(url, {
+      method: 'HEAD',
+      followRedirect: false
+    })
+    return headers.location
   }
 }

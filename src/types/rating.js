@@ -1,11 +1,9 @@
-import {
-  GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLInt,
-  GraphQLFloat
-} from 'graphql/type'
+import GraphQL from 'graphql'
+import { createSubqueryResolver } from '../resolvers.js'
 
-export default new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLNonNull, GraphQLInt, GraphQLFloat } = GraphQL
+
+export const Rating = new GraphQLObjectType({
   name: 'Rating',
   description: `[Ratings](https://musicbrainz.org/doc/Rating_System) allow users
 to rate MusicBrainz entities. User may assign a value between 1 and 5; these
@@ -23,3 +21,9 @@ for the entity.`,
     }
   })
 })
+
+export const rating = {
+  type: Rating,
+  description: 'The rating users have given to this entity.',
+  resolve: createSubqueryResolver({ inc: 'ratings' })
+}

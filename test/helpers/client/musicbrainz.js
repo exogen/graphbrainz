@@ -1,10 +1,9 @@
-import path from 'path'
-import replayer from 'replayer'
-import MusicBrainz from '../../../src/api'
+import AvaNock from 'ava-nock'
+import MusicBrainz from '../../../src/api/index.js'
 
-replayer.fixtureDir(path.join(__dirname, '..', '..', 'fixtures'))
+AvaNock.setupTests()
 
 const options =
-  process.env.VCR_MODE === 'playback' ? { limit: Infinity, period: 0 } : {}
+  process.env.NOCK_MODE === 'play' ? { limit: Infinity, period: 0 } : {}
 
 export default new MusicBrainz(options)

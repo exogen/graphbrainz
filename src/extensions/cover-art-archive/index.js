@@ -1,8 +1,8 @@
-import schema from './schema'
-import resolvers from './resolvers'
-import createLoaders from './loaders'
-import CoverArtArchiveClient from './client'
-import { ONE_DAY } from '../../util'
+import schema from './schema.js'
+import resolvers from './resolvers.js'
+import createLoaders from './loaders.js'
+import CoverArtArchiveClient from './client.js'
+import { ONE_DAY } from '../../util.js'
 
 export default {
   name: 'Cover Art Archive',

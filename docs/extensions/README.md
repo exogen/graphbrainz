@@ -13,7 +13,6 @@ additional extensions from a package manager or [write your own](#extension-api)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Loading Extensions](#loading-extensions)
 - [Built-in Extensions](#built-in-extensions)
 - [More Extensions](#more-extensions)

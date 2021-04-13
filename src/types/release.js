@@ -1,31 +1,35 @@
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
-import Node from './node'
-import Entity from './entity'
-import { ASIN, DateType } from './scalars'
-import Media from './media'
-import { ReleaseStatus } from './enums'
-import ReleaseEvent from './release-event'
+import GraphQL from 'graphql'
+import { Node } from './node.js'
+import { Entity } from './entity.js'
+import { ASIN, DateType } from './scalars.js'
+import { Media } from './media.js'
+import { ReleaseStatus } from './enums.js'
+import { ReleaseEvent } from './release-event.js'
 import {
   id,
   mbid,
   title,
   disambiguation,
-  aliases,
-  artistCredit,
-  artistCredits,
-  artists,
-  labels,
-  recordings,
-  releaseGroups,
-  relationships,
-  collections,
-  tags,
   fieldWithID,
+  releaseGroupType,
+  releaseStatus,
   resolveHyphenated,
-  connectionWithExtras
-} from './helpers'
+  connectionWithExtras,
+  linkedQuery
+} from './helpers.js'
+import { aliases } from './alias.js'
+import { artistCredit, artistCredits } from './artist-credit.js'
+import { artists } from './artist.js'
+import { collections } from './collection.js'
+import { labels } from './label.js'
+import { recordings } from './recording.js'
+import { relationships } from './relationship.js'
+import { releaseGroups } from './release-group.js'
+import { tags } from './tag.js'
 
-const Release = new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLString, GraphQLList } = GraphQL
+
+export const Release = new GraphQLObjectType({
   name: 'Release',
   description: `A [release](https://musicbrainz.org/doc/Release) represents the
 unique release (i.e. issuing) of a product on a specific date with specific
@@ -98,4 +102,10 @@ It is not a mark of how good or bad the music itself is – for that, use
 })
 
 export const ReleaseConnection = connectionWithExtras(Release)
-export default Release
+
+export const releases = linkedQuery(ReleaseConnection, {
+  args: {
+    type: releaseGroupType,
+    status: releaseStatus
+  }
+})

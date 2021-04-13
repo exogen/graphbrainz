@@ -1,6 +1,6 @@
-import { GraphQLObjectType, GraphQLNonNull, GraphQLString } from 'graphql'
-import { forwardConnectionArgs } from 'graphql-relay'
-import { resolveSearch } from '../resolvers'
+import GraphQL from 'graphql'
+import GraphQLRelay from 'graphql-relay'
+import { resolveSearch } from '../resolvers.js'
 import {
   AreaConnection,
   ArtistConnection,
@@ -13,8 +13,11 @@ import {
   ReleaseGroupConnection,
   SeriesConnection,
   WorkConnection
-} from '../types'
-import { toWords } from '../types/helpers'
+} from '../types/index.js'
+import { toWords } from '../util.js'
+
+const { GraphQLObjectType, GraphQLNonNull, GraphQLString } = GraphQL
+const { forwardConnectionArgs } = GraphQLRelay
 
 function createSearchField(connectionType) {
   const typeName = toWords(connectionType.name.slice(0, -10))

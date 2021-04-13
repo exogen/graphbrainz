@@ -1,24 +1,16 @@
-import request from 'request'
-import retry from 'retry'
+import { fileURLToPath } from 'url'
+import createDebug from 'debug'
+import got from 'got'
 import ExtendableError from 'es6-error'
-import RateLimit from '../rate-limit'
-import pkg from '../../package.json'
+import { readPackageUpSync } from 'read-pkg-up'
+import RateLimit from '../rate-limit.js'
+import { filterObjectValues, getTypeName } from '../util.js'
 
-const debug = require('debug')('graphbrainz:api/client')
+const debug = createDebug('graphbrainz:api/client')
 
-// If the `request` callback returns an error, it indicates a failure at a lower
-// level than the HTTP response itself. If it's any of the following error
-// codes, we should retry.
-const RETRY_CODES = {
-  ECONNRESET: true,
-  ENOTFOUND: true,
-  ESOCKETTIMEDOUT: true,
-  ETIMEDOUT: true,
-  ECONNREFUSED: true,
-  EHOSTUNREACH: true,
-  EPIPE: true,
-  EAI_AGAIN: true
-}
+const { packageJson: pkg } = readPackageUpSync({
+  cwd: fileURLToPath(import.meta.url)
+})
 
 export class ClientError extends ExtendableError {
   constructor(message, statusCode) {
@@ -38,15 +30,7 @@ export default class Client {
     limit = 1,
     period = 1000,
     concurrency = 10,
-    retries = 10,
-    // It's OK for `retryDelayMin` to be less than one second, even 0, because
-    // `RateLimit` will already make sure we don't exceed the API rate limit.
-    // We're not doing exponential backoff because it will help with being
-    // rate limited, but rather to be chill in case MusicBrainz is returning
-    // some other error or our network is failing.
-    retryDelayMin = 100,
-    retryDelayMax = 60000,
-    randomizeRetry = true
+    retry
   } = {}) {
     this.baseURL = baseURL
     this.userAgent = userAgent
@@ -54,24 +38,7 @@ export default class Client {
     this.errorClass = errorClass
     this.timeout = timeout
     this.limiter = new RateLimit({ limit, period, concurrency })
-    this.retryOptions = {
-      retries,
-      minTimeout: retryDelayMin,
-      maxTimeout: retryDelayMax,
-      randomize: randomizeRetry
-    }
-  }
-
-  /**
-   * Determine if we should retry the request based on the given error.
-   * Retry any 5XX response from MusicBrainz, as well as any error in
-   * `RETRY_CODES`.
-   */
-  shouldRetry(err) {
-    if (err instanceof this.errorClass) {
-      return err.statusCode >= 500 && err.statusCode < 600
-    }
-    return RETRY_CODES[err.code] || false
+    this.retryOptions = retry
   }
 
   parseErrorMessage(response, body) {
@@ -79,66 +46,65 @@ export default class Client {
   }
 
   /**
-   * Send a request without any retrying or rate limiting.
+   * Send a request without any rate limiting.
    * Use `get` instead.
    */
-  _get(path, options = {}, info = {}) {
-    return new Promise((resolve, reject) => {
-      options = {
-        baseUrl: this.baseURL,
-        url: path,
-        gzip: true,
-        timeout: this.timeout,
-        ...options,
-        headers: {
-          'User-Agent': this.userAgent,
-          ...this.extraHeaders,
-          ...options.headers
-        }
+  async _get(path, { searchParams, ...options } = {}) {
+    const url = new URL(path, this.baseURL)
+    if (searchParams) {
+      if (getTypeName(searchParams) === 'Object') {
+        searchParams = filterObjectValues(searchParams, value => value != null)
       }
-
-      const req = request(options, (err, response, body) => {
-        if (err) {
-          debug(`Error: “${err}” url=${req.uri.href}`)
-          reject(err)
-        } else if (response.statusCode >= 400) {
-          const message = this.parseErrorMessage(response, body)
-          debug(`Error: “${message}” url=${req.uri.href}`)
-          const ClientError = this.errorClass
-          reject(new ClientError(message, response.statusCode))
-        } else if (options.method === 'HEAD') {
-          resolve(response.headers)
-        } else {
-          resolve(body)
-        }
+      const moreSearchParams = new URLSearchParams(searchParams)
+      moreSearchParams.forEach((value, key) => {
+        url.searchParams.set(key, value)
       })
+    }
+    options = {
+      responseType: 'json',
+      timeout: this.timeout,
+      ...options,
+      headers: {
+        'User-Agent': this.userAgent,
+        ...this.extraHeaders,
+        ...options.headers
+      }
+    }
 
-      debug(
-        `Sending request. url=${req.uri.href} attempt=${info.currentAttempt}`
-      )
-    })
+    const urlString = url.toString()
+
+    debug(`Sending request. url=${urlString}`)
+
+    let response
+    try {
+      response = await got(url.toString(), options)
+    } catch (err) {
+      debug(`Error: “${err}” url=${urlString}`)
+      throw err
+    }
+    if (options.method === 'HEAD') {
+      return response.headers
+    }
+    return response.body
+    // if (err) {
+    //   reject(err);
+    // } else if (response.statusCode >= 400) {
+    //   const message = this.parseErrorMessage(response, body);
+    //   // debug(`Error: “${message}” url=${req.uri.href}`);
+    //   const ClientError = this.errorClass;
+    //   reject(new ClientError(message, response.statusCode));
+    // } else if (options.method === 'HEAD') {
+    //   resolve(response.headers);
+    // } else {
+    //   resolve(body);
+    // }
   }
 
   /**
-   * Send a request with retrying and rate limiting.
+   * Send a request with rate limiting.
    */
   get(path, options = {}) {
-    return new Promise((resolve, reject) => {
-      const fn = this._get.bind(this)
-      const operation = retry.operation(this.retryOptions)
-      operation.attempt(currentAttempt => {
-        // This will increase the priority in our `RateLimit` queue for each
-        // retry, so that newer requests don't delay this one further.
-        const priority = currentAttempt
-        this.limiter
-          .enqueue(fn, [path, options, { currentAttempt }], priority)
-          .then(resolve)
-          .catch(err => {
-            if (!this.shouldRetry(err) || !operation.retry(err)) {
-              reject(operation.mainError() || err)
-            }
-          })
-      })
-    })
+    const fn = this._get.bind(this)
+    return this.limiter.enqueue(fn, [path, options])
   }
 }

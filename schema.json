@@ -477,16 +477,6 @@
           "possibleTypes": null
         },
         {
-          "kind": "SCALAR",
-          "name": "MBID",
-          "description": "The MBID scalar represents MusicBrainz identifiers, which are\n36-character UUIDs.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
           "kind": "OBJECT",
           "name": "Area",
           "description": "[Areas](https://musicbrainz.org/doc/Area) are geographic regions\nor settlements (countries, cities, or the like).",
@@ -937,7 +927,7 @@
             }
           ],
           "inputFields": null,
-          "interfaces": null,
+          "interfaces": [],
           "enumValues": null,
           "possibleTypes": [
             {
@@ -1045,7 +1035,7 @@
             }
           ],
           "inputFields": null,
-          "interfaces": null,
+          "interfaces": [],
           "enumValues": null,
           "possibleTypes": [
             {
@@ -1119,6 +1109,16 @@
               "ofType": null
             }
           ]
+        },
+        {
+          "kind": "SCALAR",
+          "name": "MBID",
+          "description": "The MBID scalar represents MusicBrainz identifiers, which are\n36-character UUIDs.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
         },
         {
           "kind": "SCALAR",
@@ -1227,16 +1227,6 @@
           "kind": "SCALAR",
           "name": "Boolean",
           "description": "The `Boolean` scalar type represents `true` or `false`.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "Int",
-          "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. ",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -2559,145 +2549,13 @@
           "possibleTypes": null
         },
         {
-          "kind": "ENUM",
-          "name": "ReleaseGroupType",
-          "description": "A type used to describe release groups, e.g. album, single, EP,\netc.",
+          "kind": "SCALAR",
+          "name": "Int",
+          "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
-          "enumValues": [
-            {
-              "name": "ALBUM",
-              "description": "An album, perhaps better defined as a “Long Play” (LP)\nrelease, generally consists of previously unreleased material (unless this type\nis combined with secondary types which change that, such as “Compilation”). This\nincludes album re-issues, with or without bonus tracks.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "SINGLE",
-              "description": "A single typically has one main song and possibly a handful\nof additional tracks or remixes of the main track. A single is usually named\nafter its main song.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "EP",
-              "description": "An EP is a so-called “Extended Play” release and often\ncontains the letters EP in the title. Generally an EP will be shorter than a\nfull length release (an LP or “Long Play”) and the tracks are usually exclusive\nto the EP, in other words the tracks don’t come from a previously issued\nrelease. EP is fairly difficult to define; usually it should only be assumed\nthat a release is an EP if the artist defines it as such.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "OTHER",
-              "description": "Any release that does not fit any of the other categories.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "BROADCAST",
-              "description": "An episodic release that was originally broadcast via radio,\ntelevision, or the Internet, including podcasts.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "COMPILATION",
-              "description": "A compilation is a collection of previously released tracks\nby one or more artists.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "SOUNDTRACK",
-              "description": "A soundtrack is the musical score to a movie, TV series,\nstage show, computer game, etc.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "SPOKENWORD",
-              "description": "A non-music spoken word release.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "INTERVIEW",
-              "description": "An interview release contains an interview, generally with\nan artist.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "AUDIOBOOK",
-              "description": "An audiobook is a book read by a narrator without music.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "LIVE",
-              "description": "A release that was recorded live.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "REMIX",
-              "description": "A release that was (re)mixed from previously released\nmaterial.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "DJMIX",
-              "description": "A DJ-mix is a sequence of several recordings played one\nafter the other, each one modified so that they blend together into a continuous\nflow of music. A DJ mix release requires that the recordings be modified in some\nmanner, and the DJ who does this modification is usually (although not always)\ncredited in a fairly prominent way.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "MIXTAPE",
-              "description": "Promotional in nature (but not necessarily free), mixtapes\nand street albums are often released by artists to promote new artists, or\nupcoming studio albums by prominent artists. They are also sometimes used to\nkeep fans’ attention between studio releases and are most common in rap & hip\nhop genres. They are often not sanctioned by the artist’s label, may lack proper\nsample or song clearances and vary widely in production and recording quality.\nWhile mixtapes are generally DJ-mixed, they are distinct from commercial DJ\nmixes (which are usually deemed compilations) and are defined by having a\nsignificant proportion of new material, including original production or\noriginal vocals over top of other artists’ instrumentals. They are distinct from\ndemos in that they are designed for release directly to the public and fans, not\nto labels.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "DEMO",
-              "description": "A release that was recorded for limited circulation or\nreference use rather than for general public release.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "NAT",
-              "description": "A non-album track (special case).",
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "ReleaseStatus",
-          "description": "A type used to describe the status of releases, e.g. official,\nbootleg, etc.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "OFFICIAL",
-              "description": "Any release officially sanctioned by the artist and/or their\nrecord company. (Most releases will fit into this category.)",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PROMOTION",
-              "description": "A giveaway release or a release intended to promote an\nupcoming official release, e.g. prerelease albums or releases included with a\nmagazine.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "BOOTLEG",
-              "description": "An unofficial/underground release that was not sanctioned by\nthe artist and/or the record company.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PSEUDORELEASE",
-              "description": "A pseudo-release is a duplicate release for\ntranslation/transliteration purposes.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
+          "enumValues": null,
           "possibleTypes": null
         },
         {
@@ -3355,6 +3213,41 @@
           "inputFields": null,
           "interfaces": null,
           "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "ReleaseStatus",
+          "description": "A type used to describe the status of releases, e.g. official,\nbootleg, etc.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "OFFICIAL",
+              "description": "Any release officially sanctioned by the artist and/or their\nrecord company. (Most releases will fit into this category.)",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PROMOTION",
+              "description": "A giveaway release or a release intended to promote an\nupcoming official release, e.g. prerelease albums or releases included with a\nmagazine.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "BOOTLEG",
+              "description": "An unofficial/underground release that was not sanctioned by\nthe artist and/or the record company.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PSEUDORELEASE",
+              "description": "A pseudo-release is a duplicate release for\ntranslation/transliteration purposes.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
           "possibleTypes": null
         },
         {
@@ -4158,6 +4051,113 @@
             }
           ],
           "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "ReleaseGroupType",
+          "description": "A type used to describe release groups, e.g. album, single, EP,\netc.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "ALBUM",
+              "description": "An album, perhaps better defined as a “Long Play” (LP)\nrelease, generally consists of previously unreleased material (unless this type\nis combined with secondary types which change that, such as “Compilation”). This\nincludes album re-issues, with or without bonus tracks.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SINGLE",
+              "description": "A single typically has one main song and possibly a handful\nof additional tracks or remixes of the main track. A single is usually named\nafter its main song.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EP",
+              "description": "An EP is a so-called “Extended Play” release and often\ncontains the letters EP in the title. Generally an EP will be shorter than a\nfull length release (an LP or “Long Play”) and the tracks are usually exclusive\nto the EP, in other words the tracks don’t come from a previously issued\nrelease. EP is fairly difficult to define; usually it should only be assumed\nthat a release is an EP if the artist defines it as such.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "OTHER",
+              "description": "Any release that does not fit any of the other categories.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "BROADCAST",
+              "description": "An episodic release that was originally broadcast via radio,\ntelevision, or the Internet, including podcasts.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "COMPILATION",
+              "description": "A compilation is a collection of previously released tracks\nby one or more artists.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SOUNDTRACK",
+              "description": "A soundtrack is the musical score to a movie, TV series,\nstage show, computer game, etc.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SPOKENWORD",
+              "description": "A non-music spoken word release.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INTERVIEW",
+              "description": "An interview release contains an interview, generally with\nan artist.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "AUDIOBOOK",
+              "description": "An audiobook is a book read by a narrator without music.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "LIVE",
+              "description": "A release that was recorded live.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REMIX",
+              "description": "A release that was (re)mixed from previously released\nmaterial.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DJMIX",
+              "description": "A DJ-mix is a sequence of several recordings played one\nafter the other, each one modified so that they blend together into a continuous\nflow of music. A DJ mix release requires that the recordings be modified in some\nmanner, and the DJ who does this modification is usually (although not always)\ncredited in a fairly prominent way.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MIXTAPE",
+              "description": "Promotional in nature (but not necessarily free), mixtapes\nand street albums are often released by artists to promote new artists, or\nupcoming studio albums by prominent artists. They are also sometimes used to\nkeep fans’ attention between studio releases and are most common in rap & hip\nhop genres. They are often not sanctioned by the artist’s label, may lack proper\nsample or song clearances and vary widely in production and recording quality.\nWhile mixtapes are generally DJ-mixed, they are distinct from commercial DJ\nmixes (which are usually deemed compilations) and are defined by having a\nsignificant proportion of new material, including original production or\noriginal vocals over top of other artists’ instrumentals. They are distinct from\ndemos in that they are designed for release directly to the public and fans, not\nto labels.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DEMO",
+              "description": "A release that was recorded for limited circulation or\nreference use rather than for general public release.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "NAT",
+              "description": "A non-album track (special case).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
           "possibleTypes": null
         },
         {
@@ -6649,7 +6649,7 @@
         {
           "kind": "SCALAR",
           "name": "Float",
-          "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). ",
+          "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -8785,16 +8785,6 @@
           "possibleTypes": null
         },
         {
-          "kind": "SCALAR",
-          "name": "URLString",
-          "description": "A web address.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
           "kind": "OBJECT",
           "name": "URL",
           "description": "A [URL](https://musicbrainz.org/doc/URL) pointing to a resource\nexternal to MusicBrainz, i.e. an official homepage, a site where music can be\nacquired, an entry in another database, etc.",
@@ -8873,6 +8863,16 @@
               "ofType": null
             }
           ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "URLString",
+          "description": "A web address.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -10253,6 +10253,18 @@
           "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
           "fields": [
             {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "types",
               "description": "A list of all types supported by this server.",
               "args": [],
@@ -10349,7 +10361,7 @@
         {
           "kind": "OBJECT",
           "name": "__Type",
-          "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name and description, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+          "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByUrl`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
           "fields": [
             {
               "name": "kind",
@@ -10381,6 +10393,18 @@
             },
             {
               "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "specifiedByUrl",
               "description": null,
               "args": [],
               "type": {
@@ -10496,7 +10520,18 @@
             {
               "name": "inputFields",
               "description": null,
-              "args": [],
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -10553,7 +10588,7 @@
             },
             {
               "name": "INTERFACE",
-              "description": "Indicates this type is an interface. `fields` and `possibleTypes` are valid fields.",
+              "description": "Indicates this type is an interface. `fields`, `interfaces`, and `possibleTypes` are valid fields.",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -10626,7 +10661,18 @@
             {
               "name": "args",
               "description": null,
-              "args": [],
+              "args": [
+                {
+                  "name": "includeDeprecated",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -10757,6 +10803,34 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "isDeprecated",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "deprecationReason",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -10865,6 +10939,22 @@
               "deprecationReason": null
             },
             {
+              "name": "isRepeatable",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "locations",
               "description": null,
               "args": [],
@@ -10911,54 +11001,6 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
-            },
-            {
-              "name": "onOperation",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": true,
-              "deprecationReason": "Use `locations`."
-            },
-            {
-              "name": "onFragment",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": true,
-              "deprecationReason": "Use `locations`."
-            },
-            {
-              "name": "onField",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": true,
-              "deprecationReason": "Use `locations`."
             }
           ],
           "inputFields": null,
@@ -11013,6 +11055,12 @@
             {
               "name": "INLINE_FRAGMENT",
               "description": "Location adjacent to an inline fragment.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "VARIABLE_DEFINITION",
+              "description": "Location adjacent to a variable definition.",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -11142,18 +11190,43 @@
           "description": "Marks an element of a GraphQL schema as no longer supported.",
           "locations": [
             "FIELD_DEFINITION",
+            "ARGUMENT_DEFINITION",
+            "INPUT_FIELD_DEFINITION",
             "ENUM_VALUE"
           ],
           "args": [
             {
               "name": "reason",
-              "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted in [Markdown](https://daringfireball.net/projects/markdown/).",
+              "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax, as specified by [CommonMark](https://commonmark.org/).",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
               },
               "defaultValue": "\"No longer supported\""
+            }
+          ]
+        },
+        {
+          "name": "specifiedBy",
+          "description": "Exposes a URL that specifies the behaviour of this scalar.",
+          "locations": [
+            "SCALAR"
+          ],
+          "args": [
+            {
+              "name": "url",
+              "description": "The URL that specifies the behaviour of this scalar.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
             }
           ]
         }

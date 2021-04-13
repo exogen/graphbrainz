@@ -1,8 +1,11 @@
-import { GraphQLObjectType, GraphQLBoolean } from 'graphql/type'
-import { Locale } from './scalars'
-import { name, sortName, fieldWithID } from './helpers'
+import GraphQL from 'graphql'
+import { Locale } from './scalars.js'
+import { name, sortName, fieldWithID } from './helpers.js'
+import { createSubqueryResolver } from '../resolvers.js'
 
-export default new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLBoolean, GraphQLList } = GraphQL
+
+export const Alias = new GraphQLObjectType({
   name: 'Alias',
   description: `[Aliases](https://musicbrainz.org/doc/Aliases) are variant names
 that are mostly used as search help: if a search matches an entity’s alias, the
@@ -29,3 +32,10 @@ search hint, etc.`
     })
   })
 })
+
+export const aliases = {
+  type: new GraphQLList(Alias),
+  description: `[Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+alternate names or misspellings.`,
+  resolve: createSubqueryResolver()
+}

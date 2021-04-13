@@ -1,10 +1,13 @@
-import { GraphQLSchema, GraphQLObjectType, extendSchema, parse } from 'graphql'
-import { addResolveFunctionsToSchema } from 'graphql-tools'
-import { lookup, browse, search } from './queries'
-import { nodeField } from './types/node'
-import { loadExtension } from './extensions'
+import createDebug from 'debug'
+import GraphQL from 'graphql'
+import GraphQLToolsSchema from '@graphql-tools/schema'
+import { lookup, browse, search } from './queries/index.js'
+import { nodeField } from './types/node.js'
 
-const debug = require('debug')('graphbrainz:schema')
+const { GraphQLSchema, GraphQLObjectType, extendSchema, parse } = GraphQL
+const { addResolversToSchema } = GraphQLToolsSchema
+
+const debug = createDebug('graphbrainz:schema')
 
 export function applyExtension(extension, schema, options = {}) {
   let outputSchema = schema
@@ -21,7 +24,10 @@ export function applyExtension(extension, schema, options = {}) {
         return extendSchema(updatedSchema, extensionSchema)
       }, outputSchema)
       if (resolvers) {
-        addResolveFunctionsToSchema({ schema: outputSchema, resolvers })
+        outputSchema = addResolversToSchema({
+          schema: outputSchema,
+          resolvers
+        })
       }
     } else if (typeof extension.extendSchema === 'function') {
       debug(
@@ -46,11 +52,11 @@ export function applyExtension(extension, schema, options = {}) {
 export function createSchema(schema, options = {}) {
   const { extensions = [] } = options
   return extensions.reduce((updatedSchema, extension) => {
-    return applyExtension(loadExtension(extension), updatedSchema, options)
+    return applyExtension(extension, updatedSchema, options)
   }, schema)
 }
 
-export default new GraphQLSchema({
+export const baseSchema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
     description: `The query root, from which multiple types of MusicBrainz

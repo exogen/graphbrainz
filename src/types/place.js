@@ -1,22 +1,25 @@
-import { GraphQLObjectType, GraphQLString } from 'graphql/type'
-import Node from './node'
-import Entity from './entity'
-import { Degrees } from './scalars'
-import Area from './area'
+import GraphQL from 'graphql'
+import { Node } from './node.js'
+import { Entity } from './entity.js'
+import { Degrees } from './scalars.js'
+import { Area } from './area.js'
 import {
   id,
   mbid,
   name,
   disambiguation,
-  aliases,
-  lifeSpan,
-  events,
   fieldWithID,
-  relationships,
-  collections,
-  tags,
-  connectionWithExtras
-} from './helpers'
+  connectionWithExtras,
+  linkedQuery
+} from './helpers.js'
+import { aliases } from './alias.js'
+import { collections } from './collection.js'
+import { events } from './event.js'
+import { lifeSpan } from './life-span.js'
+import { relationships } from './relationship.js'
+import { tags } from './tag.js'
+
+const { GraphQLObjectType, GraphQLString } = GraphQL
 
 export const Coordinates = new GraphQLObjectType({
   name: 'Coordinates',
@@ -33,7 +36,7 @@ export const Coordinates = new GraphQLObjectType({
   })
 })
 
-const Place = new GraphQLObjectType({
+export const Place = new GraphQLObjectType({
   name: 'Place',
   description: `A [place](https://musicbrainz.org/doc/Place) is a venue, studio,
 or other place where music is performed, recorded, engineered, etc.`,
@@ -71,4 +74,5 @@ function.`
 })
 
 export const PlaceConnection = connectionWithExtras(Place)
-export default Place
+
+export const places = linkedQuery(PlaceConnection)

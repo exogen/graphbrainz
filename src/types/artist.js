@@ -1,8 +1,18 @@
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type'
-import Node from './node'
-import Entity from './entity'
-import Area from './area'
-import { IPI, ISNI } from './scalars'
+import GraphQL from 'graphql'
+import { Node } from './node.js'
+import { Entity } from './entity.js'
+import { Area } from './area.js'
+import { aliases } from './alias.js'
+import { collections } from './collection.js'
+import { lifeSpan } from './life-span.js'
+import { recordings } from './recording.js'
+import { releases } from './release.js'
+import { releaseGroups } from './release-group.js'
+import { works } from './work.js'
+import { relationships } from './relationship.js'
+import { rating } from './rating.js'
+import { tags } from './tag.js'
+import { IPI, ISNI } from './scalars.js'
 import {
   resolveWithFallback,
   fieldWithID,
@@ -11,20 +21,13 @@ import {
   name,
   sortName,
   disambiguation,
-  aliases,
-  lifeSpan,
-  recordings,
-  releases,
-  releaseGroups,
-  works,
-  relationships,
-  collections,
-  rating,
-  tags,
-  connectionWithExtras
-} from './helpers'
+  connectionWithExtras,
+  linkedQuery
+} from './helpers.js'
 
-const Artist = new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLString, GraphQLList } = GraphQL
+
+export const Artist = new GraphQLObjectType({
   name: 'Artist',
   description: `An [artist](https://musicbrainz.org/doc/Artist) is generally a
 musician, group of musicians, or other music professional (like a producer or
@@ -91,4 +94,5 @@ neither. Groups do not have genders.`
 })
 
 export const ArtistConnection = connectionWithExtras(Artist)
-export default Artist
+
+export const artists = linkedQuery(ArtistConnection)

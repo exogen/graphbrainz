@@ -1,17 +1,15 @@
-import {
-  GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLList,
-  GraphQLInt
-} from 'graphql/type'
-import { forwardConnectionArgs } from 'graphql-relay'
-import Node from './node'
-import { DiscID } from './scalars'
-import { ReleaseConnection } from './release'
-import { resolveDiscReleases } from '../resolvers'
-import { id, resolveHyphenated } from './helpers'
+import GraphQL from 'graphql'
+import GraphQLRelay from 'graphql-relay'
+import { Node } from './node.js'
+import { DiscID } from './scalars.js'
+import { ReleaseConnection } from './release.js'
+import { resolveDiscReleases } from '../resolvers.js'
+import { id, resolveHyphenated } from './helpers.js'
 
-export default new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLNonNull, GraphQLList, GraphQLInt } = GraphQL
+const { forwardConnectionArgs } = GraphQLRelay
+
+export const Disc = new GraphQLObjectType({
   name: 'Disc',
   description: `Information about the physical CD and releases associated with a
 particular [disc ID](https://musicbrainz.org/doc/Disc_ID).`,

@@ -1,1 +1,1 @@
-module.exports = require('../lib/extensions/the-audio-db')
+export { default } from '../src/extensions/the-audio-db/index.js'

@@ -1,4 +1,4 @@
-import Client from '../../api/client'
+import Client from '../../api/client.js'
 
 export default class FanArtClient extends Client {
   constructor({
@@ -20,10 +20,9 @@ export default class FanArtClient extends Client {
       )
     }
     options = {
-      json: true,
       ...options,
-      qs: {
-        ...options.qs,
+      searchParams: {
+        ...options.searchParams,
         api_key: this.apiKey
       }
     }

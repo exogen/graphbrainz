@@ -1,28 +1,31 @@
-import { GraphQLObjectType, GraphQLList } from 'graphql/type'
-import Node from './node'
-import Entity from './entity'
-import { DateType } from './scalars'
-import { ReleaseGroupType } from './enums'
+import GraphQL from 'graphql'
+import { Node } from './node.js'
+import { Entity } from './entity.js'
+import { DateType } from './scalars.js'
+import { ReleaseGroupType } from './enums.js'
 import {
   id,
   mbid,
   title,
   disambiguation,
-  aliases,
-  artistCredit,
-  artistCredits,
-  artists,
-  releases,
-  relationships,
-  collections,
-  rating,
-  tags,
   fieldWithID,
+  releaseGroupType,
   resolveHyphenated,
-  connectionWithExtras
-} from './helpers'
+  connectionWithExtras,
+  linkedQuery
+} from './helpers.js'
+import { aliases } from './alias.js'
+import { artistCredit, artistCredits } from './artist-credit.js'
+import { artists } from './artist.js'
+import { releases } from './release.js'
+import { relationships } from './relationship.js'
+import { collections } from './collection.js'
+import { rating } from './rating.js'
+import { tags } from './tag.js'
 
-const ReleaseGroup = new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLList } = GraphQL
+
+export const ReleaseGroup = new GraphQLObjectType({
   name: 'ReleaseGroup',
   description: `A [release group](https://musicbrainz.org/doc/Release_Group) is
 used to group several different releases into a single logical entity. Every
@@ -68,4 +71,9 @@ that apply to this release group.`
 })
 
 export const ReleaseGroupConnection = connectionWithExtras(ReleaseGroup)
-export default ReleaseGroup
+
+export const releaseGroups = linkedQuery(ReleaseGroupConnection, {
+  args: {
+    type: releaseGroupType
+  }
+})

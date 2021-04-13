@@ -1,4 +1,4 @@
-import { resolveLookup } from '../../resolvers'
+import { resolveLookup } from '../../resolvers.js'
 
 const SIZES = new Map([
   [null, null],

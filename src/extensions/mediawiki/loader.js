@@ -1,11 +1,12 @@
+import createDebug from 'debug'
 import DataLoader from 'dataloader'
 import LRUCache from 'lru-cache'
 
-const debug = require('debug')('graphbrainz:extensions/mediawiki')
+const debug = createDebug('graphbrainz:extensions/mediawiki')
 
 export default function createLoader(options) {
   const { client } = options
-  const cache = LRUCache({
+  const cache = new LRUCache({
     max: options.cacheSize,
     maxAge: options.cacheTTL,
     dispose(key) {

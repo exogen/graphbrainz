@@ -1,31 +1,29 @@
-import {
-  GraphQLObjectType,
-  GraphQLList,
-  GraphQLString,
-  GraphQLInt
-} from 'graphql/type'
-import Node from './node'
-import Entity from './entity'
-import { IPI } from './scalars'
-import Area from './area'
+import GraphQL from 'graphql'
+import { Node } from './node.js'
+import { Entity } from './entity.js'
+import { IPI } from './scalars.js'
+import { Area } from './area.js'
 import {
   id,
   mbid,
   name,
   sortName,
   disambiguation,
-  aliases,
-  lifeSpan,
-  releases,
-  relationships,
-  collections,
-  tags,
-  rating,
   fieldWithID,
-  connectionWithExtras
-} from './helpers'
+  connectionWithExtras,
+  linkedQuery
+} from './helpers.js'
+import { aliases } from './alias.js'
+import { collections } from './collection.js'
+import { lifeSpan } from './life-span.js'
+import { tags } from './tag.js'
+import { rating } from './rating.js'
+import { relationships } from './relationship.js'
+import { releases } from './release.js'
 
-const Label = new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt } = GraphQL
+
+export const Label = new GraphQLObjectType({
   name: 'Label',
   description: `[Labels](https://musicbrainz.org/doc/Label) represent mostly
 (but not only) imprints. To a lesser extent, a label entity may be created to
@@ -70,4 +68,5 @@ imprint, production, distributor, rights society, etc.`
 })
 
 export const LabelConnection = connectionWithExtras(Label)
-export default Label
+
+export const labels = linkedQuery(LabelConnection)

@@ -1,20 +1,23 @@
-import { GraphQLObjectType, GraphQLString } from 'graphql/type'
-import Node from './node'
-import Entity from './entity'
+import GraphQL from 'graphql'
+import { Node } from './node.js'
+import { Entity } from './entity.js'
 import {
   fieldWithID,
   id,
   mbid,
   name,
   disambiguation,
-  aliases,
-  relationships,
-  collections,
-  tags,
-  connectionWithExtras
-} from './helpers'
+  connectionWithExtras,
+  linkedQuery
+} from './helpers.js'
+import { aliases } from './alias.js'
+import { collections } from './collection.js'
+import { relationships } from './relationship.js'
+import { tags } from './tag.js'
 
-const Instrument = new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLString } = GraphQL
+
+export const Instrument = new GraphQLObjectType({
   name: 'Instrument',
   description: `[Instruments](https://musicbrainz.org/doc/Instrument) are
 devices created or adapted to make musical sounds. Instruments are primarily
@@ -43,4 +46,5 @@ classification.`
 })
 
 export const InstrumentConnection = connectionWithExtras(Instrument)
-export default Instrument
+
+export const instruments = linkedQuery(InstrumentConnection)

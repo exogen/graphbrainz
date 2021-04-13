@@ -1,2 +1,4 @@
 #!/usr/bin/env node
-require('./lib/index').start()
+import { start } from './src/index.js'
+
+start()

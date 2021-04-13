@@ -1,4 +1,6 @@
 import util from 'util'
+import dashify from 'dashify'
+import pascalCase from 'pascalcase'
 
 export const ONE_DAY = 24 * 60 * 60 * 1000
 
@@ -62,4 +64,36 @@ export function extendIncludes(includes, moreIncludes) {
     seen[x] = true
     return true
   })
+}
+
+export const toPascal = pascalCase
+export const toDashed = dashify
+
+export function toPlural(name) {
+  return name.endsWith('s') ? name : name + 's'
+}
+
+export function toSingular(name) {
+  return name.endsWith('s') && !/series/i.test(name) ? name.slice(0, -1) : name
+}
+
+export function toWords(name) {
+  return toPascal(name).replace(/([^A-Z])?([A-Z]+)/g, (match, tail, head) => {
+    tail = tail ? tail + ' ' : ''
+    head = head.length > 1 ? head : head.toLowerCase()
+    return `${tail}${head}`
+  })
+}
+
+export function filterObjectValues(obj, filter) {
+  return Object.entries(obj).reduce((obj, [key, value]) => {
+    if (filter(value)) {
+      obj[key] = value
+    }
+    return obj
+  }, {})
+}
+
+export function getTypeName(value) {
+  return Object.prototype.toString.call(value).slice(8, -1)
 }

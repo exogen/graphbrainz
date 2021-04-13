@@ -1,26 +1,29 @@
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql'
-import Node from './node'
-import Entity from './entity'
+import GraphQL from 'graphql'
+import { Node } from './node.js'
+import { Entity } from './entity.js'
 import {
   id,
   mbid,
   name,
   sortName,
   disambiguation,
-  aliases,
-  artists,
-  events,
-  labels,
-  places,
-  releases,
-  relationships,
-  collections,
-  tags,
   fieldWithID,
-  connectionWithExtras
-} from './helpers'
+  connectionWithExtras,
+  linkedQuery
+} from './helpers.js'
+import { events } from './event.js'
+import { aliases } from './alias.js'
+import { artists } from './artist.js'
+import { labels } from './label.js'
+import { places } from './place.js'
+import { releases } from './release.js'
+import { relationships } from './relationship.js'
+import { collections } from './collection.js'
+import { tags } from './tag.js'
 
-const Area = new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLString, GraphQLList } = GraphQL
+
+export const Area = new GraphQLObjectType({
   name: 'Area',
   description: `[Areas](https://musicbrainz.org/doc/Area) are geographic regions
 or settlements (countries, cities, or the like).`,
@@ -65,4 +68,5 @@ values](https://musicbrainz.org/doc/Area)).`
 })
 
 export const AreaConnection = connectionWithExtras(Area)
-export default Area
+
+export const areas = linkedQuery(AreaConnection)

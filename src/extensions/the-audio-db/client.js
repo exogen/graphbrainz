@@ -1,4 +1,4 @@
-import Client from '../../api/client'
+import Client from '../../api/client.js'
 
 export default class TheAudioDBClient extends Client {
   constructor({
@@ -21,7 +21,6 @@ export default class TheAudioDBClient extends Client {
       )
     }
     return super.get(`${this.apiKey}/${path}`, {
-      json: true,
       // FIXME: TheAudioDB's SSL terminator seems to be broken and only works
       // by forcing TLS 1.0.
       agentOptions: { secureProtocol: 'TLSv1_method' },
@@ -46,29 +45,35 @@ export default class TheAudioDBClient extends Client {
   }
 
   artist(mbid) {
-    return this.get('artist-mb.php', { qs: { i: mbid } }).then(body => {
-      if (body.artists && body.artists.length === 1) {
-        return body.artists[0]
+    return this.get('artist-mb.php', { searchParams: { i: mbid } }).then(
+      body => {
+        if (body.artists && body.artists.length === 1) {
+          return body.artists[0]
+        }
+        return null
       }
-      return null
-    })
+    )
   }
 
   album(mbid) {
-    return this.get('album-mb.php', { qs: { i: mbid } }).then(body => {
-      if (body.album && body.album.length === 1) {
-        return body.album[0]
+    return this.get('album-mb.php', { searchParams: { i: mbid } }).then(
+      body => {
+        if (body.album && body.album.length === 1) {
+          return body.album[0]
+        }
+        return null
       }
-      return null
-    })
+    )
   }
 
   track(mbid) {
-    return this.get('track-mb.php', { qs: { i: mbid } }).then(body => {
-      if (body.track && body.track.length === 1) {
-        return body.track[0]
+    return this.get('track-mb.php', { searchParams: { i: mbid } }).then(
+      body => {
+        if (body.track && body.track.length === 1) {
+          return body.track[0]
+        }
+        return null
       }
-      return null
-    })
+    )
   }
 }

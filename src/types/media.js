@@ -1,15 +1,12 @@
-import {
-  GraphQLObjectType,
-  GraphQLList,
-  GraphQLString,
-  GraphQLInt
-} from 'graphql/type'
-import Disc from './disc'
-import Track from './track'
-import { resolveHyphenated, fieldWithID } from './helpers'
-import { createSubqueryResolver } from '../resolvers'
+import GraphQL from 'graphql'
+import { Disc } from './disc.js'
+import { Track } from './track.js'
+import { resolveHyphenated, fieldWithID } from './helpers.js'
+import { createSubqueryResolver } from '../resolvers.js'
 
-export default new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt } = GraphQL
+
+export const Media = new GraphQLObjectType({
   name: 'Medium',
   description: `A medium is the actual physical medium the audio content is
 stored upon. This means that each CD in a multi-disc release will be entered as

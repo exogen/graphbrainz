@@ -1,7 +1,10 @@
-import { GraphQLObjectType, GraphQLBoolean } from 'graphql/type'
-import { DateType } from './scalars'
+import GraphQL from 'graphql'
+import { DateType } from './scalars.js'
+import { resolveHyphenated } from './helpers.js'
 
-export default new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLBoolean } = GraphQL
+
+export const LifeSpan = new GraphQLObjectType({
   name: 'LifeSpan',
   description: `Fields indicating the begin and end date of an entity’s
 lifetime, including whether it has ended (even if the date is unknown).`,
@@ -20,3 +23,10 @@ lifetime, including whether it has ended (even if the date is unknown).`,
     }
   })
 })
+
+export const lifeSpan = {
+  type: LifeSpan,
+  description: `The begin and end dates of the entity’s existence. Its exact
+meaning depends on the type of entity.`,
+  resolve: resolveHyphenated
+}

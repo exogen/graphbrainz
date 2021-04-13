@@ -21,7 +21,6 @@ npm install graphbrainz --save
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Usage](#usage)
   - [As a standalone server](#as-a-standalone-server)
   - [As middleware](#as-middleware)
@@ -43,8 +42,8 @@ middleware supplying a GraphQL endpoint.
 
 ### As a standalone server
 
-Run the included `graphbrainz` executable to start the server. The server
-is configured using [environment variables](#environment-variables).
+Run the included `graphbrainz` executable to start the server. The server is
+configured using [environment variables](#environment-variables).
 
 ```sh
 $ graphbrainz
@@ -89,11 +88,11 @@ app.listen(3000);
 The `graphbrainz` middleware function accepts the following options:
 
 - **`client`**: A custom API client instance to use. See the
-  [client submodule](src/api/client.js) for help with creating a custom instance.
-  You probably only need to do this if you want to adjust the rate limit and retry
-  behavior.
-- Any remaining options are passed along to the standard GraphQL middleware.
-  See the [express-graphql][] documentation for more information.
+  [client submodule](src/api/client.js) for help with creating a custom
+  instance. You probably only need to do this if you want to adjust the rate
+  limit and retry behavior.
+- Any remaining options are passed along to the standard GraphQL middleware. See
+  the [express-graphql][] documentation for more information.
 
 ### As a client
 
@@ -137,7 +136,8 @@ graphql(
 ### Environment Variables
 
 - **`MUSICBRAINZ_BASE_URL`**: The base MusicBrainz API URL to use. Change this
-  if you are running your own MusicBrainz mirror. Defaults to `http://musicbrainz.org/ws/2/`.
+  if you are running your own MusicBrainz mirror. Defaults to
+  `http://musicbrainz.org/ws/2/`.
 - **`GRAPHBRAINZ_PATH`**: The URL route at which to expose the GraphQL endpoint,
   if running the standalone server. Defaults to `/`.
 - **`GRAPHBRAINZ_CORS_ORIGIN`**: The value of the `origin` option to pass to the
@@ -176,7 +176,8 @@ See the [debug][] package for more information.
 
 ## Example Queries
 
-Nirvana albums and each album’s singles ([try it](<https://graphbrainz.herokuapp.com/?query=query%20NirvanaAlbumSingles%20%7B%0A%20%20lookup%20%7B%0A%20%20%20%20artist(mbid%3A%20%225b11f4ce-a62d-471e-81fc-a69a8278c7da%22)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20releaseGroups(type%3A%20ALBUM)%20%7B%0A%20%20%20%20%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20%20%20firstReleaseDate%0A%20%20%20%20%20%20%20%20%20%20%20%20relationships%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20releaseGroups(type%3A%20%22single%20from%22)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20target%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20...%20on%20ReleaseGroup%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20firstReleaseDate%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=NirvanaAlbumSingles>)):
+Nirvana albums and each album’s singles
+([try it](<https://graphbrainz.herokuapp.com/?query=query%20NirvanaAlbumSingles%20%7B%0A%20%20lookup%20%7B%0A%20%20%20%20artist(mbid%3A%20%225b11f4ce-a62d-471e-81fc-a69a8278c7da%22)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20releaseGroups(type%3A%20ALBUM)%20%7B%0A%20%20%20%20%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20%20%20firstReleaseDate%0A%20%20%20%20%20%20%20%20%20%20%20%20relationships%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20releaseGroups(type%3A%20%22single%20from%22)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20target%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20...%20on%20ReleaseGroup%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20firstReleaseDate%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=NirvanaAlbumSingles>)):
 
 ```graphql
 query NirvanaAlbumSingles {
@@ -212,7 +213,8 @@ query NirvanaAlbumSingles {
 
 ### Pagination
 
-The first five labels with “Apple” in the name ([try it](<https://graphbrainz.herokuapp.com/?query=query%20AppleLabels%20%7B%0A%20%20search%20%7B%0A%20%20%20%20labels(query%3A%20%22Apple%22%2C%20first%3A%205)%20%7B%0A%20%20%20%20%20%20...labelResults%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0Afragment%20labelResults%20on%20LabelConnection%20%7B%0A%20%20pageInfo%20%7B%0A%20%20%20%20endCursor%0A%20%20%7D%0A%20%20edges%20%7B%0A%20%20%20%20cursor%0A%20%20%20%20node%20%7B%0A%20%20%20%20%20%20mbid%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20type%0A%20%20%20%20%20%20area%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=AppleLabels>)):
+The first five labels with “Apple” in the name
+([try it](<https://graphbrainz.herokuapp.com/?query=query%20AppleLabels%20%7B%0A%20%20search%20%7B%0A%20%20%20%20labels(query%3A%20%22Apple%22%2C%20first%3A%205)%20%7B%0A%20%20%20%20%20%20...labelResults%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0Afragment%20labelResults%20on%20LabelConnection%20%7B%0A%20%20pageInfo%20%7B%0A%20%20%20%20endCursor%0A%20%20%7D%0A%20%20edges%20%7B%0A%20%20%20%20cursor%0A%20%20%20%20node%20%7B%0A%20%20%20%20%20%20mbid%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20type%0A%20%20%20%20%20%20area%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=AppleLabels>)):
 
 ```graphql
 query AppleLabels {
@@ -241,7 +243,8 @@ fragment labelResults on LabelConnection {
 }
 ```
 
-…and the next five, using the `endCursor` from the previous result ([try it](<https://graphbrainz.herokuapp.com/?query=query%20AppleLabels%20%7B%0A%20%20search%20%7B%0A%20%20%20%20labels(query%3A%20%22Apple%22%2C%20first%3A%205%2C%20after%3A%20%22YXJyYXljb25uZWN0aW9uOjQ%3D%22)%20%7B%0A%20%20%20%20%20%20...labelResults%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0Afragment%20labelResults%20on%20LabelConnection%20%7B%0A%20%20pageInfo%20%7B%0A%20%20%20%20endCursor%0A%20%20%7D%0A%20%20edges%20%7B%0A%20%20%20%20cursor%0A%20%20%20%20node%20%7B%0A%20%20%20%20%20%20mbid%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20type%0A%20%20%20%20%20%20area%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=AppleLabels>)):
+…and the next five, using the `endCursor` from the previous result
+([try it](<https://graphbrainz.herokuapp.com/?query=query%20AppleLabels%20%7B%0A%20%20search%20%7B%0A%20%20%20%20labels(query%3A%20%22Apple%22%2C%20first%3A%205%2C%20after%3A%20%22YXJyYXljb25uZWN0aW9uOjQ%3D%22)%20%7B%0A%20%20%20%20%20%20...labelResults%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0Afragment%20labelResults%20on%20LabelConnection%20%7B%0A%20%20pageInfo%20%7B%0A%20%20%20%20endCursor%0A%20%20%7D%0A%20%20edges%20%7B%0A%20%20%20%20cursor%0A%20%20%20%20node%20%7B%0A%20%20%20%20%20%20mbid%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20type%0A%20%20%20%20%20%20area%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=AppleLabels>)):
 
 ```graphql
 query AppleLabels {
@@ -326,7 +329,8 @@ fragment marriages on Artist {
 }
 ```
 
-Images of Tom Petty provided by various extensions ([try it](<https://graphbrainz.herokuapp.com/?query=query%20TomPettyImages%20%7B%0A%20%20lookup%20%7B%0A%20%20%20%20artist(mbid%3A%20%225ca3f318-d028-4151-ac73-78e2b2d6cdcc%22)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20mediaWikiImages%20%7B%0A%20%20%20%20%20%20%20%20url%0A%20%20%20%20%20%20%20%20objectName%0A%20%20%20%20%20%20%20%20descriptionHTML%0A%20%20%20%20%20%20%20%20licenseShortName%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20fanArt%20%7B%0A%20%20%20%20%20%20%20%20thumbnails%20%7B%0A%20%20%20%20%20%20%20%20%20%20url%0A%20%20%20%20%20%20%20%20%20%20likeCount%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20theAudioDB%20%7B%0A%20%20%20%20%20%20%20%20logo%0A%20%20%20%20%20%20%20%20biography%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=TomPettyImages>)):
+Images of Tom Petty provided by various extensions
+([try it](<https://graphbrainz.herokuapp.com/?query=query%20TomPettyImages%20%7B%0A%20%20lookup%20%7B%0A%20%20%20%20artist(mbid%3A%20%225ca3f318-d028-4151-ac73-78e2b2d6cdcc%22)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20mediaWikiImages%20%7B%0A%20%20%20%20%20%20%20%20url%0A%20%20%20%20%20%20%20%20objectName%0A%20%20%20%20%20%20%20%20descriptionHTML%0A%20%20%20%20%20%20%20%20licenseShortName%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20fanArt%20%7B%0A%20%20%20%20%20%20%20%20thumbnails%20%7B%0A%20%20%20%20%20%20%20%20%20%20url%0A%20%20%20%20%20%20%20%20%20%20likeCount%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20theAudioDB%20%7B%0A%20%20%20%20%20%20%20%20logo%0A%20%20%20%20%20%20%20%20biography%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=TomPettyImages>)):
 
 ```graphql
 query TomPettyImages {
@@ -358,8 +362,8 @@ You can find more example queries in the [schema tests][].
 
 ## Questions
 
-**What’s with the cumbersome `edges`/`node` nesting? Why `first`/`after`
-instead of `limit`/`offset`? Why `mbid` instead of `id`?**
+**What’s with the cumbersome `edges`/`node` nesting? Why `first`/`after` instead
+of `limit`/`offset`? Why `mbid` instead of `id`?**
 
 You can thank [Relay][] for that; these are properties of a Relay-compliant
 schema. The schema was originally designed to be more user-friendly, but in the
@@ -393,9 +397,9 @@ query ChristmasAlbums {
 
 It’s likely that your query requires multiple round trips to the MusicBrainz
 REST API, which is subject to [rate limiting][]. While the query resolver tries
-very hard to fetch only the data necessary, and with the smallest number of
-API requests, it is not 100% optimal (yet). Make sure you are only requesting
-the fields you need and a reasonable level of nested entities – unless you are
+very hard to fetch only the data necessary, and with the smallest number of API
+requests, it is not 100% optimal (yet). Make sure you are only requesting the
+fields you need and a reasonable level of nested entities – unless you are
 willing to wait.
 
 You can also set up a [local MusicBrainz mirror][mirror] and configure

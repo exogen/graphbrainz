@@ -1,14 +1,14 @@
+import createDebug from 'debug'
 import DataLoader from 'dataloader'
 import LRUCache from 'lru-cache'
-import { toPlural } from './types/helpers'
-import { ONE_DAY } from './util'
+import { ONE_DAY, toPlural } from './util.js'
 
-const debug = require('debug')('graphbrainz:loaders')
+const debug = createDebug('graphbrainz:loaders')
 
 export default function createLoaders(client) {
   // All loaders share a single LRU cache that will remember 8192 responses,
   // each cached for 1 day.
-  const cache = LRUCache({
+  const cache = new LRUCache({
     max: parseInt(process.env.GRAPHBRAINZ_CACHE_SIZE || 8192, 10),
     maxAge: parseInt(process.env.GRAPHBRAINZ_CACHE_TTL || ONE_DAY, 10),
     dispose(key) {

@@ -1,5 +1,5 @@
 import test from 'ava'
-import RateLimit from '../src/rate-limit'
+import RateLimit from '../src/rate-limit.js'
 
 test('defaults to 1 request per second', t => {
   const limiter = new RateLimit()

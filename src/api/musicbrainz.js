@@ -1,5 +1,5 @@
-import qs from 'qs'
-import Client, { ClientError } from './client'
+import Client, { ClientError } from './client.js'
+import { filterObjectValues } from '../util.js'
 
 export class MusicBrainzError extends ClientError {}
 
@@ -47,10 +47,9 @@ export default class MusicBrainz extends Client {
         status: params.status.join('|')
       }
     }
-    return qs.stringify(params, {
-      skipNulls: true,
-      filter: (key, value) => (value === '' ? undefined : value)
-    })
+    return new URLSearchParams(
+      filterObjectValues(params, value => value != null && value !== '')
+    ).toString()
   }
 
   getURL(path, params) {
@@ -67,7 +66,7 @@ export default class MusicBrainz extends Client {
 
   lookup(entity, id, params = {}) {
     const url = this.getLookupURL(entity, id, params)
-    return this.get(url, { json: true, qs: { fmt: 'json' } })
+    return this.get(url, { searchParams: { fmt: 'json' } })
   }
 
   getBrowseURL(entity, params) {
@@ -76,7 +75,7 @@ export default class MusicBrainz extends Client {
 
   browse(entity, params = {}) {
     const url = this.getBrowseURL(entity, params)
-    return this.get(url, { json: true, qs: { fmt: 'json' } })
+    return this.get(url, { searchParams: { fmt: 'json' } })
   }
 
   getSearchURL(entity, query, params) {
@@ -85,6 +84,6 @@ export default class MusicBrainz extends Client {
 
   search(entity, query, params = {}) {
     const url = this.getSearchURL(entity, query, params)
-    return this.get(url, { json: true, qs: { fmt: 'json' } })
+    return this.get(url, { searchParams: { fmt: 'json' } })
   }
 }

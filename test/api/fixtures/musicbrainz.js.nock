@@ -1,0 +1,72 @@
+[
+  [
+    "getBrowseURL() generates a browse URL",
+    [
+    ]
+  ],
+  [
+    "getLookupURL() generates a lookup URL",
+    [
+    ]
+  ],
+  [
+    "getSearchURL() generates a search URL",
+    [
+    ]
+  ],
+  [
+    "lookup() sends a lookup query",
+    [
+      {
+        "body": "",
+        "method": "GET",
+        "path": "/ws/2/artist/c8da2e40-bd28-4d4e-813a-bd2f51958ba8?fmt=json",
+        "rawHeaders": [
+          "Date",
+          "Tue, 13 Apr 2021 07:55:07 GMT",
+          "Content-Type",
+          "application/json; charset=utf-8",
+          "Transfer-Encoding",
+          "chunked",
+          "Connection",
+          "close",
+          "Vary",
+          "Accept-Encoding",
+          "X-RateLimit-Limit",
+          "1200",
+          "X-RateLimit-Remaining",
+          "616",
+          "X-RateLimit-Reset",
+          "1618300508",
+          "Server",
+          "Plack::Handler::Starlet",
+          "ETag",
+          "W/\"0a93cac1fdd53ded9761e6fa0426d079\"",
+          "Access-Control-Allow-Origin",
+          "*",
+          "X-Cache-Status",
+          "STALE"
+        ],
+        "reqheaders": {
+          "accept": "application/json",
+          "accept-encoding": "gzip, deflate, br",
+          "host": "musicbrainz.org"
+        },
+        "response": "{\"sort-name\":\"Lures\",\"country\":null,\"life-span\":{\"ended\":false,\"end\":null,\"begin\":\"2013\"},\"isnis\":[],\"id\":\"c8da2e40-bd28-4d4e-813a-bd2f51958ba8\",\"name\":\"Lures\",\"begin_area\":{\"name\":\"Seattle\",\"id\":\"10adc6b5-63bf-4b4e-993e-ed83b05c22fc\",\"sort-name\":\"Seattle\",\"type\":null,\"type-id\":null,\"disambiguation\":\"\"},\"ipis\":[],\"area\":{\"sort-name\":\"Seattle\",\"type\":null,\"name\":\"Seattle\",\"id\":\"10adc6b5-63bf-4b4e-993e-ed83b05c22fc\",\"type-id\":null,\"disambiguation\":\"\"},\"gender\":null,\"type\":\"Group\",\"type-id\":\"e431f5f6-b5d2-343d-8b36-72607fffb74b\",\"end-area\":null,\"begin-area\":{\"name\":\"Seattle\",\"id\":\"10adc6b5-63bf-4b4e-993e-ed83b05c22fc\",\"sort-name\":\"Seattle\",\"type\":null,\"type-id\":null,\"disambiguation\":\"\"},\"end_area\":null,\"disambiguation\":\"Seattle trio\",\"gender-id\":null}",
+        "responseIsBinary": false,
+        "scope": "http://musicbrainz.org:80",
+        "status": 200
+      }
+    ]
+  ],
+  [
+    "rejects non-MusicBrainz errors",
+    [
+    ]
+  ],
+  [
+    "uses the default error impementation if there is no JSON error",
+    [
+    ]
+  ]
+]

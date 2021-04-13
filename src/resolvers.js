@@ -1,10 +1,11 @@
-import { toDashed, toSingular } from './types/helpers'
-import {
+import GraphQLRelay from 'graphql-relay'
+import { getFields, extendIncludes, toDashed, toSingular } from './util.js'
+
+const {
   getOffsetWithDefault,
   connectionFromArray,
   connectionFromArraySlice
-} from 'graphql-relay'
-import { getFields, extendIncludes } from './util'
+} = GraphQLRelay
 
 export function includeRelationships(params, info, fragments = info.fragments) {
   let fields = getFields(info, fragments)

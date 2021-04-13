@@ -1,3 +1,3 @@
-export { LookupQuery, lookup } from './lookup'
-export { BrowseQuery, browse } from './browse'
-export { SearchQuery, search } from './search'
+export { LookupQuery, lookup } from './lookup.js'
+export { BrowseQuery, browse } from './browse.js'
+export { SearchQuery, search } from './search.js'

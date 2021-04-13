@@ -1,15 +1,25 @@
+import GraphQL from 'graphql'
+import GraphQLRelay from 'graphql-relay'
+import { DateType } from './scalars.js'
+import { Entity } from './entity.js'
 import {
+  resolveHyphenated,
+  fieldWithID,
+  connectionWithExtras
+} from './helpers.js'
+import { resolveRelationship, includeRelationships } from '../resolvers.js'
+import { toDashed } from '../util.js'
+
+const {
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLString,
   GraphQLList,
   GraphQLBoolean
-} from 'graphql/type'
-import { DateType } from './scalars'
-import Entity from './entity'
-import { resolveHyphenated, fieldWithID, connectionWithExtras } from './helpers'
+} = GraphQL
+const { connectionArgs } = GraphQLRelay
 
-const Relationship = new GraphQLObjectType({
+export const Relationship = new GraphQLObjectType({
   name: 'Relationship',
   description: `[Relationships](https://musicbrainz.org/doc/Relationships) are a
 way to represent all the different ways in which entities are connected to each
@@ -77,4 +87,53 @@ relationship type.`
 })
 
 export const RelationshipConnection = connectionWithExtras(Relationship)
-export default Relationship
+
+export const relationship = {
+  type: RelationshipConnection,
+  description: 'A list of relationships between these two entity types.',
+  args: {
+    direction: {
+      type: GraphQLString,
+      description: 'Filter by the relationship direction.'
+    },
+    ...fieldWithID('type', {
+      description: 'Filter by the relationship type.'
+    }),
+    ...connectionArgs
+  },
+  resolve: resolveRelationship
+}
+
+export const relationships = {
+  type: new GraphQLObjectType({
+    name: 'Relationships',
+    description: 'Lists of entity relationships for each entity type.',
+    fields: () => ({
+      areas: relationship,
+      artists: relationship,
+      events: relationship,
+      instruments: relationship,
+      labels: relationship,
+      places: relationship,
+      recordings: relationship,
+      releases: relationship,
+      releaseGroups: relationship,
+      series: relationship,
+      urls: relationship,
+      works: relationship
+    })
+  }),
+  description: 'Relationships between this entity and other entitites.',
+  resolve: (entity, args, { loaders }, info) => {
+    let promise
+    if (entity.relations != null) {
+      promise = Promise.resolve(entity)
+    } else {
+      const entityType = toDashed(info.parentType.name)
+      const id = entity.id
+      const params = includeRelationships({}, info)
+      promise = loaders.lookup.load([entityType, id, params])
+    }
+    return promise.then(entity => entity.relations)
+  }
+}

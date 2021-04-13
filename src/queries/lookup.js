@@ -1,6 +1,6 @@
-import { GraphQLObjectType, GraphQLNonNull } from 'graphql'
-import { resolveLookup } from '../resolvers'
-import { mbid, toWords } from '../types/helpers'
+import GraphQL from 'graphql'
+import { resolveLookup } from '../resolvers.js'
+import { mbid } from '../types/helpers.js'
 import {
   Area,
   Artist,
@@ -19,7 +19,10 @@ import {
   URL,
   URLString,
   Work
-} from '../types'
+} from '../types/index.js'
+import { toWords } from '../util.js'
+
+const { GraphQLObjectType, GraphQLNonNull } = GraphQL
 
 function createLookupField(entity, args) {
   const typeName = toWords(entity.name)

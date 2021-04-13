@@ -1,4 +1,6 @@
-const debug = require('debug')('graphbrainz:rate-limit')
+import createDebug from 'debug'
+
+const debug = createDebug('graphbrainz:rate-limit')
 
 export default class RateLimit {
   constructor({

@@ -1,5 +1,4 @@
-import URL from 'url'
-import Client from '../../api/client'
+import Client from '../../api/client.js'
 
 export default class MediaWikiClient extends Client {
   constructor({ limit = 10, period = 1000, ...options } = {}) {
@@ -7,7 +6,7 @@ export default class MediaWikiClient extends Client {
   }
 
   imageInfo(page) {
-    const pageURL = URL.parse(page, true)
+    const pageURL = new URL(page)
     const ClientError = this.errorClass
 
     if (!pageURL.pathname.startsWith('/wiki/')) {
@@ -18,21 +17,16 @@ export default class MediaWikiClient extends Client {
       )
     }
 
-    const apiURL = URL.format({
-      protocol: pageURL.protocol,
-      auth: pageURL.auth,
-      host: pageURL.host,
-      pathname: '/w/api.php',
-      query: {
-        action: 'query',
-        titles: decodeURI(pageURL.pathname.slice(6)),
-        prop: 'imageinfo',
-        iiprop: 'url|size|canonicaltitle|user|extmetadata',
-        format: 'json'
-      }
-    })
+    const apiURL = new URL('/w/api.php', pageURL)
+    apiURL.search = new URLSearchParams({
+      action: 'query',
+      titles: decodeURI(pageURL.pathname.slice(6)),
+      prop: 'imageinfo',
+      iiprop: 'url|size|canonicaltitle|user|extmetadata',
+      format: 'json'
+    }).toString()
 
-    return this.get(apiURL, { json: true }).then(body => {
+    return this.get(apiURL.toString()).then(body => {
       const pageIDs = Object.keys(body.query.pages)
       if (pageIDs.length !== 1) {
         throw new ClientError(

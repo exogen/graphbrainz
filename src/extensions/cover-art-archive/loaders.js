@@ -1,11 +1,12 @@
+import createDebug from 'debug'
 import DataLoader from 'dataloader'
 import LRUCache from 'lru-cache'
 
-const debug = require('debug')('graphbrainz:extensions/cover-art-archive')
+const debug = createDebug('graphbrainz:extensions/cover-art-archive')
 
 export default function createLoaders(options) {
   const { client } = options
-  const cache = LRUCache({
+  const cache = new LRUCache({
     max: options.cacheSize,
     maxAge: options.cacheTTL,
     dispose(key) {
@@ -25,7 +26,7 @@ export default function createLoaders(options) {
             return client
               .images(entityType, id)
               .catch(err => {
-                if (err.statusCode === 404) {
+                if (err.response.statusCode === 404) {
                   return { images: [] }
                 }
                 throw err

@@ -1,27 +1,23 @@
-import URL from 'url'
-
-function resolveMediaWikiImages(source, args, { loaders }) {
+async function resolveMediaWikiImages(source, args, { loaders }) {
   const isURL = relation => relation['target-type'] === 'url'
   let rels = source.relations ? source.relations.filter(isURL) : []
   if (!rels.length) {
-    rels = loaders.lookup
+    rels = await loaders.lookup
       .load([source._type, source.id, { inc: 'url-rels' }])
       .then(source => source.relations.filter(isURL))
   }
-  return Promise.resolve(rels).then(rels => {
-    const pages = rels
-      .filter(rel => {
-        if (rel.type === args.type) {
-          const url = URL.parse(rel.url.resource)
-          if (url.pathname.match(/^\/wiki\/(File|Image):/)) {
-            return true
-          }
+  const pages = rels
+    .filter(rel => {
+      if (rel.type === args.type) {
+        const url = new URL(rel.url.resource)
+        if (url.pathname.match(/^\/wiki\/(File|Image):/)) {
+          return true
         }
-        return false
-      })
-      .map(rel => rel.url.resource)
-    return loaders.mediaWiki.loadMany(pages)
-  })
+      }
+      return false
+    })
+    .map(rel => rel.url.resource)
+  return loaders.mediaWiki.loadMany(pages)
 }
 
 export default {

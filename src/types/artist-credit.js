@@ -1,7 +1,10 @@
-import { GraphQLObjectType, GraphQLString } from 'graphql/type'
-import Artist from './artist'
+import GraphQL from 'graphql'
+import { Artist } from './artist.js'
+import { createSubqueryResolver } from '../resolvers.js'
 
-export default new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLString, GraphQLList } = GraphQL
+
+export const ArtistCredit = new GraphQLObjectType({
   name: 'ArtistCredit',
   description: `[Artist credits](https://musicbrainz.org/doc/Artist_Credits)
 indicate who is the main credited artist (or artists) for releases, release
@@ -34,3 +37,21 @@ separate artist names as they appear on the release, track, etc.`,
     }
   })
 })
+
+export const artistCredits = {
+  type: new GraphQLList(ArtistCredit),
+  description: 'The main credited artist(s).',
+  resolve: createSubqueryResolver({
+    inc: 'artist-credits',
+    key: 'artist-credit'
+  })
+}
+
+export const artistCredit = {
+  ...artistCredits,
+  deprecationReason: `The \`artistCredit\` field has been renamed to
+\`artistCredits\`, since it is a list of credits and is referred to in the
+plural form throughout the MusicBrainz documentation. This field is deprecated
+and will be removed in a major release in the future. Use the equivalent
+\`artistCredits\` field.`
+}

@@ -1,11 +1,18 @@
 import test from 'ava'
-import { graphql } from 'graphql'
-import extension from '../../../src/extensions/mediawiki'
-import baseSchema, { applyExtension } from '../../../src/schema'
-import baseContext from '../../helpers/context'
+import GraphQL from 'graphql'
+import extension from '../../../src/extensions/mediawiki/index.js'
+import { baseSchema, applyExtension } from '../../../src/schema.js'
+import baseContext from '../../helpers/context.js'
+
+const { graphql } = GraphQL
 
 const schema = applyExtension(extension, baseSchema)
-const context = extension.extendContext(baseContext)
+const context = extension.extendContext(baseContext, {
+  mediaWiki: {
+    limit: Infinity,
+    period: 0
+  }
+})
 
 function testData(t, query, handler) {
   return graphql(schema, query, null, context).then(result => {

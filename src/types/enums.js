@@ -1,4 +1,6 @@
-import { GraphQLEnumType } from 'graphql/type'
+import GraphQL from 'graphql'
+
+const { GraphQLEnumType } = GraphQL
 
 export const ArtistType = new GraphQLEnumType({
   name: 'ArtistType',
