@@ -68,7 +68,7 @@ an endpoint, or you just want more customization, use the middleware.
 
 ```js
 import express from 'express';
-import graphbrainz from 'graphbrainz';
+import { middleware as graphbrainz } from 'graphbrainz';
 
 const app = express();
 
@@ -102,13 +102,11 @@ or exposing a GraphQL endpoint, use the GraphBrainz schema with a library like
 GraphBrainz resolvers expect, like so:
 
 ```js
-import { graphql } from 'graphql'
-import { MusicBrainz } from 'graphbrainz/lib/api'
-import createContext from 'graphbrainz/lib/context'
-import schema from 'graphbrainz/lib/schema'
+import { graphql } from 'graphql';
+import { MusicBrainz, createContext, baseSchema } from 'graphbrainz';
 
-const client = new MusicBrainz()
-const context = createContext({ client })
+const client = new MusicBrainz();
+const context = createContext({ client });
 
 graphql(
   schema,
@@ -124,13 +122,13 @@ graphql(
   null,
   context
 )
-  .then(result => {
-    const { releaseGroup } = result.data.lookup
-    console.log(`The album title is “${releaseGroup.title}”.`)
+  .then((result) => {
+    const { releaseGroup } = result.data.lookup;
+    console.log(`The album title is “${releaseGroup.title}”.`);
   })
-  .catch(err => {
-    console.error(err)
-  })
+  .catch((err) => {
+    console.error(err);
+  });
 ```
 
 ### Environment Variables
