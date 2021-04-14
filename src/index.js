@@ -7,6 +7,7 @@ import Client from './api/client.js';
 import { baseSchema, createSchema } from './schema.js';
 import { createContext } from './context.js';
 import { loadExtension } from './extensions/index.js';
+import gql from './tag.js';
 
 const { graphqlHTTP } = ExpressGraphQL;
 
@@ -90,13 +91,14 @@ async function start(options) {
 }
 
 export {
-  baseSchema,
   Client,
+  MusicBrainz,
+  gql,
+  baseSchema,
   createContext,
   createSchema,
   defaultExtensions,
   loadExtension,
   middleware,
-  MusicBrainz,
   start,
 };
