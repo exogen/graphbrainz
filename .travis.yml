@@ -1,26 +1,27 @@
 language: node_js
 
 node_js:
-- '8'
-- '9'
-- '10'
+  - '12'
+  - '13'
+  - '14'
+  - '15'
 
 # Use container-based Travis infrastructure.
 sudo: false
 
 branches:
   only:
-  - master
-  - "/^greenkeeper/.*$/"
+    - master
+    - '/^greenkeeper/.*$/'
 
 env:
   global:
-  - secure: fyw/6iyz4skp/sdAb9wr9Pq/72j4z2TiIZIJLT6B4zZZUKclA9ihHYx2Qf4IK7rHe+mvg0dSKaJi+zgrEx04fg2bP05dV1f52mmR71sE/FDRc9nkGgDl6/2AeXfXh0Raf8lVsYuBWclI2G0GPQeG1xskY7EBEnlKBdRmnljXPDNu1kwSrcLoGkoP1sIMRIxnMAHPXlOO3QKstiHM/HMa3A4SsQ4VGVLfrYqDJJ3L3XOkSbqyaSdWhELxSXAxSEzEOYi28kPeKtztdaU+BQtOSamuIMrEPwpM6+bFtTrf/SxWcybCk2sqn4sUgDVE8658cEIECR6NC1U/gWvDZSVHEetT2caHkhe1NRjxQmKrRfx88a+qZPeqbv6ydpvK8XAnaMtpwZtytoPZ7gw4IF0wxfkeBhK8dgBb4Lsdpnv90tbzcIyHgrHJiKBgJLlghBr9McFo4Fe3W06eD4rBTNX1LCmURQCm0V6mfCPUPup/68tAuscgysVW54XT51P4fk1iR3MJzCjbxaWbxwxWdCEeD2ptIkZwXDGydVe2qL4eI7NpYyTyhHc8vITlXYQnDCj9ztwjSiSf+4jJQiN7mbNcrRymnF22ICubnpj0SHBxEkQFJ+f/Wf3Ksxtl8t8DLTBCPtSzv7rxbdtnKRR1QRWgeYnhos1QHcNaoDgrlWCkOIg=
-  - secure: gS7EN+j/l9SDLjwM9YHCgOh6iPw0YTKvuQX9eXUI9YIEYoyhnBRQMfp77LJTuXdlucGgYj4v05YriLoxl4L7hmUmAKnDOVVEOUQqwYoAzg+h2GS3FQhoQRioxSAmTJc90nki0uhYAHW8FZ34+BjONCDSnew7r71TTU+UxRdRu4wOneFwXW1crPCNRtO5Ov/gkuiOWQaSPOoP6tzPOMP6FUueRQVqvf2GOoF3lBM8LnKeIq+m4H80DGsNjMtqdPJz9QQzAwO3VRNgsMAgr2wzVzjUnum7DfQC808AQDURlj9apg1HdYZDJH9bQyI/jIZ1gnHIcZ+kqqoq0l0QVNmITeMGrblFALU8xCFtGUyq70FGMjcmDGCanpveNOOhxjdqqfvvPKuqHEsfZtZkBJDovJdFtKmzf7DWb5xv8liPCzX26eBG/DPQgCEzyW0bl7IcB2LVMW/ObMRgixik2qiqYjN05pveWYsiO2iaiMo9ebm7FHXw/B0yfjM+CCGf7bjR9+RczXlN1x/gj+yjnYJ4K/nojSx0wms3QE7tJsXjmAMeguKUoZtaGGlF5yGbKtaZEVw/ZhYQDfLwwHQX2S5E424tYP/NAdi++CNCvyHJ7n0zel18FfsUNE1jIMaGb6aG6uOv6eOVI4+O09R71wxcYbQs40axdF+Y0A5f+CllNc8=
+    - secure: fyw/6iyz4skp/sdAb9wr9Pq/72j4z2TiIZIJLT6B4zZZUKclA9ihHYx2Qf4IK7rHe+mvg0dSKaJi+zgrEx04fg2bP05dV1f52mmR71sE/FDRc9nkGgDl6/2AeXfXh0Raf8lVsYuBWclI2G0GPQeG1xskY7EBEnlKBdRmnljXPDNu1kwSrcLoGkoP1sIMRIxnMAHPXlOO3QKstiHM/HMa3A4SsQ4VGVLfrYqDJJ3L3XOkSbqyaSdWhELxSXAxSEzEOYi28kPeKtztdaU+BQtOSamuIMrEPwpM6+bFtTrf/SxWcybCk2sqn4sUgDVE8658cEIECR6NC1U/gWvDZSVHEetT2caHkhe1NRjxQmKrRfx88a+qZPeqbv6ydpvK8XAnaMtpwZtytoPZ7gw4IF0wxfkeBhK8dgBb4Lsdpnv90tbzcIyHgrHJiKBgJLlghBr9McFo4Fe3W06eD4rBTNX1LCmURQCm0V6mfCPUPup/68tAuscgysVW54XT51P4fk1iR3MJzCjbxaWbxwxWdCEeD2ptIkZwXDGydVe2qL4eI7NpYyTyhHc8vITlXYQnDCj9ztwjSiSf+4jJQiN7mbNcrRymnF22ICubnpj0SHBxEkQFJ+f/Wf3Ksxtl8t8DLTBCPtSzv7rxbdtnKRR1QRWgeYnhos1QHcNaoDgrlWCkOIg=
+    - secure: gS7EN+j/l9SDLjwM9YHCgOh6iPw0YTKvuQX9eXUI9YIEYoyhnBRQMfp77LJTuXdlucGgYj4v05YriLoxl4L7hmUmAKnDOVVEOUQqwYoAzg+h2GS3FQhoQRioxSAmTJc90nki0uhYAHW8FZ34+BjONCDSnew7r71TTU+UxRdRu4wOneFwXW1crPCNRtO5Ov/gkuiOWQaSPOoP6tzPOMP6FUueRQVqvf2GOoF3lBM8LnKeIq+m4H80DGsNjMtqdPJz9QQzAwO3VRNgsMAgr2wzVzjUnum7DfQC808AQDURlj9apg1HdYZDJH9bQyI/jIZ1gnHIcZ+kqqoq0l0QVNmITeMGrblFALU8xCFtGUyq70FGMjcmDGCanpveNOOhxjdqqfvvPKuqHEsfZtZkBJDovJdFtKmzf7DWb5xv8liPCzX26eBG/DPQgCEzyW0bl7IcB2LVMW/ObMRgixik2qiqYjN05pveWYsiO2iaiMo9ebm7FHXw/B0yfjM+CCGf7bjR9+RczXlN1x/gj+yjnYJ4K/nojSx0wms3QE7tJsXjmAMeguKUoZtaGGlF5yGbKtaZEVw/ZhYQDfLwwHQX2S5E424tYP/NAdi++CNCvyHJ7n0zel18FfsUNE1jIMaGb6aG6uOv6eOVI4+O09R71wxcYbQs40axdF+Y0A5f+CllNc8=
 
 script:
-- yarn test
+  - yarn test
 
 after_success:
-- $(yarn bin)/nyc report --reporter=text-lcov | $(yarn bin)/coveralls
-- bash <(curl -s https://codecov.io/bash)
+  - $(yarn bin)/c8 report --reporter=text-lcov | $(yarn bin)/coveralls
+  - bash <(curl -s https://codecov.io/bash)
