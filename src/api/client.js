@@ -1,7 +1,6 @@
 import { fileURLToPath } from 'url'
 import createDebug from 'debug'
 import got from 'got'
-import ExtendableError from 'es6-error'
 import { readPackageUpSync } from 'read-pkg-up'
 import RateLimit from '../rate-limit.js'
 import { filterObjectValues, getTypeName } from '../util.js'
@@ -12,20 +11,12 @@ const { packageJson: pkg } = readPackageUpSync({
   cwd: fileURLToPath(import.meta.url)
 })
 
-export class ClientError extends ExtendableError {
-  constructor(message, statusCode) {
-    super(message)
-    this.statusCode = statusCode
-  }
-}
-
 export default class Client {
   constructor({
     baseURL,
     userAgent = `${pkg.name}/${pkg.version} ` +
       `( ${pkg.homepage || pkg.author.url || pkg.author.email} )`,
     extraHeaders = {},
-    errorClass = ClientError,
     timeout = 60000,
     limit = 1,
     period = 1000,
@@ -35,14 +26,13 @@ export default class Client {
     this.baseURL = baseURL
     this.userAgent = userAgent
     this.extraHeaders = extraHeaders
-    this.errorClass = errorClass
     this.timeout = timeout
     this.limiter = new RateLimit({ limit, period, concurrency })
     this.retryOptions = retry
   }
 
-  parseErrorMessage(response, body) {
-    return typeof body === 'string' && body ? body : `${response.statusCode}`
+  parseErrorMessage(err) {
+    return err
   }
 
   /**
@@ -71,33 +61,17 @@ export default class Client {
       }
     }
 
-    const urlString = url.toString()
-
-    debug(`Sending request. url=${urlString}`)
-
     let response
     try {
+      debug(`Sending request. url=%s`, url)
       response = await got(url.toString(), options)
+      debug(`Success: %s url=%s`, response.statusCode, url)
+      return response
     } catch (err) {
-      debug(`Error: “${err}” url=${urlString}`)
-      throw err
+      const parsedError = this.parseErrorMessage(err) || err
+      debug(`Error: “%s” url=%s`, parsedError, url)
+      throw parsedError
     }
-    if (options.method === 'HEAD') {
-      return response.headers
-    }
-    return response.body
-    // if (err) {
-    //   reject(err);
-    // } else if (response.statusCode >= 400) {
-    //   const message = this.parseErrorMessage(response, body);
-    //   // debug(`Error: “${message}” url=${req.uri.href}`);
-    //   const ClientError = this.errorClass;
-    //   reject(new ClientError(message, response.statusCode));
-    // } else if (options.method === 'HEAD') {
-    //   resolve(response.headers);
-    // } else {
-    //   resolve(body);
-    // }
   }
 
   /**

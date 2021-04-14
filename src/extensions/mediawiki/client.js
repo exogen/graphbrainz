@@ -1,4 +1,7 @@
+import ExtendableError from 'es6-error'
 import Client from '../../api/client.js'
+
+export class MediaWikiError extends ExtendableError {}
 
 export default class MediaWikiClient extends Client {
   constructor({ limit = 10, period = 1000, ...options } = {}) {
@@ -7,11 +10,10 @@ export default class MediaWikiClient extends Client {
 
   imageInfo(page) {
     const pageURL = new URL(page)
-    const ClientError = this.errorClass
 
     if (!pageURL.pathname.startsWith('/wiki/')) {
       return Promise.reject(
-        new ClientError(
+        new MediaWikiError(
           `MediaWiki page URL does not have the expected /wiki/ prefix: ${page}`
         )
       )
@@ -26,21 +28,21 @@ export default class MediaWikiClient extends Client {
       format: 'json'
     }).toString()
 
-    return this.get(apiURL.toString()).then(body => {
+    return this.get(apiURL.toString(), { resolveBodyOnly: true }).then(body => {
       const pageIDs = Object.keys(body.query.pages)
       if (pageIDs.length !== 1) {
-        throw new ClientError(
+        throw new MediaWikiError(
           `Query returned multiple pages: [${pageIDs.join(', ')}]`
         )
       }
       if (pageIDs[0] === '-1') {
-        throw new ClientError(
+        throw new MediaWikiError(
           body.query.pages['-1'].invalidreason || 'Unknown error'
         )
       }
       const imageInfo = body.query.pages[pageIDs[0]].imageinfo
       if (imageInfo.length !== 1) {
-        throw new ClientError(
+        throw new MediaWikiError(
           `Query returned info for ${imageInfo.length} images, expected 1.`
         )
       }

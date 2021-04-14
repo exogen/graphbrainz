@@ -1,13 +1,18 @@
-import Client, { ClientError } from './client.js'
+import ExtendableError from 'es6-error'
+import Client from './client.js'
 import { filterObjectValues } from '../util.js'
 
-export class MusicBrainzError extends ClientError {}
+export class MusicBrainzError extends ExtendableError {
+  constructor(message, response) {
+    super(message)
+    this.response = response
+  }
+}
 
 export default class MusicBrainz extends Client {
   constructor({
     baseURL = process.env.MUSICBRAINZ_BASE_URL ||
       'http://musicbrainz.org/ws/2/',
-    errorClass = MusicBrainzError,
     // MusicBrainz API requests are limited to an *average* of 1 req/sec.
     // That means if, for example, we only need to make a few API requests to
     // fulfill a query, we might as well make them all at once - as long as
@@ -18,14 +23,29 @@ export default class MusicBrainz extends Client {
     period = 5500,
     ...options
   } = {}) {
-    super({ baseURL, errorClass, limit, period, ...options })
+    super({ baseURL, limit, period, ...options })
   }
 
-  parseErrorMessage(response, body) {
-    if (body && body.error) {
-      return body.error
+  parseErrorMessage(err) {
+    if (err.name === 'HTTPError') {
+      const { body } = err.response
+      if (body && body.error) {
+        return new MusicBrainzError(`${body.error}`, err.response)
+      }
     }
-    return super.parseErrorMessage(response, body)
+    return super.parseErrorMessage(err)
+  }
+
+  get(url, options = {}) {
+    options = {
+      resolveBodyOnly: true,
+      ...options,
+      searchParams: {
+        fmt: 'json',
+        ...options.searchParams
+      }
+    }
+    return super.get(url, options)
   }
 
   stringifyParams(params) {
@@ -66,7 +86,7 @@ export default class MusicBrainz extends Client {
 
   lookup(entity, id, params = {}) {
     const url = this.getLookupURL(entity, id, params)
-    return this.get(url, { searchParams: { fmt: 'json' } })
+    return this.get(url)
   }
 
   getBrowseURL(entity, params) {
@@ -75,7 +95,7 @@ export default class MusicBrainz extends Client {
 
   browse(entity, params = {}) {
     const url = this.getBrowseURL(entity, params)
-    return this.get(url, { searchParams: { fmt: 'json' } })
+    return this.get(url)
   }
 
   getSearchURL(entity, query, params) {
@@ -84,6 +104,6 @@ export default class MusicBrainz extends Client {
 
   search(entity, query, params = {}) {
     const url = this.getSearchURL(entity, query, params)
-    return this.get(url, { searchParams: { fmt: 'json' } })
+    return this.get(url)
   }
 }

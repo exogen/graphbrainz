@@ -1,4 +1,7 @@
+import ExtendableError from 'es6-error'
 import Client from '../../api/client.js'
+
+export class FanArtError extends ExtendableError {}
 
 export default class FanArtClient extends Client {
   constructor({
@@ -13,13 +16,13 @@ export default class FanArtClient extends Client {
   }
 
   get(path, options = {}) {
-    const ClientError = this.errorClass
     if (!this.apiKey) {
       return Promise.reject(
-        new ClientError('No API key was configured for the fanart.tv client.')
+        new FanArtError('No API key was configured for the fanart.tv client.')
       )
     }
     options = {
+      resolveBodyOnly: true,
       ...options,
       searchParams: {
         ...options.searchParams,
@@ -30,7 +33,6 @@ export default class FanArtClient extends Client {
   }
 
   musicEntity(entityType, mbid) {
-    const ClientError = this.errorClass
     switch (entityType) {
       case 'artist':
         return this.musicArtist(mbid)
@@ -40,7 +42,7 @@ export default class FanArtClient extends Client {
         return this.musicAlbum(mbid)
       default:
         return Promise.reject(
-          new ClientError(`Entity type unsupported: ${entityType}`)
+          new FanArtError(`Entity type unsupported: ${entityType}`)
         )
     }
   }

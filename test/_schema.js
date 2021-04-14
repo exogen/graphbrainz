@@ -1294,7 +1294,7 @@ test(
 )
 
 // FIXME: API seems to have changed, potentially a bug in MusicBrainz.
-test.skip(
+test(
   'disc queries can be deeply nested',
   testData,
   `

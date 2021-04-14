@@ -1,4 +1,7 @@
+import ExtendableError from 'es6-error'
 import Client from '../../api/client.js'
+
+export class TheAudioDBError extends ExtendableError {}
 
 export default class TheAudioDBClient extends Client {
   constructor({
@@ -14,22 +17,18 @@ export default class TheAudioDBClient extends Client {
   }
 
   get(path, options = {}) {
-    const ClientError = this.errorClass
     if (!this.apiKey) {
       return Promise.reject(
-        new ClientError('No API key was configured for TheAudioDB client.')
+        new TheAudioDBError('No API key was configured for TheAudioDB client.')
       )
     }
     return super.get(`${this.apiKey}/${path}`, {
-      // FIXME: TheAudioDB's SSL terminator seems to be broken and only works
-      // by forcing TLS 1.0.
-      agentOptions: { secureProtocol: 'TLSv1_method' },
+      resolveBodyOnly: true,
       ...options
     })
   }
 
   entity(entityType, mbid) {
-    const ClientError = this.errorClass
     switch (entityType) {
       case 'artist':
         return this.artist(mbid)
@@ -39,7 +38,7 @@ export default class TheAudioDBClient extends Client {
         return this.track(mbid)
       default:
         return Promise.reject(
-          new ClientError(`Entity type unsupported: ${entityType}`)
+          new TheAudioDBError(`Entity type unsupported: ${entityType}`)
         )
     }
   }

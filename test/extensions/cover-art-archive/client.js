@@ -52,14 +52,36 @@ test('can retrieve a list of release images', async t => {
   t.true(data.images.some(image => image.types.indexOf('Medium') !== -1))
 })
 
-test.skip('throws an error if given an invalid MBID', t => {
+test('throws an error if given an invalid MBID', t => {
   return t.throwsAsync(client.images('release', 'xyz'), {
-    instanceOf: client.errorClass
+    name: 'CoverArtArchiveError',
+    message: 'Bad Request: invalid MBID specified'
   })
 })
 
 test('uses the default error impementation if there is no HTML error', t => {
-  t.is(client.parseErrorMessage({ statusCode: 501 }, 'yikes'), 'yikes')
-  t.is(client.parseErrorMessage({ statusCode: 500 }, ''), '500')
-  t.is(client.parseErrorMessage({ statusCode: 404 }, null), '404')
+  let error = {
+    name: 'HTTPError',
+    response: {
+      statusCode: 501,
+      body: 'yikes'
+    }
+  }
+  t.is(client.parseErrorMessage(error), error)
+  error = {
+    name: 'HTTPError',
+    response: {
+      statusCode: 500,
+      body: ''
+    }
+  }
+  t.is(client.parseErrorMessage(error), error)
+  error = {
+    name: 'HTTPError',
+    response: {
+      statusCode: 500,
+      body: null
+    }
+  }
+  t.is(client.parseErrorMessage(error), error)
 })

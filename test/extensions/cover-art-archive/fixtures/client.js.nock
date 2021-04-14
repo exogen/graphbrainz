@@ -8,7 +8,7 @@
         "path": "/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/back",
         "rawHeaders": [
           "Date",
-          "Tue, 13 Apr 2021 07:55:09 GMT",
+          "Wed, 14 Apr 2021 05:28:53 GMT",
           "Content-Type",
           "text/plain; charset=utf-8",
           "Content-Length",
@@ -41,7 +41,7 @@
         "path": "/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/front",
         "rawHeaders": [
           "Date",
-          "Tue, 13 Apr 2021 07:55:09 GMT",
+          "Wed, 14 Apr 2021 05:28:52 GMT",
           "Content-Type",
           "text/plain; charset=utf-8",
           "Content-Length",
@@ -74,7 +74,7 @@
         "path": "/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd",
         "rawHeaders": [
           "Date",
-          "Tue, 13 Apr 2021 07:55:10 GMT",
+          "Wed, 14 Apr 2021 05:28:53 GMT",
           "Content-Type",
           "text/plain; charset=utf-8",
           "Content-Length",
@@ -104,7 +104,7 @@
           "Server",
           "nginx/1.16.1 (Ubuntu)",
           "Date",
-          "Tue, 13 Apr 2021 07:55:10 GMT",
+          "Wed, 14 Apr 2021 05:28:53 GMT",
           "Content-Type",
           "text/html; charset=UTF-8",
           "Transfer-Encoding",
@@ -140,7 +140,7 @@
           "Server",
           "nginx/1.18.0 (Ubuntu)",
           "Date",
-          "Tue, 13 Apr 2021 07:55:10 GMT",
+          "Wed, 14 Apr 2021 05:28:53 GMT",
           "Content-Type",
           "application/json",
           "Content-Length",
@@ -154,7 +154,7 @@
           "Strict-Transport-Security",
           "max-age=15724800",
           "Expires",
-          "Tue, 13 Apr 2021 13:55:10 GMT",
+          "Wed, 14 Apr 2021 11:28:53 GMT",
           "Cache-Control",
           "max-age=21600",
           "Access-Control-Allow-Origin",
@@ -290,6 +290,37 @@
         "responseIsBinary": false,
         "scope": "http://ia802607.us.archive.org:80",
         "status": 200
+      }
+    ]
+  ],
+  [
+    "throws an error if given an invalid MBID",
+    [
+      {
+        "body": "",
+        "method": "GET",
+        "path": "/release/xyz",
+        "rawHeaders": [
+          "Date",
+          "Wed, 14 Apr 2021 05:48:55 GMT",
+          "Content-Type",
+          "text/html",
+          "Content-Length",
+          "138",
+          "Connection",
+          "close",
+          "Access-Control-Allow-Origin",
+          "*"
+        ],
+        "reqheaders": {
+          "accept": "application/json",
+          "accept-encoding": "gzip, deflate, br",
+          "host": "coverartarchive.org"
+        },
+        "response": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>invalid MBID specified</p>\n",
+        "responseIsBinary": false,
+        "scope": "http://coverartarchive.org:80",
+        "status": 400
       }
     ]
   ],
