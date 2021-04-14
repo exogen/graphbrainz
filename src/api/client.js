@@ -1,15 +1,15 @@
-import { fileURLToPath } from 'url'
-import createDebug from 'debug'
-import got from 'got'
-import { readPackageUpSync } from 'read-pkg-up'
-import RateLimit from '../rate-limit.js'
-import { filterObjectValues, getTypeName } from '../util.js'
+import { fileURLToPath } from 'url';
+import createDebug from 'debug';
+import got from 'got';
+import { readPackageUpSync } from 'read-pkg-up';
+import RateLimit from '../rate-limit.js';
+import { filterObjectValues, getTypeName } from '../util.js';
 
-const debug = createDebug('graphbrainz:api/client')
+const debug = createDebug('graphbrainz:api/client');
 
 const { packageJson: pkg } = readPackageUpSync({
-  cwd: fileURLToPath(import.meta.url)
-})
+  cwd: fileURLToPath(import.meta.url),
+});
 
 export default class Client {
   constructor({
@@ -21,18 +21,18 @@ export default class Client {
     limit = 1,
     period = 1000,
     concurrency = 10,
-    retry
+    retry,
   } = {}) {
-    this.baseURL = baseURL
-    this.userAgent = userAgent
-    this.extraHeaders = extraHeaders
-    this.timeout = timeout
-    this.limiter = new RateLimit({ limit, period, concurrency })
-    this.retryOptions = retry
+    this.baseURL = baseURL;
+    this.userAgent = userAgent;
+    this.extraHeaders = extraHeaders;
+    this.timeout = timeout;
+    this.limiter = new RateLimit({ limit, period, concurrency });
+    this.retryOptions = retry;
   }
 
   parseErrorMessage(err) {
-    return err
+    return err;
   }
 
   /**
@@ -40,15 +40,18 @@ export default class Client {
    * Use `get` instead.
    */
   async _get(path, { searchParams, ...options } = {}) {
-    const url = new URL(path, this.baseURL)
+    const url = new URL(path, this.baseURL);
     if (searchParams) {
       if (getTypeName(searchParams) === 'Object') {
-        searchParams = filterObjectValues(searchParams, value => value != null)
+        searchParams = filterObjectValues(
+          searchParams,
+          (value) => value != null
+        );
       }
-      const moreSearchParams = new URLSearchParams(searchParams)
+      const moreSearchParams = new URLSearchParams(searchParams);
       moreSearchParams.forEach((value, key) => {
-        url.searchParams.set(key, value)
-      })
+        url.searchParams.set(key, value);
+      });
     }
     options = {
       responseType: 'json',
@@ -57,20 +60,20 @@ export default class Client {
       headers: {
         'User-Agent': this.userAgent,
         ...this.extraHeaders,
-        ...options.headers
-      }
-    }
+        ...options.headers,
+      },
+    };
 
-    let response
+    let response;
     try {
-      debug(`Sending request. url=%s`, url)
-      response = await got(url.toString(), options)
-      debug(`Success: %s url=%s`, response.statusCode, url)
-      return response
+      debug(`Sending request. url=%s`, url);
+      response = await got(url.toString(), options);
+      debug(`Success: %s url=%s`, response.statusCode, url);
+      return response;
     } catch (err) {
-      const parsedError = this.parseErrorMessage(err) || err
-      debug(`Error: “%s” url=%s`, parsedError, url)
-      throw parsedError
+      const parsedError = this.parseErrorMessage(err) || err;
+      debug(`Error: “%s” url=%s`, parsedError, url);
+      throw parsedError;
     }
   }
 
@@ -78,7 +81,7 @@ export default class Client {
    * Send a request with rate limiting.
    */
   get(path, options = {}) {
-    const fn = this._get.bind(this)
-    return this.limiter.enqueue(fn, [path, options])
+    const fn = this._get.bind(this);
+    return this.limiter.enqueue(fn, [path, options]);
   }
 }

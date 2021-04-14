@@ -1,8 +1,8 @@
-import GraphQL from 'graphql'
-import { Node } from './node.js'
-import { Entity } from './entity.js'
-import { IPI } from './scalars.js'
-import { Area } from './area.js'
+import GraphQL from 'graphql';
+import { Node } from './node.js';
+import { Entity } from './entity.js';
+import { IPI } from './scalars.js';
+import { Area } from './area.js';
 import {
   id,
   mbid,
@@ -11,17 +11,17 @@ import {
   disambiguation,
   fieldWithID,
   connectionWithExtras,
-  linkedQuery
-} from './helpers.js'
-import { aliases } from './alias.js'
-import { collections } from './collection.js'
-import { lifeSpan } from './life-span.js'
-import { tags } from './tag.js'
-import { rating } from './rating.js'
-import { relationships } from './relationship.js'
-import { releases } from './release.js'
+  linkedQuery,
+} from './helpers.js';
+import { aliases } from './alias.js';
+import { collections } from './collection.js';
+import { lifeSpan } from './life-span.js';
+import { tags } from './tag.js';
+import { rating } from './rating.js';
+import { relationships } from './relationship.js';
+import { releases } from './release.js';
 
-const { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt } = GraphQL
+const { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt } = GraphQL;
 
 export const Label = new GraphQLObjectType({
   name: 'Label',
@@ -38,35 +38,35 @@ represent a record company.`,
     aliases,
     country: {
       type: GraphQLString,
-      description: 'The country of origin for the label.'
+      description: 'The country of origin for the label.',
     },
     area: {
       type: Area,
-      description: 'The area in which the label is based.'
+      description: 'The area in which the label is based.',
     },
     lifeSpan,
     labelCode: {
       type: GraphQLInt,
       description: `The [“LC” code](https://musicbrainz.org/doc/Label/Label_Code)
-of the label.`
+of the label.`,
     },
     ipis: {
       type: new GraphQLList(IPI),
       description: `List of [Interested Parties Information](https://musicbrainz.org/doc/IPI)
-codes for the label.`
+codes for the label.`,
     },
     ...fieldWithID('type', {
       description: `A type describing the main activity of the label, e.g.
-imprint, production, distributor, rights society, etc.`
+imprint, production, distributor, rights society, etc.`,
     }),
     releases,
     relationships,
     collections,
     rating,
-    tags
-  })
-})
+    tags,
+  }),
+});
 
-export const LabelConnection = connectionWithExtras(Label)
+export const LabelConnection = connectionWithExtras(Label);
 
-export const labels = linkedQuery(LabelConnection)
+export const labels = linkedQuery(LabelConnection);

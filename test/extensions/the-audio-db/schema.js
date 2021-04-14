@@ -1,27 +1,27 @@
-import test from 'ava'
-import GraphQL from 'graphql'
-import extension from '../../../src/extensions/the-audio-db/index.js'
-import { baseSchema, applyExtension } from '../../../src/schema.js'
-import baseContext from '../../helpers/context.js'
+import test from 'ava';
+import GraphQL from 'graphql';
+import extension from '../../../src/extensions/the-audio-db/index.js';
+import { baseSchema, applyExtension } from '../../../src/schema.js';
+import baseContext from '../../helpers/context.js';
 
-const { graphql } = GraphQL
+const { graphql } = GraphQL;
 
-const schema = applyExtension(extension, baseSchema)
+const schema = applyExtension(extension, baseSchema);
 const context = extension.extendContext(baseContext, {
   theAudioDB: {
     limit: Infinity,
-    period: 0
-  }
-})
+    period: 0,
+  },
+});
 
 function testData(t, query, handler) {
-  return graphql(schema, query, null, context).then(result => {
+  return graphql(schema, query, null, context).then((result) => {
     if (result.errors !== undefined) {
-      result.errors.forEach(error => t.log(error))
+      result.errors.forEach((error) => t.log(error));
     }
-    t.is(result.errors, undefined)
-    return handler(t, result.data)
-  })
+    t.is(result.errors, undefined);
+    return handler(t, result.data);
+  });
 }
 
 test(
@@ -53,9 +53,9 @@ test(
   }
 `,
   (t, data) => {
-    t.snapshot(data)
+    t.snapshot(data);
   }
-)
+);
 
 test(
   'release groups have a theAudioDB field',
@@ -92,9 +92,9 @@ test(
 }
 `,
   (t, data) => {
-    t.snapshot(data)
+    t.snapshot(data);
   }
-)
+);
 
 test(
   'recordings have a theAudioDB field',
@@ -135,6 +135,6 @@ test(
   }
 `,
   (t, data) => {
-    t.snapshot(data)
+    t.snapshot(data);
   }
-)
+);

@@ -1,6 +1,6 @@
-import GraphQL from 'graphql'
-import { resolveLookup } from '../resolvers.js'
-import { mbid } from '../types/helpers.js'
+import GraphQL from 'graphql';
+import { resolveLookup } from '../resolvers.js';
+import { mbid } from '../types/helpers.js';
 import {
   Area,
   Artist,
@@ -18,20 +18,20 @@ import {
   Series,
   URL,
   URLString,
-  Work
-} from '../types/index.js'
-import { toWords } from '../util.js'
+  Work,
+} from '../types/index.js';
+import { toWords } from '../util.js';
 
-const { GraphQLObjectType, GraphQLNonNull } = GraphQL
+const { GraphQLObjectType, GraphQLNonNull } = GraphQL;
 
 function createLookupField(entity, args) {
-  const typeName = toWords(entity.name)
+  const typeName = toWords(entity.name);
   return {
     type: entity,
     description: `Look up a specific ${typeName} by its MBID.`,
     args: { mbid, ...args },
-    resolve: resolveLookup
-  }
+    resolve: resolveLookup,
+  };
 }
 
 export const LookupQuery = new GraphQLObjectType({
@@ -48,12 +48,12 @@ export const LookupQuery = new GraphQLObjectType({
         discID: {
           type: new GraphQLNonNull(DiscID),
           description: `The [disc ID](https://musicbrainz.org/doc/Disc_ID)
-of the disc.`
-        }
+of the disc.`,
+        },
       },
       resolve: (root, { discID }, { loaders }, info) => {
-        return loaders.lookup.load(['discid', discID])
-      }
+        return loaders.lookup.load(['discid', discID]);
+      },
     },
     event: createLookupField(Event),
     instrument: createLookupField(Instrument),
@@ -68,23 +68,23 @@ of the disc.`
         ...mbid,
         // Remove the non-null requirement that is usually on the `mbid` field
         // so that URLs can be looked up by `resource`.
-        type: MBID
+        type: MBID,
       },
       resource: {
         type: URLString,
-        description: 'The web address of the URL entity to look up.'
-      }
+        description: 'The web address of the URL entity to look up.',
+      },
     }),
-    work: createLookupField(Work)
-  }
-})
+    work: createLookupField(Work),
+  },
+});
 
 export const lookup = {
   type: LookupQuery,
   description: 'Perform a lookup of a MusicBrainz entity by its MBID.',
   // We only have work to do once we know what entity types are being requested,
   // so this can just resolve to an empty object.
-  resolve: () => ({})
-}
+  resolve: () => ({}),
+};
 
-export default LookupQuery
+export default LookupQuery;

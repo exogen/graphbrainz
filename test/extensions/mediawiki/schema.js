@@ -1,27 +1,27 @@
-import test from 'ava'
-import GraphQL from 'graphql'
-import extension from '../../../src/extensions/mediawiki/index.js'
-import { baseSchema, applyExtension } from '../../../src/schema.js'
-import baseContext from '../../helpers/context.js'
+import test from 'ava';
+import GraphQL from 'graphql';
+import extension from '../../../src/extensions/mediawiki/index.js';
+import { baseSchema, applyExtension } from '../../../src/schema.js';
+import baseContext from '../../helpers/context.js';
 
-const { graphql } = GraphQL
+const { graphql } = GraphQL;
 
-const schema = applyExtension(extension, baseSchema)
+const schema = applyExtension(extension, baseSchema);
 const context = extension.extendContext(baseContext, {
   mediaWiki: {
     limit: Infinity,
-    period: 0
-  }
-})
+    period: 0,
+  },
+});
 
 function testData(t, query, handler) {
-  return graphql(schema, query, null, context).then(result => {
+  return graphql(schema, query, null, context).then((result) => {
     if (result.errors !== undefined) {
-      result.errors.forEach(error => t.log(error))
+      result.errors.forEach((error) => t.log(error));
     }
-    t.is(result.errors, undefined)
-    return handler(t, result.data)
-  })
+    t.is(result.errors, undefined);
+    return handler(t, result.data);
+  });
 }
 
 const fragment = `
@@ -45,7 +45,7 @@ const fragment = `
     value
     source
   }
-`
+`;
 
 test(
   'artists have a mediaWikiImages field',
@@ -62,9 +62,9 @@ test(
   }
 `,
   (t, data) => {
-    t.snapshot(data)
+    t.snapshot(data);
   }
-)
+);
 
 test(
   'instruments have a mediaWikiImages field',
@@ -83,9 +83,9 @@ test(
   }
 `,
   (t, data) => {
-    t.snapshot(data)
+    t.snapshot(data);
   }
-)
+);
 
 test(
   'labels have a mediaWikiImages field',
@@ -104,9 +104,9 @@ test(
   }
 `,
   (t, data) => {
-    t.snapshot(data)
+    t.snapshot(data);
   }
-)
+);
 
 test(
   'places have a mediaWikiImages field',
@@ -123,6 +123,6 @@ test(
   }
 `,
   (t, data) => {
-    t.snapshot(data)
+    t.snapshot(data);
   }
-)
+);

@@ -1,30 +1,30 @@
-import createDebug from 'debug'
-import DataLoader from 'dataloader'
-import LRUCache from 'lru-cache'
+import createDebug from 'debug';
+import DataLoader from 'dataloader';
+import LRUCache from 'lru-cache';
 
-const debug = createDebug('graphbrainz:extensions/fanart-tv')
+const debug = createDebug('graphbrainz:extensions/fanart-tv');
 
 export default function createLoader(options) {
-  const { client } = options
+  const { client } = options;
   const cache = new LRUCache({
     max: options.cacheSize,
     maxAge: options.cacheTTL,
     dispose(key) {
-      debug(`Removed from cache. key=${key}`)
-    }
-  })
+      debug(`Removed from cache. key=${key}`);
+    },
+  });
   // Make the cache Map-like.
-  cache.delete = cache.del
-  cache.clear = cache.reset
+  cache.delete = cache.del;
+  cache.clear = cache.reset;
 
   const loader = new DataLoader(
-    keys => {
+    (keys) => {
       return Promise.all(
-        keys.map(key => {
-          const [entityType, id] = key
+        keys.map((key) => {
+          const [entityType, id] = key;
           return client
             .musicEntity(entityType, id)
-            .catch(err => {
+            .catch((err) => {
               if (err.statusCode === 404) {
                 // 404s are OK, just return empty data.
                 return {
@@ -34,32 +34,32 @@ export default function createLoader(options) {
                   hdmusiclogo: [],
                   musicbanner: [],
                   musiclabel: [],
-                  albums: {}
-                }
+                  albums: {},
+                };
               }
-              throw err
+              throw err;
             })
-            .then(body => {
+            .then((body) => {
               if (entityType === 'artist') {
-                const releaseGroupIDs = Object.keys(body.albums || {})
+                const releaseGroupIDs = Object.keys(body.albums || {});
                 debug(
                   `Priming album cache with ${releaseGroupIDs.length} album(s).`
-                )
-                releaseGroupIDs.forEach(key =>
+                );
+                releaseGroupIDs.forEach((key) =>
                   loader.prime(['release-group', key], body)
-                )
+                );
               }
-              return body
-            })
+              return body;
+            });
         })
-      )
+      );
     },
     {
       batch: false,
       cacheKeyFn: ([entityType, id]) => `${entityType}/${id}`,
-      cacheMap: cache
+      cacheMap: cache,
     }
-  )
+  );
 
-  return loader
+  return loader;
 }

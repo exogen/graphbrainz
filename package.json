@@ -14,7 +14,7 @@
   "author": {
     "name": "Brian Beck",
     "email": "exogen@gmail.com",
-    "url": "http://brianbeck.com/"
+    "url": "https://brianbeck.com/"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,16 @@
     "npm": ">=6.0.0"
   },
   "type": "module",
-  "main": "src/index.js",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./extensions/cover-art-archive": "./extensions/cover-art-archive.js",
+    "./extensions/fanart-tv": "./extensions/fanart-tv.js",
+    "./extensions/mediawiki": "./extensions/mediawiki.js",
+    "./extensions/the-audio-db": "./extensions/the-audio-db.js",
+    "./package.json": "./package.json",
+    "./schema.json": "./schema.json"
+  },
   "bin": "cli.js",
   "files": [
     "extensions",

@@ -1,11 +1,11 @@
 module.exports = {
   env: {
     es2020: true,
-    node: true
+    node: true,
   },
   parserOptions: {
     ecmaVersion: 2020,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   extends: [
     'eslint:recommended',
@@ -14,36 +14,33 @@ module.exports = {
     'plugin:node/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ],
   rules: {
     'no-unused-vars': [
       'error',
-      { vars: 'all', args: 'none', ignoreRestSiblings: false }
+      { vars: 'all', args: 'none', ignoreRestSiblings: false },
     ],
     'import/default': 'off',
     'import/no-named-as-default': 'off',
     'node/no-unsupported-features/es-syntax': [
       'error',
       {
-        ignores: ['dynamicImport', 'modules']
-      }
+        ignores: ['dynamicImport', 'modules'],
+      },
     ],
     'prettier/prettier': [
       'error',
       {
-        arrowParens: 'avoid',
-        semi: false,
         singleQuote: true,
-        trailingComma: 'none'
-      }
+      },
     ],
     'promise/always-return': 'off',
     'promise/catch-or-return': [
       'error',
       {
-        allowThen: true
-      }
-    ]
-  }
-}
+        allowThen: true,
+      },
+    ],
+  },
+};

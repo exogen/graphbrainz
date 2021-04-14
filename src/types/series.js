@@ -1,6 +1,6 @@
-import GraphQL from 'graphql'
-import { Node } from './node.js'
-import { Entity } from './entity.js'
+import GraphQL from 'graphql';
+import { Node } from './node.js';
+import { Entity } from './entity.js';
 import {
   id,
   mbid,
@@ -8,13 +8,13 @@ import {
   disambiguation,
   fieldWithID,
   connectionWithExtras,
-  linkedQuery
-} from './helpers.js'
-import { collections } from './collection.js'
-import { relationships } from './relationship.js'
-import { tags } from './tag.js'
+  linkedQuery,
+} from './helpers.js';
+import { collections } from './collection.js';
+import { relationships } from './relationship.js';
+import { tags } from './tag.js';
 
-const { GraphQLObjectType } = GraphQL
+const { GraphQLObjectType } = GraphQL;
 
 export const Series = new GraphQLObjectType({
   name: 'Series',
@@ -29,14 +29,14 @@ theme.`,
     disambiguation,
     ...fieldWithID('type', {
       description: `The type primarily describes what type of entity the series
-contains.`
+contains.`,
     }),
     relationships,
     collections,
-    tags
-  })
-})
+    tags,
+  }),
+});
 
-export const SeriesConnection = connectionWithExtras(Series)
+export const SeriesConnection = connectionWithExtras(Series);
 
-export const series = linkedQuery(SeriesConnection)
+export const series = linkedQuery(SeriesConnection);

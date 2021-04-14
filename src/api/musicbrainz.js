@@ -1,11 +1,11 @@
-import ExtendableError from 'es6-error'
-import Client from './client.js'
-import { filterObjectValues } from '../util.js'
+import ExtendableError from 'es6-error';
+import Client from './client.js';
+import { filterObjectValues } from '../util.js';
 
 export class MusicBrainzError extends ExtendableError {
   constructor(message, response) {
-    super(message)
-    this.response = response
+    super(message);
+    this.response = response;
   }
 }
 
@@ -23,17 +23,17 @@ export default class MusicBrainz extends Client {
     period = 5500,
     ...options
   } = {}) {
-    super({ baseURL, limit, period, ...options })
+    super({ baseURL, limit, period, ...options });
   }
 
   parseErrorMessage(err) {
     if (err.name === 'HTTPError') {
-      const { body } = err.response
+      const { body } = err.response;
       if (body && body.error) {
-        return new MusicBrainzError(`${body.error}`, err.response)
+        return new MusicBrainzError(`${body.error}`, err.response);
       }
     }
-    return super.parseErrorMessage(err)
+    return super.parseErrorMessage(err);
   }
 
   get(url, options = {}) {
@@ -42,68 +42,68 @@ export default class MusicBrainz extends Client {
       ...options,
       searchParams: {
         fmt: 'json',
-        ...options.searchParams
-      }
-    }
-    return super.get(url, options)
+        ...options.searchParams,
+      },
+    };
+    return super.get(url, options);
   }
 
   stringifyParams(params) {
     if (Array.isArray(params.inc)) {
       params = {
         ...params,
-        inc: params.inc.join('+')
-      }
+        inc: params.inc.join('+'),
+      };
     }
     if (Array.isArray(params.type)) {
       params = {
         ...params,
-        type: params.type.join('|')
-      }
+        type: params.type.join('|'),
+      };
     }
     if (Array.isArray(params.status)) {
       params = {
         ...params,
-        status: params.status.join('|')
-      }
+        status: params.status.join('|'),
+      };
     }
     return new URLSearchParams(
-      filterObjectValues(params, value => value != null && value !== '')
-    ).toString()
+      filterObjectValues(params, (value) => value != null && value !== '')
+    ).toString();
   }
 
   getURL(path, params) {
-    const query = params ? this.stringifyParams(params) : ''
-    return query ? `${path}?${query}` : path
+    const query = params ? this.stringifyParams(params) : '';
+    return query ? `${path}?${query}` : path;
   }
 
   getLookupURL(entity, id, params) {
     if (id == null) {
-      return this.getBrowseURL(entity, params)
+      return this.getBrowseURL(entity, params);
     }
-    return this.getURL(`${entity}/${id}`, params)
+    return this.getURL(`${entity}/${id}`, params);
   }
 
   lookup(entity, id, params = {}) {
-    const url = this.getLookupURL(entity, id, params)
-    return this.get(url)
+    const url = this.getLookupURL(entity, id, params);
+    return this.get(url);
   }
 
   getBrowseURL(entity, params) {
-    return this.getURL(entity, params)
+    return this.getURL(entity, params);
   }
 
   browse(entity, params = {}) {
-    const url = this.getBrowseURL(entity, params)
-    return this.get(url)
+    const url = this.getBrowseURL(entity, params);
+    return this.get(url);
   }
 
   getSearchURL(entity, query, params) {
-    return this.getURL(entity, { ...params, query })
+    return this.getURL(entity, { ...params, query });
   }
 
   search(entity, query, params = {}) {
-    const url = this.getSearchURL(entity, query, params)
-    return this.get(url)
+    const url = this.getSearchURL(entity, query, params);
+    return this.get(url);
   }
 }

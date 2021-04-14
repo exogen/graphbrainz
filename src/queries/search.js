@@ -1,6 +1,6 @@
-import GraphQL from 'graphql'
-import GraphQLRelay from 'graphql-relay'
-import { resolveSearch } from '../resolvers.js'
+import GraphQL from 'graphql';
+import GraphQLRelay from 'graphql-relay';
+import { resolveSearch } from '../resolvers.js';
 import {
   AreaConnection,
   ArtistConnection,
@@ -12,15 +12,15 @@ import {
   ReleaseConnection,
   ReleaseGroupConnection,
   SeriesConnection,
-  WorkConnection
-} from '../types/index.js'
-import { toWords } from '../util.js'
+  WorkConnection,
+} from '../types/index.js';
+import { toWords } from '../util.js';
 
-const { GraphQLObjectType, GraphQLNonNull, GraphQLString } = GraphQL
-const { forwardConnectionArgs } = GraphQLRelay
+const { GraphQLObjectType, GraphQLNonNull, GraphQLString } = GraphQL;
+const { forwardConnectionArgs } = GraphQLRelay;
 
 function createSearchField(connectionType) {
-  const typeName = toWords(connectionType.name.slice(0, -10))
+  const typeName = toWords(connectionType.name.slice(0, -10));
   return {
     type: connectionType,
     description: `Search for ${typeName} entities matching the given query.`,
@@ -28,12 +28,12 @@ function createSearchField(connectionType) {
       query: {
         type: new GraphQLNonNull(GraphQLString),
         description: `The query terms, in Lucene search syntax. See [examples
-and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).`
+and search fields](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search).`,
       },
-      ...forwardConnectionArgs
+      ...forwardConnectionArgs,
     },
-    resolve: resolveSearch
-  }
+    resolve: resolveSearch,
+  };
 }
 
 export const SearchQuery = new GraphQLObjectType({
@@ -50,16 +50,16 @@ export const SearchQuery = new GraphQLObjectType({
     releases: createSearchField(ReleaseConnection),
     releaseGroups: createSearchField(ReleaseGroupConnection),
     series: createSearchField(SeriesConnection),
-    works: createSearchField(WorkConnection)
-  }
-})
+    works: createSearchField(WorkConnection),
+  },
+});
 
 export const search = {
   type: SearchQuery,
   description: 'Search for MusicBrainz entities using Lucene query syntax.',
   // We only have work to do once we know what entity types are being requested,
   // so this can just resolve to an empty object.
-  resolve: () => ({})
-}
+  resolve: () => ({}),
+};
 
-export default SearchQuery
+export default SearchQuery;

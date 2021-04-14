@@ -5,13 +5,13 @@
  * whatsoever, but will parse the GraphQL document, allow syntax highlighting,
  * and enable Prettier formatting.
  */
-import GraphQL from 'graphql'
+import GraphQL from 'graphql';
 
-const { parse } = GraphQL
+const { parse } = GraphQL;
 
 export default function gql(literals, ...interpolations) {
   if (literals.length !== 1 || interpolations.length) {
-    throw new Error('The gql template tag does not support interpolation.')
+    throw new Error('The gql template tag does not support interpolation.');
   }
-  return parse(literals[0])
+  return parse(literals[0]);
 }

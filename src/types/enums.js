@@ -1,6 +1,6 @@
-import GraphQL from 'graphql'
+import GraphQL from 'graphql';
 
-const { GraphQLEnumType } = GraphQL
+const { GraphQLEnumType } = GraphQL;
 
 export const ArtistType = new GraphQLEnumType({
   name: 'ArtistType',
@@ -10,37 +10,37 @@ etc.`,
     PERSON: {
       name: 'Person',
       description: 'This indicates an individual person.',
-      value: 'Person'
+      value: 'Person',
     },
     GROUP: {
       name: 'Group',
       description: `This indicates a group of people that may or may not have a
 distinctive name.`,
-      value: 'Group'
+      value: 'Group',
     },
     ORCHESTRA: {
       name: 'Orchestra',
       description:
         'This indicates an orchestra (a large instrumental ensemble).',
-      value: 'Orchestra'
+      value: 'Orchestra',
     },
     CHOIR: {
       name: 'Choir',
       description: 'This indicates a choir/chorus (a large vocal ensemble).',
-      value: 'Choir'
+      value: 'Choir',
     },
     CHARACTER: {
       name: 'Character',
       description: 'This indicates an individual fictional character.',
-      value: 'Character'
+      value: 'Character',
     },
     OTHER: {
       name: 'Other',
       description: 'An artist which does not fit into the other categories.',
-      value: 'Other'
-    }
-  }
-})
+      value: 'Other',
+    },
+  },
+});
 
 export const CoverArtImageSize = new GraphQLEnumType({
   name: 'CoverArtImageSize',
@@ -50,20 +50,20 @@ Archive](https://musicbrainz.org/doc/Cover_Art_Archive).`,
     SMALL: {
       name: 'Small',
       description: 'A maximum dimension of 250px.',
-      value: 250
+      value: 250,
     },
     LARGE: {
       name: 'Large',
       description: 'A maximum dimension of 500px.',
-      value: 500
+      value: 500,
     },
     FULL: {
       name: 'Full',
       description: 'The image’s original dimensions, with no maximum.',
-      value: null
-    }
-  }
-})
+      value: null,
+    },
+  },
+});
 
 export const ReleaseStatus = new GraphQLEnumType({
   name: 'ReleaseStatus',
@@ -74,29 +74,29 @@ bootleg, etc.`,
       name: 'Official',
       description: `Any release officially sanctioned by the artist and/or their
 record company. (Most releases will fit into this category.)`,
-      value: 'Official'
+      value: 'Official',
     },
     PROMOTION: {
       name: 'Promotion',
       description: `A giveaway release or a release intended to promote an
 upcoming official release, e.g. prerelease albums or releases included with a
 magazine.`,
-      value: 'Promotion'
+      value: 'Promotion',
     },
     BOOTLEG: {
       name: 'Bootleg',
       description: `An unofficial/underground release that was not sanctioned by
 the artist and/or the record company.`,
-      value: 'Bootleg'
+      value: 'Bootleg',
     },
     PSEUDORELEASE: {
       name: 'Pseudo-Release',
       description: `A pseudo-release is a duplicate release for
 translation/transliteration purposes.`,
-      value: 'Pseudo-Release'
-    }
-  }
-})
+      value: 'Pseudo-Release',
+    },
+  },
+});
 
 export const ReleaseGroupType = new GraphQLEnumType({
   name: 'ReleaseGroupType',
@@ -109,14 +109,14 @@ etc.`,
 release, generally consists of previously unreleased material (unless this type
 is combined with secondary types which change that, such as “Compilation”). This
 includes album re-issues, with or without bonus tracks.`,
-      value: 'Album'
+      value: 'Album',
     },
     SINGLE: {
       name: 'Single',
       description: `A single typically has one main song and possibly a handful
 of additional tracks or remixes of the main track. A single is usually named
 after its main song.`,
-      value: 'Single'
+      value: 'Single',
     },
     EP: {
       name: 'EP',
@@ -126,57 +126,57 @@ full length release (an LP or “Long Play”) and the tracks are usually exclus
 to the EP, in other words the tracks don’t come from a previously issued
 release. EP is fairly difficult to define; usually it should only be assumed
 that a release is an EP if the artist defines it as such.`,
-      value: 'EP'
+      value: 'EP',
     },
     OTHER: {
       name: 'Other',
       description: 'Any release that does not fit any of the other categories.',
-      value: 'Other'
+      value: 'Other',
     },
     BROADCAST: {
       name: 'Broadcast',
       description: `An episodic release that was originally broadcast via radio,
 television, or the Internet, including podcasts.`,
-      value: 'Broadcast'
+      value: 'Broadcast',
     },
     COMPILATION: {
       name: 'Compilation',
       description: `A compilation is a collection of previously released tracks
 by one or more artists.`,
-      value: 'Compilation'
+      value: 'Compilation',
     },
     SOUNDTRACK: {
       name: 'Soundtrack',
       description: `A soundtrack is the musical score to a movie, TV series,
 stage show, computer game, etc.`,
-      value: 'Soundtrack'
+      value: 'Soundtrack',
     },
     SPOKENWORD: {
       name: 'Spoken Word',
       description: 'A non-music spoken word release.',
-      value: 'Spoken Word'
+      value: 'Spoken Word',
     },
     INTERVIEW: {
       name: 'Interview',
       description: `An interview release contains an interview, generally with
 an artist.`,
-      value: 'Interview'
+      value: 'Interview',
     },
     AUDIOBOOK: {
       name: 'Audiobook',
       description: 'An audiobook is a book read by a narrator without music.',
-      value: 'Audiobook'
+      value: 'Audiobook',
     },
     LIVE: {
       name: 'Live',
       description: 'A release that was recorded live.',
-      value: 'Live'
+      value: 'Live',
     },
     REMIX: {
       name: 'Remix',
       description: `A release that was (re)mixed from previously released
 material.`,
-      value: 'Remix'
+      value: 'Remix',
     },
     DJMIX: {
       name: 'DJ-mix',
@@ -185,7 +185,7 @@ after the other, each one modified so that they blend together into a continuous
 flow of music. A DJ mix release requires that the recordings be modified in some
 manner, and the DJ who does this modification is usually (although not always)
 credited in a fairly prominent way.`,
-      value: 'DJ-mix'
+      value: 'DJ-mix',
     },
     MIXTAPE: {
       name: 'Mixtape/Street',
@@ -201,18 +201,18 @@ significant proportion of new material, including original production or
 original vocals over top of other artists’ instrumentals. They are distinct from
 demos in that they are designed for release directly to the public and fans, not
 to labels.`,
-      value: 'Mixtape/Street'
+      value: 'Mixtape/Street',
     },
     DEMO: {
       name: 'Demo',
       description: `A release that was recorded for limited circulation or
 reference use rather than for general public release.`,
-      value: 'Demo'
+      value: 'Demo',
     },
     NAT: {
       name: 'Non-Album Track',
       description: 'A non-album track (special case).',
-      value: 'NAT'
-    }
-  }
-})
+      value: 'NAT',
+    },
+  },
+});

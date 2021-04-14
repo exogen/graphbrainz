@@ -1,27 +1,27 @@
-import test from 'ava'
-import GraphQL from 'graphql'
-import extension from '../../../src/extensions/fanart-tv/index.js'
-import { baseSchema, applyExtension } from '../../../src/schema.js'
-import baseContext from '../../helpers/context.js'
+import test from 'ava';
+import GraphQL from 'graphql';
+import extension from '../../../src/extensions/fanart-tv/index.js';
+import { baseSchema, applyExtension } from '../../../src/schema.js';
+import baseContext from '../../helpers/context.js';
 
-const { graphql } = GraphQL
+const { graphql } = GraphQL;
 
-const schema = applyExtension(extension, baseSchema)
+const schema = applyExtension(extension, baseSchema);
 const context = extension.extendContext(baseContext, {
   fanArt: {
     limit: Infinity,
-    period: 0
-  }
-})
+    period: 0,
+  },
+});
 
 function testData(t, query, handler) {
-  return graphql(schema, query, null, context).then(result => {
+  return graphql(schema, query, null, context).then((result) => {
     if (result.errors !== undefined) {
-      result.errors.forEach(error => t.log(error))
+      result.errors.forEach((error) => t.log(error));
     }
-    t.is(result.errors, undefined)
-    return handler(t, result.data)
-  })
+    t.is(result.errors, undefined);
+    return handler(t, result.data);
+  });
 }
 
 test(
@@ -68,19 +68,19 @@ test(
   }
 `,
   (t, data) => {
-    t.snapshot(data)
-    const { fanArt } = data.lookup.artist
+    t.snapshot(data);
+    const { fanArt } = data.lookup.artist;
     const allImages = []
       .concat(fanArt.backgrounds)
       .concat(fanArt.banners)
       .concat(fanArt.logos)
       .concat(fanArt.logosHD)
-      .concat(fanArt.thumbnails)
-    allImages.forEach(image => {
-      t.not(image.url, image.fullSizeURL)
-    })
+      .concat(fanArt.thumbnails);
+    allImages.forEach((image) => {
+      t.not(image.url, image.fullSizeURL);
+    });
   }
-)
+);
 
 test(
   'release groups have a fanArt field and preview images',
@@ -109,14 +109,14 @@ test(
   }
 `,
   (t, data) => {
-    t.snapshot(data)
-    const { fanArt } = data.lookup.releaseGroup
-    const allImages = [].concat(fanArt.albumCovers).concat(fanArt.discImages)
-    allImages.forEach(image => {
-      t.not(image.url, image.fullSizeURL)
-    })
+    t.snapshot(data);
+    const { fanArt } = data.lookup.releaseGroup;
+    const allImages = [].concat(fanArt.albumCovers).concat(fanArt.discImages);
+    allImages.forEach((image) => {
+      t.not(image.url, image.fullSizeURL);
+    });
   }
-)
+);
 
 test(
   'labels have a fanArt field and preview images',
@@ -139,10 +139,10 @@ test(
   }
 `,
   (t, data) => {
-    t.snapshot(data)
-    const { fanArt } = data.lookup.label
-    fanArt.logos.forEach(image => {
-      t.not(image.url, image.fullSizeURL)
-    })
+    t.snapshot(data);
+    const { fanArt } = data.lookup.label;
+    fanArt.logos.forEach((image) => {
+      t.not(image.url, image.fullSizeURL);
+    });
   }
-)
+);

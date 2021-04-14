@@ -1,4 +1,4 @@
-import gql from '../../tag.js'
+import gql from '../../tag.js';
 
 export default gql`
   """
@@ -369,4 +369,4 @@ export default gql`
     """
     theAudioDB: TheAudioDBAlbum
   }
-`
+`;

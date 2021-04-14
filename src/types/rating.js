@@ -1,7 +1,7 @@
-import GraphQL from 'graphql'
-import { createSubqueryResolver } from '../resolvers.js'
+import GraphQL from 'graphql';
+import { createSubqueryResolver } from '../resolvers.js';
 
-const { GraphQLObjectType, GraphQLNonNull, GraphQLInt, GraphQLFloat } = GraphQL
+const { GraphQLObjectType, GraphQLNonNull, GraphQLInt, GraphQLFloat } = GraphQL;
 
 export const Rating = new GraphQLObjectType({
   name: 'Rating',
@@ -13,17 +13,17 @@ for the entity.`,
     voteCount: {
       type: new GraphQLNonNull(GraphQLInt),
       description: 'The number of votes that have contributed to the rating.',
-      resolve: rating => rating['votes-count']
+      resolve: (rating) => rating['votes-count'],
     },
     value: {
       type: GraphQLFloat,
-      description: 'The average rating value based on the aggregated votes.'
-    }
-  })
-})
+      description: 'The average rating value based on the aggregated votes.',
+    },
+  }),
+});
 
 export const rating = {
   type: Rating,
   description: 'The rating users have given to this entity.',
-  resolve: createSubqueryResolver({ inc: 'ratings' })
-}
+  resolve: createSubqueryResolver({ inc: 'ratings' }),
+};

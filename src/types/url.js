@@ -1,11 +1,11 @@
-import GraphQL from 'graphql'
-import { Node } from './node.js'
-import { Entity } from './entity.js'
-import { URLString } from './scalars.js'
-import { id, mbid, connectionWithExtras } from './helpers.js'
-import { relationships } from './relationship.js'
+import GraphQL from 'graphql';
+import { Node } from './node.js';
+import { Entity } from './entity.js';
+import { URLString } from './scalars.js';
+import { id, mbid, connectionWithExtras } from './helpers.js';
+import { relationships } from './relationship.js';
 
-const { GraphQLObjectType, GraphQLNonNull } = GraphQL
+const { GraphQLObjectType, GraphQLNonNull } = GraphQL;
 
 export const URL = new GraphQLObjectType({
   name: 'URL',
@@ -18,10 +18,10 @@ acquired, an entry in another database, etc.`,
     mbid,
     resource: {
       type: new GraphQLNonNull(URLString),
-      description: 'The actual URL string.'
+      description: 'The actual URL string.',
     },
-    relationships
-  })
-})
+    relationships,
+  }),
+});
 
-export const URLConnection = connectionWithExtras(URL)
+export const URLConnection = connectionWithExtras(URL);
