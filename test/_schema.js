@@ -859,6 +859,24 @@ test(
 );
 
 test(
+  'recordings have a list of ISRCs',
+  testData,
+  `
+  {
+    lookup {
+      recording(mbid: "9f9cf187-d6f9-437f-9d98-d59cdbd52757") {
+        isrcs
+      }
+    }
+  }
+  `,
+  (t, data) => {
+    t.true(data.lookup.recording.isrcs.includes('GBAYE9701376'));
+    t.true(data.lookup.recording.isrcs.includes('GBBKS1700108'));
+  }
+);
+
+test(
   'recordings can be browsed by ISRC',
   testData,
   `

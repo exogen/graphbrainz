@@ -432,10 +432,10 @@ at-least-node@^1.0.0:
   resolved "https://registry.yarnpkg.com/at-least-node/-/at-least-node-1.0.0.tgz#602cd4b46e844ad4effc92a8011a3c46e0238dc2"
   integrity "sha1-YCzUtG6EStTv/JKoARo8RuAjjcI= sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg=="
 
-ava-nock@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ava-nock/-/ava-nock-2.0.0.tgz#b9c5c9dca40cee03bfaad83a1b018ac1a1d0eede"
-  integrity sha512-A2TY8kkwTo9IrBAOwCDVuNNOOAQoEF8K/SRBhqC5LfGz6z1cbjQLdKmm3xBXoP7UkOicKnfjx3tkY3Thx6fRLw==
+ava-nock@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ava-nock/-/ava-nock-2.1.0.tgz#3646b1daa9b00777fef79192fb5737b95027f1bb"
+  integrity sha512-1zXnSQrEs/2zqJP9my4ySohRn7TnwNf8JuPffSkTSSDmFZqr/c+8hlTO0zb+dNZhCYn5w9EIWrLRIOFMu0ouHA==
   dependencies:
     debug "^4.3.1"
     fs-extra "^9.1.0"

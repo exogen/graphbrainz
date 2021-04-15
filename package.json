@@ -100,7 +100,7 @@
   },
   "devDependencies": {
     "ava": "^3.15.0",
-    "ava-nock": "^2.0.0",
+    "ava-nock": "^2.1.0",
     "c8": "^7.7.1",
     "coveralls": "^3.0.2",
     "cross-env": "^7.0.3",
