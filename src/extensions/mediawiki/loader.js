@@ -19,7 +19,11 @@ export default function createLoader(options) {
 
   return new DataLoader(
     (keys) => {
-      return Promise.all(keys.map((key) => client.imageInfo(key)));
+      return Promise.allSettled(
+        keys.map((key) => client.imageInfo(key))
+      ).then((results) =>
+        results.map((result) => result.reason || result.value)
+      );
     },
     { batch: false, cacheMap: cache }
   );

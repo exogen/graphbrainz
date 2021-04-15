@@ -17,7 +17,7 @@ async function resolveMediaWikiImages(source, args, { loaders }) {
       return false;
     })
     .map((rel) => rel.url.resource);
-  return loaders.mediaWiki.loadMany(pages);
+  return Promise.all(pages.map((page) => loaders.mediaWiki.load(page)));
 }
 
 export default {
