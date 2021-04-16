@@ -9,12 +9,23 @@ A [GraphQL][] schema, [Express][] server, and middleware for querying the
 [MusicBrainz][] API. It features an [extensible](./docs/extensions) schema to
 add integration with Discogs, Spotify, Last.fm, fanart.tv, and more!
 
+Install with npm:
+
 ```sh
 npm install graphbrainz --save
 ```
 
+Install with Yarn:
+
+```sh
+yarn add graphbrainz
+```
+
 **[Try out the live demo!][demo]** :bulb: Use the “Docs” sidebar, the
 [schema][], or the [types][] docs to help construct your query.
+
+_GraphBrainz is written and distributed as native Node.js ECMAScript modules
+(ESM) and requires a compatible version._
 
 ## Contents
 
