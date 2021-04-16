@@ -1,1 +1,1 @@
-module.exports = require('../lib/extensions/cover-art-archive')
+export { default } from '../src/extensions/cover-art-archive/index.js';

@@ -1,4 +1,4 @@
-import { resolveLookup } from '../../resolvers'
+import { resolveLookup } from '../../resolvers.js';
 
 const SIZES = new Map([
   [null, null],
@@ -6,70 +6,70 @@ const SIZES = new Map([
   [500, 500],
   ['FULL', null],
   ['SMALL', 250],
-  ['LARGE', 500]
-])
+  ['LARGE', 500],
+]);
 
 function resolveImage(coverArt, args, { loaders }, info) {
   // Since migrating the schema to an extension, we lost custom enum values
   // for the time being. Translate any incoming `size` arg to the old enum
   // values.
-  const size = SIZES.get(args.size)
+  const size = SIZES.get(args.size);
   // Field should be `front` or `back`.
-  const field = info.fieldName
+  const field = info.fieldName;
   if (coverArt.images) {
-    const matches = coverArt.images.filter(image => image[field])
+    const matches = coverArt.images.filter((image) => image[field]);
     if (!matches.length) {
-      return null
+      return null;
     } else if (matches.length === 1) {
-      const match = matches[0]
+      const match = matches[0];
       if (size === 250) {
-        return match.thumbnails.small
+        return match.thumbnails.small;
       } else if (size === 500) {
-        return match.thumbnails.large
+        return match.thumbnails.large;
       } else {
-        return match.image
+        return match.image;
       }
     }
   }
-  const entityType = coverArt._entityType
-  const id = coverArt._id
-  const releaseID = coverArt._releaseID
+  const entityType = coverArt._entityType;
+  const id = coverArt._id;
+  const releaseID = coverArt._releaseID;
   if (entityType === 'release-group' && field === 'front') {
     // Release groups only have an endpoint to retrieve the front image.
     // If someone requests the back of a release group, return the back of the
     // release that the release group's cover art response points to.
-    return loaders.coverArtArchiveURL.load(['release-group', id, field, size])
+    return loaders.coverArtArchiveURL.load(['release-group', id, field, size]);
   } else {
-    return loaders.coverArtArchiveURL.load(['release', releaseID, field, size])
+    return loaders.coverArtArchiveURL.load(['release', releaseID, field, size]);
   }
 }
 
 export default {
   CoverArtArchiveImage: {
-    fileID: image => image.id
+    fileID: (image) => image.id,
   },
   CoverArtArchiveRelease: {
     front: resolveImage,
     back: resolveImage,
-    images: coverArt => coverArt.images,
-    artwork: coverArt => coverArt.images.length > 0,
-    count: coverArt => coverArt.images.length,
+    images: (coverArt) => coverArt.images,
+    artwork: (coverArt) => coverArt.images.length > 0,
+    count: (coverArt) => coverArt.images.length,
     release: (coverArt, args, context, info) => {
-      const mbid = coverArt._releaseID
+      const mbid = coverArt._releaseID;
       if (mbid) {
-        return resolveLookup(coverArt, { mbid }, context, info)
+        return resolveLookup(coverArt, { mbid }, context, info);
       }
-      return null
-    }
+      return null;
+    },
   },
   Release: {
     coverArtArchive: (release, args, { loaders }) => {
-      return loaders.coverArtArchive.load(['release', release.id])
-    }
+      return loaders.coverArtArchive.load(['release', release.id]);
+    },
   },
   ReleaseGroup: {
     coverArtArchive: (releaseGroup, args, { loaders }) => {
-      return loaders.coverArtArchive.load(['release-group', releaseGroup.id])
-    }
-  }
-}
+      return loaders.coverArtArchive.load(['release-group', releaseGroup.id]);
+    },
+  },
+};

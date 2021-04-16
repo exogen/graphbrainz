@@ -1,3 +1,3 @@
-import MusicBrainz, { MusicBrainzError } from './musicbrainz'
+import MusicBrainz from './musicbrainz.js';
 
-export { MusicBrainz as default, MusicBrainz, MusicBrainzError }
+export { MusicBrainz as default, MusicBrainz };

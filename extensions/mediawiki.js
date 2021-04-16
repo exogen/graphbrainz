@@ -1,1 +1,1 @@
-module.exports = require('../lib/extensions/mediawiki')
+export { default } from '../src/extensions/mediawiki/index.js';

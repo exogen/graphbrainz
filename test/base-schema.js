@@ -1,2 +1,8 @@
-process.env.TEST_SCHEMA = 'baseSchema'
-require('./_schema')
+import test from 'ava';
+import { baseSchema } from '../src/schema.js';
+
+test.before((t) => {
+  t.context.schema = baseSchema;
+});
+
+import './_schema.js';

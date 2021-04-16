@@ -1,0 +1,332 @@
+[
+  [
+    "can retrieve a back image URL",
+    [
+      {
+        "body": "",
+        "method": "HEAD",
+        "path": "/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/back",
+        "rawHeaders": [
+          "Date",
+          "Thu, 15 Apr 2021 09:07:12 GMT",
+          "Content-Type",
+          "text/plain; charset=utf-8",
+          "Content-Length",
+          "132",
+          "Connection",
+          "close",
+          "Location",
+          "http://archive.org/download/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd-5769317885.jpg",
+          "Access-Control-Allow-Origin",
+          "*"
+        ],
+        "reqheaders": {
+          "accept": "application/json",
+          "accept-encoding": "gzip, deflate, br",
+          "host": "coverartarchive.org"
+        },
+        "response": "",
+        "responseIsBinary": false,
+        "scope": "http://coverartarchive.org:80",
+        "status": 307
+      }
+    ]
+  ],
+  [
+    "can retrieve a front image URL",
+    [
+      {
+        "body": "",
+        "method": "HEAD",
+        "path": "/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/front",
+        "rawHeaders": [
+          "Date",
+          "Thu, 15 Apr 2021 09:07:12 GMT",
+          "Content-Type",
+          "text/plain; charset=utf-8",
+          "Content-Length",
+          "131",
+          "Connection",
+          "close",
+          "Location",
+          "http://archive.org/download/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd-829521842.jpg",
+          "Access-Control-Allow-Origin",
+          "*"
+        ],
+        "reqheaders": {
+          "accept": "application/json",
+          "accept-encoding": "gzip, deflate, br",
+          "host": "coverartarchive.org"
+        },
+        "response": "",
+        "responseIsBinary": false,
+        "scope": "http://coverartarchive.org:80",
+        "status": 307
+      }
+    ]
+  ],
+  [
+    "can retrieve a list of release images",
+    [
+      {
+        "body": "",
+        "method": "GET",
+        "path": "/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd",
+        "rawHeaders": [
+          "Date",
+          "Thu, 15 Apr 2021 09:07:12 GMT",
+          "Content-Type",
+          "text/plain; charset=utf-8",
+          "Content-Length",
+          "86",
+          "Connection",
+          "close",
+          "Location",
+          "http://archive.org/download/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/index.json",
+          "Access-Control-Allow-Origin",
+          "*"
+        ],
+        "reqheaders": {
+          "accept": "application/json",
+          "accept-encoding": "gzip, deflate, br",
+          "host": "coverartarchive.org"
+        },
+        "response": "See: http://archive.org/download/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/index.json\n",
+        "responseIsBinary": false,
+        "scope": "http://coverartarchive.org:80",
+        "status": 307
+      },
+      {
+        "body": "",
+        "method": "GET",
+        "path": "/download/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/index.json",
+        "rawHeaders": [
+          "Server",
+          "nginx/1.16.1 (Ubuntu)",
+          "Date",
+          "Thu, 15 Apr 2021 09:07:12 GMT",
+          "Content-Type",
+          "text/html; charset=UTF-8",
+          "Transfer-Encoding",
+          "chunked",
+          "Connection",
+          "close",
+          "Access-Control-Allow-Origin",
+          "*",
+          "Accept-Ranges",
+          "bytes",
+          "Location",
+          "http://ia802607.us.archive.org/32/items/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/index.json",
+          "Strict-Transport-Security",
+          "max-age=15724800",
+          "Referrer-Policy",
+          "no-referrer-when-downgrade"
+        ],
+        "reqheaders": {
+          "accept": "application/json",
+          "accept-encoding": "gzip, deflate, br",
+          "host": "archive.org"
+        },
+        "response": "",
+        "responseIsBinary": false,
+        "scope": "http://archive.org:80",
+        "status": 302
+      },
+      {
+        "body": "",
+        "method": "GET",
+        "path": "/32/items/mbid-76df3287-6cda-33eb-8e9a-044b5e15ffdd/index.json",
+        "rawHeaders": [
+          "Server",
+          "nginx/1.18.0 (Ubuntu)",
+          "Date",
+          "Thu, 15 Apr 2021 09:07:13 GMT",
+          "Content-Type",
+          "application/json",
+          "Content-Length",
+          "4445",
+          "Last-Modified",
+          "Tue, 12 Nov 2019 22:11:45 GMT",
+          "Connection",
+          "close",
+          "ETag",
+          "\"5dcb2e21-115d\"",
+          "Strict-Transport-Security",
+          "max-age=15724800",
+          "Expires",
+          "Thu, 15 Apr 2021 15:07:13 GMT",
+          "Cache-Control",
+          "max-age=21600",
+          "Access-Control-Allow-Origin",
+          "*",
+          "Accept-Ranges",
+          "bytes"
+        ],
+        "reqheaders": {
+          "accept": "application/json",
+          "accept-encoding": "gzip, deflate, br",
+          "host": "ia802607.us.archive.org"
+        },
+        "response": {
+          "images": [
+            {
+              "approved": true,
+              "back": false,
+              "comment": "",
+              "edit": 17462565,
+              "front": true,
+              "id": 829521842,
+              "image": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/829521842.jpg",
+              "thumbnails": {
+                "1200": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/829521842-1200.jpg",
+                "250": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/829521842-250.jpg",
+                "500": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/829521842-500.jpg",
+                "large": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/829521842-500.jpg",
+                "small": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/829521842-250.jpg"
+              },
+              "types": [
+                "Front"
+              ]
+            },
+            {
+              "approved": true,
+              "back": false,
+              "comment": "",
+              "edit": 65037291,
+              "front": false,
+              "id": 24546038908,
+              "image": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546038908.jpg",
+              "thumbnails": {
+                "1200": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546038908-1200.jpg",
+                "250": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546038908-250.jpg",
+                "500": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546038908-500.jpg",
+                "large": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546038908-500.jpg",
+                "small": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546038908-250.jpg"
+              },
+              "types": [
+                "Front",
+                "Booklet"
+              ]
+            },
+            {
+              "approved": true,
+              "back": false,
+              "comment": "",
+              "edit": 65037298,
+              "front": false,
+              "id": 24546039829,
+              "image": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546039829.jpg",
+              "thumbnails": {
+                "1200": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546039829-1200.jpg",
+                "250": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546039829-250.jpg",
+                "500": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546039829-500.jpg",
+                "large": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546039829-500.jpg",
+                "small": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546039829-250.jpg"
+              },
+              "types": [
+                "Booklet"
+              ]
+            },
+            {
+              "approved": true,
+              "back": false,
+              "comment": "",
+              "edit": 65037300,
+              "front": false,
+              "id": 24546040945,
+              "image": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546040945.jpg",
+              "thumbnails": {
+                "1200": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546040945-1200.jpg",
+                "250": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546040945-250.jpg",
+                "500": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546040945-500.jpg",
+                "large": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546040945-500.jpg",
+                "small": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/24546040945-250.jpg"
+              },
+              "types": [
+                "Booklet"
+              ]
+            },
+            {
+              "approved": true,
+              "back": true,
+              "comment": "",
+              "edit": 24923554,
+              "front": false,
+              "id": 5769317885,
+              "image": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769317885.jpg",
+              "thumbnails": {
+                "1200": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769317885-1200.jpg",
+                "250": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769317885-250.jpg",
+                "500": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769317885-500.jpg",
+                "large": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769317885-500.jpg",
+                "small": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769317885-250.jpg"
+              },
+              "types": [
+                "Back"
+              ]
+            },
+            {
+              "approved": true,
+              "back": false,
+              "comment": "",
+              "edit": 24923552,
+              "front": false,
+              "id": 5769316809,
+              "image": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769316809.jpg",
+              "thumbnails": {
+                "1200": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769316809-1200.jpg",
+                "250": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769316809-250.jpg",
+                "500": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769316809-500.jpg",
+                "large": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769316809-500.jpg",
+                "small": "http://coverartarchive.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd/5769316809-250.jpg"
+              },
+              "types": [
+                "Medium"
+              ]
+            }
+          ],
+          "release": "https://musicbrainz.org/release/76df3287-6cda-33eb-8e9a-044b5e15ffdd"
+        },
+        "responseIsBinary": false,
+        "scope": "http://ia802607.us.archive.org:80",
+        "status": 200
+      }
+    ]
+  ],
+  [
+    "throws an error if given an invalid MBID",
+    [
+      {
+        "body": "",
+        "method": "GET",
+        "path": "/release/xyz",
+        "rawHeaders": [
+          "Date",
+          "Thu, 15 Apr 2021 09:07:13 GMT",
+          "Content-Type",
+          "text/html",
+          "Content-Length",
+          "138",
+          "Connection",
+          "close",
+          "Access-Control-Allow-Origin",
+          "*"
+        ],
+        "reqheaders": {
+          "accept": "application/json",
+          "accept-encoding": "gzip, deflate, br",
+          "host": "coverartarchive.org"
+        },
+        "response": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>invalid MBID specified</p>\n",
+        "responseIsBinary": false,
+        "scope": "http://coverartarchive.org:80",
+        "status": 400
+      }
+    ]
+  ],
+  [
+    "uses the default error impementation if there is no HTML error",
+    [
+    ]
+  ]
+]

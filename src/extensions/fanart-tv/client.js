@@ -1,4 +1,7 @@
-import Client from '../../api/client'
+import ExtendableError from 'es6-error';
+import Client from '../../api/client.js';
+
+export class FanArtError extends ExtendableError {}
 
 export default class FanArtClient extends Client {
   constructor({
@@ -8,53 +11,51 @@ export default class FanArtClient extends Client {
     period = 1000,
     ...options
   } = {}) {
-    super({ baseURL, limit, period, ...options })
-    this.apiKey = apiKey
+    super({ baseURL, limit, period, ...options });
+    this.apiKey = apiKey;
   }
 
   get(path, options = {}) {
-    const ClientError = this.errorClass
     if (!this.apiKey) {
       return Promise.reject(
-        new ClientError('No API key was configured for the fanart.tv client.')
-      )
+        new FanArtError('No API key was configured for the fanart.tv client.')
+      );
     }
     options = {
-      json: true,
+      resolveBodyOnly: true,
       ...options,
-      qs: {
-        ...options.qs,
-        api_key: this.apiKey
-      }
-    }
-    return super.get(path, options)
+      searchParams: {
+        ...options.searchParams,
+        api_key: this.apiKey,
+      },
+    };
+    return super.get(path, options);
   }
 
   musicEntity(entityType, mbid) {
-    const ClientError = this.errorClass
     switch (entityType) {
       case 'artist':
-        return this.musicArtist(mbid)
+        return this.musicArtist(mbid);
       case 'label':
-        return this.musicLabel(mbid)
+        return this.musicLabel(mbid);
       case 'release-group':
-        return this.musicAlbum(mbid)
+        return this.musicAlbum(mbid);
       default:
         return Promise.reject(
-          new ClientError(`Entity type unsupported: ${entityType}`)
-        )
+          new FanArtError(`Entity type unsupported: ${entityType}`)
+        );
     }
   }
 
   musicArtist(mbid) {
-    return this.get(`music/${mbid}`)
+    return this.get(`music/${mbid}`);
   }
 
   musicAlbum(mbid) {
-    return this.get(`music/albums/${mbid}`)
+    return this.get(`music/albums/${mbid}`);
   }
 
   musicLabel(mbid) {
-    return this.get(`music/${mbid}`)
+    return this.get(`music/${mbid}`);
   }
 }

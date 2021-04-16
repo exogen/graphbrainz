@@ -1,34 +1,35 @@
-import DataLoader from 'dataloader'
-import LRUCache from 'lru-cache'
+import createDebug from 'debug';
+import DataLoader from 'dataloader';
+import LRUCache from 'lru-cache';
 
-const debug = require('debug')('graphbrainz:extensions/the-audio-db')
+const debug = createDebug('graphbrainz:extensions/the-audio-db');
 
 export default function createLoader(options) {
-  const { client } = options
-  const cache = LRUCache({
+  const { client } = options;
+  const cache = new LRUCache({
     max: options.cacheSize,
     maxAge: options.cacheTTL,
     dispose(key) {
-      debug(`Removed from cache. key=${key}`)
-    }
-  })
+      debug(`Removed from cache. key=${key}`);
+    },
+  });
   // Make the cache Map-like.
-  cache.delete = cache.del
-  cache.clear = cache.reset
+  cache.delete = cache.del;
+  cache.clear = cache.reset;
 
   return new DataLoader(
-    keys => {
+    (keys) => {
       return Promise.all(
-        keys.map(key => {
-          const [entityType, id] = key
-          return client.entity(entityType, id)
+        keys.map((key) => {
+          const [entityType, id] = key;
+          return client.entity(entityType, id);
         })
-      )
+      );
     },
     {
       batch: false,
       cacheKeyFn: ([entityType, id]) => `${entityType}/${id}`,
-      cacheMap: cache
+      cacheMap: cache,
     }
-  )
+  );
 }

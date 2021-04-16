@@ -1,4 +1,4 @@
-import gql from '../../tag'
+import gql from '../../tag.js';
 
 export default gql`
   """
@@ -194,4 +194,4 @@ export default gql`
     """
     fanArt: FanArtAlbum
   }
-`
+`;

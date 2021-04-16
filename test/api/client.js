@@ -1,12 +1,14 @@
-import test from 'ava'
-import Client from '../../src/api/client'
+import test from 'ava';
+import Client from '../../src/api/client.js';
 
-test('parseErrorMessage() returns the body or status code', t => {
-  const client = new Client()
-  t.is(
-    client.parseErrorMessage({ statusCode: 500 }, 'something went wrong'),
-    'something went wrong'
-  )
-  t.is(client.parseErrorMessage({ statusCode: 500 }, ''), '500')
-  t.is(client.parseErrorMessage({ statusCode: 404 }, {}), '404')
-})
+test('parseErrorMessage() returns the input error by default', (t) => {
+  const client = new Client();
+  const error = {
+    name: 'HTTPError',
+    response: {
+      statusCode: 500,
+      body: 'something went wrong',
+    },
+  };
+  t.is(client.parseErrorMessage(error), error);
+});

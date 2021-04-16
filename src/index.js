@@ -1,71 +1,104 @@
-import express from 'express'
-import graphqlHTTP from 'express-graphql'
-import compression from 'compression'
-import cors from 'cors'
-import MusicBrainz from './api'
-import schema, { createSchema } from './schema'
-import { createContext } from './context'
+import express from 'express';
+import ExpressGraphQL from 'express-graphql';
+import compression from 'compression';
+import cors from 'cors';
+import MusicBrainz from './api/index.js';
+import Client from './api/client.js';
+import { baseSchema, createSchema } from './schema.js';
+import { createContext } from './context.js';
+import { loadExtension } from './extensions/index.js';
+import gql from './tag.js';
 
-const formatError = err => ({
+const { graphqlHTTP } = ExpressGraphQL;
+
+const formatError = (err) => ({
   message: err.message,
   locations: err.locations,
-  stack: err.stack
-})
+  stack: err.stack,
+});
 
-export const defaultExtensions = [
-  require.resolve('./extensions/cover-art-archive'),
-  require.resolve('./extensions/fanart-tv'),
-  require.resolve('./extensions/mediawiki'),
-  require.resolve('./extensions/the-audio-db')
-]
+const defaultExtensions = [
+  'graphbrainz/extensions/cover-art-archive',
+  'graphbrainz/extensions/fanart-tv',
+  'graphbrainz/extensions/mediawiki',
+  'graphbrainz/extensions/the-audio-db',
+];
 
-const middleware = ({
+function middleware({
   client = new MusicBrainz(),
   extensions = process.env.GRAPHBRAINZ_EXTENSIONS
     ? JSON.parse(process.env.GRAPHBRAINZ_EXTENSIONS)
     : defaultExtensions,
   ...middlewareOptions
-} = {}) => {
-  const options = { client, extensions, ...middlewareOptions }
-  const DEV = process.env.NODE_ENV !== 'production'
-  const graphiql = DEV || process.env.GRAPHBRAINZ_GRAPHIQL === 'true'
-  return graphqlHTTP({
-    schema: createSchema(schema, options),
-    context: createContext(options),
-    pretty: DEV,
-    graphiql,
-    formatError: DEV ? formatError : undefined,
-    ...middlewareOptions
-  })
+} = {}) {
+  const DEV = process.env.NODE_ENV !== 'production';
+  const graphiql = DEV || process.env.GRAPHBRAINZ_GRAPHIQL === 'true';
+  const getAsyncMiddleware = async () => {
+    const loadedExtensions = await Promise.all(
+      extensions.map((extensionSpecifier) => loadExtension(extensionSpecifier))
+    );
+    const options = {
+      client,
+      extensions: loadedExtensions,
+      ...middlewareOptions,
+    };
+    const schema = createSchema(baseSchema, options);
+    const context = createContext(options);
+    return graphqlHTTP({
+      schema,
+      context,
+      pretty: DEV,
+      graphiql,
+      customFormatErrorFn: DEV ? formatError : undefined,
+      ...middlewareOptions,
+    });
+  };
+  const asyncMiddleware = getAsyncMiddleware();
+  return async (req, res, next) => {
+    try {
+      const middleware = await asyncMiddleware;
+      middleware(req, res, next);
+    } catch (err) {
+      next(err);
+    }
+  };
 }
 
-export default middleware
-
-export function start(options) {
-  require('dotenv').config({ silent: true })
-  const app = express()
-  const port = process.env.PORT || 3000
-  const route = process.env.GRAPHBRAINZ_PATH || '/'
+async function start(options) {
+  const dotenv = await import('dotenv');
+  dotenv.config({ silent: true });
+  const app = express();
+  const port = process.env.PORT || 3000;
+  const route = process.env.GRAPHBRAINZ_PATH || '/';
   const corsOptions = {
     origin: process.env.GRAPHBRAINZ_CORS_ORIGIN || false,
-    methods: 'HEAD,GET,POST'
-  }
+    methods: 'HEAD,GET,POST',
+  };
   switch (corsOptions.origin) {
     case 'true':
-      corsOptions.origin = true
-      break
+      corsOptions.origin = true;
+      break;
     case 'false':
-      corsOptions.origin = false
-      break
+      corsOptions.origin = false;
+      break;
     default:
-      break
+      break;
   }
-  app.use(compression())
-  app.use(route, cors(corsOptions), middleware(options))
-  app.listen(port)
-  console.log(`Listening on port ${port}.`)
+  app.use(compression());
+  app.use(route, cors(corsOptions), middleware(options));
+  app.listen(port);
+  console.log(`Listening on port ${port}.`);
 }
 
-if (require.main === module) {
-  start()
-}
+export {
+  Client,
+  MusicBrainz,
+  gql,
+  baseSchema,
+  createContext,
+  createSchema,
+  defaultExtensions,
+  loadExtension,
+  middleware,
+  start,
+};

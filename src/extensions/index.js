@@ -1,18 +1,18 @@
-export function loadExtension(extensionModule) {
-  let extension
+export async function loadExtension(extensionModule) {
+  let extension;
   if (typeof extensionModule === 'string') {
-    extension = require(extensionModule)
+    extension = await import(extensionModule);
   } else {
-    extension = extensionModule
+    extension = extensionModule;
   }
   if (extension == null || typeof extension !== 'object') {
     throw new Error(
       `Expected ${extensionModule} to export an extension but instead ` +
         `got: ${extension}`
-    )
+    );
   } else if (extension.default) {
     // ECMAScript module interop.
-    extension = extension.default
+    extension = extension.default;
   }
-  return extension
+  return extension;
 }

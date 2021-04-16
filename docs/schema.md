@@ -2,44 +2,117 @@
 
 ```graphql
 """
-[Aliases](https://musicbrainz.org/doc/Aliases) are variant names
-that are mostly used as search help: if a search matches an entity’s alias, the
-entity will be given as a result – even if the actual name wouldn’t be.
+The query root, from which multiple types of MusicBrainz
+requests can be made.
 """
-type Alias {
-  """The aliased name of the entity."""
-  name: String
+type Query {
+  """Perform a lookup of a MusicBrainz entity by its MBID."""
+  lookup: LookupQuery
 
-  """
-  The string to use for the purpose of ordering by name (for
-  example, by moving articles like ‘the’ to the end or a person’s last name to
-  the front).
-  """
-  sortName: String
+  """Browse all MusicBrainz entities directly linked to another entity."""
+  browse: BrowseQuery
 
-  """
-  The locale (language and/or country) in which the alias is
-  used.
-  """
-  locale: Locale
+  """Search for MusicBrainz entities using Lucene query syntax."""
+  search: SearchQuery
 
-  """
-  Whether this is the main alias for the entity in the
-  specified locale (this could mean the most recent or the most common).
-  """
-  primary: Boolean
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
 
-  """
-  The type or purpose of the alias – whether it is a variant,
-  search hint, etc.
-  """
-  type: String
+"""A lookup of an individual MusicBrainz entity by its MBID."""
+type LookupQuery {
+  """Look up a specific area by its MBID."""
+  area(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Area
 
-  """
-  The MBID associated with the value of the `type`
-  field.
-  """
-  typeID: MBID
+  """Look up a specific artist by its MBID."""
+  artist(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Artist
+
+  """Look up a specific collection by its MBID."""
+  collection(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Collection
+
+  """Look up a specific physical disc by its disc ID."""
+  disc(
+    """
+    The [disc ID](https://musicbrainz.org/doc/Disc_ID)
+    of the disc.
+    """
+    discID: DiscID!
+  ): Disc
+
+  """Look up a specific event by its MBID."""
+  event(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Event
+
+  """Look up a specific instrument by its MBID."""
+  instrument(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Instrument
+
+  """Look up a specific label by its MBID."""
+  label(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Label
+
+  """Look up a specific place by its MBID."""
+  place(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Place
+
+  """Look up a specific recording by its MBID."""
+  recording(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Recording
+
+  """Look up a specific release by its MBID."""
+  release(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Release
+
+  """Look up a specific release group by its MBID."""
+  releaseGroup(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): ReleaseGroup
+
+  """Look up a specific series by its MBID."""
+  series(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Series
+
+  """Look up a specific URL by its MBID."""
+  url(
+    """The MBID of the entity."""
+    mbid: MBID
+
+    """The web address of the URL entity to look up."""
+    resource: URLString
+  ): URL
+
+  """Look up a specific work by its MBID."""
+  work(
+    """The MBID of the entity."""
+    mbid: MBID!
+  ): Work
 }
 
 """
@@ -129,19 +202,81 @@ type Area implements Node & Entity {
   tags(after: String, first: Int): TagConnection
 }
 
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""An entity in the MusicBrainz schema."""
+interface Entity {
+  """The MBID of the entity."""
+  mbid: MBID!
+}
+
+"""
+The MBID scalar represents MusicBrainz identifiers, which are
+36-character UUIDs.
+"""
+scalar MBID
+
+"""
+[Aliases](https://musicbrainz.org/doc/Aliases) are variant names
+that are mostly used as search help: if a search matches an entity’s alias, the
+entity will be given as a result – even if the actual name wouldn’t be.
+"""
+type Alias {
+  """The aliased name of the entity."""
+  name: String
+
+  """
+  The string to use for the purpose of ordering by name (for
+  example, by moving articles like ‘the’ to the end or a person’s last name to
+  the front).
+  """
+  sortName: String
+
+  """
+  The locale (language and/or country) in which the alias is
+  used.
+  """
+  locale: Locale
+
+  """
+  Whether this is the main alias for the entity in the
+  specified locale (this could mean the most recent or the most common).
+  """
+  primary: Boolean
+
+  """
+  The type or purpose of the alias – whether it is a variant,
+  search hint, etc.
+  """
+  type: String
+
+  """
+  The MBID associated with the value of the `type`
+  field.
+  """
+  typeID: MBID
+}
+
+"""Language code, optionally with country and encoding."""
+scalar Locale
+
 """A connection to a list of items."""
-type AreaConnection {
+type ArtistConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [AreaEdge]
+  edges: [ArtistEdge]
 
   """
   A list of nodes in the connection (without going through the
   `edges` field).
   """
-  nodes: [Area]
+  nodes: [Artist]
 
   """
   A count of the total number of items in this connection,
@@ -150,10 +285,25 @@ type AreaConnection {
   totalCount: Int
 }
 
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
 """An edge in a connection."""
-type AreaEdge {
+type ArtistEdge {
   """The item at the end of the edge"""
-  node: Area
+  node: Artist
 
   """A cursor for use in pagination"""
   cursor: String!
@@ -299,25 +449,153 @@ type Artist implements Node & Entity {
   tags(after: String, first: Int): TagConnection
 }
 
+"""
+Fields indicating the begin and end date of an entity’s
+lifetime, including whether it has ended (even if the date is unknown).
+"""
+type LifeSpan {
+  """The start date of the entity’s life span."""
+  begin: Date
+
+  """The end date of the entity’s life span."""
+  end: Date
+
+  """Whether or not the entity’s life span has ended."""
+  ended: Boolean
+}
+
+"""Year, month (optional), and day (optional) in YYYY-MM-DD format."""
+scalar Date
+
+"""
+An [Interested Parties Information](https://musicbrainz.org/doc/IPI)
+(IPI) code is an identifying number assigned by the CISAC database for musical
+rights management.
+"""
+scalar IPI
+
+"""
+The [International Standard Name Identifier](https://musicbrainz.org/doc/ISNI)
+(ISNI) is an ISO standard for uniquely identifying the public identities of
+contributors to media content.
+"""
+scalar ISNI
+
 """A connection to a list of items."""
-type ArtistConnection {
+type RecordingConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [ArtistEdge]
+  edges: [RecordingEdge]
 
   """
   A list of nodes in the connection (without going through the
   `edges` field).
   """
-  nodes: [Artist]
+  nodes: [Recording]
 
   """
   A count of the total number of items in this connection,
   ignoring pagination.
   """
   totalCount: Int
+}
+
+"""An edge in a connection."""
+type RecordingEdge {
+  """The item at the end of the edge"""
+  node: Recording
+
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """
+  The relevancy score (0–100) assigned by the search engine, if
+  these results were found through a search.
+  """
+  score: Int
+}
+
+"""
+A [recording](https://musicbrainz.org/doc/Recording) is an
+entity in MusicBrainz which can be linked to tracks on releases. Each track must
+always be associated with a single recording, but a recording can be linked to
+any number of tracks.
+
+A recording represents distinct audio that has been used to produce at least one
+released track through copying or mastering. A recording itself is never
+produced solely through copying or mastering.
+
+Generally, the audio represented by a recording corresponds to the audio at a
+stage in the production process before any final mastering but after any editing
+or mixing.
+"""
+type Recording implements Node & Entity {
+  """The ID of an object"""
+  id: ID!
+
+  """The MBID of the entity."""
+  mbid: MBID!
+
+  """The official title of the entity."""
+  title: String
+
+  """A comment used to help distinguish identically named entitites."""
+  disambiguation: String
+
+  """
+  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  alternate names or misspellings.
+  """
+  aliases: [Alias]
+
+  """The main credited artist(s)."""
+  artistCredit: [ArtistCredit] @deprecated(reason: "The `artistCredit` field has been renamed to\n`artistCredits`, since it is a list of credits and is referred to in the\nplural form throughout the MusicBrainz documentation. This field is deprecated\nand will be removed in a major release in the future. Use the equivalent\n`artistCredits` field.")
+
+  """The main credited artist(s)."""
+  artistCredits: [ArtistCredit]
+
+  """
+  A list of [International Standard Recording Codes](https://musicbrainz.org/doc/ISRC)
+  (ISRCs) for this recording.
+  """
+  isrcs: [ISRC]
+
+  """
+  An approximation to the length of the recording, calculated
+  from the lengths of the tracks using it.
+  """
+  length: Duration
+
+  """Whether this is a video recording."""
+  video: Boolean
+
+  """A list of artists linked to this entity."""
+  artists(after: String, first: Int): ArtistConnection
+
+  """A list of releases linked to this entity."""
+  releases(
+    """Filter by one or more release group types."""
+    type: [ReleaseGroupType]
+
+    """Filter by one or more release statuses."""
+    status: [ReleaseStatus]
+    after: String
+    first: Int
+  ): ReleaseConnection
+
+  """Relationships between this entity and other entitites."""
+  relationships: Relationships
+
+  """A list of collections containing this entity."""
+  collections(after: String, first: Int): CollectionConnection
+
+  """The rating users have given to this entity."""
+  rating: Rating
+
+  """A list of tags linked to this entity."""
+  tags(after: String, first: Int): TagConnection
 }
 
 """
@@ -347,10 +625,48 @@ type ArtistCredit {
   joinPhrase: String
 }
 
+"""
+The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
+(ISRC) is an identification system for audio and music video recordings. It is
+standarized by the [IFPI](http://www.ifpi.org/) in ISO 3901:2001 and used by
+IFPI members to assign a unique identifier to every distinct sound recording
+they release. An ISRC identifies a particular [sound recording](https://musicbrainz.org/doc/Recording),
+not the song itself. Therefore, different recordings, edits, remixes and
+remasters of the same song will each be assigned their own ISRC. However, note
+that same recording should carry the same ISRC in all countries/territories.
+Songs are identified by analogous [International Standard Musical Work Codes](https://musicbrainz.org/doc/ISWC)
+(ISWCs).
+"""
+scalar ISRC
+
+"""A length of time, in milliseconds."""
+scalar Duration
+
+"""A connection to a list of items."""
+type ReleaseConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ReleaseEdge]
+
+  """
+  A list of nodes in the connection (without going through the
+  `edges` field).
+  """
+  nodes: [Release]
+
+  """
+  A count of the total number of items in this connection,
+  ignoring pagination.
+  """
+  totalCount: Int
+}
+
 """An edge in a connection."""
-type ArtistEdge {
+type ReleaseEdge {
   """The item at the end of the edge"""
-  node: Artist
+  node: Release
 
   """A cursor for use in pagination"""
   cursor: String!
@@ -360,6 +676,133 @@ type ArtistEdge {
   these results were found through a search.
   """
   score: Int
+}
+
+"""
+A [release](https://musicbrainz.org/doc/Release) represents the
+unique release (i.e. issuing) of a product on a specific date with specific
+release information such as the country, label, barcode, packaging, etc. If you
+walk into a store and purchase an album or single, they’re each represented in
+MusicBrainz as one release.
+"""
+type Release implements Node & Entity {
+  """The ID of an object"""
+  id: ID!
+
+  """The MBID of the entity."""
+  mbid: MBID!
+
+  """The official title of the entity."""
+  title: String
+
+  """A comment used to help distinguish identically named entitites."""
+  disambiguation: String
+
+  """
+  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  alternate names or misspellings.
+  """
+  aliases: [Alias]
+
+  """The main credited artist(s)."""
+  artistCredit: [ArtistCredit] @deprecated(reason: "The `artistCredit` field has been renamed to\n`artistCredits`, since it is a list of credits and is referred to in the\nplural form throughout the MusicBrainz documentation. This field is deprecated\nand will be removed in a major release in the future. Use the equivalent\n`artistCredits` field.")
+
+  """The main credited artist(s)."""
+  artistCredits: [ArtistCredit]
+
+  """The release events for this release."""
+  releaseEvents: [ReleaseEvent]
+
+  """
+  The [release date](https://musicbrainz.org/doc/Release/Date)
+  is the date in which a release was made available through some sort of
+  distribution mechanism.
+  """
+  date: Date
+
+  """The country in which the release was issued."""
+  country: String
+
+  """
+  The [Amazon Standard Identification Number](https://musicbrainz.org/doc/ASIN)
+  of the release.
+  """
+  asin: ASIN
+
+  """
+  The [barcode](https://en.wikipedia.org/wiki/Barcode), if the
+  release has one. The most common types found on releases are 12-digit
+  [UPCs](https://en.wikipedia.org/wiki/Universal_Product_Code) and 13-digit
+  [EANs](https://en.wikipedia.org/wiki/International_Article_Number).
+  """
+  barcode: String
+
+  """The status describes how “official” a release is."""
+  status: ReleaseStatus
+
+  """
+  The MBID associated with the value of the `status`
+  field.
+  """
+  statusID: MBID
+
+  """
+  The physical packaging that accompanies the release. See
+  the [list of packaging](https://musicbrainz.org/doc/Release/Packaging) for more
+  information.
+  """
+  packaging: String
+
+  """
+  The MBID associated with the value of the `packaging`
+  field.
+  """
+  packagingID: MBID
+
+  """
+  Data quality indicates how good the data for a release is.
+  It is not a mark of how good or bad the music itself is – for that, use
+  [ratings](https://musicbrainz.org/doc/Rating_System).
+  """
+  quality: String
+
+  """The media on which the release was distributed."""
+  media: [Medium]
+
+  """A list of artists linked to this entity."""
+  artists(after: String, first: Int): ArtistConnection
+
+  """A list of labels linked to this entity."""
+  labels(after: String, first: Int): LabelConnection
+
+  """A list of recordings linked to this entity."""
+  recordings(after: String, first: Int): RecordingConnection
+
+  """A list of release groups linked to this entity."""
+  releaseGroups(
+    """Filter by one or more release group types."""
+    type: [ReleaseGroupType]
+    after: String
+    first: Int
+  ): ReleaseGroupConnection
+
+  """Relationships between this entity and other entitites."""
+  relationships: Relationships
+
+  """A list of collections containing this entity."""
+  collections(after: String, first: Int): CollectionConnection
+
+  """A list of tags linked to this entity."""
+  tags(after: String, first: Int): TagConnection
+}
+
+"""
+The date on which a release was issued in a country/region with
+a particular label, catalog number, barcode, and format.
+"""
+type ReleaseEvent {
+  area: Area
+  date: Date
 }
 
 """
@@ -370,343 +813,74 @@ and its partners for product identification within the Amazon organization.
 scalar ASIN
 
 """
-A query for all MusicBrainz entities directly linked to another
-entity.
+A type used to describe the status of releases, e.g. official,
+bootleg, etc.
 """
-type BrowseQuery {
-  """Browse area entities linked to the given arguments."""
-  areas(
-    """The MBID of a collection in which the entity is found."""
-    collection: MBID
-    after: String
-    first: Int
-  ): AreaConnection
+enum ReleaseStatus {
+  """
+  Any release officially sanctioned by the artist and/or their
+  record company. (Most releases will fit into this category.)
+  """
+  OFFICIAL
 
-  """Browse artist entities linked to the given arguments."""
-  artists(
-    """The MBID of an area to which the entity is linked."""
-    area: MBID
+  """
+  A giveaway release or a release intended to promote an
+  upcoming official release, e.g. prerelease albums or releases included with a
+  magazine.
+  """
+  PROMOTION
 
-    """The MBID of a collection in which the entity is found."""
-    collection: MBID
+  """
+  An unofficial/underground release that was not sanctioned by
+  the artist and/or the record company.
+  """
+  BOOTLEG
 
-    """The MBID of a recording to which the entity is linked."""
-    recording: MBID
-
-    """The MBID of a release to which the entity is linked."""
-    release: MBID
-
-    """The MBID of a release group to which the entity is linked."""
-    releaseGroup: MBID
-
-    """The MBID of a work to which the entity is linked."""
-    work: MBID
-    after: String
-    first: Int
-  ): ArtistConnection
-
-  """Browse collection entities linked to the given arguments."""
-  collections(
-    """The MBID of an area to which the entity is linked."""
-    area: MBID
-
-    """The MBID of an artist to which the entity is linked."""
-    artist: MBID
-
-    """The username of the editor who created the collection."""
-    editor: String
-
-    """The MBID of an event to which the entity is linked."""
-    event: MBID
-
-    """The MBID of a label to which the entity is linked."""
-    label: MBID
-
-    """The MBID of a place to which the entity is linked."""
-    place: MBID
-
-    """The MBID of a recording to which the entity is linked."""
-    recording: MBID
-
-    """The MBID of a release to which the entity is linked."""
-    release: MBID
-
-    """The MBID of a release group to which the entity is linked."""
-    releaseGroup: MBID
-
-    """The MBID of a work to which the entity is linked."""
-    work: MBID
-    after: String
-    first: Int
-  ): CollectionConnection
-
-  """Browse event entities linked to the given arguments."""
-  events(
-    """The MBID of an area to which the entity is linked."""
-    area: MBID
-
-    """The MBID of an artist to which the entity is linked."""
-    artist: MBID
-
-    """The MBID of a collection in which the entity is found."""
-    collection: MBID
-
-    """The MBID of a place to which the entity is linked."""
-    place: MBID
-    after: String
-    first: Int
-  ): EventConnection
-
-  """Browse label entities linked to the given arguments."""
-  labels(
-    """The MBID of an area to which the entity is linked."""
-    area: MBID
-
-    """The MBID of a collection in which the entity is found."""
-    collection: MBID
-
-    """The MBID of a release to which the entity is linked."""
-    release: MBID
-    after: String
-    first: Int
-  ): LabelConnection
-
-  """Browse place entities linked to the given arguments."""
-  places(
-    """The MBID of an area to which the entity is linked."""
-    area: MBID
-
-    """The MBID of a collection in which the entity is found."""
-    collection: MBID
-    after: String
-    first: Int
-  ): PlaceConnection
-
-  """Browse recording entities linked to the given arguments."""
-  recordings(
-    """The MBID of an artist to which the entity is linked."""
-    artist: MBID
-
-    """The MBID of a collection in which the entity is found."""
-    collection: MBID
-
-    """
-    The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
-    (ISRC) of the recording.
-    """
-    isrc: ISRC
-
-    """The MBID of a release to which the entity is linked."""
-    release: MBID
-    after: String
-    first: Int
-  ): RecordingConnection
-
-  """Browse release entities linked to the given arguments."""
-  releases(
-    """The MBID of an area to which the entity is linked."""
-    area: MBID
-
-    """The MBID of an artist to which the entity is linked."""
-    artist: MBID
-
-    """The MBID of a collection in which the entity is found."""
-    collection: MBID
-
-    """
-    A [disc ID](https://musicbrainz.org/doc/Disc_ID)
-    associated with the release.
-    """
-    discID: DiscID
-
-    """The MBID of a label to which the entity is linked."""
-    label: MBID
-
-    """The MBID of a recording to which the entity is linked."""
-    recording: MBID
-
-    """The MBID of a release group to which the entity is linked."""
-    releaseGroup: MBID
-
-    """The MBID of a track that is included in the release."""
-    track: MBID
-
-    """
-    The MBID of an artist that appears on a track in the
-    release, but is not included in the credits for the release itself.
-    """
-    trackArtist: MBID
-
-    """Filter by one or more release group types."""
-    type: [ReleaseGroupType]
-
-    """Filter by one or more release statuses."""
-    status: [ReleaseStatus]
-    after: String
-    first: Int
-  ): ReleaseConnection
-
-  """Browse release group entities linked to the given arguments."""
-  releaseGroups(
-    """The MBID of an artist to which the entity is linked."""
-    artist: MBID
-
-    """The MBID of a collection in which the entity is found."""
-    collection: MBID
-
-    """The MBID of a release to which the entity is linked."""
-    release: MBID
-
-    """Filter by one or more release group types."""
-    type: [ReleaseGroupType]
-    after: String
-    first: Int
-  ): ReleaseGroupConnection
-
-  """Browse work entities linked to the given arguments."""
-  works(
-    """The MBID of an artist to which the entity is linked."""
-    artist: MBID
-
-    """The MBID of a collection in which the entity is found."""
-    collection: MBID
-
-    """
-    The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)
-    (ISWC) of the work.
-    """
-    iswc: ISWC
-    after: String
-    first: Int
-  ): WorkConnection
+  """
+  A pseudo-release is a duplicate release for
+  translation/transliteration purposes.
+  """
+  PSEUDORELEASE
 }
 
 """
-[Collections](https://musicbrainz.org/doc/Collections) are
-lists of entities that users can create.
+A medium is the actual physical medium the audio content is
+stored upon. This means that each CD in a multi-disc release will be entered as
+separate mediums within the release, and that both sides of a vinyl record or
+cassette will exist on one medium. Mediums have a format (e.g. CD, DVD, vinyl,
+cassette) and can optionally also have a title.
 """
-type Collection implements Node & Entity {
-  """The ID of an object"""
-  id: ID!
-
-  """The MBID of the entity."""
-  mbid: MBID!
-
-  """The official name of the entity."""
-  name: String
-
-  """The username of the editor who created the collection."""
-  editor: String!
-
-  """The type of entity listed in the collection."""
-  entityType: String!
-
-  """The type of collection."""
-  type: String
+type Medium {
+  """The title of this particular medium."""
+  title: String
 
   """
-  The MBID associated with the value of the `type`
+  The [format](https://musicbrainz.org/doc/Release/Format) of
+  the medium (e.g. CD, DVD, vinyl, cassette).
+  """
+  format: String
+
+  """
+  The MBID associated with the value of the `format`
   field.
   """
-  typeID: MBID
+  formatID: MBID
 
-  """The list of areas found in this collection."""
-  areas(after: String, first: Int): AreaConnection
+  """
+  The order of this medium in the release (for example, in a
+  multi-disc release).
+  """
+  position: Int
 
-  """The list of artists found in this collection."""
-  artists(after: String, first: Int): ArtistConnection
+  """The number of audio tracks on this medium."""
+  trackCount: Int
 
-  """The list of events found in this collection."""
-  events(after: String, first: Int): EventConnection
+  """A list of physical discs and their disc IDs for this medium."""
+  discs: [Disc]
 
-  """The list of instruments found in this collection."""
-  instruments(after: String, first: Int): InstrumentConnection
-
-  """The list of labels found in this collection."""
-  labels(after: String, first: Int): LabelConnection
-
-  """The list of places found in this collection."""
-  places(after: String, first: Int): PlaceConnection
-
-  """The list of recordings found in this collection."""
-  recordings(after: String, first: Int): RecordingConnection
-
-  """The list of releases found in this collection."""
-  releases(
-    """Filter by one or more release group types."""
-    type: [ReleaseGroupType]
-
-    """Filter by one or more release statuses."""
-    status: [ReleaseStatus]
-    after: String
-    first: Int
-  ): ReleaseConnection
-
-  """The list of release groups found in this collection."""
-  releaseGroups(
-    """Filter by one or more release group types."""
-    type: [ReleaseGroupType]
-    after: String
-    first: Int
-  ): ReleaseGroupConnection
-
-  """The list of series found in this collection."""
-  series(after: String, first: Int): SeriesConnection
-
-  """The list of works found in this collection."""
-  works(after: String, first: Int): WorkConnection
+  """The list of tracks on the given media."""
+  tracks: [Track]
 }
-
-"""A connection to a list of items."""
-type CollectionConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [CollectionEdge]
-
-  """
-  A list of nodes in the connection (without going through the
-  `edges` field).
-  """
-  nodes: [Collection]
-
-  """
-  A count of the total number of items in this connection,
-  ignoring pagination.
-  """
-  totalCount: Int
-}
-
-"""An edge in a connection."""
-type CollectionEdge {
-  """The item at the end of the edge"""
-  node: Collection
-
-  """A cursor for use in pagination"""
-  cursor: String!
-
-  """
-  The relevancy score (0–100) assigned by the search engine, if
-  these results were found through a search.
-  """
-  score: Int
-}
-
-"""Geographic coordinates described with latitude and longitude."""
-type Coordinates {
-  """The north–south position of a point on the Earth’s surface."""
-  latitude: Degrees
-
-  """The east–west position of a point on the Earth’s surface."""
-  longitude: Degrees
-}
-
-"""Year, month (optional), and day (optional) in YYYY-MM-DD format."""
-scalar Date
-
-"""Decimal degrees, used for latitude and longitude."""
-scalar Degrees
 
 """
 Information about the physical CD and releases associated with a
@@ -749,93 +923,50 @@ offsets and hence the same disc ID.
 """
 scalar DiscID
 
-"""A length of time, in milliseconds."""
-scalar Duration
-
-"""An entity in the MusicBrainz schema."""
-interface Entity {
-  """The MBID of the entity."""
-  mbid: MBID!
-}
-
 """
-An [event](https://musicbrainz.org/doc/Event) refers to an
-organised event which people can attend, and is relevant to MusicBrainz.
-Generally this means live performances, like concerts and festivals.
+A track is the way a recording is represented on a particular
+  release (or, more exactly, on a particular medium). Every track has a title
+  (see the guidelines for titles) and is credited to one or more artists.
 """
-type Event implements Node & Entity {
-  """The ID of an object"""
-  id: ID!
-
+type Track implements Entity {
   """The MBID of the entity."""
   mbid: MBID!
 
-  """The official name of the entity."""
-  name: String
-
-  """A comment used to help distinguish identically named entitites."""
-  disambiguation: String
+  """The official title of the entity."""
+  title: String
 
   """
-  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
-  alternate names or misspellings.
+  The track’s position on the overall release (including all
+  tracks from all discs).
   """
-  aliases: [Alias]
-
-  """
-  The begin and end dates of the entity’s existence. Its exact
-  meaning depends on the type of entity.
-  """
-  lifeSpan: LifeSpan
-
-  """The start time of the event."""
-  time: Time
-
-  """Whether or not the event took place."""
-  cancelled: Boolean
+  position: Int
 
   """
-  A list of songs performed, optionally including links to
-  artists and works. See the [setlist documentation](https://musicbrainz.org/doc/Event/Setlist)
-  for syntax and examples.
+  The track number, which may include information about the
+  disc or side it appears on, e.g. “A1” or “B3”.
   """
-  setlist: String
+  number: String
 
-  """What kind of event the event is, e.g. concert, festival, etc."""
-  type: String
+  """The length of the track."""
+  length: Duration
 
-  """
-  The MBID associated with the value of the `type`
-  field.
-  """
-  typeID: MBID
-
-  """Relationships between this entity and other entitites."""
-  relationships: Relationships
-
-  """A list of collections containing this entity."""
-  collections(after: String, first: Int): CollectionConnection
-
-  """The rating users have given to this entity."""
-  rating: Rating
-
-  """A list of tags linked to this entity."""
-  tags(after: String, first: Int): TagConnection
+  """The recording that appears on the track."""
+  recording: Recording
 }
 
 """A connection to a list of items."""
-type EventConnection {
+type LabelConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [EventEdge]
+  edges: [LabelEdge]
 
   """
   A list of nodes in the connection (without going through the
   `edges` field).
   """
-  nodes: [Event]
+  nodes: [Label]
 
   """
   A count of the total number of items in this connection,
@@ -845,9 +976,9 @@ type EventConnection {
 }
 
 """An edge in a connection."""
-type EventEdge {
+type LabelEdge {
   """The item at the end of the edge"""
-  node: Event
+  node: Label
 
   """A cursor for use in pagination"""
   cursor: String!
@@ -858,130 +989,6 @@ type EventEdge {
   """
   score: Int
 }
-
-"""
-[Instruments](https://musicbrainz.org/doc/Instrument) are
-devices created or adapted to make musical sounds. Instruments are primarily
-used in relationships between two other entities.
-"""
-type Instrument implements Node & Entity {
-  """The ID of an object"""
-  id: ID!
-
-  """The MBID of the entity."""
-  mbid: MBID!
-
-  """The official name of the entity."""
-  name: String
-
-  """A comment used to help distinguish identically named entitites."""
-  disambiguation: String
-
-  """
-  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
-  alternate names or misspellings.
-  """
-  aliases: [Alias]
-
-  """
-  A brief description of the main characteristics of the
-  instrument.
-  """
-  description: String
-
-  """
-  The type categorises the instrument by the way the sound is
-  created, similar to the [Hornbostel-Sachs](https://en.wikipedia.org/wiki/Hornbostel%E2%80%93Sachs)
-  classification.
-  """
-  type: String
-
-  """
-  The MBID associated with the value of the `type`
-  field.
-  """
-  typeID: MBID
-
-  """Relationships between this entity and other entitites."""
-  relationships: Relationships
-
-  """A list of collections containing this entity."""
-  collections(after: String, first: Int): CollectionConnection
-
-  """A list of tags linked to this entity."""
-  tags(after: String, first: Int): TagConnection
-}
-
-"""A connection to a list of items."""
-type InstrumentConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [InstrumentEdge]
-
-  """
-  A list of nodes in the connection (without going through the
-  `edges` field).
-  """
-  nodes: [Instrument]
-
-  """
-  A count of the total number of items in this connection,
-  ignoring pagination.
-  """
-  totalCount: Int
-}
-
-"""An edge in a connection."""
-type InstrumentEdge {
-  """The item at the end of the edge"""
-  node: Instrument
-
-  """A cursor for use in pagination"""
-  cursor: String!
-
-  """
-  The relevancy score (0–100) assigned by the search engine, if
-  these results were found through a search.
-  """
-  score: Int
-}
-
-"""
-An [Interested Parties Information](https://musicbrainz.org/doc/IPI)
-(IPI) code is an identifying number assigned by the CISAC database for musical
-rights management.
-"""
-scalar IPI
-
-"""
-The [International Standard Name Identifier](https://musicbrainz.org/doc/ISNI)
-(ISNI) is an ISO standard for uniquely identifying the public identities of
-contributors to media content.
-"""
-scalar ISNI
-
-"""
-The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
-(ISRC) is an identification system for audio and music video recordings. It is
-standarized by the [IFPI](http://www.ifpi.org/) in ISO 3901:2001 and used by
-IFPI members to assign a unique identifier to every distinct sound recording
-they release. An ISRC identifies a particular [sound recording](https://musicbrainz.org/doc/Recording),
-not the song itself. Therefore, different recordings, edits, remixes and
-remasters of the same song will each be assigned their own ISRC. However, note
-that same recording should carry the same ISRC in all countries/territories.
-Songs are identified by analogous [International Standard Musical Work Codes](https://musicbrainz.org/doc/ISWC)
-(ISWCs).
-"""
-scalar ISRC
-
-"""
-The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)
-(ISWC) is an ISO standard similar to ISBNs for identifying musical works /
-compositions.
-"""
-scalar ISWC
 
 """
 [Labels](https://musicbrainz.org/doc/Label) represent mostly
@@ -1074,564 +1081,111 @@ type Label implements Node & Entity {
   tags(after: String, first: Int): TagConnection
 }
 
-"""A connection to a list of items."""
-type LabelConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [LabelEdge]
-
-  """
-  A list of nodes in the connection (without going through the
-  `edges` field).
-  """
-  nodes: [Label]
-
-  """
-  A count of the total number of items in this connection,
-  ignoring pagination.
-  """
-  totalCount: Int
-}
-
-"""An edge in a connection."""
-type LabelEdge {
-  """The item at the end of the edge"""
-  node: Label
-
-  """A cursor for use in pagination"""
-  cursor: String!
-
-  """
-  The relevancy score (0–100) assigned by the search engine, if
-  these results were found through a search.
-  """
-  score: Int
-}
-
 """
-Fields indicating the begin and end date of an entity’s
-lifetime, including whether it has ended (even if the date is unknown).
+A type used to describe release groups, e.g. album, single, EP,
+etc.
 """
-type LifeSpan {
-  """The start date of the entity’s life span."""
-  begin: Date
-
-  """The end date of the entity’s life span."""
-  end: Date
-
-  """Whether or not the entity’s life span has ended."""
-  ended: Boolean
-}
-
-"""Language code, optionally with country and encoding."""
-scalar Locale
-
-"""A lookup of an individual MusicBrainz entity by its MBID."""
-type LookupQuery {
-  """Look up a specific area by its MBID."""
-  area(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Area
-
-  """Look up a specific artist by its MBID."""
-  artist(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Artist
-
-  """Look up a specific collection by its MBID."""
-  collection(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Collection
-
-  """Look up a specific physical disc by its disc ID."""
-  disc(
-    """
-    The [disc ID](https://musicbrainz.org/doc/Disc_ID)
-    of the disc.
-    """
-    discID: DiscID!
-  ): Disc
-
-  """Look up a specific event by its MBID."""
-  event(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Event
-
-  """Look up a specific instrument by its MBID."""
-  instrument(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Instrument
-
-  """Look up a specific label by its MBID."""
-  label(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Label
-
-  """Look up a specific place by its MBID."""
-  place(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Place
-
-  """Look up a specific recording by its MBID."""
-  recording(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Recording
-
-  """Look up a specific release by its MBID."""
-  release(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Release
-
-  """Look up a specific release group by its MBID."""
-  releaseGroup(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): ReleaseGroup
-
-  """Look up a specific series by its MBID."""
-  series(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Series
-
-  """Look up a specific URL by its MBID."""
-  url(
-    """The MBID of the entity."""
-    mbid: MBID
-
-    """The web address of the URL entity to look up."""
-    resource: URLString
-  ): URL
-
-  """Look up a specific work by its MBID."""
-  work(
-    """The MBID of the entity."""
-    mbid: MBID!
-  ): Work
-}
-
-"""
-The MBID scalar represents MusicBrainz identifiers, which are
-36-character UUIDs.
-"""
-scalar MBID
-
-"""
-A medium is the actual physical medium the audio content is
-stored upon. This means that each CD in a multi-disc release will be entered as
-separate mediums within the release, and that both sides of a vinyl record or
-cassette will exist on one medium. Mediums have a format (e.g. CD, DVD, vinyl,
-cassette) and can optionally also have a title.
-"""
-type Medium {
-  """The title of this particular medium."""
-  title: String
+enum ReleaseGroupType {
+  """
+  An album, perhaps better defined as a “Long Play” (LP)
+  release, generally consists of previously unreleased material (unless this type
+  is combined with secondary types which change that, such as “Compilation”). This
+  includes album re-issues, with or without bonus tracks.
+  """
+  ALBUM
 
   """
-  The [format](https://musicbrainz.org/doc/Release/Format) of
-  the medium (e.g. CD, DVD, vinyl, cassette).
+  A single typically has one main song and possibly a handful
+  of additional tracks or remixes of the main track. A single is usually named
+  after its main song.
   """
-  format: String
-
-  """
-  The MBID associated with the value of the `format`
-  field.
-  """
-  formatID: MBID
+  SINGLE
 
   """
-  The order of this medium in the release (for example, in a
-  multi-disc release).
+  An EP is a so-called “Extended Play” release and often
+  contains the letters EP in the title. Generally an EP will be shorter than a
+  full length release (an LP or “Long Play”) and the tracks are usually exclusive
+  to the EP, in other words the tracks don’t come from a previously issued
+  release. EP is fairly difficult to define; usually it should only be assumed
+  that a release is an EP if the artist defines it as such.
   """
-  position: Int
+  EP
 
-  """The number of audio tracks on this medium."""
-  trackCount: Int
-
-  """A list of physical discs and their disc IDs for this medium."""
-  discs: [Disc]
-
-  """The list of tracks on the given media."""
-  tracks: [Track]
-}
-
-"""An object with an ID"""
-interface Node {
-  """The id of the object."""
-  id: ID!
-}
-
-"""Information about pagination in a connection."""
-type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: String
-
-  """When paginating forwards, the cursor to continue."""
-  endCursor: String
-}
-
-"""
-A [place](https://musicbrainz.org/doc/Place) is a venue, studio,
-or other place where music is performed, recorded, engineered, etc.
-"""
-type Place implements Node & Entity {
-  """The ID of an object"""
-  id: ID!
-
-  """The MBID of the entity."""
-  mbid: MBID!
-
-  """The official name of the entity."""
-  name: String
-
-  """A comment used to help distinguish identically named entitites."""
-  disambiguation: String
+  """Any release that does not fit any of the other categories."""
+  OTHER
 
   """
-  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
-  alternate names or misspellings.
+  An episodic release that was originally broadcast via radio,
+  television, or the Internet, including podcasts.
   """
-  aliases: [Alias]
-
-  """
-  The address describes the location of the place using the
-  standard addressing format for the country it is located in.
-  """
-  address: String
+  BROADCAST
 
   """
-  The area entity representing the area, such as the city, in
-  which the place is located.
+  A compilation is a collection of previously released tracks
+  by one or more artists.
   """
-  area: Area
-
-  """The geographic coordinates of the place."""
-  coordinates: Coordinates
+  COMPILATION
 
   """
-  The begin and end dates of the entity’s existence. Its exact
-  meaning depends on the type of entity.
+  A soundtrack is the musical score to a movie, TV series,
+  stage show, computer game, etc.
   """
-  lifeSpan: LifeSpan
+  SOUNDTRACK
 
-  """
-  The type categorises the place based on its primary
-  function.
-  """
-  type: String
+  """A non-music spoken word release."""
+  SPOKENWORD
 
   """
-  The MBID associated with the value of the `type`
-  field.
+  An interview release contains an interview, generally with
+  an artist.
   """
-  typeID: MBID
+  INTERVIEW
 
-  """A list of events linked to this entity."""
-  events(after: String, first: Int): EventConnection
+  """An audiobook is a book read by a narrator without music."""
+  AUDIOBOOK
 
-  """Relationships between this entity and other entitites."""
-  relationships: Relationships
-
-  """A list of collections containing this entity."""
-  collections(after: String, first: Int): CollectionConnection
-
-  """A list of tags linked to this entity."""
-  tags(after: String, first: Int): TagConnection
-}
-
-"""A connection to a list of items."""
-type PlaceConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [PlaceEdge]
+  """A release that was recorded live."""
+  LIVE
 
   """
-  A list of nodes in the connection (without going through the
-  `edges` field).
+  A release that was (re)mixed from previously released
+  material.
   """
-  nodes: [Place]
-
-  """
-  A count of the total number of items in this connection,
-  ignoring pagination.
-  """
-  totalCount: Int
-}
-
-"""An edge in a connection."""
-type PlaceEdge {
-  """The item at the end of the edge"""
-  node: Place
-
-  """A cursor for use in pagination"""
-  cursor: String!
+  REMIX
 
   """
-  The relevancy score (0–100) assigned by the search engine, if
-  these results were found through a search.
+  A DJ-mix is a sequence of several recordings played one
+  after the other, each one modified so that they blend together into a continuous
+  flow of music. A DJ mix release requires that the recordings be modified in some
+  manner, and the DJ who does this modification is usually (although not always)
+  credited in a fairly prominent way.
   """
-  score: Int
-}
-
-"""
-The query root, from which multiple types of MusicBrainz
-requests can be made.
-"""
-type Query {
-  """Perform a lookup of a MusicBrainz entity by its MBID."""
-  lookup: LookupQuery
-
-  """Browse all MusicBrainz entities directly linked to another entity."""
-  browse: BrowseQuery
-
-  """Search for MusicBrainz entities using Lucene query syntax."""
-  search: SearchQuery
-
-  """Fetches an object given its ID"""
-  node(
-    """The ID of an object"""
-    id: ID!
-  ): Node
-}
-
-"""
-[Ratings](https://musicbrainz.org/doc/Rating_System) allow users
-to rate MusicBrainz entities. User may assign a value between 1 and 5; these
-values are then aggregated by the server to compute an average community rating
-for the entity.
-"""
-type Rating {
-  """The number of votes that have contributed to the rating."""
-  voteCount: Int!
-
-  """The average rating value based on the aggregated votes."""
-  value: Float
-}
-
-"""
-A [recording](https://musicbrainz.org/doc/Recording) is an
-entity in MusicBrainz which can be linked to tracks on releases. Each track must
-always be associated with a single recording, but a recording can be linked to
-any number of tracks.
-
-A recording represents distinct audio that has been used to produce at least one
-released track through copying or mastering. A recording itself is never
-produced solely through copying or mastering.
-
-Generally, the audio represented by a recording corresponds to the audio at a
-stage in the production process before any final mastering but after any editing
-or mixing.
-"""
-type Recording implements Node & Entity {
-  """The ID of an object"""
-  id: ID!
-
-  """The MBID of the entity."""
-  mbid: MBID!
-
-  """The official title of the entity."""
-  title: String
-
-  """A comment used to help distinguish identically named entitites."""
-  disambiguation: String
+  DJMIX
 
   """
-  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
-  alternate names or misspellings.
+  Promotional in nature (but not necessarily free), mixtapes
+  and street albums are often released by artists to promote new artists, or
+  upcoming studio albums by prominent artists. They are also sometimes used to
+  keep fans’ attention between studio releases and are most common in rap & hip
+  hop genres. They are often not sanctioned by the artist’s label, may lack proper
+  sample or song clearances and vary widely in production and recording quality.
+  While mixtapes are generally DJ-mixed, they are distinct from commercial DJ
+  mixes (which are usually deemed compilations) and are defined by having a
+  significant proportion of new material, including original production or
+  original vocals over top of other artists’ instrumentals. They are distinct from
+  demos in that they are designed for release directly to the public and fans, not
+  to labels.
   """
-  aliases: [Alias]
-
-  """The main credited artist(s)."""
-  artistCredit: [ArtistCredit] @deprecated(reason: "The `artistCredit` field has been renamed to\n`artistCredits`, since it is a list of credits and is referred to in the\nplural form throughout the MusicBrainz documentation. This field is deprecated\nand will be removed in a major release in the future. Use the equivalent\n`artistCredits` field.")
-
-  """The main credited artist(s)."""
-  artistCredits: [ArtistCredit]
-
-  """
-  A list of [International Standard Recording Codes](https://musicbrainz.org/doc/ISRC)
-  (ISRCs) for this recording.
-  """
-  isrcs: [ISRC]
+  MIXTAPE
 
   """
-  An approximation to the length of the recording, calculated
-  from the lengths of the tracks using it.
+  A release that was recorded for limited circulation or
+  reference use rather than for general public release.
   """
-  length: Duration
+  DEMO
 
-  """Whether this is a video recording."""
-  video: Boolean
-
-  """A list of artists linked to this entity."""
-  artists(after: String, first: Int): ArtistConnection
-
-  """A list of releases linked to this entity."""
-  releases(
-    """Filter by one or more release group types."""
-    type: [ReleaseGroupType]
-
-    """Filter by one or more release statuses."""
-    status: [ReleaseStatus]
-    after: String
-    first: Int
-  ): ReleaseConnection
-
-  """Relationships between this entity and other entitites."""
-  relationships: Relationships
-
-  """A list of collections containing this entity."""
-  collections(after: String, first: Int): CollectionConnection
-
-  """The rating users have given to this entity."""
-  rating: Rating
-
-  """A list of tags linked to this entity."""
-  tags(after: String, first: Int): TagConnection
-}
-
-"""A connection to a list of items."""
-type RecordingConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [RecordingEdge]
-
-  """
-  A list of nodes in the connection (without going through the
-  `edges` field).
-  """
-  nodes: [Recording]
-
-  """
-  A count of the total number of items in this connection,
-  ignoring pagination.
-  """
-  totalCount: Int
-}
-
-"""An edge in a connection."""
-type RecordingEdge {
-  """The item at the end of the edge"""
-  node: Recording
-
-  """A cursor for use in pagination"""
-  cursor: String!
-
-  """
-  The relevancy score (0–100) assigned by the search engine, if
-  these results were found through a search.
-  """
-  score: Int
-}
-
-"""
-[Relationships](https://musicbrainz.org/doc/Relationships) are a
-way to represent all the different ways in which entities are connected to each
-other and to URLs outside MusicBrainz.
-"""
-type Relationship {
-  """The target entity."""
-  target: Entity!
-
-  """The direction of the relationship."""
-  direction: String!
-
-  """The type of entity on the receiving end of the relationship."""
-  targetType: String!
-
-  """
-  How the source entity was actually credited, if different
-  from its main (performance) name.
-  """
-  sourceCredit: String
-
-  """
-  How the target entity was actually credited, if different
-  from its main (performance) name.
-  """
-  targetCredit: String
-
-  """The date on which the relationship became applicable."""
-  begin: Date
-
-  """The date on which the relationship became no longer applicable."""
-  end: Date
-
-  """Whether the relationship still applies."""
-  ended: Boolean
-
-  """
-  Attributes which modify the relationship. There is a [list
-  of all attributes](https://musicbrainz.org/relationship-attributes), but the
-  attributes which are available, and how they should be used, depends on the
-  relationship type.
-  """
-  attributes: [String]
-
-  """The type of relationship."""
-  type: String
-
-  """
-  The MBID associated with the value of the `type`
-  field.
-  """
-  typeID: MBID
-}
-
-"""A connection to a list of items."""
-type RelationshipConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [RelationshipEdge]
-
-  """
-  A list of nodes in the connection (without going through the
-  `edges` field).
-  """
-  nodes: [Relationship]
-
-  """
-  A count of the total number of items in this connection,
-  ignoring pagination.
-  """
-  totalCount: Int
-}
-
-"""An edge in a connection."""
-type RelationshipEdge {
-  """The item at the end of the edge"""
-  node: Relationship
-
-  """A cursor for use in pagination"""
-  cursor: String!
-
-  """
-  The relevancy score (0–100) assigned by the search engine, if
-  these results were found through a search.
-  """
-  score: Int
+  """A non-album track (special case)."""
+  NAT
 }
 
 """Lists of entity relationships for each entity type."""
@@ -1865,137 +1419,19 @@ type Relationships {
   ): RelationshipConnection
 }
 
-"""
-A [release](https://musicbrainz.org/doc/Release) represents the
-unique release (i.e. issuing) of a product on a specific date with specific
-release information such as the country, label, barcode, packaging, etc. If you
-walk into a store and purchase an album or single, they’re each represented in
-MusicBrainz as one release.
-"""
-type Release implements Node & Entity {
-  """The ID of an object"""
-  id: ID!
-
-  """The MBID of the entity."""
-  mbid: MBID!
-
-  """The official title of the entity."""
-  title: String
-
-  """A comment used to help distinguish identically named entitites."""
-  disambiguation: String
-
-  """
-  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
-  alternate names or misspellings.
-  """
-  aliases: [Alias]
-
-  """The main credited artist(s)."""
-  artistCredit: [ArtistCredit] @deprecated(reason: "The `artistCredit` field has been renamed to\n`artistCredits`, since it is a list of credits and is referred to in the\nplural form throughout the MusicBrainz documentation. This field is deprecated\nand will be removed in a major release in the future. Use the equivalent\n`artistCredits` field.")
-
-  """The main credited artist(s)."""
-  artistCredits: [ArtistCredit]
-
-  """The release events for this release."""
-  releaseEvents: [ReleaseEvent]
-
-  """
-  The [release date](https://musicbrainz.org/doc/Release/Date)
-  is the date in which a release was made available through some sort of
-  distribution mechanism.
-  """
-  date: Date
-
-  """The country in which the release was issued."""
-  country: String
-
-  """
-  The [Amazon Standard Identification Number](https://musicbrainz.org/doc/ASIN)
-  of the release.
-  """
-  asin: ASIN
-
-  """
-  The [barcode](https://en.wikipedia.org/wiki/Barcode), if the
-  release has one. The most common types found on releases are 12-digit
-  [UPCs](https://en.wikipedia.org/wiki/Universal_Product_Code) and 13-digit
-  [EANs](https://en.wikipedia.org/wiki/International_Article_Number).
-  """
-  barcode: String
-
-  """The status describes how “official” a release is."""
-  status: ReleaseStatus
-
-  """
-  The MBID associated with the value of the `status`
-  field.
-  """
-  statusID: MBID
-
-  """
-  The physical packaging that accompanies the release. See
-  the [list of packaging](https://musicbrainz.org/doc/Release/Packaging) for more
-  information.
-  """
-  packaging: String
-
-  """
-  The MBID associated with the value of the `packaging`
-  field.
-  """
-  packagingID: MBID
-
-  """
-  Data quality indicates how good the data for a release is.
-  It is not a mark of how good or bad the music itself is – for that, use
-  [ratings](https://musicbrainz.org/doc/Rating_System).
-  """
-  quality: String
-
-  """The media on which the release was distributed."""
-  media: [Medium]
-
-  """A list of artists linked to this entity."""
-  artists(after: String, first: Int): ArtistConnection
-
-  """A list of labels linked to this entity."""
-  labels(after: String, first: Int): LabelConnection
-
-  """A list of recordings linked to this entity."""
-  recordings(after: String, first: Int): RecordingConnection
-
-  """A list of release groups linked to this entity."""
-  releaseGroups(
-    """Filter by one or more release group types."""
-    type: [ReleaseGroupType]
-    after: String
-    first: Int
-  ): ReleaseGroupConnection
-
-  """Relationships between this entity and other entitites."""
-  relationships: Relationships
-
-  """A list of collections containing this entity."""
-  collections(after: String, first: Int): CollectionConnection
-
-  """A list of tags linked to this entity."""
-  tags(after: String, first: Int): TagConnection
-}
-
 """A connection to a list of items."""
-type ReleaseConnection {
+type RelationshipConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [ReleaseEdge]
+  edges: [RelationshipEdge]
 
   """
   A list of nodes in the connection (without going through the
   `edges` field).
   """
-  nodes: [Release]
+  nodes: [Relationship]
 
   """
   A count of the total number of items in this connection,
@@ -2005,9 +1441,9 @@ type ReleaseConnection {
 }
 
 """An edge in a connection."""
-type ReleaseEdge {
+type RelationshipEdge {
   """The item at the end of the edge"""
-  node: Release
+  node: Relationship
 
   """A cursor for use in pagination"""
   cursor: String!
@@ -2020,12 +1456,614 @@ type ReleaseEdge {
 }
 
 """
-The date on which a release was issued in a country/region with
-a particular label, catalog number, barcode, and format.
+[Relationships](https://musicbrainz.org/doc/Relationships) are a
+way to represent all the different ways in which entities are connected to each
+other and to URLs outside MusicBrainz.
 """
-type ReleaseEvent {
+type Relationship {
+  """The target entity."""
+  target: Entity!
+
+  """The direction of the relationship."""
+  direction: String!
+
+  """The type of entity on the receiving end of the relationship."""
+  targetType: String!
+
+  """
+  How the source entity was actually credited, if different
+  from its main (performance) name.
+  """
+  sourceCredit: String
+
+  """
+  How the target entity was actually credited, if different
+  from its main (performance) name.
+  """
+  targetCredit: String
+
+  """The date on which the relationship became applicable."""
+  begin: Date
+
+  """The date on which the relationship became no longer applicable."""
+  end: Date
+
+  """Whether the relationship still applies."""
+  ended: Boolean
+
+  """
+  Attributes which modify the relationship. There is a [list
+  of all attributes](https://musicbrainz.org/relationship-attributes), but the
+  attributes which are available, and how they should be used, depends on the
+  relationship type.
+  """
+  attributes: [String]
+
+  """The type of relationship."""
+  type: String
+
+  """
+  The MBID associated with the value of the `type`
+  field.
+  """
+  typeID: MBID
+}
+
+"""A connection to a list of items."""
+type CollectionConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CollectionEdge]
+
+  """
+  A list of nodes in the connection (without going through the
+  `edges` field).
+  """
+  nodes: [Collection]
+
+  """
+  A count of the total number of items in this connection,
+  ignoring pagination.
+  """
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type CollectionEdge {
+  """The item at the end of the edge"""
+  node: Collection
+
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """
+  The relevancy score (0–100) assigned by the search engine, if
+  these results were found through a search.
+  """
+  score: Int
+}
+
+"""
+[Collections](https://musicbrainz.org/doc/Collections) are
+lists of entities that users can create.
+"""
+type Collection implements Node & Entity {
+  """The ID of an object"""
+  id: ID!
+
+  """The MBID of the entity."""
+  mbid: MBID!
+
+  """The official name of the entity."""
+  name: String
+
+  """The username of the editor who created the collection."""
+  editor: String!
+
+  """The type of entity listed in the collection."""
+  entityType: String!
+
+  """The type of collection."""
+  type: String
+
+  """
+  The MBID associated with the value of the `type`
+  field.
+  """
+  typeID: MBID
+
+  """The list of areas found in this collection."""
+  areas(after: String, first: Int): AreaConnection
+
+  """The list of artists found in this collection."""
+  artists(after: String, first: Int): ArtistConnection
+
+  """The list of events found in this collection."""
+  events(after: String, first: Int): EventConnection
+
+  """The list of instruments found in this collection."""
+  instruments(after: String, first: Int): InstrumentConnection
+
+  """The list of labels found in this collection."""
+  labels(after: String, first: Int): LabelConnection
+
+  """The list of places found in this collection."""
+  places(after: String, first: Int): PlaceConnection
+
+  """The list of recordings found in this collection."""
+  recordings(after: String, first: Int): RecordingConnection
+
+  """The list of releases found in this collection."""
+  releases(
+    """Filter by one or more release group types."""
+    type: [ReleaseGroupType]
+
+    """Filter by one or more release statuses."""
+    status: [ReleaseStatus]
+    after: String
+    first: Int
+  ): ReleaseConnection
+
+  """The list of release groups found in this collection."""
+  releaseGroups(
+    """Filter by one or more release group types."""
+    type: [ReleaseGroupType]
+    after: String
+    first: Int
+  ): ReleaseGroupConnection
+
+  """The list of series found in this collection."""
+  series(after: String, first: Int): SeriesConnection
+
+  """The list of works found in this collection."""
+  works(after: String, first: Int): WorkConnection
+}
+
+"""A connection to a list of items."""
+type AreaConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AreaEdge]
+
+  """
+  A list of nodes in the connection (without going through the
+  `edges` field).
+  """
+  nodes: [Area]
+
+  """
+  A count of the total number of items in this connection,
+  ignoring pagination.
+  """
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type AreaEdge {
+  """The item at the end of the edge"""
+  node: Area
+
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """
+  The relevancy score (0–100) assigned by the search engine, if
+  these results were found through a search.
+  """
+  score: Int
+}
+
+"""A connection to a list of items."""
+type EventConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [EventEdge]
+
+  """
+  A list of nodes in the connection (without going through the
+  `edges` field).
+  """
+  nodes: [Event]
+
+  """
+  A count of the total number of items in this connection,
+  ignoring pagination.
+  """
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type EventEdge {
+  """The item at the end of the edge"""
+  node: Event
+
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """
+  The relevancy score (0–100) assigned by the search engine, if
+  these results were found through a search.
+  """
+  score: Int
+}
+
+"""
+An [event](https://musicbrainz.org/doc/Event) refers to an
+organised event which people can attend, and is relevant to MusicBrainz.
+Generally this means live performances, like concerts and festivals.
+"""
+type Event implements Node & Entity {
+  """The ID of an object"""
+  id: ID!
+
+  """The MBID of the entity."""
+  mbid: MBID!
+
+  """The official name of the entity."""
+  name: String
+
+  """A comment used to help distinguish identically named entitites."""
+  disambiguation: String
+
+  """
+  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  alternate names or misspellings.
+  """
+  aliases: [Alias]
+
+  """
+  The begin and end dates of the entity’s existence. Its exact
+  meaning depends on the type of entity.
+  """
+  lifeSpan: LifeSpan
+
+  """The start time of the event."""
+  time: Time
+
+  """Whether or not the event took place."""
+  cancelled: Boolean
+
+  """
+  A list of songs performed, optionally including links to
+  artists and works. See the [setlist documentation](https://musicbrainz.org/doc/Event/Setlist)
+  for syntax and examples.
+  """
+  setlist: String
+
+  """What kind of event the event is, e.g. concert, festival, etc."""
+  type: String
+
+  """
+  The MBID associated with the value of the `type`
+  field.
+  """
+  typeID: MBID
+
+  """Relationships between this entity and other entitites."""
+  relationships: Relationships
+
+  """A list of collections containing this entity."""
+  collections(after: String, first: Int): CollectionConnection
+
+  """The rating users have given to this entity."""
+  rating: Rating
+
+  """A list of tags linked to this entity."""
+  tags(after: String, first: Int): TagConnection
+}
+
+"""A time of day, in 24-hour hh:mm notation."""
+scalar Time
+
+"""
+[Ratings](https://musicbrainz.org/doc/Rating_System) allow users
+to rate MusicBrainz entities. User may assign a value between 1 and 5; these
+values are then aggregated by the server to compute an average community rating
+for the entity.
+"""
+type Rating {
+  """The number of votes that have contributed to the rating."""
+  voteCount: Int!
+
+  """The average rating value based on the aggregated votes."""
+  value: Float
+}
+
+"""A connection to a list of items."""
+type TagConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [TagEdge]
+
+  """
+  A list of nodes in the connection (without going through the
+  `edges` field).
+  """
+  nodes: [Tag]
+
+  """
+  A count of the total number of items in this connection,
+  ignoring pagination.
+  """
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type TagEdge {
+  """The item at the end of the edge"""
+  node: Tag
+
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """
+  The relevancy score (0–100) assigned by the search engine, if
+  these results were found through a search.
+  """
+  score: Int
+}
+
+"""
+[Tags](https://musicbrainz.org/tags) are a way to mark entities
+with extra information – for example, the genres that apply to an artist,
+release, or recording.
+"""
+type Tag {
+  """The tag label."""
+  name: String!
+
+  """How many times this tag has been applied to the entity."""
+  count: Int
+}
+
+"""A connection to a list of items."""
+type InstrumentConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [InstrumentEdge]
+
+  """
+  A list of nodes in the connection (without going through the
+  `edges` field).
+  """
+  nodes: [Instrument]
+
+  """
+  A count of the total number of items in this connection,
+  ignoring pagination.
+  """
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type InstrumentEdge {
+  """The item at the end of the edge"""
+  node: Instrument
+
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """
+  The relevancy score (0–100) assigned by the search engine, if
+  these results were found through a search.
+  """
+  score: Int
+}
+
+"""
+[Instruments](https://musicbrainz.org/doc/Instrument) are
+devices created or adapted to make musical sounds. Instruments are primarily
+used in relationships between two other entities.
+"""
+type Instrument implements Node & Entity {
+  """The ID of an object"""
+  id: ID!
+
+  """The MBID of the entity."""
+  mbid: MBID!
+
+  """The official name of the entity."""
+  name: String
+
+  """A comment used to help distinguish identically named entitites."""
+  disambiguation: String
+
+  """
+  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  alternate names or misspellings.
+  """
+  aliases: [Alias]
+
+  """
+  A brief description of the main characteristics of the
+  instrument.
+  """
+  description: String
+
+  """
+  The type categorises the instrument by the way the sound is
+  created, similar to the [Hornbostel-Sachs](https://en.wikipedia.org/wiki/Hornbostel%E2%80%93Sachs)
+  classification.
+  """
+  type: String
+
+  """
+  The MBID associated with the value of the `type`
+  field.
+  """
+  typeID: MBID
+
+  """Relationships between this entity and other entitites."""
+  relationships: Relationships
+
+  """A list of collections containing this entity."""
+  collections(after: String, first: Int): CollectionConnection
+
+  """A list of tags linked to this entity."""
+  tags(after: String, first: Int): TagConnection
+}
+
+"""A connection to a list of items."""
+type PlaceConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PlaceEdge]
+
+  """
+  A list of nodes in the connection (without going through the
+  `edges` field).
+  """
+  nodes: [Place]
+
+  """
+  A count of the total number of items in this connection,
+  ignoring pagination.
+  """
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type PlaceEdge {
+  """The item at the end of the edge"""
+  node: Place
+
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """
+  The relevancy score (0–100) assigned by the search engine, if
+  these results were found through a search.
+  """
+  score: Int
+}
+
+"""
+A [place](https://musicbrainz.org/doc/Place) is a venue, studio,
+or other place where music is performed, recorded, engineered, etc.
+"""
+type Place implements Node & Entity {
+  """The ID of an object"""
+  id: ID!
+
+  """The MBID of the entity."""
+  mbid: MBID!
+
+  """The official name of the entity."""
+  name: String
+
+  """A comment used to help distinguish identically named entitites."""
+  disambiguation: String
+
+  """
+  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  alternate names or misspellings.
+  """
+  aliases: [Alias]
+
+  """
+  The address describes the location of the place using the
+  standard addressing format for the country it is located in.
+  """
+  address: String
+
+  """
+  The area entity representing the area, such as the city, in
+  which the place is located.
+  """
   area: Area
-  date: Date
+
+  """The geographic coordinates of the place."""
+  coordinates: Coordinates
+
+  """
+  The begin and end dates of the entity’s existence. Its exact
+  meaning depends on the type of entity.
+  """
+  lifeSpan: LifeSpan
+
+  """
+  The type categorises the place based on its primary
+  function.
+  """
+  type: String
+
+  """
+  The MBID associated with the value of the `type`
+  field.
+  """
+  typeID: MBID
+
+  """A list of events linked to this entity."""
+  events(after: String, first: Int): EventConnection
+
+  """Relationships between this entity and other entitites."""
+  relationships: Relationships
+
+  """A list of collections containing this entity."""
+  collections(after: String, first: Int): CollectionConnection
+
+  """A list of tags linked to this entity."""
+  tags(after: String, first: Int): TagConnection
+}
+
+"""Geographic coordinates described with latitude and longitude."""
+type Coordinates {
+  """The north–south position of a point on the Earth’s surface."""
+  latitude: Degrees
+
+  """The east–west position of a point on the Earth’s surface."""
+  longitude: Degrees
+}
+
+"""Decimal degrees, used for latitude and longitude."""
+scalar Degrees
+
+"""A connection to a list of items."""
+type ReleaseGroupConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ReleaseGroupEdge]
+
+  """
+  A list of nodes in the connection (without going through the
+  `edges` field).
+  """
+  nodes: [ReleaseGroup]
+
+  """
+  A count of the total number of items in this connection,
+  ignoring pagination.
+  """
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type ReleaseGroupEdge {
+  """The item at the end of the edge"""
+  node: ReleaseGroup
+
+  """A cursor for use in pagination"""
+  cursor: String!
+
+  """
+  The relevancy score (0–100) assigned by the search engine, if
+  these results were found through a search.
+  """
+  score: Int
 }
 
 """
@@ -2120,18 +2158,18 @@ type ReleaseGroup implements Node & Entity {
 }
 
 """A connection to a list of items."""
-type ReleaseGroupConnection {
+type SeriesConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [ReleaseGroupEdge]
+  edges: [SeriesEdge]
 
   """
   A list of nodes in the connection (without going through the
   `edges` field).
   """
-  nodes: [ReleaseGroup]
+  nodes: [Series]
 
   """
   A count of the total number of items in this connection,
@@ -2141,9 +2179,9 @@ type ReleaseGroupConnection {
 }
 
 """An edge in a connection."""
-type ReleaseGroupEdge {
+type SeriesEdge {
   """The item at the end of the edge"""
-  node: ReleaseGroup
+  node: Series
 
   """A cursor for use in pagination"""
   cursor: String!
@@ -2156,142 +2194,379 @@ type ReleaseGroupEdge {
 }
 
 """
-A type used to describe release groups, e.g. album, single, EP,
-etc.
+A [series](https://musicbrainz.org/doc/Series) is a sequence of
+separate release groups, releases, recordings, works or events with a common
+theme.
 """
-enum ReleaseGroupType {
-  """
-  An album, perhaps better defined as a “Long Play” (LP)
-  release, generally consists of previously unreleased material (unless this type
-  is combined with secondary types which change that, such as “Compilation”). This
-  includes album re-issues, with or without bonus tracks.
-  """
-  ALBUM
+type Series implements Node & Entity {
+  """The ID of an object"""
+  id: ID!
+
+  """The MBID of the entity."""
+  mbid: MBID!
+
+  """The official name of the entity."""
+  name: String
+
+  """A comment used to help distinguish identically named entitites."""
+  disambiguation: String
 
   """
-  A single typically has one main song and possibly a handful
-  of additional tracks or remixes of the main track. A single is usually named
-  after its main song.
+  The type primarily describes what type of entity the series
+  contains.
   """
-  SINGLE
+  type: String
 
   """
-  An EP is a so-called “Extended Play” release and often
-  contains the letters EP in the title. Generally an EP will be shorter than a
-  full length release (an LP or “Long Play”) and the tracks are usually exclusive
-  to the EP, in other words the tracks don’t come from a previously issued
-  release. EP is fairly difficult to define; usually it should only be assumed
-  that a release is an EP if the artist defines it as such.
+  The MBID associated with the value of the `type`
+  field.
   """
-  EP
+  typeID: MBID
 
-  """Any release that does not fit any of the other categories."""
-  OTHER
+  """Relationships between this entity and other entitites."""
+  relationships: Relationships
 
-  """
-  An episodic release that was originally broadcast via radio,
-  television, or the Internet, including podcasts.
-  """
-  BROADCAST
+  """A list of collections containing this entity."""
+  collections(after: String, first: Int): CollectionConnection
 
-  """
-  A compilation is a collection of previously released tracks
-  by one or more artists.
-  """
-  COMPILATION
+  """A list of tags linked to this entity."""
+  tags(after: String, first: Int): TagConnection
+}
 
-  """
-  A soundtrack is the musical score to a movie, TV series,
-  stage show, computer game, etc.
-  """
-  SOUNDTRACK
+"""A connection to a list of items."""
+type WorkConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
 
-  """A non-music spoken word release."""
-  SPOKENWORD
+  """A list of edges."""
+  edges: [WorkEdge]
 
   """
-  An interview release contains an interview, generally with
-  an artist.
+  A list of nodes in the connection (without going through the
+  `edges` field).
   """
-  INTERVIEW
-
-  """An audiobook is a book read by a narrator without music."""
-  AUDIOBOOK
-
-  """A release that was recorded live."""
-  LIVE
+  nodes: [Work]
 
   """
-  A release that was (re)mixed from previously released
-  material.
+  A count of the total number of items in this connection,
+  ignoring pagination.
   """
-  REMIX
+  totalCount: Int
+}
+
+"""An edge in a connection."""
+type WorkEdge {
+  """The item at the end of the edge"""
+  node: Work
+
+  """A cursor for use in pagination"""
+  cursor: String!
 
   """
-  A DJ-mix is a sequence of several recordings played one
-  after the other, each one modified so that they blend together into a continuous
-  flow of music. A DJ mix release requires that the recordings be modified in some
-  manner, and the DJ who does this modification is usually (although not always)
-  credited in a fairly prominent way.
+  The relevancy score (0–100) assigned by the search engine, if
+  these results were found through a search.
   """
-  DJMIX
-
-  """
-  Promotional in nature (but not necessarily free), mixtapes
-  and street albums are often released by artists to promote new artists, or
-  upcoming studio albums by prominent artists. They are also sometimes used to
-  keep fans’ attention between studio releases and are most common in rap & hip
-  hop genres. They are often not sanctioned by the artist’s label, may lack proper
-  sample or song clearances and vary widely in production and recording quality.
-  While mixtapes are generally DJ-mixed, they are distinct from commercial DJ
-  mixes (which are usually deemed compilations) and are defined by having a
-  significant proportion of new material, including original production or
-  original vocals over top of other artists’ instrumentals. They are distinct from
-  demos in that they are designed for release directly to the public and fans, not
-  to labels.
-  """
-  MIXTAPE
-
-  """
-  A release that was recorded for limited circulation or
-  reference use rather than for general public release.
-  """
-  DEMO
-
-  """A non-album track (special case)."""
-  NAT
+  score: Int
 }
 
 """
-A type used to describe the status of releases, e.g. official,
-bootleg, etc.
+A [work](https://musicbrainz.org/doc/Work) is a distinct
+intellectual or artistic creation, which can be expressed in the form of one or
+more audio recordings.
 """
-enum ReleaseStatus {
-  """
-  Any release officially sanctioned by the artist and/or their
-  record company. (Most releases will fit into this category.)
-  """
-  OFFICIAL
+type Work implements Node & Entity {
+  """The ID of an object"""
+  id: ID!
+
+  """The MBID of the entity."""
+  mbid: MBID!
+
+  """The official title of the entity."""
+  title: String
+
+  """A comment used to help distinguish identically named entitites."""
+  disambiguation: String
 
   """
-  A giveaway release or a release intended to promote an
-  upcoming official release, e.g. prerelease albums or releases included with a
-  magazine.
+  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
+  alternate names or misspellings.
   """
-  PROMOTION
+  aliases: [Alias]
 
   """
-  An unofficial/underground release that was not sanctioned by
-  the artist and/or the record company.
+  A list of [ISWCs](https://musicbrainz.org/doc/ISWC) assigned
+  to the work by copyright collecting agencies.
   """
-  BOOTLEG
+  iswcs: [String]
+
+  """The language in which the work was originally written."""
+  language: String
+
+  """The type of work."""
+  type: String
 
   """
-  A pseudo-release is a duplicate release for
-  translation/transliteration purposes.
+  The MBID associated with the value of the `type`
+  field.
   """
-  PSEUDORELEASE
+  typeID: MBID
+
+  """A list of artists linked to this entity."""
+  artists(after: String, first: Int): ArtistConnection
+
+  """Relationships between this entity and other entitites."""
+  relationships: Relationships
+
+  """A list of collections containing this entity."""
+  collections(after: String, first: Int): CollectionConnection
+
+  """The rating users have given to this entity."""
+  rating: Rating
+
+  """A list of tags linked to this entity."""
+  tags(after: String, first: Int): TagConnection
 }
+
+"""
+A [URL](https://musicbrainz.org/doc/URL) pointing to a resource
+external to MusicBrainz, i.e. an official homepage, a site where music can be
+acquired, an entry in another database, etc.
+"""
+type URL implements Node & Entity {
+  """The ID of an object"""
+  id: ID!
+
+  """The MBID of the entity."""
+  mbid: MBID!
+
+  """The actual URL string."""
+  resource: URLString!
+
+  """Relationships between this entity and other entitites."""
+  relationships: Relationships
+}
+
+"""A web address."""
+scalar URLString
+
+"""
+A query for all MusicBrainz entities directly linked to another
+entity.
+"""
+type BrowseQuery {
+  """Browse area entities linked to the given arguments."""
+  areas(
+    """The MBID of a collection in which the entity is found."""
+    collection: MBID
+    after: String
+    first: Int
+  ): AreaConnection
+
+  """Browse artist entities linked to the given arguments."""
+  artists(
+    """The MBID of an area to which the entity is linked."""
+    area: MBID
+
+    """The MBID of a collection in which the entity is found."""
+    collection: MBID
+
+    """The MBID of a recording to which the entity is linked."""
+    recording: MBID
+
+    """The MBID of a release to which the entity is linked."""
+    release: MBID
+
+    """The MBID of a release group to which the entity is linked."""
+    releaseGroup: MBID
+
+    """The MBID of a work to which the entity is linked."""
+    work: MBID
+    after: String
+    first: Int
+  ): ArtistConnection
+
+  """Browse collection entities linked to the given arguments."""
+  collections(
+    """The MBID of an area to which the entity is linked."""
+    area: MBID
+
+    """The MBID of an artist to which the entity is linked."""
+    artist: MBID
+
+    """The username of the editor who created the collection."""
+    editor: String
+
+    """The MBID of an event to which the entity is linked."""
+    event: MBID
+
+    """The MBID of a label to which the entity is linked."""
+    label: MBID
+
+    """The MBID of a place to which the entity is linked."""
+    place: MBID
+
+    """The MBID of a recording to which the entity is linked."""
+    recording: MBID
+
+    """The MBID of a release to which the entity is linked."""
+    release: MBID
+
+    """The MBID of a release group to which the entity is linked."""
+    releaseGroup: MBID
+
+    """The MBID of a work to which the entity is linked."""
+    work: MBID
+    after: String
+    first: Int
+  ): CollectionConnection
+
+  """Browse event entities linked to the given arguments."""
+  events(
+    """The MBID of an area to which the entity is linked."""
+    area: MBID
+
+    """The MBID of an artist to which the entity is linked."""
+    artist: MBID
+
+    """The MBID of a collection in which the entity is found."""
+    collection: MBID
+
+    """The MBID of a place to which the entity is linked."""
+    place: MBID
+    after: String
+    first: Int
+  ): EventConnection
+
+  """Browse label entities linked to the given arguments."""
+  labels(
+    """The MBID of an area to which the entity is linked."""
+    area: MBID
+
+    """The MBID of a collection in which the entity is found."""
+    collection: MBID
+
+    """The MBID of a release to which the entity is linked."""
+    release: MBID
+    after: String
+    first: Int
+  ): LabelConnection
+
+  """Browse place entities linked to the given arguments."""
+  places(
+    """The MBID of an area to which the entity is linked."""
+    area: MBID
+
+    """The MBID of a collection in which the entity is found."""
+    collection: MBID
+    after: String
+    first: Int
+  ): PlaceConnection
+
+  """Browse recording entities linked to the given arguments."""
+  recordings(
+    """The MBID of an artist to which the entity is linked."""
+    artist: MBID
+
+    """The MBID of a collection in which the entity is found."""
+    collection: MBID
+
+    """
+    The [International Standard Recording Code](https://musicbrainz.org/doc/ISRC)
+    (ISRC) of the recording.
+    """
+    isrc: ISRC
+
+    """The MBID of a release to which the entity is linked."""
+    release: MBID
+    after: String
+    first: Int
+  ): RecordingConnection
+
+  """Browse release entities linked to the given arguments."""
+  releases(
+    """The MBID of an area to which the entity is linked."""
+    area: MBID
+
+    """The MBID of an artist to which the entity is linked."""
+    artist: MBID
+
+    """The MBID of a collection in which the entity is found."""
+    collection: MBID
+
+    """
+    A [disc ID](https://musicbrainz.org/doc/Disc_ID)
+    associated with the release.
+    """
+    discID: DiscID
+
+    """The MBID of a label to which the entity is linked."""
+    label: MBID
+
+    """The MBID of a recording to which the entity is linked."""
+    recording: MBID
+
+    """The MBID of a release group to which the entity is linked."""
+    releaseGroup: MBID
+
+    """The MBID of a track that is included in the release."""
+    track: MBID
+
+    """
+    The MBID of an artist that appears on a track in the
+    release, but is not included in the credits for the release itself.
+    """
+    trackArtist: MBID
+
+    """Filter by one or more release group types."""
+    type: [ReleaseGroupType]
+
+    """Filter by one or more release statuses."""
+    status: [ReleaseStatus]
+    after: String
+    first: Int
+  ): ReleaseConnection
+
+  """Browse release group entities linked to the given arguments."""
+  releaseGroups(
+    """The MBID of an artist to which the entity is linked."""
+    artist: MBID
+
+    """The MBID of a collection in which the entity is found."""
+    collection: MBID
+
+    """The MBID of a release to which the entity is linked."""
+    release: MBID
+
+    """Filter by one or more release group types."""
+    type: [ReleaseGroupType]
+    after: String
+    first: Int
+  ): ReleaseGroupConnection
+
+  """Browse work entities linked to the given arguments."""
+  works(
+    """The MBID of an artist to which the entity is linked."""
+    artist: MBID
+
+    """The MBID of a collection in which the entity is found."""
+    collection: MBID
+
+    """
+    The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)
+    (ISWC) of the work.
+    """
+    iswc: ISWC
+    after: String
+    first: Int
+  ): WorkConnection
+}
+
+"""
+The [International Standard Musical Work Code](https://musicbrainz.org/doc/ISWC)
+(ISWC) is an ISO standard similar to ISBNs for identifying musical works /
+compositions.
+"""
+scalar ISWC
 
 """A search for MusicBrainz entities using Lucene query syntax."""
 type SearchQuery {
@@ -2415,280 +2690,5 @@ type SearchQuery {
     after: String
     first: Int
   ): WorkConnection
-}
-
-"""
-A [series](https://musicbrainz.org/doc/Series) is a sequence of
-separate release groups, releases, recordings, works or events with a common
-theme.
-"""
-type Series implements Node & Entity {
-  """The ID of an object"""
-  id: ID!
-
-  """The MBID of the entity."""
-  mbid: MBID!
-
-  """The official name of the entity."""
-  name: String
-
-  """A comment used to help distinguish identically named entitites."""
-  disambiguation: String
-
-  """
-  The type primarily describes what type of entity the series
-  contains.
-  """
-  type: String
-
-  """
-  The MBID associated with the value of the `type`
-  field.
-  """
-  typeID: MBID
-
-  """Relationships between this entity and other entitites."""
-  relationships: Relationships
-
-  """A list of collections containing this entity."""
-  collections(after: String, first: Int): CollectionConnection
-
-  """A list of tags linked to this entity."""
-  tags(after: String, first: Int): TagConnection
-}
-
-"""A connection to a list of items."""
-type SeriesConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [SeriesEdge]
-
-  """
-  A list of nodes in the connection (without going through the
-  `edges` field).
-  """
-  nodes: [Series]
-
-  """
-  A count of the total number of items in this connection,
-  ignoring pagination.
-  """
-  totalCount: Int
-}
-
-"""An edge in a connection."""
-type SeriesEdge {
-  """The item at the end of the edge"""
-  node: Series
-
-  """A cursor for use in pagination"""
-  cursor: String!
-
-  """
-  The relevancy score (0–100) assigned by the search engine, if
-  these results were found through a search.
-  """
-  score: Int
-}
-
-"""
-[Tags](https://musicbrainz.org/tags) are a way to mark entities
-with extra information – for example, the genres that apply to an artist,
-release, or recording.
-"""
-type Tag {
-  """The tag label."""
-  name: String!
-
-  """How many times this tag has been applied to the entity."""
-  count: Int
-}
-
-"""A connection to a list of items."""
-type TagConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [TagEdge]
-
-  """
-  A list of nodes in the connection (without going through the
-  `edges` field).
-  """
-  nodes: [Tag]
-
-  """
-  A count of the total number of items in this connection,
-  ignoring pagination.
-  """
-  totalCount: Int
-}
-
-"""An edge in a connection."""
-type TagEdge {
-  """The item at the end of the edge"""
-  node: Tag
-
-  """A cursor for use in pagination"""
-  cursor: String!
-
-  """
-  The relevancy score (0–100) assigned by the search engine, if
-  these results were found through a search.
-  """
-  score: Int
-}
-
-"""A time of day, in 24-hour hh:mm notation."""
-scalar Time
-
-"""
-A track is the way a recording is represented on a particular
-  release (or, more exactly, on a particular medium). Every track has a title
-  (see the guidelines for titles) and is credited to one or more artists.
-"""
-type Track implements Entity {
-  """The MBID of the entity."""
-  mbid: MBID!
-
-  """The official title of the entity."""
-  title: String
-
-  """
-  The track’s position on the overall release (including all
-  tracks from all discs).
-  """
-  position: Int
-
-  """
-  The track number, which may include information about the
-  disc or side it appears on, e.g. “A1” or “B3”.
-  """
-  number: String
-
-  """The length of the track."""
-  length: Duration
-
-  """The recording that appears on the track."""
-  recording: Recording
-}
-
-"""
-A [URL](https://musicbrainz.org/doc/URL) pointing to a resource
-external to MusicBrainz, i.e. an official homepage, a site where music can be
-acquired, an entry in another database, etc.
-"""
-type URL implements Node & Entity {
-  """The ID of an object"""
-  id: ID!
-
-  """The MBID of the entity."""
-  mbid: MBID!
-
-  """The actual URL string."""
-  resource: URLString!
-
-  """Relationships between this entity and other entitites."""
-  relationships: Relationships
-}
-
-"""A web address."""
-scalar URLString
-
-"""
-A [work](https://musicbrainz.org/doc/Work) is a distinct
-intellectual or artistic creation, which can be expressed in the form of one or
-more audio recordings.
-"""
-type Work implements Node & Entity {
-  """The ID of an object"""
-  id: ID!
-
-  """The MBID of the entity."""
-  mbid: MBID!
-
-  """The official title of the entity."""
-  title: String
-
-  """A comment used to help distinguish identically named entitites."""
-  disambiguation: String
-
-  """
-  [Aliases](https://musicbrainz.org/doc/Aliases) are used to store
-  alternate names or misspellings.
-  """
-  aliases: [Alias]
-
-  """
-  A list of [ISWCs](https://musicbrainz.org/doc/ISWC) assigned
-  to the work by copyright collecting agencies.
-  """
-  iswcs: [String]
-
-  """The language in which the work was originally written."""
-  language: String
-
-  """The type of work."""
-  type: String
-
-  """
-  The MBID associated with the value of the `type`
-  field.
-  """
-  typeID: MBID
-
-  """A list of artists linked to this entity."""
-  artists(after: String, first: Int): ArtistConnection
-
-  """Relationships between this entity and other entitites."""
-  relationships: Relationships
-
-  """A list of collections containing this entity."""
-  collections(after: String, first: Int): CollectionConnection
-
-  """The rating users have given to this entity."""
-  rating: Rating
-
-  """A list of tags linked to this entity."""
-  tags(after: String, first: Int): TagConnection
-}
-
-"""A connection to a list of items."""
-type WorkConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [WorkEdge]
-
-  """
-  A list of nodes in the connection (without going through the
-  `edges` field).
-  """
-  nodes: [Work]
-
-  """
-  A count of the total number of items in this connection,
-  ignoring pagination.
-  """
-  totalCount: Int
-}
-
-"""An edge in a connection."""
-type WorkEdge {
-  """The item at the end of the edge"""
-  node: Work
-
-  """A cursor for use in pagination"""
-  cursor: String!
-
-  """
-  The relevancy score (0–100) assigned by the search engine, if
-  these results were found through a search.
-  """
-  score: Int
 }
 ```

@@ -1,4 +1,7 @@
-import Client from '../../api/client'
+import ExtendableError from 'es6-error';
+import Client from '../../api/client.js';
+
+export class TheAudioDBError extends ExtendableError {}
 
 export default class TheAudioDBClient extends Client {
   constructor({
@@ -9,66 +12,67 @@ export default class TheAudioDBClient extends Client {
     period = 1000,
     ...options
   } = {}) {
-    super({ baseURL, limit, period, ...options })
-    this.apiKey = apiKey
+    super({ baseURL, limit, period, ...options });
+    this.apiKey = apiKey;
   }
 
   get(path, options = {}) {
-    const ClientError = this.errorClass
     if (!this.apiKey) {
       return Promise.reject(
-        new ClientError('No API key was configured for TheAudioDB client.')
-      )
+        new TheAudioDBError('No API key was configured for TheAudioDB client.')
+      );
     }
     return super.get(`${this.apiKey}/${path}`, {
-      json: true,
-      // FIXME: TheAudioDB's SSL terminator seems to be broken and only works
-      // by forcing TLS 1.0.
-      agentOptions: { secureProtocol: 'TLSv1_method' },
-      ...options
-    })
+      resolveBodyOnly: true,
+      ...options,
+    });
   }
 
   entity(entityType, mbid) {
-    const ClientError = this.errorClass
     switch (entityType) {
       case 'artist':
-        return this.artist(mbid)
+        return this.artist(mbid);
       case 'release-group':
-        return this.album(mbid)
+        return this.album(mbid);
       case 'recording':
-        return this.track(mbid)
+        return this.track(mbid);
       default:
         return Promise.reject(
-          new ClientError(`Entity type unsupported: ${entityType}`)
-        )
+          new TheAudioDBError(`Entity type unsupported: ${entityType}`)
+        );
     }
   }
 
   artist(mbid) {
-    return this.get('artist-mb.php', { qs: { i: mbid } }).then(body => {
-      if (body.artists && body.artists.length === 1) {
-        return body.artists[0]
+    return this.get('artist-mb.php', { searchParams: { i: mbid } }).then(
+      (body) => {
+        if (body.artists && body.artists.length === 1) {
+          return body.artists[0];
+        }
+        return null;
       }
-      return null
-    })
+    );
   }
 
   album(mbid) {
-    return this.get('album-mb.php', { qs: { i: mbid } }).then(body => {
-      if (body.album && body.album.length === 1) {
-        return body.album[0]
+    return this.get('album-mb.php', { searchParams: { i: mbid } }).then(
+      (body) => {
+        if (body.album && body.album.length === 1) {
+          return body.album[0];
+        }
+        return null;
       }
-      return null
-    })
+    );
   }
 
   track(mbid) {
-    return this.get('track-mb.php', { qs: { i: mbid } }).then(body => {
-      if (body.track && body.track.length === 1) {
-        return body.track[0]
+    return this.get('track-mb.php', { searchParams: { i: mbid } }).then(
+      (body) => {
+        if (body.track && body.track.length === 1) {
+          return body.track[0];
+        }
+        return null;
       }
-      return null
-    })
+    );
   }
 }

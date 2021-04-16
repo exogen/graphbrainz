@@ -1,4 +1,12 @@
-import Client from '../../api/client'
+import ExtendableError from 'es6-error';
+import Client from '../../api/client.js';
+
+export class CoverArtArchiveError extends ExtendableError {
+  constructor(message, response) {
+    super(message);
+    this.response = response;
+  }
+}
 
 export default class CoverArtArchiveClient extends Client {
   constructor({
@@ -8,32 +16,40 @@ export default class CoverArtArchiveClient extends Client {
     period = 1000,
     ...options
   } = {}) {
-    super({ baseURL, limit, period, ...options })
+    super({ baseURL, limit, period, ...options });
   }
 
   /**
    * Sinfully attempt to parse HTML responses for the error message.
    */
-  parseErrorMessage(response, body) {
-    if (typeof body === 'string' && body.startsWith('<!')) {
-      const heading = /<h1>([^<]+)<\/h1>/i.exec(body)
-      const message = /<p>([^<]+)<\/p>/i.exec(body)
-      return `${heading ? heading[1] + ': ' : ''}${message ? message[1] : ''}`
+  parseErrorMessage(err) {
+    if (err.name === 'HTTPError') {
+      const { body } = err.response;
+      if (typeof body === 'string' && body.startsWith('<!')) {
+        const heading = /<h1>([^<]+)<\/h1>/i.exec(body);
+        const message = /<p>([^<]+)<\/p>/i.exec(body);
+        return new CoverArtArchiveError(
+          `${heading ? heading[1] + ': ' : ''}${message ? message[1] : ''}`,
+          err.response
+        );
+      }
     }
-    return super.parseErrorMessage(response, body)
+    return super.parseErrorMessage(err);
   }
 
   images(entityType, mbid) {
-    return this.get(`${entityType}/${mbid}`, { json: true })
+    return this.get(`${entityType}/${mbid}`, { resolveBodyOnly: true });
   }
 
-  imageURL(entityType, mbid, typeOrID = 'front', size) {
-    let url = `${entityType}/${mbid}/${typeOrID}`
+  async imageURL(entityType, mbid, typeOrID = 'front', size) {
+    let url = `${entityType}/${mbid}/${typeOrID}`;
     if (size != null) {
-      url += `-${size}`
+      url += `-${size}`;
     }
-    return this.get(url, { method: 'HEAD', followRedirect: false }).then(
-      headers => headers.location
-    )
+    const response = await this.get(url, {
+      method: 'HEAD',
+      followRedirect: false,
+    });
+    return response.headers.location;
   }
 }

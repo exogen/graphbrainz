@@ -1,19 +1,22 @@
-import { GraphQLObjectType } from 'graphql/type'
-import Node from './node'
-import Entity from './entity'
+import GraphQL from 'graphql';
+import { Node } from './node.js';
+import { Entity } from './entity.js';
 import {
   id,
   mbid,
   name,
   disambiguation,
-  relationships,
-  collections,
-  tags,
   fieldWithID,
-  connectionWithExtras
-} from './helpers'
+  connectionWithExtras,
+  linkedQuery,
+} from './helpers.js';
+import { collections } from './collection.js';
+import { relationships } from './relationship.js';
+import { tags } from './tag.js';
 
-const Series = new GraphQLObjectType({
+const { GraphQLObjectType } = GraphQL;
+
+export const Series = new GraphQLObjectType({
   name: 'Series',
   description: `A [series](https://musicbrainz.org/doc/Series) is a sequence of
 separate release groups, releases, recordings, works or events with a common
@@ -26,13 +29,14 @@ theme.`,
     disambiguation,
     ...fieldWithID('type', {
       description: `The type primarily describes what type of entity the series
-contains.`
+contains.`,
     }),
     relationships,
     collections,
-    tags
-  })
-})
+    tags,
+  }),
+});
 
-export const SeriesConnection = connectionWithExtras(Series)
-export default Series
+export const SeriesConnection = connectionWithExtras(Series);
+
+export const series = linkedQuery(SeriesConnection);

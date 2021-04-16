@@ -1,10 +1,13 @@
-import { GraphQLObjectType, GraphQLNonNull } from 'graphql/type'
-import Node from './node'
-import Entity from './entity'
-import { URLString } from './scalars'
-import { id, mbid, relationships, connectionWithExtras } from './helpers'
+import GraphQL from 'graphql';
+import { Node } from './node.js';
+import { Entity } from './entity.js';
+import { URLString } from './scalars.js';
+import { id, mbid, connectionWithExtras } from './helpers.js';
+import { relationships } from './relationship.js';
 
-const URL = new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLNonNull } = GraphQL;
+
+export const URL = new GraphQLObjectType({
   name: 'URL',
   description: `A [URL](https://musicbrainz.org/doc/URL) pointing to a resource
 external to MusicBrainz, i.e. an official homepage, a site where music can be
@@ -15,11 +18,10 @@ acquired, an entry in another database, etc.`,
     mbid,
     resource: {
       type: new GraphQLNonNull(URLString),
-      description: 'The actual URL string.'
+      description: 'The actual URL string.',
     },
-    relationships
-  })
-})
+    relationships,
+  }),
+});
 
-export const URLConnection = connectionWithExtras(URL)
-export default URL
+export const URLConnection = connectionWithExtras(URL);

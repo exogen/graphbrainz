@@ -1,1 +1,1 @@
-module.exports = require('../lib/extensions/fanart-tv')
+export { default } from '../src/extensions/fanart-tv/index.js';

@@ -1,28 +1,31 @@
-import { GraphQLObjectType, GraphQLNonNull, GraphQLString } from 'graphql/type'
-import Node from './node'
-import Entity from './entity'
+import GraphQL from 'graphql';
+import { Node } from './node.js';
+import { Entity } from './entity.js';
 import {
   id,
   mbid,
   name,
-  areas,
-  artists,
-  events,
-  instruments,
-  labels,
-  places,
-  recordings,
-  releases,
-  releaseGroups,
-  series,
-  works,
   fieldWithID,
   resolveHyphenated,
   createCollectionField,
-  connectionWithExtras
-} from './helpers'
+  connectionWithExtras,
+  linkedQuery,
+} from './helpers.js';
+import { areas } from './area.js';
+import { artists } from './artist.js';
+import { events } from './event.js';
+import { instruments } from './instrument.js';
+import { labels } from './label.js';
+import { places } from './place.js';
+import { recordings } from './recording.js';
+import { releases } from './release.js';
+import { releaseGroups } from './release-group.js';
+import { series } from './series.js';
+import { works } from './work.js';
 
-const Collection = new GraphQLObjectType({
+const { GraphQLObjectType, GraphQLNonNull, GraphQLString } = GraphQL;
+
+export const Collection = new GraphQLObjectType({
   name: 'Collection',
   description: `[Collections](https://musicbrainz.org/doc/Collections) are
 lists of entities that users can create.`,
@@ -33,15 +36,15 @@ lists of entities that users can create.`,
     name,
     editor: {
       type: new GraphQLNonNull(GraphQLString),
-      description: 'The username of the editor who created the collection.'
+      description: 'The username of the editor who created the collection.',
     },
     entityType: {
       type: new GraphQLNonNull(GraphQLString),
       description: 'The type of entity listed in the collection.',
-      resolve: resolveHyphenated
+      resolve: resolveHyphenated,
     },
     ...fieldWithID('type', {
-      description: 'The type of collection.'
+      description: 'The type of collection.',
     }),
     areas: createCollectionField(areas),
     artists: createCollectionField(artists),
@@ -53,9 +56,12 @@ lists of entities that users can create.`,
     releases: createCollectionField(releases),
     releaseGroups: createCollectionField(releaseGroups),
     series: createCollectionField(series),
-    works: createCollectionField(works)
-  })
-})
+    works: createCollectionField(works),
+  }),
+});
 
-export const CollectionConnection = connectionWithExtras(Collection)
-export default Collection
+export const CollectionConnection = connectionWithExtras(Collection);
+
+export const collections = linkedQuery(CollectionConnection, {
+  description: 'A list of collections containing this entity.',
+});

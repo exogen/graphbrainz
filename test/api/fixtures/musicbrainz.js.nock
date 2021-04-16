@@ -1,0 +1,116 @@
+[
+  [
+    "getBrowseURL() generates a browse URL",
+    [
+    ]
+  ],
+  [
+    "getLookupURL() generates a lookup URL",
+    [
+    ]
+  ],
+  [
+    "getSearchURL() generates a search URL",
+    [
+    ]
+  ],
+  [
+    "lookup() sends a lookup query",
+    [
+      {
+        "body": "",
+        "method": "GET",
+        "path": "/ws/2/artist/c8da2e40-bd28-4d4e-813a-bd2f51958ba8?fmt=json",
+        "rawHeaders": [
+          "Date",
+          "Thu, 15 Apr 2021 09:07:10 GMT",
+          "Content-Type",
+          "application/json; charset=utf-8",
+          "Transfer-Encoding",
+          "chunked",
+          "Connection",
+          "close",
+          "Vary",
+          "Accept-Encoding",
+          "X-RateLimit-Limit",
+          "1200",
+          "X-RateLimit-Remaining",
+          "783",
+          "X-RateLimit-Reset",
+          "1618477631",
+          "Server",
+          "Plack::Handler::Starlet",
+          "ETag",
+          "W/\"80f1f0e96231d62805a0ac7d54414c6f\"",
+          "Access-Control-Allow-Origin",
+          "*",
+          "X-Cache-Status",
+          "STALE"
+        ],
+        "reqheaders": {
+          "accept": "application/json",
+          "accept-encoding": "gzip, deflate, br",
+          "host": "musicbrainz.org"
+        },
+        "response": "{\"life-span\":{\"end\":null,\"ended\":false,\"begin\":\"2013\"},\"id\":\"c8da2e40-bd28-4d4e-813a-bd2f51958ba8\",\"type-id\":\"e431f5f6-b5d2-343d-8b36-72607fffb74b\",\"begin_area\":{\"type-id\":null,\"id\":\"10adc6b5-63bf-4b4e-993e-ed83b05c22fc\",\"sort-name\":\"Seattle\",\"name\":\"Seattle\",\"type\":null,\"disambiguation\":\"\"},\"country\":null,\"gender-id\":null,\"disambiguation\":\"Seattle trio\",\"isnis\":[],\"gender\":null,\"sort-name\":\"Lures\",\"name\":\"Lures\",\"end-area\":null,\"begin-area\":{\"type-id\":null,\"id\":\"10adc6b5-63bf-4b4e-993e-ed83b05c22fc\",\"sort-name\":\"Seattle\",\"name\":\"Seattle\",\"type\":null,\"disambiguation\":\"\"},\"end_area\":null,\"ipis\":[],\"type\":\"Group\",\"area\":{\"disambiguation\":\"\",\"type\":null,\"type-id\":null,\"id\":\"10adc6b5-63bf-4b4e-993e-ed83b05c22fc\",\"name\":\"Seattle\",\"sort-name\":\"Seattle\"}}",
+        "responseIsBinary": false,
+        "scope": "http://musicbrainz.org:80",
+        "status": 200
+      }
+    ]
+  ],
+  [
+    "rejects non-MusicBrainz errors",
+    [
+    ]
+  ],
+  [
+    "rejects the promise when the API returns an error",
+    [
+      {
+        "body": "",
+        "method": "GET",
+        "path": "/ws/2/artist/5b11f4ce-a62d-471e-81fc-a69a8278c7da?inc=foobar&fmt=json",
+        "rawHeaders": [
+          "Date",
+          "Thu, 15 Apr 2021 09:07:10 GMT",
+          "Content-Type",
+          "application/json; charset=utf-8",
+          "Content-Length",
+          "144",
+          "Connection",
+          "close",
+          "X-RateLimit-Limit",
+          "1200",
+          "X-RateLimit-Remaining",
+          "664",
+          "X-RateLimit-Reset",
+          "1618477631",
+          "Server",
+          "Plack::Handler::Starlet",
+          "ETag",
+          "\"294308a5f1930ea2b39414c0b8ec853c\"",
+          "Access-Control-Allow-Origin",
+          "*"
+        ],
+        "reqheaders": {
+          "accept": "application/json",
+          "accept-encoding": "gzip, deflate, br",
+          "host": "musicbrainz.org"
+        },
+        "response": {
+          "error": "foobar is not a valid inc parameter for the artist resource.",
+          "help": "For usage, please see: https://musicbrainz.org/development/mmd"
+        },
+        "responseIsBinary": false,
+        "scope": "http://musicbrainz.org:80",
+        "status": 400
+      }
+    ]
+  ],
+  [
+    "uses the default error impementation if there is no JSON error",
+    [
+    ]
+  ]
+]

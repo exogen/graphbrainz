@@ -1,13 +1,15 @@
-import { GraphQLObjectType } from 'graphql/type'
-import { DateType } from './scalars'
-import Area from './area'
+import GraphQL from 'graphql';
+import { DateType } from './scalars.js';
+import { Area } from './area.js';
 
-export default new GraphQLObjectType({
+const { GraphQLObjectType } = GraphQL;
+
+export const ReleaseEvent = new GraphQLObjectType({
   name: 'ReleaseEvent',
   description: `The date on which a release was issued in a country/region with
 a particular label, catalog number, barcode, and format.`,
   fields: () => ({
     area: { type: Area },
-    date: { type: DateType }
-  })
-})
+    date: { type: DateType },
+  }),
+});
