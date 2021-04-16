@@ -56,6 +56,7 @@ export default class Client {
     options = {
       responseType: 'json',
       timeout: this.timeout,
+      retry: this.retryOptions,
       ...options,
       headers: {
         'User-Agent': this.userAgent,
