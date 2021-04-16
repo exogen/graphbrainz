@@ -6,7 +6,8 @@ Extensions can define new GraphQL types and use the `extend type` syntax to add
 new fields to any existing GraphBrainz type, including the root query.
 
 Several extensions are included by default, and you can install any number of
-additional extensions from a package manager or [write your own](#extension-api).
+additional extensions from a package manager or
+[write your own](#extension-api).
 
 ## Contents
 
@@ -30,9 +31,9 @@ additional extensions from a package manager or [write your own](#extension-api)
 ## Loading Extensions
 
 The extensions to load are specified using the `extensions` option to the
-exported `graphbrainz()` middleware function. Each extension must be an object
-conforming to the [Extension API](#extension-api), or the path to a module to
-load via `require()` that exports such an object.
+exported `middleware()` function. Each extension must be an object conforming to
+the [Extension API](#extension-api), or the path to a module to load via
+`require()` that exports such an object.
 
 If you are running GraphBrainz as a standalone server, you may specify
 extensions via the `GRAPHBRAINZ_EXTENSIONS` environment variable, which will be
@@ -49,14 +50,14 @@ or environment variables. Check the documentation for each extension you use.
 The default extensions configuration looks like this:
 
 ```js
-graphbrainz({
+middleware({
   extensions: [
     'graphbrainz/extensions/cover-art-archive',
     'graphbrainz/extensions/fanart-tv',
     'graphbrainz/extensions/mediawiki',
-    'graphbrainz/extensions/the-audio-db'
-  ]
-})
+    'graphbrainz/extensions/the-audio-db',
+  ],
+});
 ```
 
 ## Built-in Extensions
@@ -70,8 +71,8 @@ See their respective documentation pages for schema info and config options.
   releases, and labels from fanart.tv.
 - [MediaWiki](./mediawiki.md): Retrieve information from MediaWiki image pages,
   like the actual image file URL and EXIF metadata.
-- [TheAudioDB](./the-audio-db.md): Retrieve images and information about artists,
-  releases, and recordings from TheAudioDB.com.
+- [TheAudioDB](./the-audio-db.md): Retrieve images and information about
+  artists, releases, and recordings from TheAudioDB.com.
 
 ## More Extensions
 
@@ -79,19 +80,21 @@ The following extensions are published separately, but can easily be added to
 GraphBrainz by installing them:
 
 - [Last.fm](https://github.com/exogen/graphbrainz-extension-lastfm): Retrieve
-  artist, release, and recording information from [Last.fm](https://www.last.fm/).
+  artist, release, and recording information from
+  [Last.fm](https://www.last.fm/).
 - [Discogs](https://github.com/exogen/graphbrainz-extension-discogs): Retrieve
   artist, label, release, and release group information from
   [Discogs](https://www.discogs.com/).
 - [Spotify](https://github.com/exogen/graphbrainz-extension-spotify): Retrieve
-  artist, release, and recording information from [Spotify](https://www.spotify.com/).
+  artist, release, and recording information from
+  [Spotify](https://www.spotify.com/).
 
 ## Extension API
 
-The core idea behind extensions comes from the [schema stitching][] feature
-from [graphql-tools][], although GraphBrainz does not currently use the exact
+The core idea behind extensions comes from the [schema stitching][] feature from
+[graphql-tools][], although GraphBrainz does not currently use the exact
 technique documented there. Instead, we call `parse` and `extendSchema` from
-[GraphQL.js][], followed by [addResolveFunctionsToSchema][].
+[GraphQL.js][], followed by [addResolversToSchema][].
 
 Extensions must export an object shaped like so:
 
@@ -102,8 +105,8 @@ type Extension = {
   extendContext?: (context: Context, options: Options) => Context,
   extendSchema?:
     | { schemas: Array<string | DocumentNode>, resolvers: ResolverMap }
-    | ((schema: GraphQLSchema, options: Options) => GraphQLSchema)
-}
+    | ((schema: GraphQLSchema, options: Options) => GraphQLSchema),
+};
 ```
 
 ### Properties
@@ -132,7 +135,7 @@ If it is an object, it should have a `schemas` array and a `resolvers` object.
 Each schema must be a string (containing type definitions in GraphQL schema
 language) or a `DocumentNode` (if the type definitions have already been
 parsed). The `resolvers` object should contain a mapping of type fields to new
-resolver functions for those fields. See [addResolveFunctionsToSchema][].
+resolver functions for those fields. See [addResolversToSchema][].
 
 If it is a function, it should accept `schema` and `options` arguments and
 return a new schema. Use this if you’d like to perform custom schema extension
@@ -152,17 +155,17 @@ module.exports = {
       extend type Query {
         helloWorld: String!
       }
-    `
+    `,
     ],
     resolvers: {
       Query: {
         helloWorld: {
-          resolve: () => 'It worked!'
-        }
-      }
-    }
-  }
-}
+          resolve: () => 'It worked!',
+        },
+      },
+    },
+  },
+};
 ```
 
 This will allow the following query to be made:
@@ -180,24 +183,24 @@ See the code for the [built-in extensions][] for more examples.
 Extensions can load and resolve data in any manner they please, and you can
 write them in any way that conforms to the API. But if you want an extra feather
 in your cap, there are a few guidelines you should follow in order to maintain
-consistency with GraphBrainz and the built-in extensions. Here are some tips
-for writing a good extension:
+consistency with GraphBrainz and the built-in extensions. Here are some tips for
+writing a good extension:
 
 - If you need to make HTTP requests, using a [Client][] subclass will get you
   rate limiting, error handling, retrying, and a Promise-based API for free.
-- Default to following the rate limiting rules of any APIs you use. If there
-  are no guidelines on rate limiting, consider playing nice anyway and limiting
-  your client to around 1 to 10 requests per second.
+- Default to following the rate limiting rules of any APIs you use. If there are
+  no guidelines on rate limiting, consider playing nice anyway and limiting your
+  client to around 1 to 10 requests per second.
 - Use a [DataLoader][dataloader] instance to batch and cache requests. Even if
   the data source doesn’t support batching, DataLoader will help by deduping
   in-flight requests for the same key, preventing unnecessary requests.
 - Use a configurable cache and make sure you aren’t caching everything
   indefinitely by accident. The `cacheMap` option to DataLoader is a good place
   to put it.
-- Get as much configuration from environment variables as possible so that
-  users can just run the standalone server instead of writing any code. If you
-  need more complex configuration, use a single field on the `options` object
-  as a namespace for your extension’s options.
+- Get as much configuration from environment variables as possible so that users
+  can just run the standalone server instead of writing any code. If you need
+  more complex configuration, use a single field on the `options` object as a
+  namespace for your extension’s options.
 - Don’t hesitate to rename fields returned by third-party APIs when translating
   them to the GraphQL schema. Consistency with GraphQL conventions and the
   GraphBrainz schema is more desirable than consistency with the original API
@@ -235,14 +238,18 @@ for writing a good extension:
   with the built-in extensions.
 
 [graphql-tools]: http://dev.apollodata.com/tools/graphql-tools/index.html
-[schema stitching]: http://dev.apollodata.com/tools/graphql-tools/schema-stitching.html
-[mergeschemas]: http://dev.apollodata.com/tools/graphql-tools/schema-stitching.html#mergeSchemas
+[schema stitching]:
+  http://dev.apollodata.com/tools/graphql-tools/schema-stitching.html
+[mergeschemas]:
+  http://dev.apollodata.com/tools/graphql-tools/schema-stitching.html#mergeSchemas
 [dataloader]: https://github.com/facebook/dataloader
 [built-in extensions]: ../../src/extensions
 [client]: ../../src/api/client.js
 [graphql-markdown]: https://github.com/exogen/graphql-markdown
-[diffschema]: https://github.com/exogen/graphql-markdown#diffschemaoldschema-object-newschema-object-options-object
+[diffschema]:
+  https://github.com/exogen/graphql-markdown#diffschemaoldschema-object-newschema-object-options-object
 [build-extension-docs]: ../../scripts/build-extension-docs.js
 [relay]: https://facebook.github.io/relay/
 [graphql.js]: http://graphql.org/graphql-js/
-[addresolvefunctionstoschema]: http://dev.apollodata.com/tools/graphql-tools/resolvers.html#addResolveFunctionsToSchema
+[addresolverstoschema]:
+  http://dev.apollodata.com/tools/graphql-tools/resolvers.html#addResolversToSchema
