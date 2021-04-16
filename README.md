@@ -26,8 +26,8 @@ Install with Yarn:
 yarn add graphbrainz
 ```
 
-_GraphBrainz is written and distributed as native Node.js ECMAScript modules
-(ESM) and requires a compatible version._
+_GraphBrainz is written and distributed as native ECMAScript modules
+(ESM) and requires a compatible version of Node.js_
 
 ## Contents
 
