@@ -61,7 +61,7 @@ for a description and additional fields.*
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>mediaWikiImages</strong></td>
+<td colspan="2" valign="top"><strong id="artist.mediawikiimages">mediaWikiImages</strong></td>
 <td valign="top">[<a href="#mediawikiimage">MediaWikiImage</a>]!</td>
 <td>
 
@@ -100,7 +100,7 @@ for a description and additional fields.*
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>mediaWikiImages</strong></td>
+<td colspan="2" valign="top"><strong id="instrument.mediawikiimages">mediaWikiImages</strong></td>
 <td valign="top">[<a href="#mediawikiimage">MediaWikiImage</a>]!</td>
 <td>
 
@@ -139,7 +139,7 @@ for a description and additional fields.*
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>mediaWikiImages</strong></td>
+<td colspan="2" valign="top"><strong id="label.mediawikiimages">mediaWikiImages</strong></td>
 <td valign="top">[<a href="#mediawikiimage">MediaWikiImage</a>]!</td>
 <td>
 
@@ -178,7 +178,7 @@ server. The information comes the [MediaWiki imageinfo API](https://www.mediawik
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>url</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.url">url</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a>!</td>
 <td>
 
@@ -187,7 +187,7 @@ The URL of the actual image file.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>descriptionURL</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.descriptionurl">descriptionURL</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -196,7 +196,7 @@ The URL of the wiki page describing the image.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>user</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.user">user</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -205,7 +205,7 @@ The user who uploaded the file.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>size</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.size">size</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
 
@@ -214,7 +214,7 @@ The size of the file in bytes.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>width</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.width">width</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
 
@@ -223,7 +223,7 @@ The pixel width of the image.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>height</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.height">height</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
 
@@ -232,7 +232,7 @@ The pixel height of the image.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>canonicalTitle</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.canonicaltitle">canonicalTitle</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -241,7 +241,7 @@ The canonical title of the file.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>objectName</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.objectname">objectName</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -250,7 +250,7 @@ The image title, brief description, or file name.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>descriptionHTML</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.descriptionhtml">descriptionHTML</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -259,7 +259,7 @@ A description of the image, potentially containing HTML.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>originalDateTimeHTML</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.originaldatetimehtml">originalDateTimeHTML</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -269,7 +269,7 @@ a parseable timestamp, and may contain HTML.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>categories</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.categories">categories</strong></td>
 <td valign="top">[<a href="../types.md#string">String</a>]!</td>
 <td>
 
@@ -278,7 +278,7 @@ A list of the categories of the image.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>artistHTML</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.artisthtml">artistHTML</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -287,7 +287,7 @@ The name of the image author, potentially containing HTML.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>creditHTML</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.credithtml">creditHTML</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -296,7 +296,7 @@ The source of the image, potentially containing HTML.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>licenseShortName</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.licenseshortname">licenseShortName</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -305,7 +305,7 @@ A short human-readable license name.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>licenseURL</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.licenseurl">licenseURL</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -314,7 +314,7 @@ A web address where the license is described.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>metadata</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimage.metadata">metadata</strong></td>
 <td valign="top">[<a href="#mediawikiimagemetadata">MediaWikiImageMetadata</a>]!</td>
 <td>
 
@@ -340,7 +340,7 @@ An entry in the `extmetadata` field of a MediaWiki image file.
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>name</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimagemetadata.name">name</strong></td>
 <td valign="top"><a href="../types.md#string">String</a>!</td>
 <td>
 
@@ -349,7 +349,7 @@ The name of the metadata field.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>value</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimagemetadata.value">value</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -358,7 +358,7 @@ The value of the metadata field. All values will be converted to strings.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>source</strong></td>
+<td colspan="2" valign="top"><strong id="mediawikiimagemetadata.source">source</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -385,7 +385,7 @@ for a description and additional fields.*
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>mediaWikiImages</strong></td>
+<td colspan="2" valign="top"><strong id="place.mediawikiimages">mediaWikiImages</strong></td>
 <td valign="top">[<a href="#mediawikiimage">MediaWikiImage</a>]!</td>
 <td>
 

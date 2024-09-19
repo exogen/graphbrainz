@@ -58,7 +58,7 @@ for a description and additional fields.*
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>fanArt</strong></td>
+<td colspan="2" valign="top"><strong id="artist.fanart">fanArt</strong></td>
 <td valign="top"><a href="#fanartartist">FanArtArtist</a></td>
 <td>
 
@@ -86,7 +86,7 @@ An object containing lists of the different types of release group images from
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>albumCovers</strong></td>
+<td colspan="2" valign="top"><strong id="fanartalbum.albumcovers">albumCovers</strong></td>
 <td valign="top">[<a href="#fanartimage">FanArtImage</a>]</td>
 <td>
 
@@ -95,7 +95,7 @@ A list of 1000x1000 JPG images of the cover artwork of the release group.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>discImages</strong></td>
+<td colspan="2" valign="top"><strong id="fanartalbum.discimages">discImages</strong></td>
 <td valign="top">[<a href="#fanartdiscimage">FanArtDiscImage</a>]</td>
 <td>
 
@@ -123,7 +123,7 @@ An object containing lists of the different types of artist images from
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>backgrounds</strong></td>
+<td colspan="2" valign="top"><strong id="fanartartist.backgrounds">backgrounds</strong></td>
 <td valign="top">[<a href="#fanartimage">FanArtImage</a>]</td>
 <td>
 
@@ -133,7 +133,7 @@ backgrounds.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>banners</strong></td>
+<td colspan="2" valign="top"><strong id="fanartartist.banners">banners</strong></td>
 <td valign="top">[<a href="#fanartimage">FanArtImage</a>]</td>
 <td>
 
@@ -142,7 +142,7 @@ A list of 1000x185 JPG images containing the artist and their logo or name.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>logos</strong></td>
+<td colspan="2" valign="top"><strong id="fanartartist.logos">logos</strong></td>
 <td valign="top">[<a href="#fanartimage">FanArtImage</a>]</td>
 <td>
 
@@ -152,7 +152,7 @@ transparent backgrounds.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>logosHD</strong></td>
+<td colspan="2" valign="top"><strong id="fanartartist.logoshd">logosHD</strong></td>
 <td valign="top">[<a href="#fanartimage">FanArtImage</a>]</td>
 <td>
 
@@ -162,7 +162,7 @@ transparent backgrounds.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>thumbnails</strong></td>
+<td colspan="2" valign="top"><strong id="fanartartist.thumbnails">thumbnails</strong></td>
 <td valign="top">[<a href="#fanartimage">FanArtImage</a>]</td>
 <td>
 
@@ -189,7 +189,7 @@ A disc image from [fanart.tv](https://fanart.tv/).
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>imageID</strong></td>
+<td colspan="2" valign="top"><strong id="fanartdiscimage.imageid">imageID</strong></td>
 <td valign="top"><a href="../types.md#id">ID</a></td>
 <td>
 
@@ -198,7 +198,7 @@ The ID of the image on fanart.tv.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>url</strong></td>
+<td colspan="2" valign="top"><strong id="fanartdiscimage.url">url</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -216,7 +216,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>likeCount</strong></td>
+<td colspan="2" valign="top"><strong id="fanartdiscimage.likecount">likeCount</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
 
@@ -225,7 +225,7 @@ The number of likes the image has received by fanart.tv users.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>discNumber</strong></td>
+<td colspan="2" valign="top"><strong id="fanartdiscimage.discnumber">discNumber</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
 
@@ -234,7 +234,7 @@ The disc number.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>size</strong></td>
+<td colspan="2" valign="top"><strong id="fanartdiscimage.size">size</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
 
@@ -260,7 +260,7 @@ A single image from [fanart.tv](https://fanart.tv/).
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>imageID</strong></td>
+<td colspan="2" valign="top"><strong id="fanartimage.imageid">imageID</strong></td>
 <td valign="top"><a href="../types.md#id">ID</a></td>
 <td>
 
@@ -269,7 +269,7 @@ The ID of the image on fanart.tv.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>url</strong></td>
+<td colspan="2" valign="top"><strong id="fanartimage.url">url</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -287,7 +287,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>likeCount</strong></td>
+<td colspan="2" valign="top"><strong id="fanartimage.likecount">likeCount</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
 
@@ -314,7 +314,7 @@ An object containing lists of the different types of label images from
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>logos</strong></td>
+<td colspan="2" valign="top"><strong id="fanartlabel.logos">logos</strong></td>
 <td valign="top">[<a href="#fanartlabelimage">FanArtLabelImage</a>]</td>
 <td>
 
@@ -342,7 +342,7 @@ A music label image from [fanart.tv](https://fanart.tv/).
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>imageID</strong></td>
+<td colspan="2" valign="top"><strong id="fanartlabelimage.imageid">imageID</strong></td>
 <td valign="top"><a href="../types.md#id">ID</a></td>
 <td>
 
@@ -351,7 +351,7 @@ The ID of the image on fanart.tv.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>url</strong></td>
+<td colspan="2" valign="top"><strong id="fanartlabelimage.url">url</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -369,7 +369,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>likeCount</strong></td>
+<td colspan="2" valign="top"><strong id="fanartlabelimage.likecount">likeCount</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
 
@@ -378,7 +378,7 @@ The number of likes the image has received by fanart.tv users.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>color</strong></td>
+<td colspan="2" valign="top"><strong id="fanartlabelimage.color">color</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -405,7 +405,7 @@ for a description and additional fields.*
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>fanArt</strong></td>
+<td colspan="2" valign="top"><strong id="label.fanart">fanArt</strong></td>
 <td valign="top"><a href="#fanartlabel">FanArtLabel</a></td>
 <td>
 
@@ -433,7 +433,7 @@ for a description and additional fields.*
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>fanArt</strong></td>
+<td colspan="2" valign="top"><strong id="releasegroup.fanart">fanArt</strong></td>
 <td valign="top"><a href="#fanartalbum">FanArtAlbum</a></td>
 <td>
 
@@ -453,8 +453,10 @@ The image sizes that may be requested at [fanart.tv](https://fanart.tv/).
 
 <table>
 <thead>
+<tr>
 <th align="left">Value</th>
 <th align="left">Description</th>
+</tr>
 </thead>
 <tbody>
 <tr>

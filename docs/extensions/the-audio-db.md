@@ -56,7 +56,7 @@ for a description and additional fields.*
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>theAudioDB</strong></td>
+<td colspan="2" valign="top"><strong id="artist.theaudiodb">theAudioDB</strong></td>
 <td valign="top"><a href="#theaudiodbartist">TheAudioDBArtist</a></td>
 <td>
 
@@ -85,7 +85,7 @@ for a description and additional fields.*
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>theAudioDB</strong></td>
+<td colspan="2" valign="top"><strong id="recording.theaudiodb">theAudioDB</strong></td>
 <td valign="top"><a href="#theaudiodbtrack">TheAudioDBTrack</a></td>
 <td>
 
@@ -113,7 +113,7 @@ for a description and additional fields.*
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>theAudioDB</strong></td>
+<td colspan="2" valign="top"><strong id="releasegroup.theaudiodb">theAudioDB</strong></td>
 <td valign="top"><a href="#theaudiodbalbum">TheAudioDBAlbum</a></td>
 <td>
 
@@ -142,7 +142,7 @@ MusicBrainz Release Group.
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>albumID</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.albumid">albumID</strong></td>
 <td valign="top"><a href="../types.md#id">ID</a></td>
 <td>
 
@@ -151,7 +151,7 @@ TheAudioDB ID of the album.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>artistID</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.artistid">artistID</strong></td>
 <td valign="top"><a href="../types.md#id">ID</a></td>
 <td>
 
@@ -160,7 +160,7 @@ TheAudioDB ID of the artist who released the album.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>description</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.description">description</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -178,7 +178,7 @@ The two-letter code for the language in which to retrieve the biography.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>review</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.review">review</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -187,7 +187,7 @@ A review of the album.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>salesCount</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.salescount">salesCount</strong></td>
 <td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
@@ -196,7 +196,7 @@ The worldwide sales figure.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>score</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.score">score</strong></td>
 <td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
@@ -205,7 +205,7 @@ The album’s rating as determined by user votes, out of 10.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>scoreVotes</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.scorevotes">scoreVotes</strong></td>
 <td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
@@ -214,7 +214,7 @@ The number of users who voted to determine the album’s score.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>discImage</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.discimage">discImage</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -232,7 +232,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>spineImage</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.spineimage">spineImage</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -250,7 +250,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>frontImage</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.frontimage">frontImage</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -268,7 +268,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>backImage</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.backimage">backImage</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -286,7 +286,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>genre</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.genre">genre</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -295,7 +295,7 @@ The primary musical genre of the album (e.g. “Alternative Rock”).
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>mood</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.mood">mood</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -304,7 +304,7 @@ The primary musical mood of the album (e.g. “Sad”).
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>style</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.style">style</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -313,7 +313,7 @@ The primary musical style of the album (e.g. “Rock/Pop”).
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>speed</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.speed">speed</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -322,7 +322,7 @@ A rough description of the primary musical speed of the album (e.g. “Medium”
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>theme</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbalbum.theme">theme</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -348,7 +348,7 @@ An artist on [TheAudioDB](http://www.theaudiodb.com/).
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>artistID</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbartist.artistid">artistID</strong></td>
 <td valign="top"><a href="../types.md#id">ID</a></td>
 <td>
 
@@ -357,7 +357,7 @@ TheAudioDB ID of the artist.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>biography</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbartist.biography">biography</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -375,7 +375,7 @@ The two-letter code for the language in which to retrieve the biography.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>memberCount</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbartist.membercount">memberCount</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
 
@@ -384,7 +384,7 @@ The number of members in the musical group, if applicable.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>banner</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbartist.banner">banner</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -402,7 +402,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>fanArt</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbartist.fanart">fanArt</strong></td>
 <td valign="top">[<a href="../types.md#urlstring">URLString</a>]!</td>
 <td>
 
@@ -420,7 +420,7 @@ The size of the images to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>logo</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbartist.logo">logo</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -439,7 +439,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>thumbnail</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbartist.thumbnail">thumbnail</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -458,7 +458,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>genre</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbartist.genre">genre</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -467,7 +467,7 @@ The primary musical genre of the artist (e.g. “Alternative Rock”).
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>mood</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbartist.mood">mood</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -476,7 +476,7 @@ The primary musical mood of the artist (e.g. “Sad”).
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>style</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbartist.style">style</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -502,7 +502,7 @@ Details of a music video associated with a track on [TheAudioDB](http://www.thea
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>url</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbmusicvideo.url">url</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -511,7 +511,7 @@ The URL where the music video can be found.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>companyName</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbmusicvideo.companyname">companyName</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -520,7 +520,7 @@ The video production company of the music video.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>directorName</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbmusicvideo.directorname">directorName</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -529,7 +529,7 @@ The director of the music video.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>screenshots</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbmusicvideo.screenshots">screenshots</strong></td>
 <td valign="top">[<a href="../types.md#urlstring">URLString</a>]!</td>
 <td>
 
@@ -547,7 +547,7 @@ The size of the images to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>viewCount</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbmusicvideo.viewcount">viewCount</strong></td>
 <td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
@@ -557,7 +557,7 @@ be up to date, so use cautiously.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>likeCount</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbmusicvideo.likecount">likeCount</strong></td>
 <td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
@@ -567,7 +567,7 @@ be up to date, so use cautiously.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>dislikeCount</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbmusicvideo.dislikecount">dislikeCount</strong></td>
 <td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
@@ -577,7 +577,7 @@ rarely be up to date, so use cautiously.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>commentCount</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbmusicvideo.commentcount">commentCount</strong></td>
 <td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
@@ -605,7 +605,7 @@ MusicBrainz Recording.
 </thead>
 <tbody>
 <tr>
-<td colspan="2" valign="top"><strong>trackID</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.trackid">trackID</strong></td>
 <td valign="top"><a href="../types.md#id">ID</a></td>
 <td>
 
@@ -614,7 +614,7 @@ TheAudioDB ID of the track.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>albumID</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.albumid">albumID</strong></td>
 <td valign="top"><a href="../types.md#id">ID</a></td>
 <td>
 
@@ -623,7 +623,7 @@ TheAudioDB ID of the album on which the track appears.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>artistID</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.artistid">artistID</strong></td>
 <td valign="top"><a href="../types.md#id">ID</a></td>
 <td>
 
@@ -632,7 +632,7 @@ TheAudioDB ID of the artist who released the track.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>description</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.description">description</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -650,7 +650,7 @@ The two-letter code for the language in which to retrieve the description.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>thumbnail</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.thumbnail">thumbnail</strong></td>
 <td valign="top"><a href="../types.md#urlstring">URLString</a></td>
 <td>
 
@@ -668,7 +668,7 @@ The size of the image to retrieve.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>score</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.score">score</strong></td>
 <td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
@@ -677,7 +677,7 @@ The track’s rating as determined by user votes, out of 10.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>scoreVotes</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.scorevotes">scoreVotes</strong></td>
 <td valign="top"><a href="../types.md#float">Float</a></td>
 <td>
 
@@ -686,7 +686,7 @@ The number of users who voted to determine the album’s score.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>trackNumber</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.tracknumber">trackNumber</strong></td>
 <td valign="top"><a href="../types.md#int">Int</a></td>
 <td>
 
@@ -695,7 +695,7 @@ The track number of the song on the album.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>musicVideo</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.musicvideo">musicVideo</strong></td>
 <td valign="top"><a href="#theaudiodbmusicvideo">TheAudioDBMusicVideo</a></td>
 <td>
 
@@ -704,7 +704,7 @@ The official music video for the track.
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>genre</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.genre">genre</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -713,7 +713,7 @@ The primary musical genre of the track (e.g. “Alternative Rock”).
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>mood</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.mood">mood</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -722,7 +722,7 @@ The primary musical mood of the track (e.g. “Sad”).
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>style</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.style">style</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -731,7 +731,7 @@ The primary musical style of the track (e.g. “Rock/Pop”).
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>theme</strong></td>
+<td colspan="2" valign="top"><strong id="theaudiodbtrack.theme">theme</strong></td>
 <td valign="top"><a href="../types.md#string">String</a></td>
 <td>
 
@@ -750,8 +750,10 @@ The image sizes that may be requested at [TheAudioDB](http://www.theaudiodb.com/
 
 <table>
 <thead>
+<tr>
 <th align="left">Value</th>
 <th align="left">Description</th>
+</tr>
 </thead>
 <tbody>
 <tr>
