@@ -1,6 +1,5 @@
 # GraphBrainz
 
-[![build status](https://img.shields.io/travis/exogen/graphbrainz/master.svg)](https://travis-ci.org/exogen/graphbrainz)
 [![coverage](https://img.shields.io/codecov/c/github/exogen/graphbrainz.svg)](https://codecov.io/gh/exogen/graphbrainz)
 [![npm version](https://img.shields.io/npm/v/graphbrainz.svg)](https://www.npmjs.com/package/graphbrainz)
 [![license](https://img.shields.io/npm/l/graphbrainz.svg)](https://github.com/exogen/graphbrainz/blob/master/LICENSE)
